@@ -1,5 +1,4 @@
 {
-    "State": {
-        
-    }
+"State" : {"players" : {"map" : "Player"}},
+"Player" : {"userId" : "string","sessionId" : "string","hashCode" : "string"}
 }
