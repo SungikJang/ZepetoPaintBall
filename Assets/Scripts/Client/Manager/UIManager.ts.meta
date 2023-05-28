@@ -1,0 +1,100 @@
+fileFormatVersion: 2
+guid: 637804e9d56e01047bdb71ab5aa2ebac
+importerOverride: ZEPETO.Script.Compiler:ZEPETO.Script:TypescriptAssetImporter
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: -1123457745, guid: 54cf806323ffe4418a4ce4cc63fe6b9d, type: 3}
+  isAssemblyDeclarations: 0
+  assembly: 
+  generateAllTypes: 1
+  types: []
+  generateWrapper: 0
+  overrideWrapperTypes: 0
+  wrapperTypes: []
+  WrapperFilters: []
+  wrapperOutputDirectory: Generated
+  compiledResult: "{\"source\":\"\\\"use strict\\\";\\r\\nObject.defineProperty(exports,
+    \\\"__esModule\\\", { value: true });\\r\\nconst UnityEngine_1 = require(\\\"UnityEngine\\\");\\r\\nconst
+    ZEPETO_Character_Controller_1 = require(\\\"ZEPETO.Character.Controller\\\");\\r\\nconst
+    IOC_1 = require(\\\"../IOC\\\");\\r\\nconst Manager_1 = require(\\\"./Manager\\\");\\r\\nclass
+    Stack {\\r\\n    constructor() {\\r\\n        // property\\r\\n        this._data
+    = [];\\r\\n        this._count = 0;\\r\\n    }\\r\\n    // getter setter\\r\\n   
+    get Count() {\\r\\n        return this._count;\\r\\n    }\\r\\n    // method\\r\\n   
+    Push(item) {\\r\\n        this._data.push(item);\\r\\n        this._count +=
+    1;\\r\\n    }\\r\\n    Peek() {\\r\\n        return this._data[this._count -
+    1];\\r\\n    }\\r\\n    Pop() {\\r\\n        this._count -= 1;\\r\\n        return
+    this._data.pop();\\r\\n    }\\r\\n}\\r\\nclass UIManager {\\r\\n    constructor()
+    {\\r\\n        // property\\r\\n        this._canvasOrder = 10;\\r\\n       
+    this._rootUIPopUp = null;\\r\\n        this._rootUIPopUpDontDestroy = null;\\r\\n       
+    this._gameObjectStackOfUIPopUp = new Stack();\\r\\n        this._gameObjectUIWorldSpace
+    = null;\\r\\n    }\\r\\n    // method\\r\\n    SetCanvas(go) {\\r\\n        let
+    canvasComponent = go.GetComponent($typeof(UnityEngine_1.Canvas));\\r\\n       
+    if (!canvasComponent) {\\r\\n            canvasComponent = go.AddComponent($typeof(UnityEngine_1.Canvas));\\r\\n       
+    }\\r\\n        canvasComponent.renderMode = UnityEngine_1.RenderMode.ScreenSpaceOverlay;\\r\\n       
+    canvasComponent.overrideSorting = false;\\r\\n        canvasComponent.sortingOrder
+    = this._canvasOrder;\\r\\n        this._canvasOrder += 1;\\r\\n    }\\r\\n   
+    ShowUIPopUp(uiName) {\\r\\n        if (!uiName) {\\r\\n            return;\\r\\n       
+    }\\r\\n        if (this._rootUIPopUpDontDestroy) {\\r\\n            const inactiveGoTransform
+    = this._rootUIPopUpDontDestroy.transform.Find(uiName);\\r\\n            if (inactiveGoTransform)
+    {\\r\\n                inactiveGoTransform.gameObject.SetActive(true);\\r\\n               
+    this._gameObjectStackOfUIPopUp.Push(inactiveGoTransform.gameObject);\\r\\n               
+    return inactiveGoTransform.gameObject;\\r\\n            }\\r\\n        }\\r\\n       
+    else {\\r\\n            console.log('RootUIPopUpDontDestroy\uB294 \uC52C\uC5D0
+    \uC788\uC5B4\uC57C \uD569\uB2C8\uB2E4. \uBB38\uC81C\uB97C \uD574\uACB0\uD558\uC138\uC694');\\r\\n       
+    }\\r\\n        if (this._rootUIPopUp) {\\r\\n            const inactiveGoTransform
+    = this._rootUIPopUpDontDestroy.transform.Find(uiName);\\r\\n            if (!inactiveGoTransform)
+    {\\r\\n                const go = this.Manager.Resource.Instantiate(`UI\\\\\\\\${uiName}`);\\r\\n               
+    go.transform.SetParent(this._rootUIPopUp.transform);\\r\\n                if
+    (!uiName.includes(\\\"Alert\\\")) {\\r\\n                    this._gameObjectStackOfUIPopUp.Push(go);\\r\\n               
+    }\\r\\n                return go;\\r\\n            }\\r\\n        }\\r\\n   
+    }\\r\\n    ShowUIWorldSpace(name, parentGameObject) {\\r\\n        if (!name
+    || !parentGameObject) {\\r\\n            return;\\r\\n        }\\r\\n       
+    if (this._gameObjectUIWorldSpace !== null) {\\r\\n            this.CloseWorldSpace();\\r\\n       
+    }\\r\\n        const go = this.Manager.Resource.Instantiate(`UI\\\\\\\\${name}`);\\r\\n       
+    go.transform.SetParent(parentGameObject.transform);\\r\\n        const canvas
+    = go.GetComponent($typeof(UnityEngine_1.Canvas));\\r\\n        canvas.renderMode
+    = UnityEngine_1.RenderMode.WorldSpace;\\r\\n        canvas.worldCamera = ZEPETO_Character_Controller_1.ZepetoPlayers.instance.ZepetoCamera.camera;\\r\\n       
+    this._gameObjectUIWorldSpace = go;\\r\\n        return go;\\r\\n    }\\r\\n   
+    ClosePopUp() {\\r\\n        if (this._gameObjectStackOfUIPopUp.Count == 0) {\\r\\n           
+    return;\\r\\n        }\\r\\n        let popUpGo = this._gameObjectStackOfUIPopUp.Pop();\\r\\n       
+    if (this._rootUIPopUpDontDestroy) {\\r\\n            let nameOfGameObject = popUpGo.name;\\r\\n           
+    const activeGoTransform = this._rootUIPopUpDontDestroy.transform.Find(nameOfGameObject);\\r\\n           
+    if (activeGoTransform) {\\r\\n                activeGoTransform.gameObject.SetActive(false);\\r\\n               
+    return;\\r\\n            }\\r\\n        }\\r\\n        else {\\r\\n           
+    console.log('RootUIPopUpDontDestroy\uB294 \uC52C\uC5D0 \uC788\uC5B4\uC57C \uD569\uB2C8\uB2E4.
+    \uBB38\uC81C\uB97C \uD574\uACB0\uD558\uC138\uC694');\\r\\n        }\\r\\n       
+    this.Manager.Resource.Destroy(popUpGo, 0);\\r\\n        popUpGo = null;\\r\\n   
+    }\\r\\n    CloseTargetPopUp(targetUiName) {\\r\\n        if (this._gameObjectStackOfUIPopUp.Count
+    == 0) {\\r\\n            return;\\r\\n        }\\r\\n        for (let i = 0;
+    i < this._gameObjectStackOfUIPopUp._data.length; i++) {\\r\\n            let
+    popUpGo = this._gameObjectStackOfUIPopUp._data[i];\\r\\n            if (targetUiName
+    === popUpGo.name) {\\r\\n                if (this._rootUIPopUpDontDestroy) {\\r\\n                   
+    const activeGoTransform = this._rootUIPopUpDontDestroy.transform.Find(targetUiName);\\r\\n                   
+    if (activeGoTransform) {\\r\\n                        activeGoTransform.gameObject.SetActive(false);\\r\\n                       
+    this._gameObjectStackOfUIPopUp._data.splice(i, 1);\\r\\n                       
+    return;\\r\\n                    }\\r\\n                }\\r\\n               
+    else {\\r\\n                    console.log('RootUIPopUpDontDestroy\uB294 \uC52C\uC5D0
+    \uC788\uC5B4\uC57C \uD569\uB2C8\uB2E4. \uBB38\uC81C\uB97C \uD574\uACB0\uD558\uC138\uC694');\\r\\n               
+    }\\r\\n                this._gameObjectStackOfUIPopUp._data.splice(i, 1);\\r\\n               
+    this.Manager.Resource.Destroy(popUpGo, 0);\\r\\n                popUpGo = null;\\r\\n               
+    return;\\r\\n            }\\r\\n        }\\r\\n    }\\r\\n    CloseWorldSpace()
+    {\\r\\n        if (this._gameObjectUIWorldSpace === null) {\\r\\n           
+    return;\\r\\n        }\\r\\n        let worldSpaceGo = this._gameObjectUIWorldSpace;\\r\\n       
+    this.Manager.Resource.Destroy(worldSpaceGo, 0);\\r\\n        this._gameObjectUIWorldSpace
+    = null;\\r\\n        worldSpaceGo = null;\\r\\n    }\\r\\n    // life cycle\\r\\n   
+    Init() {\\r\\n        this.Manager = IOC_1.default.Instance.getInstance(Manager_1.default);\\r\\n       
+    // \uC774\uAC70 \uBB34\uC870\uAC74 \uC52C\uC5D0 \uC788\uC5B4\uC57C \uD568\\r\\n       
+    this._rootUIPopUp = UnityEngine_1.GameObject.Find('RootUIPopUp');\\r\\n       
+    if (!this._rootUIPopUp) {\\r\\n            console.log('RootUIPopUp\uB294 \uC52C\uC5D0
+    \uC788\uC5B4\uC57C \uD569\uB2C8\uB2E4');\\r\\n            return;\\r\\n       
+    }\\r\\n        this._rootUIPopUpDontDestroy = UnityEngine_1.GameObject.Find('RootUIPopUpDontDestroy');\\r\\n       
+    if (!this._rootUIPopUpDontDestroy) {\\r\\n            console.log('RootUIPopUpDontDestroy\uB294
+    \uC52C\uC5D0 \uC788\uC5B4\uC57C \uD569\uB2C8\uB2E4');\\r\\n        }\\r\\n   
+    }\\r\\n}\\r\\nexports.default = UIManager;\\r\\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiVUlNYW5hZ2VyLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiVUlNYW5hZ2VyLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7O0FBQUEsNkNBQW1GO0FBQ25GLDZFQUEwRDtBQUMxRCxnQ0FBeUI7QUFDekIsdUNBQWtEO0FBRWxELE1BQU0sS0FBSztJQUFYO1FBQ0ksV0FBVztRQUNKLFVBQUssR0FBaUIsRUFBRSxDQUFDO1FBQ3hCLFdBQU0sR0FBUSxDQUFDLENBQUM7SUFtQjVCLENBQUM7SUFqQkcsZ0JBQWdCO0lBQ2hCLElBQVcsS0FBSztRQUNaLE9BQU8sSUFBSSxDQUFDLE1BQU0sQ0FBQztJQUN2QixDQUFDO0lBRUQsU0FBUztJQUNGLElBQUksQ0FBQyxJQUFnQjtRQUN4QixJQUFJLENBQUMsS0FBSyxDQUFDLElBQUksQ0FBQyxJQUFJLENBQUMsQ0FBQztRQUN0QixJQUFJLENBQUMsTUFBTSxJQUFJLENBQUMsQ0FBQztJQUNyQixDQUFDO0lBQ00sSUFBSTtRQUNQLE9BQU8sSUFBSSxDQUFDLEtBQUssQ0FBQyxJQUFJLENBQUMsTUFBTSxHQUFHLENBQUMsQ0FBQyxDQUFDO0lBQ3ZDLENBQUM7SUFDTSxHQUFHO1FBQ04sSUFBSSxDQUFDLE1BQU0sSUFBSSxDQUFDLENBQUM7UUFDakIsT0FBTyxJQUFJLENBQUMsS0FBSyxDQUFDLEdBQUcsRUFBRSxDQUFDO0lBQzVCLENBQUM7Q0FDSjtBQWtCRCxNQUFxQixTQUFTO0lBQTlCO1FBQ0ksV0FBVztRQUNILGlCQUFZLEdBQUcsRUFBRSxDQUFDO1FBQ2xCLGlCQUFZLEdBQWUsSUFBSSxDQUFDO1FBQ2hDLDRCQUF1QixHQUFlLElBQUksQ0FBQztRQUMzQyw4QkFBeUIsR0FBc0IsSUFBSSxLQUFLLEVBQWMsQ0FBQztRQUN2RSw0QkFBdUIsR0FBZSxJQUFJLENBQUM7SUE4SXZELENBQUM7SUExSUcsU0FBUztJQUNGLFNBQVMsQ0FBQyxFQUFjO1FBQzNCLElBQUksZUFBZSxHQUFXLEVBQUUsQ0FBQyxZQUFZ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\",\"assetPath\":\"Assets/Scripts/Client/Manager/UIManager.ts\",\"manifest\":{\"properties\":[],\"name\":\"Stack\",\"description\":\"\",\"hasAnimatorMove\":false},\"isCompiled\":true}"
+  typescriptHash: 62749cb41bf68bbe7f401bfe0bb58f0b
+  onlyWriteTrigger: 0

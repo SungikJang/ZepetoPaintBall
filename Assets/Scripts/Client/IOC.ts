@@ -1,7 +1,13 @@
-import { MyPlayerController } from "./MyPlayerDivision/MyPalyerController";
-import MyPlayerData from "./MyPlayerDivision/MyPlayerData";
-import MyPlayerMovement from "./MyPlayerDivision/MyPlayerMovement";
-import MyPlayerTriggerController from "./MyPlayerDivision/MyPlayerTriggerController";
+import DataManager from "./Manager/DataManager";
+import LanguageManager from "./Manager/LanguageManager";
+import Manager from "./Manager/Manager";
+import ResourceManager from "./Manager/ResourceManager";
+import SoundManager from "./Manager/SoundManager";
+import UIManager from "./Manager/UIManager";
+import { MyPlayerController } from "./MyPlayer/MyPalyerController";
+import MyPlayerData from "./MyPlayer/MyPlayerData";
+import MyPlayerMovement from "./MyPlayer/MyPlayerMovement";
+//import MyPlayerTriggerController from "./MyPlayerDivision/MyPlayerTriggerController";
 
 export interface Injectable {
     injectable: boolean;
@@ -33,6 +39,12 @@ export default class IOC implements IIOC {
         this.classTypeMap.set('_MyPlayerController', MyPlayerController);
         this.classTypeMap.set('_MyPlayerMovement', MyPlayerMovement);
         this.classTypeMap.set('_MyPlayerData', MyPlayerData);
+        this.classTypeMap.set('_Manager', Manager);
+        this.classTypeMap.set('_ResourceManager', ResourceManager);
+        this.classTypeMap.set('_DataManager', DataManager);
+        this.classTypeMap.set('_UIManager', UIManager);
+        this.classTypeMap.set('_LanguageManager', LanguageManager);
+        this.classTypeMap.set('_SoundManager', SoundManager);
     }
 
     public static get Instance(): IOC {

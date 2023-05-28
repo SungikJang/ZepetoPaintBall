@@ -1,0 +1,65 @@
+fileFormatVersion: 2
+guid: 1176aa9ce91b6d040978eef12060d899
+importerOverride: ZEPETO.Script.Compiler:ZEPETO.Script:TypescriptAssetImporter
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: -1123457745, guid: 54cf806323ffe4418a4ce4cc63fe6b9d, type: 3}
+  isAssemblyDeclarations: 0
+  assembly: 
+  generateAllTypes: 1
+  types: []
+  generateWrapper: 0
+  overrideWrapperTypes: 0
+  wrapperTypes: []
+  WrapperFilters: []
+  wrapperOutputDirectory: Generated
+  compiledResult: "{\"source\":\"\\\"use strict\\\";\\r\\nObject.defineProperty(exports,
+    \\\"__esModule\\\", { value: true });\\r\\nexports.LanguageState = void 0;\\r\\n//import
+    BaseScene from '../Scenes/BaseScene';\\r\\nconst IOC_1 = require(\\\"../IOC\\\");\\r\\nconst
+    Manager_1 = require(\\\"./Manager\\\");\\r\\n/*\\r\\nimport SettingUI from '../UI/PopUpUI/SettingUI';\\r\\nimport
+    InGameUI from '../UI/DefaultUI/InGameUI';\\r\\nimport FirstTutorialUI from '../UI/PopUpUI/FirstTutorialUI';\\r\\n*/\\r\\nvar
+    LanguageState;\\r\\n(function (LanguageState) {\\r\\n    LanguageState[LanguageState[\\\"Korean\\\"]
+    = 0] = \\\"Korean\\\";\\r\\n    LanguageState[LanguageState[\\\"English\\\"]
+    = 1] = \\\"English\\\";\\r\\n    LanguageState[LanguageState[\\\"Japanese\\\"]
+    = 2] = \\\"Japanese\\\";\\r\\n    LanguageState[LanguageState[\\\"Indonesian\\\"]
+    = 3] = \\\"Indonesian\\\";\\r\\n    LanguageState[LanguageState[\\\"Thai\\\"]
+    = 4] = \\\"Thai\\\";\\r\\n    LanguageState[LanguageState[\\\"Vietnamese\\\"]
+    = 5] = \\\"Vietnamese\\\";\\r\\n    LanguageState[LanguageState[\\\"Spanish\\\"]
+    = 6] = \\\"Spanish\\\";\\r\\n    LanguageState[LanguageState[\\\"French\\\"]
+    = 7] = \\\"French\\\";\\r\\n    LanguageState[LanguageState[\\\"Portuguese\\\"]
+    = 8] = \\\"Portuguese\\\";\\r\\n})(LanguageState = exports.LanguageState || (exports.LanguageState
+    = {}));\\r\\nclass LanguageManager {\\r\\n    constructor() {\\r\\n        this.dictionary
+    = {};\\r\\n        this.languageList = [];\\r\\n    }\\r\\n    // method\\r\\n   
+    Translator(targetLanguage) {\\r\\n        if (targetLanguage in this.dictionary)
+    {\\r\\n            this.currentDictionary = this.dictionary[targetLanguage];\\r\\n           
+    this.currentLanguage = LanguageState[targetLanguage];\\r\\n        }\\r\\n       
+    else {\\r\\n            let dictionary = this.Manager.Resource.LoadData('Language\\\\\\\\'
+    + targetLanguage);\\r\\n            if (dictionary) {\\r\\n                this.dictionary[targetLanguage]
+    = dictionary;\\r\\n                this.currentDictionary = this.dictionary[targetLanguage];\\r\\n               
+    this.currentLanguage = LanguageState[targetLanguage];\\r\\n            }\\r\\n           
+    else {\\r\\n                if (!('English' in this.dictionary)) {\\r\\n                   
+    this.dictionary['English'] = this.Manager.Resource.LoadData('Language\\\\\\\\'
+    + 'English');\\r\\n                }\\r\\n                this.currentDictionary
+    = this.dictionary['English'];\\r\\n                this.currentLanguage = LanguageState['English'];\\r\\n           
+    }\\r\\n        }\\r\\n        /*\\r\\n                if (SettingUI.Instance)
+    {\\r\\n                    SettingUI.Instance.Init();\\r\\n                }\\r\\n               
+    if (InGameUI.Instance) {\\r\\n                    InGameUI.Instance.SetLanguage();\\r\\n               
+    }\\r\\n                if (FirstTutorialUI.Instance) {\\r\\n                   
+    FirstTutorialUI.Instance.SetLanguage();\\r\\n                }\\r\\n               
+    */\\r\\n    }\\r\\n    GetValueByKeys(keys) {\\r\\n        let value = this.currentDictionary;\\r\\n       
+    keys.split('/').forEach((key) => {\\r\\n            if (key in value) {\\r\\n               
+    value = value[key];\\r\\n            }\\r\\n            else {\\r\\n               
+    console.log('[Language Manager] \uC798\uBABB\uB41C \uD0A4 \uACBD\uB85C \uC785\uB2C8\uB2E4.',
+    keys);\\r\\n                return 'Error: ' + keys;\\r\\n            }\\r\\n       
+    });\\r\\n        return value.toString();\\r\\n    }\\r\\n    Init() {\\r\\n       
+    this.Manager = IOC_1.default.Instance.getInstance(Manager_1.default);\\r\\n       
+    // this.languageList = Object.keys(Manager.Data.GetValueByKeys('Config/Language'))
+    as string[];\\r\\n        //this.Translator(BaseScene.Language);\\r\\n    }\\r\\n}\\r\\nexports.default
+    = LanguageManager;\\r\\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiTGFuZ3VhZ2VNYW5hZ2VyLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiTGFuZ3VhZ2VNYW5hZ2VyLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7OztBQUFBLDhDQUE4QztBQUM5QyxnQ0FBeUI7QUFDekIsdUNBQWtEO0FBRWxEOzs7O0VBSUU7QUFFRixJQUFZLGFBVVg7QUFWRCxXQUFZLGFBQWE7SUFDckIscURBQU0sQ0FBQTtJQUNOLHVEQUFPLENBQUE7SUFDUCx5REFBUSxDQUFBO0lBQ1IsNkRBQVUsQ0FBQTtJQUNWLGlEQUFJLENBQUE7SUFDSiw2REFBVSxDQUFBO0lBQ1YsdURBQU8sQ0FBQTtJQUNQLHFEQUFNLENBQUE7SUFDTiw2REFBVSxDQUFBO0FBQ2QsQ0FBQyxFQVZXLGFBQWEsR0FBYixxQkFBYSxLQUFiLHFCQUFhLFFBVXhCO0FBVUQsTUFBcUIsZUFBZTtJQUFwQztRQUdZLGVBQVUsR0FBRyxFQUFFLENBQUM7UUFDakIsaUJBQVksR0FBRyxFQUFFLENBQUM7SUF3RDdCLENBQUM7SUFuREcsU0FBUztJQUNGLFVBQVUsQ0FBQyxjQUFzQjtRQUNwQyxJQUFJLGNBQWMsSUFBSSxJQUFJLENBQUMsVUFBVSxFQUFFO1lBQ25DLElBQUksQ0FBQyxpQkFBaUIsR0FBRyxJQUFJLENBQUMsVUFBVSxDQUFDLGNBQWMsQ0FBQyxDQUFDO1lBQ3pELElBQUksQ0FBQyxlQUFlLEdBQUcsYUFBYSxDQUFDLGNBQWMsQ0FBQyxDQUFDO1NBQ3hEO2FBQU07WUFDSCxJQUFJLFVBQVUsR0FBRyxJQUFJLENBQUMsT0FBTyxDQUFDLFFBQVEsQ0FBQyxRQUFRLENBQUMsWUFBWSxHQUFHLGNBQWMsQ0FBQyxDQUFDO1lBQy9FLElBQUksVUFBVSxFQUFFO2dCQUNaLElBQUksQ0FBQyxVQUFVLENBQUMsY0FBYyxDQUFDLEdBQUcsVUFBVSxDQUFDO2dCQUM3QyxJQUFJLENBQUMsaUJBQWlCLEdBQUcsSUFBSSxDQUFDLFVBQVUsQ0FBQyxjQUFjLENBQUMsQ0FBQztnQkFDekQsSUFBSSxDQUFDLGVBQWUsR0FBRyxhQUFhLENBQUMsY0FBYyxDQUFDLENBQUM7YUFDeEQ7aUJBQU07Z0JBQ0gsSUFBSSxDQUFDLENBQUMsU0FBUyxJQUFJLElBQUksQ0FBQyxVQUFVLENBQUMsRUFBRTtvQkFDakMsSUFBSSxDQUFDLFVBQVUsQ0FBQyxTQUFTLENBQUMsR0FBRyxJQUFJLENBQUMsT0FBTyxDQUFDLFFBQVEsQ0FBQyxRQUFRLENBQUMsWUFBWSxHQUFHLFNBQVMsQ0FBQyxDQUFDO2lCQUN6RjtnQkFDRCxJQUFJLENBQUMsaUJBQWlCLEdBQUcsSUFBSSxDQUFDLFVBQVUsQ0FBQyxTQUFTLENBQUMsQ0FBQztnQkFDcEQsSUFBSSxDQUFDLGVBQWUsR0FBRyxhQUFhLENBQUMsU0FBUyxDQUFDLENBQUM7YUFDbkQ7U0FDSjtRQUNEOzs7Ozs7Ozs7O2tCQVVVO0lBQ2QsQ0FBQztJQUVNLGNBQWMsQ0FBQyxJQUFZO1FBQzlCLElBQUksS0FBSyxHQUFHLElBQUksQ0FBQyxpQkFBaUIsQ0FBQztRQUNuQyxJQUFJLENBQUMsS0FBSyxDQUFDLEdBQUcsQ0FBQyxDQUFDLE9BQU8sQ0FBQyxDQUFDLEdBQUcsRUFBRSxFQUFFO1lBQzVCLElBQUksR0FBRyxJQUFJLEtBQUssRUFBRTtnQkFDZCxLQUFLLEdBQUcsS0FBSyxDQUFDLEdBQUcsQ0FBQyxDQUFDO2FBQ3RCO2lCQUFNO2dCQUNILE9BQU8sQ0FBQyxHQUFHLENBQUMsa0NBQWtDLEVBQUUsSUFBSSxDQUFDLENBQUM7Z0JBQ3RELE9BQU8sU0FBUyxHQUFHLElBQUksQ0FBQzthQUMzQjtRQUNMLENBQUMsQ0FBQyxDQUFDO1FBRUgsT0FBTyxLQUFLLENBQUMsUUFBUSxFQUFFLENBQUM7SUFDNUIsQ0FBQztJQUVELElBQUk7UUFDQSxJQUFJLENBQUMsT0FBTyxHQUFHLGFBQUcsQ0FBQyxRQUFRLENBQUMsV0FBVyxDQUFDLGlCQUFPLENBQUMsQ0FBQztRQUNqRCwrRkFBK0Y7UUFDL0Ysc0NBQXNDO0lBQzFDLENBQUM7Q0FDSjtBQTVERCxrQ0E0REMifQ==\",\"assetPath\":\"Assets/Scripts/Client/Manager/LanguageManager.ts\",\"manifest\":{\"properties\":[{\"assembly\":\"\",\"name\":\"languageList\",\"type\":\"Array\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]},{\"assembly\":\"mscorlib\",\"name\":\"currentLanguage\",\"type\":\"System.Int32\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]}],\"name\":\"LanguageManager\",\"description\":\"\",\"hasAnimatorMove\":false},\"isCompiled\":true}"
+  typescriptHash: de19d5812eaf3382ee97ada064c37b29
+  onlyWriteTrigger: 0

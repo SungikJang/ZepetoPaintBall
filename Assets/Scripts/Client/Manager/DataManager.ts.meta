@@ -1,0 +1,38 @@
+fileFormatVersion: 2
+guid: cf3bd355a48550245a8254895ef32f28
+importerOverride: ZEPETO.Script.Compiler:ZEPETO.Script:TypescriptAssetImporter
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: -1123457745, guid: 54cf806323ffe4418a4ce4cc63fe6b9d, type: 3}
+  isAssemblyDeclarations: 0
+  assembly: 
+  generateAllTypes: 1
+  types: []
+  generateWrapper: 0
+  overrideWrapperTypes: 0
+  wrapperTypes: []
+  WrapperFilters: []
+  wrapperOutputDirectory: Generated
+  compiledResult: "{\"source\":\"\\\"use strict\\\";\\r\\nObject.defineProperty(exports,
+    \\\"__esModule\\\", { value: true });\\r\\nconst ZEPETO_Script_1 = require(\\\"ZEPETO.Script\\\");\\r\\nclass
+    DataManager extends ZEPETO_Script_1.ZepetoScriptBehaviour {\\r\\n    constructor()
+    {\\r\\n        super(...arguments);\\r\\n        // property\\r\\n        this.dataDictionary
+    = {};\\r\\n    }\\r\\n    // method\\r\\n    Init() {\\r\\n        // let Config
+    = Manager.Resource.LoadData('Config');\\r\\n        // let Monster = Manager.Resource.LoadData('Monster');\\r\\n       
+    // let Skill = Manager.Resource.LoadData('Skill');\\r\\n        // let Weapon
+    = Manager.Resource.LoadData('Weapon');\\r\\n        //\\r\\n        // this.dataDictionary
+    = {\\r\\n        //     Config,\\r\\n        //     Monster,\\r\\n        //    
+    Skill,\\r\\n        //     Weapon\\r\\n        // };\\r\\n    }\\r\\n    GetValueByKeys(keys)
+    {\\r\\n        let value = this.dataDictionary;\\r\\n        keys.split('/').forEach((key)
+    => {\\r\\n            if (key in value) {\\r\\n                value = value[key];\\r\\n           
+    }\\r\\n            else {\\r\\n                console.log('[Data Manager] \uC798\uBABB\uB41C
+    \uD0A4 \uACBD\uB85C \uC785\uB2C8\uB2E4.', keys);\\r\\n                return;\\r\\n           
+    }\\r\\n        });\\r\\n        return value;\\r\\n    }\\r\\n}\\r\\nexports.default
+    = DataManager;\\r\\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiRGF0YU1hbmFnZXIuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJEYXRhTWFuYWdlci50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUFBLGlEQUFzRDtBQVF0RCxNQUFxQixXQUFZLFNBQVEscUNBQXFCO0lBQTlEOztRQUNJLFdBQVc7UUFDSCxtQkFBYyxHQUFHLEVBQUUsQ0FBQztJQWdDaEMsQ0FBQztJQTlCRyxTQUFTO0lBRVQsSUFBSTtRQUNBLG9EQUFvRDtRQUNwRCxzREFBc0Q7UUFDdEQsa0RBQWtEO1FBQ2xELG9EQUFvRDtRQUNwRCxFQUFFO1FBQ0YsMEJBQTBCO1FBQzFCLGNBQWM7UUFDZCxlQUFlO1FBQ2YsYUFBYTtRQUNiLGFBQWE7UUFDYixLQUFLO0lBRVQsQ0FBQztJQUVNLGNBQWMsQ0FBQyxJQUFZO1FBQzlCLElBQUksS0FBSyxHQUFHLElBQUksQ0FBQyxjQUFjLENBQUM7UUFDaEMsSUFBSSxDQUFDLEtBQUssQ0FBQyxHQUFHLENBQUMsQ0FBQyxPQUFPLENBQUMsQ0FBQyxHQUFHLEVBQUUsRUFBRTtZQUM1QixJQUFJLEdBQUcsSUFBSSxLQUFLLEVBQUU7Z0JBQ2QsS0FBSyxHQUFHLEtBQUssQ0FBQyxHQUFHLENBQUMsQ0FBQzthQUN0QjtpQkFBTTtnQkFDSCxPQUFPLENBQUMsR0FBRyxDQUFDLDhCQUE4QixFQUFFLElBQUksQ0FBQyxDQUFDO2dCQUNsRCxPQUFPO2FBQ1Y7UUFDTCxDQUFDLENBQUMsQ0FBQztRQUVILE9BQU8sS0FBSyxDQUFDO0lBQ2pCLENBQUM7Q0FDSjtBQWxDRCw4QkFrQ0MifQ==\",\"assetPath\":\"Assets/Scripts/Client/Manager/DataManager.ts\",\"manifest\":{\"properties\":[],\"name\":\"DataManager\",\"description\":\"\",\"hasAnimatorMove\":false},\"isCompiled\":true}"
+  typescriptHash: 2f9a0d6df115f642a61f8a0d6434d515
+  onlyWriteTrigger: 0

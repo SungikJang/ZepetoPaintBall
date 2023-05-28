@@ -1,0 +1,29 @@
+fileFormatVersion: 2
+guid: e9847684a20b5814e90a8f2fbe03a305
+importerOverride: ZEPETO.Script.Compiler:ZEPETO.Script:TypescriptAssetImporter
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: -1123457745, guid: 54cf806323ffe4418a4ce4cc63fe6b9d, type: 3}
+  isAssemblyDeclarations: 0
+  assembly: 
+  generateAllTypes: 1
+  types: []
+  generateWrapper: 0
+  overrideWrapperTypes: 0
+  wrapperTypes: []
+  WrapperFilters: []
+  wrapperOutputDirectory: Generated
+  compiledResult: "{\"source\":\"\\\"use strict\\\";\\r\\nObject.defineProperty(exports,
+    \\\"__esModule\\\", { value: true });\\r\\nconst ZEPETO_Script_1 = require(\\\"ZEPETO.Script\\\");\\r\\nclass
+    WeaponCardUI extends ZEPETO_Script_1.ZepetoScriptBehaviour {\\r\\n    Start()
+    {\\r\\n        this.WeaponCardBtn.onClick.AddListener(() => {\\r\\n           
+    // \uBB34\uAE30 \uCC3D \uB5A0\uC57C\uB41C\uB2E4\uACE0 \uC54C\uB9BC -> StartUI\uAC00
+    \uBC1B\uC544\uC57C\uD568\\r\\n        });\\r\\n    }\\r\\n}\\r\\nexports.default
+    = WeaponCardUI;\\r\\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiV2VhcG9uQ2FyZFVJLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiV2VhcG9uQ2FyZFVJLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7O0FBQ0EsaURBQXFEO0FBSXJELE1BQXFCLFlBQWEsU0FBUSxxQ0FBcUI7SUFRM0QsS0FBSztRQUNELElBQUksQ0FBQyxhQUFhLENBQUMsT0FBTyxDQUFDLFdBQVcsQ0FBQyxHQUFHLEVBQUU7WUFDeEMsaUNBQWlDO1FBRXJDLENBQUMsQ0FBQyxDQUFDO0lBQ1AsQ0FBQztDQUVKO0FBZkQsK0JBZUMifQ==\",\"assetPath\":\"Assets/Scripts/Client/UIControllDivision/Component/Card/WeaponCardUI.ts\",\"manifest\":{\"properties\":[{\"assembly\":\"Unity.TextMeshPro\",\"name\":\"upperLeftNumText\",\"type\":\"TMPro.TMP_Text\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]},{\"assembly\":\"UnityEngine.CoreModule\",\"name\":\"Stars\",\"type\":\"UnityEngine.GameObject\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]},{\"assembly\":\"UnityEngine.UI\",\"name\":\"powerFill\",\"type\":\"UnityEngine.UI.Slider\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]},{\"assembly\":\"UnityEngine.UI\",\"name\":\"SpeedFill\",\"type\":\"UnityEngine.UI.Slider\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]},{\"assembly\":\"UnityEngine.UI\",\"name\":\"WeaponCardBtn\",\"type\":\"UnityEngine.UI.Button\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]}],\"name\":\"WeaponCardUI\",\"description\":\"\",\"hasAnimatorMove\":false},\"isCompiled\":true}"
+  typescriptHash: ed96a292a9dfbd67437534cfe0188523
+  onlyWriteTrigger: 0

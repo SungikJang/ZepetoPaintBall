@@ -1,0 +1,26 @@
+fileFormatVersion: 2
+guid: 10a3b8116c8af1e47a3421dec7ec504c
+importerOverride: ZEPETO.Script.Compiler:ZEPETO.Script:TypescriptAssetImporter
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: -1123457745, guid: 54cf806323ffe4418a4ce4cc63fe6b9d, type: 3}
+  isAssemblyDeclarations: 0
+  assembly: 
+  generateAllTypes: 1
+  types: []
+  generateWrapper: 0
+  overrideWrapperTypes: 0
+  wrapperTypes: []
+  WrapperFilters: []
+  wrapperOutputDirectory: Generated
+  compiledResult: '{"source":"\"use strict\";\r\nObject.defineProperty(exports, \"__esModule\",
+    { value: true });\r\nconst ZEPETO_Script_1 = require(\"ZEPETO.Script\");\r\nclass
+    Game extends ZEPETO_Script_1.ZepetoScriptBehaviour {\r\n    Start() {\r\n   
+    }\r\n}\r\nexports.default = Game;\r\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiR2FtZS5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIkdhbWUudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFBQSxpREFBcUQ7QUFFckQsTUFBcUIsSUFBSyxTQUFRLHFDQUFxQjtJQUVuRCxLQUFLO0lBRUwsQ0FBQztDQUVKO0FBTkQsdUJBTUMifQ==","assetPath":"Assets/Scripts/Client/Domain/Game.ts","manifest":{"properties":[],"name":"Game","description":"","hasAnimatorMove":false},"isCompiled":true}'
+  typescriptHash: 5c0da450c67a81cad70cddce6b85a9f0
+  onlyWriteTrigger: 0
