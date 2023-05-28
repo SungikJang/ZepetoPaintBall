@@ -1,0 +1,48 @@
+import {AudioListener, GameObject, Time, Vector3, WaitForSeconds} from 'UnityEngine';
+import {ZepetoPlayer, ZepetoPlayers} from 'ZEPETO.Character.Controller';
+import { ZepetoScriptBehaviour } from 'ZEPETO.Script'
+
+export interface InterMyPlayerMovement {
+    init(): void;
+    
+    Update(): void;
+
+    SetMyPlayer(): void;
+    
+}
+
+export default class MyPlayerMovement extends ZepetoScriptBehaviour implements InterMyPlayerMovement{
+    private isInStartUI: boolean = true;
+    private myPlayer: ZepetoPlayer = null;
+    private myPlayerObject: GameObject = null;
+    
+    constructor() {
+        super();
+    }
+
+    init() {
+        console.log("무브이닛")
+        //this.StartCoroutine(this.Spin())
+    }
+    
+    // * Spin(){
+    //     while(true){
+    //         console.log("????")
+    //         ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.character.transform.Rotate(new Vector3(0,1,0))
+    //         yield new WaitForSeconds(0.2);
+    //     }
+    // }
+
+    Update(){
+        if(this.isInStartUI && this.myPlayerObject){
+            this.myPlayerObject.transform.Rotate(Vector3.up * Time.deltaTime * 30);
+        }
+    }
+
+    SetMyPlayer(){
+        this.myPlayer = ZepetoPlayers.instance.LocalPlayer.zepetoPlayer;
+        this.myPlayerObject = this.myPlayer.character.gameObject;
+        console.log("myplayer세팅완료")
+    }
+    
+}

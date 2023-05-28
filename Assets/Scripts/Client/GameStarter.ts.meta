@@ -1,0 +1,30 @@
+fileFormatVersion: 2
+guid: 336b89db23f93fa4fb98b3c109f8bfb5
+importerOverride: ZEPETO.Script.Compiler:ZEPETO.Script:TypescriptAssetImporter
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: -1123457745, guid: 54cf806323ffe4418a4ce4cc63fe6b9d, type: 3}
+  isAssemblyDeclarations: 0
+  assembly: 
+  generateAllTypes: 1
+  types: []
+  generateWrapper: 0
+  overrideWrapperTypes: 0
+  wrapperTypes: []
+  WrapperFilters: []
+  wrapperOutputDirectory: Generated
+  compiledResult: '{"source":"\"use strict\";\r\nObject.defineProperty(exports, \"__esModule\",
+    { value: true });\r\nconst ZEPETO_Script_1 = require(\"ZEPETO.Script\");\r\nconst
+    IOC_1 = require(\"./IOC\");\r\nconst Manager_1 = require(\"./Manager/Manager\");\r\nconst
+    MyPalyerController_1 = require(\"./MyPlayer/MyPalyerController\");\r\nclass GameStarter
+    extends ZEPETO_Script_1.ZepetoScriptBehaviour {\r\n    Start() {\r\n        IOC_1.default.Instance.createInstance(MyPalyerController_1.MyPlayerController);\r\n       
+    IOC_1.default.Instance.createInstance(Manager_1.default);\r\n    }\r\n    Update()
+    {\r\n        IOC_1.default.Instance.getInstance(MyPalyerController_1.MyPlayerController).Update();\r\n   
+    }\r\n}\r\nexports.default = GameStarter;\r\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiR2FtZVN0YXJ0ZXIuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJHYW1lU3RhcnRlci50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUFBLGlEQUFxRDtBQUNyRCwrQkFBd0I7QUFDeEIsK0NBQXdDO0FBQ3hDLHNFQUFtRTtBQUduRSxNQUFxQixXQUFZLFNBQVEscUNBQXFCO0lBRTFELEtBQUs7UUFDRCxhQUFHLENBQUMsUUFBUSxDQUFDLGNBQWMsQ0FBcUIsdUNBQWtCLENBQUMsQ0FBQztRQUNwRSxhQUFHLENBQUMsUUFBUSxDQUFDLGNBQWMsQ0FBVSxpQkFBTyxDQUFDLENBQUM7SUFDbEQsQ0FBQztJQUVELE1BQU07UUFDRixhQUFHLENBQUMsUUFBUSxDQUFDLFdBQVcsQ0FBQyx1Q0FBa0IsQ0FBQyxDQUFDLE1BQU0sRUFBRSxDQUFDO0lBQzFELENBQUM7Q0FFSjtBQVhELDhCQVdDIn0=","assetPath":"Assets/Scripts/Client/GameStarter.ts","manifest":{"properties":[],"name":"GameStarter","description":"","hasAnimatorMove":false},"isCompiled":true}'
+  typescriptHash: 6d9e66ebc0aa3147860da744395103bd
+  onlyWriteTrigger: 0

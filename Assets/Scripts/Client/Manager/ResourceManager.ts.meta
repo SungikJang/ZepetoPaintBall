@@ -1,0 +1,54 @@
+fileFormatVersion: 2
+guid: a31c3d59134e7cf43b55116502f833bf
+importerOverride: ZEPETO.Script.Compiler:ZEPETO.Script:TypescriptAssetImporter
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: -1123457745, guid: 54cf806323ffe4418a4ce4cc63fe6b9d, type: 3}
+  isAssemblyDeclarations: 0
+  assembly: 
+  generateAllTypes: 1
+  types: []
+  generateWrapper: 0
+  overrideWrapperTypes: 0
+  wrapperTypes: []
+  WrapperFilters: []
+  wrapperOutputDirectory: Generated
+  compiledResult: "{\"source\":\"\\\"use strict\\\";\\r\\nObject.defineProperty(exports,
+    \\\"__esModule\\\", { value: true });\\r\\nconst UnityEngine_1 = require(\\\"UnityEngine\\\");\\r\\nconst
+    UnityEngine = require(\\\"UnityEngine\\\");\\r\\nclass ResourceManager {\\r\\n   
+    constructor() {\\r\\n        this._rootPrefab = null;\\r\\n    }\\r\\n    //
+    method\\r\\n    Load(path) {\\r\\n        const object = UnityEngine_1.Resources.Load(path);\\r\\n       
+    if (!object) {\\r\\n            console.log(`\uD574\uB2F9 \uACBD\uB85C\uC5D0
+    \uC624\uBE0C\uC81D\uD2B8\uAC00 \uC5C6\uC2B5\uB2C8\uB2E4: ${path}`);\\r\\n           
+    return null;\\r\\n        }\\r\\n        return object;\\r\\n    }\\r\\n    LoadSprite(path)
+    {\\r\\n        let imageSource = UnityEngine_1.Resources.Load('Images\\\\\\\\'
+    + path);\\r\\n        if (!imageSource) {\\r\\n            console.log(`\uD574\uB2F9
+    \uACBD\uB85C\uC5D0 \uC2A4\uD504\uB77C\uC774\uD2B8\uAC00 \uC5C6\uC2B5\uB2C8\uB2E4:
+    ${path}`);\\r\\n            imageSource = UnityEngine_1.Resources.Load('Images/Icon/test');\\r\\n           
+    // return null;\\r\\n        }\\r\\n        const rect = new UnityEngine_1.Rect(0,
+    0, imageSource.width, imageSource.height);\\r\\n        const sprite = UnityEngine_1.Sprite.Create(imageSource,
+    rect, new UnityEngine_1.Vector2(0, 0));\\r\\n        return sprite;\\r\\n   
+    }\\r\\n    LoadData(path) {\\r\\n        const JsonData = UnityEngine_1.Resources.Load('Data\\\\\\\\'
+    + path);\\r\\n        if (!JsonData) {\\r\\n            console.log(`\uD574\uB2F9
+    \uACBD\uB85C\uC5D0 json \uD30C\uC77C\uC774 \uC5C6\uC2B5\uB2C8\uB2E4: ${path}`);\\r\\n           
+    return null;\\r\\n        }\\r\\n        return JSON.parse(JsonData.toString());\\r\\n   
+    }\\r\\n    Instantiate(path) {\\r\\n        let go = null;\\r\\n        let origin_prefab
+    = UnityEngine_1.Resources.Load(path);\\r\\n        if (!origin_prefab) {\\r\\n           
+    console.log(`\uD574\uB2F9 \uACBD\uB85C\uC5D0 \uD504\uB9AC\uD339\uC774 \uC5C6\uC2B5\uB2C8\uB2E4:
+    ${path}`);\\r\\n            return null;\\r\\n        }\\r\\n        go = UnityEngine.Object.Instantiate(origin_prefab);\\r\\n       
+    go.name = origin_prefab.name;\\r\\n        go.transform.SetParent(this._rootPrefab.transform);\\r\\n       
+    return go;\\r\\n    }\\r\\n    Destroy(go, t = 0) {\\r\\n        try {\\r\\n           
+    if (go === null) {\\r\\n                return;\\r\\n            }\\r\\n           
+    UnityEngine.Object.Destroy(go, t);\\r\\n        }\\r\\n        catch (e) {\\r\\n           
+    console.error(e);\\r\\n        }\\r\\n    }\\r\\n    // life cycle\\r\\n    Init()
+    {\\r\\n        this._rootPrefab = UnityEngine_1.GameObject.Find('RootPrefab');\\r\\n       
+    if (!this._rootPrefab) {\\r\\n            console.log('RootPrefab\uC774 \uC52C\uC5D0
+    \uC5C6\uC2B5\uB2C8\uB2E4');\\r\\n        }\\r\\n    }\\r\\n}\\r\\nexports.default
+    = ResourceManager;\\r\\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiUmVzb3VyY2VNYW5hZ2VyLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiUmVzb3VyY2VNYW5hZ2VyLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7O0FBQUEsNkNBQWlHO0FBQ2pHLDJDQUEyQztBQWdCM0MsTUFBcUIsZUFBZTtJQUFwQztRQUNZLGdCQUFXLEdBQWUsSUFBSSxDQUFDO0lBa0UzQyxDQUFDO0lBaEVHLFNBQVM7SUFDRixJQUFJLENBQUMsSUFBWTtRQUNwQixNQUFNLE1BQU0sR0FBRyx1QkFBUyxDQUFDLElBQUksQ0FBQyxJQUFJLENBQUMsQ0FBQztRQUNwQyxJQUFJLENBQUMsTUFBTSxFQUFFO1lBQ1QsT0FBTyxDQUFDLEdBQUcsQ0FBQyxzQkFBc0IsSUFBSSxFQUFFLENBQUMsQ0FBQztZQUMxQyxPQUFPLElBQUksQ0FBQztTQUNmO1FBRUQsT0FBTyxNQUFNLENBQUM7SUFDbEIsQ0FBQztJQUNNLFVBQVUsQ0FBQyxJQUFZO1FBQzFCLElBQUksV0FBVyxHQUFHLHVCQUFTLENBQUMsSUFBSSxDQUFZLFVBQVUsR0FBRyxJQUFJLENBQUMsQ0FBQztRQUMvRCxJQUFJLENBQUMsV0FBVyxFQUFFO1lBQ2QsT0FBTyxDQUFDLEdBQUcsQ0FBQyx1QkFBdUIsSUFBSSxFQUFFLENBQUMsQ0FBQztZQUMzQyxXQUFXLEdBQUcsdUJBQVMsQ0FBQyxJQUFJLENBQVksa0JBQWtCLENBQUMsQ0FBQztZQUM1RCxlQUFlO1NBQ2xCO1FBRUQsTUFBTSxJQUFJLEdBQUcsSUFBSSxrQkFBSSxDQUFDLENBQUMsRUFBRSxDQUFDLEVBQUUsV0FBVyxDQUFDLEtBQUssRUFBRSxXQUFXLENBQUMsTUFBTSxDQUFDLENBQUM7UUFDbkUsTUFBTSxNQUFNLEdBQUcsb0JBQU0sQ0FBQyxNQUFNLENBQUMsV0FBVyxFQUFFLElBQUksRUFBRSxJQUFJLHFCQUFPLENBQUMsQ0FBQyxFQUFFLENBQUMsQ0FBQyxDQUFDLENBQUM7UUFFbkUsT0FBTyxNQUFNLENBQUM7SUFDbEIsQ0FBQztJQUNNLFFBQVEsQ0FBQyxJQUFZO1FBQ3hCLE1BQU0sUUFBUSxHQUFHLHVCQUFTLENBQUMsSUFBSSxDQUFZLFFBQVEsR0FBRyxJQUFJLENBQUMsQ0FBQztRQUM1RCxJQUFJLENBQUMsUUFBUSxFQUFFO1lBQ1gsT0FBTyxDQUFDLEdBQUcsQ0FBQyx5QkFBeUIsSUFBSSxFQUFFLENBQUMsQ0FBQztZQUM3QyxPQUFPLElBQUksQ0FBQztTQUNmO1FBRUQsT0FBTyxJQUFJLENBQUMsS0FBSyxDQUFDLFFBQVEsQ0FBQyxRQUFRLEVBQUUsQ0FBQyxDQUFDO0lBQzNDLENBQUM7SUFDTSxXQUFXLENBQUMsSUFBWTtRQUMzQixJQUFJLEVBQUUsR0FBZSxJQUFJLENBQUM7UUFDMUIsSUFBSSxhQUFhLEdBQUcsdUJBQVMsQ0FBQyxJQUFJLENBQWEsSUFBSSxDQUFDLENBQUM7UUFDckQsSUFBSSxDQUFDLGFBQWEsRUFBRTtZQUNoQixPQUFPLENBQUMsR0FBRyxDQUFDLHFCQUFxQixJQUFJLEVBQUUsQ0FBQyxDQUFDO1lBQ3pDLE9BQU8sSUFBSSxDQUFDO1NBQ2Y7UUFFRCxFQUFFLEdBQUcsV0FBVyxDQUFDLE1BQU0sQ0FBQyxXQUFXLENBQUMsYUFBYSxDQUFlLENBQUM7UUFDakUsRUFBRSxDQUFDLElBQUksR0FBRyxhQUFhLENBQUMsSUFBSSxDQUFDO1FBQzdCLEVBQUUsQ0FBQyxTQUFTLENBQUMsU0FBUyxDQUFDLElBQUksQ0FBQyxXQUFXLENBQUMsU0FBUyxDQUFDLENBQUM7UUFFbkQsT0FBTyxFQUFFLENBQUM7SUFDZCxDQUFDO0lBQ00sT0FBTyxDQUFDLEVBQWMsRUFBRSxJQUFZLENBQUM7UUFDeEMsSUFBSTtZQUNBLElBQUksRUFBRSxLQUFLLElBQUksRUFBRTtnQkFDYixPQUFPO2FBQ1Y7WUFDRCxXQUFXLENBQUMsTUFBTSxDQUFDLE9BQU8sQ0FBQyxFQUFFLEVBQUUsQ0FBQyxDQUFDLENBQUM7U0FDckM7UUFBQyxPQUFPLENBQUMsRUFBRTtZQUNSLE9BQU8sQ0FBQyxLQUFLLENBQUMsQ0FBQyxDQUFDLENBQUM7U0FDcEI7SUFDTCxDQUFDO0lBRUQsYUFBYTtJQUNOLElBQUk7UUFDUCxJQUFJLENBQUMsV0FBVyxHQUFHLHdCQUFVLENBQUMsSUFBSSxDQUFDLFlBQVksQ0FBQyxDQUFDO1FBQ2pELElBQUksQ0FBQyxJQUFJLENBQUMsV0FBVyxFQUFFO1lBQ25CLE9BQU8sQ0FBQyxHQUFHLENBQUMscUJBQXFCLENBQUMsQ0FBQztTQUN0QztJQUNMLENBQUM7Q0FDSjtBQW5FRCxrQ0FtRUMifQ==\",\"assetPath\":\"Assets/Scripts/Client/Manager/ResourceManager.ts\",\"manifest\":{\"properties\":[],\"name\":\"ResourceManager\",\"description\":\"\",\"hasAnimatorMove\":false},\"isCompiled\":true}"
+  typescriptHash: f883eb2528185f6fbe2fb777632d9642
+  onlyWriteTrigger: 0

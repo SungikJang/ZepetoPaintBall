@@ -1,0 +1,30 @@
+fileFormatVersion: 2
+guid: 7ea5a492e31db2247b43fbc903eaab5b
+importerOverride: ZEPETO.Script.Compiler:ZEPETO.Script:TypescriptAssetImporter
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: -1123457745, guid: 54cf806323ffe4418a4ce4cc63fe6b9d, type: 3}
+  isAssemblyDeclarations: 0
+  assembly: 
+  generateAllTypes: 1
+  types: []
+  generateWrapper: 0
+  overrideWrapperTypes: 0
+  wrapperTypes: []
+  WrapperFilters: []
+  wrapperOutputDirectory: Generated
+  compiledResult: '{"source":"\"use strict\";\r\nObject.defineProperty(exports, \"__esModule\",
+    { value: true });\r\nconst ZEPETO_Script_1 = require(\"ZEPETO.Script\");\r\nclass
+    MyPlayerTriggerController extends ZEPETO_Script_1.ZepetoScriptBehaviour {\r\n   
+    static get Instance() {\r\n        return this._instance;\r\n    }\r\n    Start()
+    {\r\n        if (!MyPlayerTriggerController._instance) {\r\n            MyPlayerTriggerController._instance
+    = this;\r\n        }\r\n    }\r\n    OnTriggerEnter(collider) {\r\n    }\r\n}\r\nexports.default
+    = MyPlayerTriggerController;\r\nMyPlayerTriggerController._instance = null;\r\n//#
+    sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiTXlQbGF5ZXJUcmlnZ2VyQ29udHJvbGxlci5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIk15UGxheWVyVHJpZ2dlckNvbnRyb2xsZXIudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFBQSxpREFBcUQ7QUFHckQsTUFBcUIseUJBQTBCLFNBQVEscUNBQXFCO0lBR2pFLE1BQU0sS0FBSyxRQUFRO1FBQ3RCLE9BQU8sSUFBSSxDQUFDLFNBQVMsQ0FBQztJQUMxQixDQUFDO0lBRUQsS0FBSztRQUNELElBQUksQ0FBQyx5QkFBeUIsQ0FBQyxTQUFTLEVBQUU7WUFDdEMseUJBQXlCLENBQUMsU0FBUyxHQUFHLElBQUksQ0FBQztTQUM5QztJQUNMLENBQUM7SUFFRCxjQUFjLENBQUMsUUFBb0I7SUFFbkMsQ0FBQzs7QUFmTCw0Q0FpQkM7QUFoQmtCLG1DQUFTLEdBQThCLElBQUksQ0FBQyJ9","assetPath":"Assets/Scripts/Client/MyPlayerDivision/MyPlayerTriggerController.ts","manifest":{"properties":[],"name":"MyPlayerTriggerController","description":"","hasAnimatorMove":false},"isCompiled":true}'
+  typescriptHash: 14db38edfc29ec66874391b1333392fe
+  onlyWriteTrigger: 0

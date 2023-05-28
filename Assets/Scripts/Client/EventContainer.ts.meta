@@ -19,8 +19,6 @@ ScriptedImporter:
   WrapperFilters: []
   wrapperOutputDirectory: Generated
   compiledResult: '{"source":"\"use strict\";\r\nObject.defineProperty(exports, \"__esModule\",
-    { value: true });\r\nconst ZEPETO_Script_1 = require(\"ZEPETO.Script\");\r\nclass
-    EventContainer extends ZEPETO_Script_1.ZepetoScriptBehaviour {\r\n}\r\nexports.default
-    = EventContainer;\r\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiRXZlbnRDb250YWluZXIuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJFdmVudENvbnRhaW5lci50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUFBLGlEQUFxRDtBQUVyRCxNQUFxQixjQUFlLFNBQVEscUNBQXFCO0NBRWhFO0FBRkQsaUNBRUMifQ==","assetPath":"Assets/Scripts/Client/EventContainer.ts","manifest":{"properties":[],"name":"EventContainer","description":"","hasAnimatorMove":false},"isCompiled":true}'
-  typescriptHash: 2c68f3f471bd8bf48308352ae823ce3f
+    { value: true });\r\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiRXZlbnRDb250YWluZXIuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJFdmVudENvbnRhaW5lci50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiIn0=","assetPath":"Assets/Scripts/Client/EventContainer.ts","manifest":{"properties":[],"name":"EventContainer","description":"","hasAnimatorMove":false},"isCompiled":true}'
+  typescriptHash: a6e19b815539127c433258e440708950
   onlyWriteTrigger: 0

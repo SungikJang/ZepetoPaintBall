@@ -1,0 +1,33 @@
+fileFormatVersion: 2
+guid: c3e89ab0eacdf7e4f95ffc157b1b6504
+importerOverride: ZEPETO.Script.Compiler:ZEPETO.Script:TypescriptAssetImporter
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: -1123457745, guid: 54cf806323ffe4418a4ce4cc63fe6b9d, type: 3}
+  isAssemblyDeclarations: 0
+  assembly: 
+  generateAllTypes: 1
+  types: []
+  generateWrapper: 0
+  overrideWrapperTypes: 0
+  wrapperTypes: []
+  WrapperFilters: []
+  wrapperOutputDirectory: Generated
+  compiledResult: "{\"source\":\"\\\"use strict\\\";\\r\\nObject.defineProperty(exports,
+    \\\"__esModule\\\", { value: true });\\r\\nconst ZEPETO_Character_Controller_1
+    = require(\\\"ZEPETO.Character.Controller\\\");\\r\\nconst ZEPETO_Script_1 =
+    require(\\\"ZEPETO.Script\\\");\\r\\nconst UnityEngine_1 = require(\\\"UnityEngine\\\");\\r\\nclass
+    MyPlayerData extends ZEPETO_Script_1.ZepetoScriptBehaviour {\\r\\n    constructor()
+    {\\r\\n        super();\\r\\n        this._myPlayer = null;\\r\\n    }\\r\\n   
+    init() {\\r\\n        console.log(\\\"\uB370\uC5B4\uC774\uB2DB\\\");\\r\\n   
+    }\\r\\n    SetMyPlayer() {\\r\\n        this._myPlayer = ZEPETO_Character_Controller_1.ZepetoPlayers.instance.LocalPlayer.zepetoPlayer;\\r\\n       
+    this._myPlayer.character.gameObject.AddComponent($typeof(UnityEngine_1.AudioListener));\\r\\n       
+    console.log(\\\"myplayer\uC138\uD305\uC644\uB8CC\\\");\\r\\n    }\\r\\n    Update()
+    {\\r\\n    }\\r\\n}\\r\\nexports.default = MyPlayerData;\\r\\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiTXlQbGF5ZXJEYXRhLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiTXlQbGF5ZXJEYXRhLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7O0FBQUEsNkVBQTBFO0FBQzFFLGlEQUFxRDtBQUNyRCw2Q0FBeUQ7QUFXekQsTUFBcUIsWUFBYSxTQUFRLHFDQUFxQjtJQUczRDtRQUNJLEtBQUssRUFBRSxDQUFDO1FBSEosY0FBUyxHQUFpQixJQUFJLENBQUM7SUFJdkMsQ0FBQztJQUVELElBQUk7UUFDQSxPQUFPLENBQUMsR0FBRyxDQUFDLE1BQU0sQ0FBQyxDQUFBO0lBQ3ZCLENBQUM7SUFFRCxXQUFXO1FBQ1AsSUFBSSxDQUFDLFNBQVMsR0FBRywyQ0FBYSxDQUFDLFFBQVEsQ0FBQyxXQUFXLENBQUMsWUFBWSxDQUFDO1FBQ2pFLElBQUksQ0FBQyxTQUFTLENBQUMsU0FBUyxDQUFDLFVBQVUsQ0FBQyxZQUFZLFNBQUMsMkJBQWEsR0FBSTtRQUNsRSxPQUFPLENBQUMsR0FBRyxDQUFDLGNBQWMsQ0FBQyxDQUFBO0lBQy9CLENBQUM7SUFFRCxNQUFNO0lBRU4sQ0FBQztDQUNKO0FBcEJELCtCQW9CQyJ9\",\"assetPath\":\"Assets/Scripts/Client/MyPlayer/MyPlayerData.ts\",\"manifest\":{\"properties\":[],\"name\":\"MyPlayerData\",\"description\":\"\",\"hasAnimatorMove\":false},\"isCompiled\":true}"
+  typescriptHash: 40d27d699bd9d1f96315f70b54aa28b9
+  onlyWriteTrigger: 0
