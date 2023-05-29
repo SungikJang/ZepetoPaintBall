@@ -20,10 +20,9 @@ ScriptedImporter:
   wrapperOutputDirectory: Generated
   compiledResult: '{"source":"\"use strict\";\r\nObject.defineProperty(exports, \"__esModule\",
     { value: true });\r\nexports.MyPlayerController = void 0;\r\nconst ZEPETO_Script_1
-    = require(\"ZEPETO.Script\");\r\nconst IOC_1 = require(\"../IOC\");\r\nclass
-    MyPlayerController extends ZEPETO_Script_1.ZepetoScriptBehaviour {\r\n    //
-    public get MyPlayerTrigger(): InterMyPlayerTriggerController {\r\n    //    
-    return this._mpTriggerController;\r\n    // }\r\n    constructor(_MyPlayerData,
+    = require(\"ZEPETO.Script\");\r\nclass MyPlayerController extends ZEPETO_Script_1.ZepetoScriptBehaviour
+    {\r\n    // public get MyPlayerTrigger(): InterMyPlayerTriggerController {\r\n   
+    //     return this._mpTriggerController;\r\n    // }\r\n    constructor(_MyPlayerData,
     _MyPlayerMovement) {\r\n        super();\r\n        this._mpData = _MyPlayerData;\r\n       
     this._mpMovement = _MyPlayerMovement;\r\n        //this._mpTriggerController
     = _MyPlayerTriggerController\r\n        this._mpData.init();\r\n        this._mpMovement.init();\r\n   
@@ -31,6 +30,6 @@ ScriptedImporter:
     get MyPlayerData() {\r\n        return this._mpData;\r\n    }\r\n    get MyPlayerMovement()
     {\r\n        return this._mpMovement;\r\n    }\r\n    Init() {\r\n    }\r\n   
     Update() {\r\n        this._mpData.Update();\r\n        this._mpMovement.Update();\r\n   
-    }\r\n}\r\nexports.MyPlayerController = MyPlayerController;\r\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiTXlQYWx5ZXJDb250cm9sbGVyLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiTXlQYWx5ZXJDb250cm9sbGVyLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7OztBQUNBLGlEQUFxRDtBQUNyRCxnQ0FBeUI7QUFXekIsTUFBYSxrQkFBbUIsU0FBUSxxQ0FBcUI7SUFjekQsaUVBQWlFO0lBQ2pFLHdDQUF3QztJQUN4QyxJQUFJO0lBRUosWUFDSSxhQUFnQyxFQUNoQyxpQkFBd0M7UUFHeEMsS0FBSyxFQUFFLENBQUM7UUFDUixJQUFJLENBQUMsT0FBTyxHQUFHLGFBQWEsQ0FBQztRQUM3QixJQUFJLENBQUMsV0FBVyxHQUFHLGlCQUFpQixDQUFDO1FBQ3JDLHdEQUF3RDtRQUd4RCxJQUFJLENBQUMsT0FBTyxDQUFDLElBQUksRUFBRSxDQUFDO1FBQ3BCLElBQUksQ0FBQyxXQUFXLENBQUMsSUFBSSxFQUFFLENBQUM7SUFDNUIsQ0FBQztJQTVCRCwrREFBK0Q7SUFFL0QsSUFBVyxZQUFZO1FBQ25CLE9BQU8sSUFBSSxDQUFDLE9BQU8sQ0FBQztJQUN4QixDQUFDO0lBRUQsSUFBVyxnQkFBZ0I7UUFDdkIsT0FBTyxJQUFJLENBQUMsV0FBVyxDQUFDO0lBRTVCLENBQUM7SUFzQkQsSUFBSTtJQUVKLENBQUM7SUFFRCxNQUFNO1FBQ0YsSUFBSSxDQUFDLE9BQU8sQ0FBQyxNQUFNLEVBQUUsQ0FBQztRQUN0QixJQUFJLENBQUMsV0FBVyxDQUFDLE1BQU0sRUFBRSxDQUFDO0lBQzlCLENBQUM7Q0FFSjtBQTNDRCxnREEyQ0MifQ==","assetPath":"Assets/Scripts/Client/MyPlayer/MyPalyerController.ts","manifest":{"properties":[],"name":"MyPlayerController","description":"","hasAnimatorMove":false},"isCompiled":true}'
+    }\r\n}\r\nexports.MyPlayerController = MyPlayerController;\r\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiTXlQYWx5ZXJDb250cm9sbGVyLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiTXlQYWx5ZXJDb250cm9sbGVyLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7OztBQUNBLGlEQUFxRDtBQVlyRCxNQUFhLGtCQUFtQixTQUFRLHFDQUFxQjtJQWN6RCxpRUFBaUU7SUFDakUsd0NBQXdDO0lBQ3hDLElBQUk7SUFFSixZQUNJLGFBQWdDLEVBQ2hDLGlCQUF3QztRQUd4QyxLQUFLLEVBQUUsQ0FBQztRQUNSLElBQUksQ0FBQyxPQUFPLEdBQUcsYUFBYSxDQUFDO1FBQzdCLElBQUksQ0FBQyxXQUFXLEdBQUcsaUJBQWlCLENBQUM7UUFDckMsd0RBQXdEO1FBR3hELElBQUksQ0FBQyxPQUFPLENBQUMsSUFBSSxFQUFFLENBQUM7UUFDcEIsSUFBSSxDQUFDLFdBQVcsQ0FBQyxJQUFJLEVBQUUsQ0FBQztJQUM1QixDQUFDO0lBNUJELCtEQUErRDtJQUUvRCxJQUFXLFlBQVk7UUFDbkIsT0FBTyxJQUFJLENBQUMsT0FBTyxDQUFDO0lBQ3hCLENBQUM7SUFFRCxJQUFXLGdCQUFnQjtRQUN2QixPQUFPLElBQUksQ0FBQyxXQUFXLENBQUM7SUFFNUIsQ0FBQztJQXNCRCxJQUFJO0lBRUosQ0FBQztJQUVELE1BQU07UUFDRixJQUFJLENBQUMsT0FBTyxDQUFDLE1BQU0sRUFBRSxDQUFDO1FBQ3RCLElBQUksQ0FBQyxXQUFXLENBQUMsTUFBTSxFQUFFLENBQUM7SUFDOUIsQ0FBQztDQUVKO0FBM0NELGdEQTJDQyJ9","assetPath":"Assets/Scripts/Client/MyPlayer/MyPalyerController.ts","manifest":{"properties":[],"name":"MyPlayerController","description":"","hasAnimatorMove":false},"isCompiled":true}'
   typescriptHash: c07803b878a0eebe9f68b054a8854f33
   onlyWriteTrigger: 0

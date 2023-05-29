@@ -1,27 +1,30 @@
-import {AudioListener, GameObject, Time, Vector3, WaitForSeconds} from 'UnityEngine';
+import {AudioListener, GameObject, Random, Time, Vector3, WaitForSeconds} from 'UnityEngine';
 import {ZepetoPlayer, ZepetoPlayers} from 'ZEPETO.Character.Controller';
 import { ZepetoScriptBehaviour } from 'ZEPETO.Script'
+import IOC from '../IOC';
+import Manager, { InterManager } from '../Manager/Manager';
 
 export interface InterMyPlayerMovement {
     init(): void;
-    
+
     Update(): void;
 
     SetMyPlayer(): void;
-    
+
 }
 
-export default class MyPlayerMovement extends ZepetoScriptBehaviour implements InterMyPlayerMovement{
+export default class MyPlayerMovement extends ZepetoScriptBehaviour implements InterMyPlayerMovement {
     private isInStartUI: boolean = true;
     private myPlayer: ZepetoPlayer = null;
     private myPlayerObject: GameObject = null;
     
-    constructor() {
-        super();
-    }
+    public manager: InterManager;
+    
 
     init() {
         console.log("무브이닛")
+        this.manager = IOC.Instance.getInstance<InterManager>(Manager);
+        //this.serviceManager.EnglishGameService.SubscribeState(this);
         //this.StartCoroutine(this.Spin())
     }
     

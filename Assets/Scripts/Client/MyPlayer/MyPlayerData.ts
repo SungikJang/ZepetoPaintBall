@@ -1,7 +1,8 @@
 import { ZepetoPlayer, ZepetoPlayers } from 'ZEPETO.Character.Controller';
 import { ZepetoScriptBehaviour } from 'ZEPETO.Script'
-import {WaitForSeconds,AudioListener} from "UnityEngine";
-//import MyPlayerTriggerController from './MyPlayerTriggerController';
+import {WaitForSeconds, AudioListener, Random} from "UnityEngine";
+import IOC from '../IOC';
+import Manager, { InterManager } from '../Manager/Manager';
 
 export interface InterMyPlayerData {
     init(): void;
@@ -11,14 +12,14 @@ export interface InterMyPlayerData {
     Update(): void;
 }
 
-export default class MyPlayerData extends ZepetoScriptBehaviour implements InterMyPlayerData{
+export default class MyPlayerData extends ZepetoScriptBehaviour implements InterMyPlayerData {
     private _myPlayer: ZepetoPlayer = null;
     
-    constructor() {  
-        super();
-    }
+    public manager: InterManager;
+
     
     init() {
+        this.manager = IOC.Instance.getInstance<InterManager>(Manager);
         console.log("데어이닛")
     }
     
