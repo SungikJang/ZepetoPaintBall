@@ -1,8 +1,14 @@
-import { GameObject } from 'UnityEngine';
+import {GameObject, Random} from 'UnityEngine';
 import { Button } from 'UnityEngine.UI';
+import { ZepetoPlayers } from 'ZEPETO.Character.Controller';
 import { ZepetoScriptBehaviour } from 'ZEPETO.Script'
+import IOC from '../../IOC';
+import Manager, { InterManager } from '../../Manager/Manager';
 
 export default class StartUI extends ZepetoScriptBehaviour {
+    id: string;
+    manager: InterManager;
+
     public inventoryBtn: Button;
     public weaponChestBtn: Button;
     public passBtn: Button;
@@ -25,6 +31,7 @@ export default class StartUI extends ZepetoScriptBehaviour {
     public Items: GameObject;
 
     Start() {
+        this.manager = IOC.Instance.getInstance<InterManager>(Manager);
         this.inventory.SetActive(true);
         this.nowPage = this.inventory;
         this.nowPageBottom = this.inventoryBottom;
@@ -71,6 +78,7 @@ export default class StartUI extends ZepetoScriptBehaviour {
 
         this.GameStartBtn.onClick.AddListener(() => {
             this.gameObject.SetActive(false);
+            this.manager.Game.GameStart(ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.id);
             // 플레이어 이동시키고 동기화 시작해야함
         });
     }
