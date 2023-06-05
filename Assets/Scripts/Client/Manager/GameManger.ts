@@ -1,3 +1,4 @@
+import { GAME_NAME } from "../Enums";
 import IOC from "../IOC";
 import Manager, { InterManager } from "./Manager";
 
@@ -19,16 +20,13 @@ export default class GameManager implements InterGameManager{
     
     GameStart(sessionId: string){
         switch(this.nowOnGmae){
-            case '':
-                //게임고르는 UI
-                break
-            case 'Flag':
+            case GAME_NAME.Flag:
                 this.manager.FlagGame.JoinGame();
                 break
-            case 'Seige':
+            case GAME_NAME.Siege:
                 this.manager.SeigeGame.JoinGame();
                 break
-            case 'SoloFlag':
+            case GAME_NAME.SoloFlag:
                 this.manager.SoloFlagGame.JoinGame();
                 break
         }

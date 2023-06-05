@@ -77,8 +77,8 @@ export default class ZepetoPlayersManager extends ZepetoScriptBehaviour {
                     const player = ZepetoPlayers.instance.GetPlayer(sessionId);
                     if (player.isLocalPlayer) {
                         player.character.gameObject.AddComponent<MyPlayerTriggerController>();
-                        IOC.Instance.getInstance<InterMyPlayerController>(MyPlayerController).MyPlayerData.SetMyPlayer();
-                        IOC.Instance.getInstance<InterMyPlayerController>(MyPlayerController).MyPlayerMovement.SetMyPlayer();
+                        IOC.Instance.getInstance<InterMyPlayerController>(MyPlayerController).MyPlayerData.SetMyPlayer(player);
+                        IOC.Instance.getInstance<InterMyPlayerController>(MyPlayerController).MyPlayerMovement.SetMyPlayer(player);
                     }
                     else {
                         // player.character.gameObject.AddComponent<OtherZepetoCharacterController>();

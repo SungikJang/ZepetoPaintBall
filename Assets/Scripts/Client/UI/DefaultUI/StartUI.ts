@@ -4,6 +4,7 @@ import { ZepetoPlayers } from 'ZEPETO.Character.Controller';
 import { ZepetoScriptBehaviour } from 'ZEPETO.Script'
 import IOC from '../../IOC';
 import Manager, { InterManager } from '../../Manager/Manager';
+import Connector from '../../Network/Connector';
 
 export default class StartUI extends ZepetoScriptBehaviour {
     id: string;
@@ -77,9 +78,7 @@ export default class StartUI extends ZepetoScriptBehaviour {
         });
 
         this.GameStartBtn.onClick.AddListener(() => {
-            this.gameObject.SetActive(false);
-            this.manager.Game.GameStart(ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.id);
-            // 플레이어 이동시키고 동기화 시작해야함
+            Connector.Instance.ReqToServer('GameStartReq');
         });
     }
 

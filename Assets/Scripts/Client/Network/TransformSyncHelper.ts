@@ -71,24 +71,6 @@ export default class TransformSyncHelper extends ZepetoScriptBehaviour {
         this._positionCache = this.transform.position;
 
         this.SyncTransform();
-        // if (!Connector.Instance) {
-        //     //console.log('아직 인스턴스가 없음...');
-        // } else {
-        //     this.DefineHandler();
-        //     this.defineHandlerBool = true;
-        // }
-    }
-
-
-    Update() {
-        // if (!this.defineHandlerBool) {
-        //     if (!Connector.Instance) {
-        //         //console.log('아직 인스턴스가 없음...');
-        //     } else {
-        //         this.DefineHandler();
-        //         this.defineHandlerBool = true;
-        //     }
-        // }
     }
     
     private FixedUpdate() {

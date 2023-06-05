@@ -5,10 +5,14 @@ import { TMP_Text } from 'TMPro';
 import Manager, { InterManager } from '../../Manager/Manager';
 import IOC from '../../IOC';
 
-export default class WeaponPopupUI extends ZepetoScriptBehaviour {
+export default class GameSelectPopupUI extends ZepetoScriptBehaviour {
     public flagBtn: Button;
     public seigeBtn: Button;
     public soloFlagBtn: Button;
+    public Btn1: Button;
+    public Btn2: Button;
+    public Btn3: Button;
+    
     private manager: InterManager;
     
 
@@ -22,6 +26,15 @@ export default class WeaponPopupUI extends ZepetoScriptBehaviour {
         });
         this.soloFlagBtn.onClick.AddListener(()=>{
             this.manager.SoloFlagGame.GameStart(ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.id);
+        });
+        this.Btn1.onClick.AddListener(()=>{
+            
+        });
+        this.Btn2.onClick.AddListener(()=>{
+
+        });
+        this.Btn3.onClick.AddListener(()=>{
+
         });
     }
 

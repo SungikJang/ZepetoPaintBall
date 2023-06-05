@@ -1,75 +1,43 @@
-//import BaseScene from '../Scenes/BaseScene';
-import IOC from '../IOC';
-import Manager, { InterManager } from './Manager';
-
-/*
-import SettingUI from '../UI/PopUpUI/SettingUI';
-import InGameUI from '../UI/DefaultUI/InGameUI';
-import FirstTutorialUI from '../UI/PopUpUI/FirstTutorialUI';
-*/
-
-export enum LanguageState {
-    Korean,
-    English,
-    Japanese,
-    Indonesian,
-    Thai,
-    Vietnamese,
-    Spanish,
-    French,
-    Portuguese,
-}
+import { LANGUAGES } from "../Enums";
+import IOC from "../IOC";
+import Manager from "./Manager";
+import ResourceManager from "./ResourceManager";
 
 export interface InterLanguageManager {
-    Init(): void;
+    Translator(targetLanguage: string): void
 
-    Translator(targetLanguage: string): void;
-    
-    GetValueByKeys(keys: string): void;
+    GetValueByKeys(keys: string): string
+    Init(): void;
 }
 
-export default class LanguageManager implements InterLanguageManager{
+export default class LanguageManager implements InterLanguageManager {
     // property
     private currentDictionary;
     private dictionary = {};
-    public languageList = [];
     public currentLanguage: int;
-    
-    private Manager: InterManager;
 
     // method
-    public Translator(targetLanguage: string) {
+    public Translator(targetLanguage: string): void {
         if (targetLanguage in this.dictionary) {
             this.currentDictionary = this.dictionary[targetLanguage];
-            this.currentLanguage = LanguageState[targetLanguage];
+            // this.currentLanguage = LANGUAGES[targetLanguage];
         } else {
-            let dictionary = this.Manager.Resource.LoadData('Language\\' + targetLanguage);
+            let dictionary = IOC.Instance.getInstance(ResourceManager).LoadJson('Language\\' + targetLanguage);
             if (dictionary) {
                 this.dictionary[targetLanguage] = dictionary;
                 this.currentDictionary = this.dictionary[targetLanguage];
-                this.currentLanguage = LanguageState[targetLanguage];
+                // this.currentLanguage = LANGUAGES[targetLanguage];
             } else {
                 if (!('English' in this.dictionary)) {
-                    this.dictionary['English'] = this.Manager.Resource.LoadData('Language\\' + 'English');
+                    this.dictionary['English'] = IOC.Instance.getInstance(Manager).Resource.LoadJson('Language\\' + 'English');
                 }
                 this.currentDictionary = this.dictionary['English'];
-                this.currentLanguage = LanguageState['English'];
+                // this.currentLanguage = LANGUAGES['English'];
             }
         }
-        /*
-                if (SettingUI.Instance) {
-                    SettingUI.Instance.Init();
-                }
-                if (InGameUI.Instance) {
-                    InGameUI.Instance.SetLanguage();
-                }
-                if (FirstTutorialUI.Instance) {
-                    FirstTutorialUI.Instance.SetLanguage();
-                }
-                */
     }
 
-    public GetValueByKeys(keys: string) {
+    public GetValueByKeys(keys: string): string {
         let value = this.currentDictionary;
         keys.split('/').forEach((key) => {
             if (key in value) {
@@ -84,8 +52,6 @@ export default class LanguageManager implements InterLanguageManager{
     }
 
     Init() {
-        this.Manager = IOC.Instance.getInstance<InterManager>(Manager);
-        // this.languageList = Object.keys(Manager.Data.GetValueByKeys('Config/Language')) as string[];
-        //this.Translator(BaseScene.Language);
+        this.Translator(LANGUAGES.English);
     }
 }

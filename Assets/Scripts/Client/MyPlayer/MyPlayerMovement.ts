@@ -9,7 +9,7 @@ export interface InterMyPlayerMovement {
 
     Update(): void;
 
-    SetMyPlayer(): void;
+    SetMyPlayer(player: ZepetoPlayer): void;
 
 }
 
@@ -42,8 +42,8 @@ export default class MyPlayerMovement extends ZepetoScriptBehaviour implements I
         }
     }
 
-    SetMyPlayer(){
-        this.myPlayer = ZepetoPlayers.instance.LocalPlayer.zepetoPlayer;
+    SetMyPlayer(player: ZepetoPlayer){
+        this.myPlayer = player;
         this.myPlayerObject = this.myPlayer.character.gameObject;
         console.log("myplayer세팅완료")
     }

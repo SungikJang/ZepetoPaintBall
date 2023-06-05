@@ -18,17 +18,15 @@ ScriptedImporter:
   wrapperTypes: []
   WrapperFilters: []
   wrapperOutputDirectory: Generated
-  compiledResult: "{\"source\":\"\\\"use strict\\\";\\r\\nObject.defineProperty(exports,
-    \\\"__esModule\\\", { value: true });\\r\\nconst IOC_1 = require(\\\"../IOC\\\");\\r\\nconst
-    Manager_1 = require(\\\"./Manager\\\");\\r\\nclass GameManager {\\r\\n    constructor()
-    {\\r\\n        this.nowOnGmae = '';\\r\\n    }\\r\\n    Init() {\\r\\n       
-    this.manager = IOC_1.default.Instance.getInstance(Manager_1.default);\\r\\n   
-    }\\r\\n    GameStart(sessionId) {\\r\\n        switch (this.nowOnGmae) {\\r\\n           
-    case '':\\r\\n                //\uAC8C\uC784\uACE0\uB974\uB294 UI\\r\\n               
-    break;\\r\\n            case 'Flag':\\r\\n                this.manager.FlagGame.JoinGame();\\r\\n               
-    break;\\r\\n            case 'Seige':\\r\\n                this.manager.SeigeGame.JoinGame();\\r\\n               
-    break;\\r\\n            case 'SoloFlag':\\r\\n                this.manager.SoloFlagGame.JoinGame();\\r\\n               
-    break;\\r\\n        }\\r\\n    }\\r\\n}\\r\\nexports.default = GameManager;\\r\\n//#
-    sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiR2FtZU1hbmdlci5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIkdhbWVNYW5nZXIudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFBQSxnQ0FBeUI7QUFDekIsdUNBQWtEO0FBVWxELE1BQXFCLFdBQVc7SUFBaEM7UUFDSSxjQUFTLEdBQVcsRUFBRSxDQUFBO0lBdUIxQixDQUFDO0lBcEJHLElBQUk7UUFDQSxJQUFJLENBQUMsT0FBTyxHQUFHLGFBQUcsQ0FBQyxRQUFRLENBQUMsV0FBVyxDQUFlLGlCQUFPLENBQUMsQ0FBQztJQUNuRSxDQUFDO0lBRUQsU0FBUyxDQUFDLFNBQWlCO1FBQ3ZCLFFBQU8sSUFBSSxDQUFDLFNBQVMsRUFBQztZQUNsQixLQUFLLEVBQUU7Z0JBQ0gsVUFBVTtnQkFDVixNQUFLO1lBQ1QsS0FBSyxNQUFNO2dCQUNQLElBQUksQ0FBQyxPQUFPLENBQUMsUUFBUSxDQUFDLFFBQVEsRUFBRSxDQUFDO2dCQUNqQyxNQUFLO1lBQ1QsS0FBSyxPQUFPO2dCQUNSLElBQUksQ0FBQyxPQUFPLENBQUMsU0FBUyxDQUFDLFFBQVEsRUFBRSxDQUFDO2dCQUNsQyxNQUFLO1lBQ1QsS0FBSyxVQUFVO2dCQUNYLElBQUksQ0FBQyxPQUFPLENBQUMsWUFBWSxDQUFDLFFBQVEsRUFBRSxDQUFDO2dCQUNyQyxNQUFLO1NBQ1o7SUFDTCxDQUFDO0NBQ0o7QUF4QkQsOEJBd0JDIn0=\",\"assetPath\":\"Assets/Scripts/Client/Manager/GameManger.ts\",\"manifest\":{\"properties\":[{\"assembly\":\"mscorlib\",\"name\":\"nowOnGmae\",\"type\":\"System.String\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]},{\"assembly\":\"\",\"name\":\"manager\",\"type\":\"C:/Users/hyo05/Desktop/GamePG/PaintBallGame/ZepetoPaintBall/Assets/Scripts/Client/Manager/Manager.InterManager\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]}],\"name\":\"GameManager\",\"description\":\"\",\"hasAnimatorMove\":false},\"isCompiled\":true}"
-  typescriptHash: 1a78df2fe82ca77e673acb0147991e5f
+  compiledResult: '{"source":"\"use strict\";\r\nObject.defineProperty(exports, \"__esModule\",
+    { value: true });\r\nconst Enums_1 = require(\"../Enums\");\r\nconst IOC_1 =
+    require(\"../IOC\");\r\nconst Manager_1 = require(\"./Manager\");\r\nclass GameManager
+    {\r\n    constructor() {\r\n        this.nowOnGmae = '''';\r\n    }\r\n    Init()
+    {\r\n        this.manager = IOC_1.default.Instance.getInstance(Manager_1.default);\r\n   
+    }\r\n    GameStart(sessionId) {\r\n        switch (this.nowOnGmae) {\r\n           
+    case Enums_1.GAME_NAME.Flag:\r\n                this.manager.FlagGame.JoinGame();\r\n               
+    break;\r\n            case Enums_1.GAME_NAME.Siege:\r\n                this.manager.SeigeGame.JoinGame();\r\n               
+    break;\r\n            case Enums_1.GAME_NAME.SoloFlag:\r\n                this.manager.SoloFlagGame.JoinGame();\r\n               
+    break;\r\n        }\r\n    }\r\n}\r\nexports.default = GameManager;\r\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiR2FtZU1hbmdlci5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIkdhbWVNYW5nZXIudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFBQSxvQ0FBcUM7QUFDckMsZ0NBQXlCO0FBQ3pCLHVDQUFrRDtBQVVsRCxNQUFxQixXQUFXO0lBQWhDO1FBQ0ksY0FBUyxHQUFXLEVBQUUsQ0FBQTtJQW9CMUIsQ0FBQztJQWpCRyxJQUFJO1FBQ0EsSUFBSSxDQUFDLE9BQU8sR0FBRyxhQUFHLENBQUMsUUFBUSxDQUFDLFdBQVcsQ0FBZSxpQkFBTyxDQUFDLENBQUM7SUFDbkUsQ0FBQztJQUVELFNBQVMsQ0FBQyxTQUFpQjtRQUN2QixRQUFPLElBQUksQ0FBQyxTQUFTLEVBQUM7WUFDbEIsS0FBSyxpQkFBUyxDQUFDLElBQUk7Z0JBQ2YsSUFBSSxDQUFDLE9BQU8sQ0FBQyxRQUFRLENBQUMsUUFBUSxFQUFFLENBQUM7Z0JBQ2pDLE1BQUs7WUFDVCxLQUFLLGlCQUFTLENBQUMsS0FBSztnQkFDaEIsSUFBSSxDQUFDLE9BQU8sQ0FBQyxTQUFTLENBQUMsUUFBUSxFQUFFLENBQUM7Z0JBQ2xDLE1BQUs7WUFDVCxLQUFLLGlCQUFTLENBQUMsUUFBUTtnQkFDbkIsSUFBSSxDQUFDLE9BQU8sQ0FBQyxZQUFZLENBQUMsUUFBUSxFQUFFLENBQUM7Z0JBQ3JDLE1BQUs7U0FDWjtJQUNMLENBQUM7Q0FDSjtBQXJCRCw4QkFxQkMifQ==","assetPath":"Assets/Scripts/Client/Manager/GameManger.ts","manifest":{"properties":[{"assembly":"mscorlib","name":"nowOnGmae","type":"System.String","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]},{"assembly":"","name":"manager","type":"C:/Users/hyo05/Desktop/GamePG/PaintBallGame/ZepetoPaintBall/Assets/Scripts/Client/Manager/Manager.InterManager","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]}],"name":"GameManager","description":"","hasAnimatorMove":false},"isCompiled":true}'
+  typescriptHash: d6ee83192a699c0526a9fe8d99490408
   onlyWriteTrigger: 0

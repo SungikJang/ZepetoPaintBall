@@ -6,8 +6,27 @@ export default class SyncComponentModule extends IModule {
     private sessionIdQueue: string[] = [];
     private instantiateObjCaches : InstantiateObj[] = [];
     private masterClient: Function = (): SandboxPlayer | undefined => this.server.loadPlayer(this.sessionIdQueue[0]);
+    
+    private adminPlayer: string;
+    
+    private isGameRunning: boolean = false;
+    private nowRunningGame: string = 'None'
 
     async OnCreate() {
+        this.server.onMessage(MESSAGE.GameStartReq, (client, message) => {
+            console.log("게임시작버튼누름 서버받음")
+            if(this.isGameRunning){
+                client.send('GameJoinRes', this.nowRunningGame);
+            }
+            else{
+                let admin: boolean = false;
+                if(client.sessionId === this.adminPlayer) admin = true;
+                client.send('GameStartRes', admin)
+            }
+        });
+        
+        
+        
         /**Zepeto Player Sync**/
         this.server.onMessage(MESSAGE.SyncPlayer, (client, message) => {
             const player = this.server.state.players.get(client.sessionId);
@@ -123,51 +142,13 @@ export default class SyncComponentModule extends IModule {
                 this.server.broadcast(MESSAGE.MasterResponse, this.sessionIdQueue[0]);
             }
         });
-
-        /** Sample Code **/
-        this.server.onMessage(MESSAGE.BlockEnter, (client,transformId:string) => {
-            this.server.broadcast(MESSAGE.BlockEnter+transformId, client.sessionId);
-        });
-        this.server.onMessage(MESSAGE.BlockExit, (client,transformId:string) => {
-            this.server.broadcast(MESSAGE.BlockExit+transformId, client.sessionId);
-        });
-        this.server.onMessage(MESSAGE.SendBlockEnterCache, (client,blockCache) => {
-            this.server.loadPlayer(blockCache.newJoinSessionId)?.send(MESSAGE.BlockEnter+blockCache.transformId, client.sessionId);
-        });
-
-        this.server.onMessage(MESSAGE.CoinAcquired, (client,transformId:string) => {
-            this.masterClient()?.send(MESSAGE.CoinAcquired+transformId, client.sessionId);
-        });
-
-        /** Racing Game **/
-        let isStartGame:boolean = false;
-        let startServerTime:number;
-        this.server.onMessage(MESSAGE.StartRunningRequest, (client) => {
-            if(!isStartGame) {
-                isStartGame = true;
-                startServerTime = +new Date();
-
-                this.server.broadcast(MESSAGE.CountDownStart, startServerTime);
-            }
-        });
-        this.server.onMessage(MESSAGE.FinishPlayer, (client,finishTime:number) => {
-            let playerLapTime = (finishTime-startServerTime)/1000;
-            console.log(`${client.sessionId}is enter! ${playerLapTime}`);
-            const gameReport: GameReport = {
-                playerUserId: client.userId,
-                playerLapTime: playerLapTime,
-            };
-            this.server.broadcast(MESSAGE.ResponseGameReport, gameReport);
-            if(isStartGame) {
-                isStartGame = false;
-                let gameEndTime:number = +new Date();
-                this.server.broadcast(MESSAGE.FirstPlayerGetIn, gameEndTime);
-            }
-        });
     }
 
     async OnJoin(client: SandboxPlayer) {
         if(!this.sessionIdQueue.includes(client.sessionId)) {
+            if(!this.adminPlayer){
+                this.adminPlayer = client.sessionId
+            }
             this.sessionIdQueue.push(client.sessionId.toString());
         }
     }
@@ -209,12 +190,6 @@ interface InstantiateObj{
     spawnRotation?:sQuaternion;
 }
 
-/** racing game **/
-interface GameReport{
-    playerUserId : string;
-    playerLapTime : number;
-}
-
 enum MESSAGE {
     SyncPlayer = "SyncPlayer",
     SyncTransform = "SyncTransform",
@@ -234,15 +209,6 @@ enum MESSAGE {
     UnPauseUser = "UnPauseUser",
 
     /** Sample Code **/
-    BlockEnter = "BlockEnter",
-    BlockExit = "BlockExit",
-    SendBlockEnterCache = "SendBlockEnterCache",
-    CoinAcquired = "CoinAcquired",
 
-    /** Racing Game **/
-    StartRunningRequest = "StartRunningRequest",
-    FinishPlayer = "FinishPlayer",
-    FirstPlayerGetIn = "FirstPlayerGetIn",
-    CountDownStart = "CountDownStart",
-    ResponseGameReport = "ResponseGameReport",
+    GameStartReq = "GameStartReq",
 }

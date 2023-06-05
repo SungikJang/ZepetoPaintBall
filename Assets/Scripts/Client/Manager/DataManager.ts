@@ -1,30 +1,39 @@
-import { ZepetoScriptBehaviour } from 'ZEPETO.Script';
+// import IOC from '../../Common/IOC';
+// import {Manager} from '../Manager';
 
 export interface InterDataManager {
-    Init(): void;
+    Translator(targetLanguage: string): void
 
-    GetValueByKeys(keys: string):void;
+    GetValueByKeys(keys: string): Object
 }
 
-export default class DataManager extends ZepetoScriptBehaviour implements InterDataManager{
+class DataManager implements InterDataManager {
+
+    Translator(targetLanguage: string): void {
+        throw new Error('Method not implemented.');
+    }
+
     // property
     private dataDictionary = {};
 
     // method
 
     Init() {
-        // let Config = Manager.Resource.LoadData('Config');
-        // let Monster = Manager.Resource.LoadData('Monster');
-        // let Skill = Manager.Resource.LoadData('Skill');
-        // let Weapon = Manager.Resource.LoadData('Weapon');
+        // let Recipe = IOC.Instance.getInstance(Manager).Resource.LoadData('Recipe');
+        // let Ingredient = IOC.Instance.getInstance(Manager).Resource.LoadData('Ingredient');
+        // let StartItem = IOC.Instance.getInstance(Manager).Resource.LoadData('StartItem');
+        // let Treasure = IOC.Instance.getInstance(Manager).Resource.LoadData('Treasure');
+        // let Price = IOC.Instance.getInstance(Manager).Resource.LoadData('Price');
+        // let Config = IOC.Instance.getInstance(Manager).Resource.LoadData('Config');
         //
         // this.dataDictionary = {
+        //     Recipe,
+        //     Ingredient,
+        //     StartItem,
+        //     Treasure,
+        //     Price,
         //     Config,
-        //     Monster,
-        //     Skill,
-        //     Weapon
         // };
-
     }
 
     public GetValueByKeys(keys: string) {
@@ -41,3 +50,5 @@ export default class DataManager extends ZepetoScriptBehaviour implements InterD
         return value;
     }
 }
+
+export default DataManager;

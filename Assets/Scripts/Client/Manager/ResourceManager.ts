@@ -1,24 +1,34 @@
-import { GameObject, Resources, Sprite, Texture2D, Rect, Vector2, TextAsset } from 'UnityEngine';
+import {GameObject, Resources, Sprite, Texture2D, Rect, Vector2, TextAsset, Vector3, Quaternion} from 'UnityEngine';
 import * as UnityEngine from 'UnityEngine';
 
 export interface InterResourceManager {
-    Load(path: string): UnityEngine.Object
+    Init(): void
+
+    Instantiate(path: string, position?: Vector3, rotation?: Quaternion): GameObject
+
+    LoadJson(path: string): any
 
     LoadSprite(path: string): Sprite
 
+    Destroy(go: GameObject, t?: number): void
+
     LoadData(path: string): any
-
-    Instantiate(path: string): GameObject
-
-    Destroy(go: GameObject, t: number): void
-    
-    Init(): void;
 }
 
-export default class ResourceManager implements InterResourceManager{
-    private _rootPrefab: GameObject = null;
+export default class ResourceManager implements InterResourceManager {
+    private rootPrefab: GameObject = null;
 
-    // method
+    public Init(): void {
+        this.rootPrefab = GameObject.Find('RootPrefab');
+        if (!this.rootPrefab) {
+            console.log('RootPrefab이 씬에 없습니다');
+        }
+    }
+
+    public LoadData(path: string) {
+        throw new Error('Method not implemented.');
+    }
+
     public Load(path: string): UnityEngine.Object {
         const object = Resources.Load(path);
         if (!object) {
@@ -28,6 +38,7 @@ export default class ResourceManager implements InterResourceManager{
 
         return object;
     }
+
     public LoadSprite(path: string): Sprite {
         let imageSource = Resources.Load<Texture2D>('Images\\' + path);
         if (!imageSource) {
@@ -41,8 +52,9 @@ export default class ResourceManager implements InterResourceManager{
 
         return sprite;
     }
-    public LoadData(path: string): any {
-        const JsonData = Resources.Load<TextAsset>('Data\\' + path);
+
+    public LoadJson(path: string): any {
+        const JsonData = Resources.Load<TextAsset>(path);
         if (!JsonData) {
             console.log(`해당 경로에 json 파일이 없습니다: ${path}`);
             return null;
@@ -50,7 +62,8 @@ export default class ResourceManager implements InterResourceManager{
 
         return JSON.parse(JsonData.toString());
     }
-    public Instantiate(path: string): GameObject {
+
+    public Instantiate(path: string, position?: UnityEngine.Vector3, rotation?: UnityEngine.Quaternion): GameObject {
         let go: GameObject = null;
         let origin_prefab = Resources.Load<GameObject>(path);
         if (!origin_prefab) {
@@ -58,12 +71,22 @@ export default class ResourceManager implements InterResourceManager{
             return null;
         }
 
-        go = UnityEngine.Object.Instantiate(origin_prefab) as GameObject;
+        if (position) {
+            if (rotation) {
+                go = UnityEngine.Object.Instantiate(origin_prefab, position, rotation) as GameObject;
+            } else {
+                go = UnityEngine.Object.Instantiate(origin_prefab, position, new UnityEngine.Quaternion(0, 0, 0, 0)) as GameObject;
+            }
+        } else {
+            go = UnityEngine.Object.Instantiate(origin_prefab) as GameObject;
+        }
+
         go.name = origin_prefab.name;
-        go.transform.SetParent(this._rootPrefab.transform);
+        go.transform.SetParent(this.rootPrefab.transform);
 
         return go;
     }
+
     public Destroy(go: GameObject, t: number = 0): void {
         try {
             if (go === null) {
@@ -72,14 +95,6 @@ export default class ResourceManager implements InterResourceManager{
             UnityEngine.Object.Destroy(go, t);
         } catch (e) {
             console.error(e);
-        }
-    }
-
-    // life cycle
-    public Init(): void {
-        this._rootPrefab = GameObject.Find('RootPrefab');
-        if (!this._rootPrefab) {
-            console.log('RootPrefab이 씬에 없습니다');
         }
     }
 }

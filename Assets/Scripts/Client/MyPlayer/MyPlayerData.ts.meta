@@ -19,17 +19,15 @@ ScriptedImporter:
   WrapperFilters: []
   wrapperOutputDirectory: Generated
   compiledResult: "{\"source\":\"\\\"use strict\\\";\\r\\nObject.defineProperty(exports,
-    \\\"__esModule\\\", { value: true });\\r\\nconst ZEPETO_Character_Controller_1
-    = require(\\\"ZEPETO.Character.Controller\\\");\\r\\nconst ZEPETO_Script_1 =
-    require(\\\"ZEPETO.Script\\\");\\r\\nconst UnityEngine_1 = require(\\\"UnityEngine\\\");\\r\\nconst
-    IOC_1 = require(\\\"../IOC\\\");\\r\\nconst Manager_1 = require(\\\"../Manager/Manager\\\");\\r\\nclass
-    MyPlayerData extends ZEPETO_Script_1.ZepetoScriptBehaviour {\\r\\n    constructor()
-    {\\r\\n        super(...arguments);\\r\\n        this._myPlayer = null;\\r\\n   
-    }\\r\\n    Init() {\\r\\n        this.manager = IOC_1.default.Instance.getInstance(Manager_1.default);\\r\\n       
-    console.log(\\\"\uB370\uC5B4\uC774\uB2DB\\\");\\r\\n    }\\r\\n    SetMyPlayer()
-    {\\r\\n        this._myPlayer = ZEPETO_Character_Controller_1.ZepetoPlayers.instance.LocalPlayer.zepetoPlayer;\\r\\n       
-    this._myPlayer.character.gameObject.AddComponent($typeof(UnityEngine_1.AudioListener));\\r\\n       
+    \\\"__esModule\\\", { value: true });\\r\\nconst ZEPETO_Script_1 = require(\\\"ZEPETO.Script\\\");\\r\\nconst
+    UnityEngine_1 = require(\\\"UnityEngine\\\");\\r\\nconst IOC_1 = require(\\\"../IOC\\\");\\r\\nconst
+    Manager_1 = require(\\\"../Manager/Manager\\\");\\r\\nclass MyPlayerData extends
+    ZEPETO_Script_1.ZepetoScriptBehaviour {\\r\\n    constructor() {\\r\\n       
+    super(...arguments);\\r\\n        this._myPlayer = null;\\r\\n    }\\r\\n   
+    Init() {\\r\\n        this.manager = IOC_1.default.Instance.getInstance(Manager_1.default);\\r\\n       
+    console.log(\\\"\uB370\uC5B4\uC774\uB2DB\\\");\\r\\n    }\\r\\n    SetMyPlayer(player)
+    {\\r\\n        this._myPlayer = player;\\r\\n        this._myPlayer.character.gameObject.AddComponent($typeof(UnityEngine_1.AudioListener));\\r\\n       
     console.log(\\\"myplayer\uC138\uD305\uC644\uB8CC\\\");\\r\\n    }\\r\\n    Update()
-    {\\r\\n    }\\r\\n}\\r\\nexports.default = MyPlayerData;\\r\\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiTXlQbGF5ZXJEYXRhLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiTXlQbGF5ZXJEYXRhLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7O0FBQUEsNkVBQTBFO0FBQzFFLGlEQUFxRDtBQUNyRCw2Q0FBa0U7QUFDbEUsZ0NBQXlCO0FBQ3pCLGdEQUEyRDtBQVUzRCxNQUFxQixZQUFhLFNBQVEscUNBQXFCO0lBQS9EOztRQUNZLGNBQVMsR0FBaUIsSUFBSSxDQUFDO0lBbUIzQyxDQUFDO0lBZEcsSUFBSTtRQUNBLElBQUksQ0FBQyxPQUFPLEdBQUcsYUFBRyxDQUFDLFFBQVEsQ0FBQyxXQUFXLENBQWUsaUJBQU8sQ0FBQyxDQUFDO1FBQy9ELE9BQU8sQ0FBQyxHQUFHLENBQUMsTUFBTSxDQUFDLENBQUE7SUFDdkIsQ0FBQztJQUVELFdBQVc7UUFDUCxJQUFJLENBQUMsU0FBUyxHQUFHLDJDQUFhLENBQUMsUUFBUSxDQUFDLFdBQVcsQ0FBQyxZQUFZLENBQUM7UUFDakUsSUFBSSxDQUFDLFNBQVMsQ0FBQyxTQUFTLENBQUMsVUFBVSxDQUFDLFlBQVksU0FBQywyQkFBYSxHQUFJO1FBQ2xFLE9BQU8sQ0FBQyxHQUFHLENBQUMsY0FBYyxDQUFDLENBQUE7SUFDL0IsQ0FBQztJQUVELE1BQU07SUFFTixDQUFDO0NBQ0o7QUFwQkQsK0JBb0JDIn0=\",\"assetPath\":\"Assets/Scripts/Client/MyPlayer/MyPlayerData.ts\",\"manifest\":{\"properties\":[{\"assembly\":\"\",\"name\":\"manager\",\"type\":\"C:/Users/hyo05/Desktop/GamePG/PaintBallGame/ZepetoPaintBall/Assets/Scripts/Client/Manager/Manager.InterManager\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]}],\"name\":\"MyPlayerData\",\"description\":\"\",\"hasAnimatorMove\":false},\"isCompiled\":true}"
-  typescriptHash: 89c782d161eac4cea000d85b28c169cf
+    {\\r\\n    }\\r\\n}\\r\\nexports.default = MyPlayerData;\\r\\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiTXlQbGF5ZXJEYXRhLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiTXlQbGF5ZXJEYXRhLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7O0FBQ0EsaURBQXFEO0FBQ3JELDZDQUFrRTtBQUNsRSxnQ0FBeUI7QUFDekIsZ0RBQTJEO0FBVTNELE1BQXFCLFlBQWEsU0FBUSxxQ0FBcUI7SUFBL0Q7O1FBQ1ksY0FBUyxHQUFpQixJQUFJLENBQUM7SUFtQjNDLENBQUM7SUFkRyxJQUFJO1FBQ0EsSUFBSSxDQUFDLE9BQU8sR0FBRyxhQUFHLENBQUMsUUFBUSxDQUFDLFdBQVcsQ0FBZSxpQkFBTyxDQUFDLENBQUM7UUFDL0QsT0FBTyxDQUFDLEdBQUcsQ0FBQyxNQUFNLENBQUMsQ0FBQTtJQUN2QixDQUFDO0lBRUQsV0FBVyxDQUFDLE1BQW9CO1FBQzVCLElBQUksQ0FBQyxTQUFTLEdBQUcsTUFBTSxDQUFDO1FBQ3hCLElBQUksQ0FBQyxTQUFTLENBQUMsU0FBUyxDQUFDLFVBQVUsQ0FBQyxZQUFZLFNBQUMsMkJBQWEsR0FBSTtRQUNsRSxPQUFPLENBQUMsR0FBRyxDQUFDLGNBQWMsQ0FBQyxDQUFBO0lBQy9CLENBQUM7SUFFRCxNQUFNO0lBRU4sQ0FBQztDQUNKO0FBcEJELCtCQW9CQyJ9\",\"assetPath\":\"Assets/Scripts/Client/MyPlayer/MyPlayerData.ts\",\"manifest\":{\"properties\":[{\"assembly\":\"\",\"name\":\"manager\",\"type\":\"C:/Users/hyo05/Desktop/GamePG/PaintBallGame/ZepetoPaintBall/Assets/Scripts/Client/Manager/Manager.InterManager\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]}],\"name\":\"MyPlayerData\",\"description\":\"\",\"hasAnimatorMove\":false},\"isCompiled\":true}"
+  typescriptHash: 4955b26b0efbd4958b7fcd2799221cfe
   onlyWriteTrigger: 0

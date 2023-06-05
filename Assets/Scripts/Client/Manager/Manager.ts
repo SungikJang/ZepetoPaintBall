@@ -12,7 +12,7 @@ import { InterUIManager } from './UIManager';
 
 
 export interface InterManager {
-    get Language(): InterLanguageManager
+    //get Language(): InterLanguageManager
 
     get Resource(): InterResourceManager
 
@@ -35,7 +35,7 @@ export default class Manager extends ZepetoScriptBehaviour implements InterManag
     private _resourceManager: InterResourceManager;
     private _uiManager: InterUIManager;
     private _soundManager: InterSoundManager;
-    private _languageManager: InterLanguageManager;
+    //private _languageManager: InterLanguageManager;
     private _dataManager: InterDataManager
     private _gameManager: InterGameManager
     private _flagGameManager: InterFlagGameManager
@@ -43,7 +43,7 @@ export default class Manager extends ZepetoScriptBehaviour implements InterManag
     private _soloFlagGameManager: InterSoloFlagGameManager
 
     constructor(
-        _LanguageManager: InterLanguageManager,
+        //_LanguageManager: InterLanguageManager,
         _ResourceManager: InterResourceManager,
         _UIManager: InterUIManager,
         _SoundManager: InterSoundManager,
@@ -57,7 +57,7 @@ export default class Manager extends ZepetoScriptBehaviour implements InterManag
         this._uiManager = _UIManager;
         this._resourceManager = _ResourceManager;
         this._soundManager = _SoundManager;
-        this._languageManager = _LanguageManager;
+        //this._languageManager = _LanguageManager;
         this._dataManager = _DataManager
         this._gameManager = _GameManager
         this._flagGameManager = _FlagGameManager
@@ -65,7 +65,7 @@ export default class Manager extends ZepetoScriptBehaviour implements InterManag
         this._soloFlagGameManager = _SoloFlagGameManager
         
         this._resourceManager.Init();
-        this._languageManager.Init();
+        //this._languageManager.Init();
         this._uiManager.Init();
         this._gameManager.Init();
         this._flagGameManager.Init();
@@ -85,9 +85,9 @@ export default class Manager extends ZepetoScriptBehaviour implements InterManag
         return this._soundManager;
     }
 
-    public get Language(): InterLanguageManager {
-        return this._languageManager;
-    }
+    // public get Language(): InterLanguageManager {
+    //     return this._languageManager;
+    // }
 
     public get Data(): InterDataManager {
         return this._dataManager;

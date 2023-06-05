@@ -7,7 +7,7 @@ import Manager, { InterManager } from '../Manager/Manager';
 export interface InterMyPlayerData {
     Init(): void;
 
-    SetMyPlayer(): void;
+    SetMyPlayer(player: ZepetoPlayer): void;
 
     Update(): void;
 }
@@ -23,8 +23,8 @@ export default class MyPlayerData extends ZepetoScriptBehaviour implements Inter
         console.log("데어이닛")
     }
     
-    SetMyPlayer(){
-        this._myPlayer = ZepetoPlayers.instance.LocalPlayer.zepetoPlayer;
+    SetMyPlayer(player: ZepetoPlayer){
+        this._myPlayer = player;
         this._myPlayer.character.gameObject.AddComponent<AudioListener>();
         console.log("myplayer세팅완료")
     }
