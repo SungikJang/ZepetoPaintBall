@@ -5,7 +5,7 @@ import IOC from '../IOC';
 import Manager, { InterManager } from '../Manager/Manager';
 
 export interface InterMyPlayerData {
-    init(): void;
+    Init(): void;
 
     SetMyPlayer(): void;
 
@@ -17,8 +17,8 @@ export default class MyPlayerData extends ZepetoScriptBehaviour implements Inter
     
     public manager: InterManager;
 
-    
-    init() {
+
+    Init() {
         this.manager = IOC.Instance.getInstance<InterManager>(Manager);
         console.log("데어이닛")
     }

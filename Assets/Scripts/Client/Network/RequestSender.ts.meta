@@ -20,7 +20,10 @@ ScriptedImporter:
   wrapperOutputDirectory: Generated
   compiledResult: '{"source":"\"use strict\";\r\nObject.defineProperty(exports, \"__esModule\",
     { value: true });\r\nconst NetworkBase_1 = require(\"./NetworkBase\");\r\nclass
-    RequestSender extends NetworkBase_1.default {\r\n    Start() {\r\n    }\r\n}\r\nexports.default
-    = RequestSender;\r\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiUmVxdWVzdFNlbmRlci5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIlJlcXVlc3RTZW5kZXIudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFDQSwrQ0FBd0M7QUFPeEMsTUFBcUIsYUFBYyxTQUFRLHFCQUFXO0lBRWxELEtBQUs7SUFFTCxDQUFDO0NBRUo7QUFORCxnQ0FNQyJ9","assetPath":"Assets/Scripts/Client/NetworkDivision/RequestSender.ts","manifest":{"properties":[],"name":"RequestSender","description":"","hasAnimatorMove":false},"isCompiled":true}'
-  typescriptHash: ee11661b93c9605b5af81c9cfc528f66
+    RequestSender extends NetworkBase_1.default {\r\n    static get Instance() {\r\n       
+    if (!RequestSender._instance) {\r\n            RequestSender._instance = new
+    RequestSender();\r\n        }\r\n        return RequestSender._instance;\r\n   
+    }\r\n    Start() {\r\n    }\r\n    Update() {\r\n    }\r\n}\r\nexports.default
+    = RequestSender;\r\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiUmVxdWVzdFNlbmRlci5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIlJlcXVlc3RTZW5kZXIudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFDQSwrQ0FBd0M7QUFTeEMsTUFBcUIsYUFBYyxTQUFRLHFCQUFXO0lBRzNDLE1BQU0sS0FBSyxRQUFRO1FBQ3RCLElBQUksQ0FBQyxhQUFhLENBQUMsU0FBUyxFQUFFO1lBQzFCLGFBQWEsQ0FBQyxTQUFTLEdBQUcsSUFBSSxhQUFhLEVBQUUsQ0FBQztTQUNqRDtRQUNELE9BQU8sYUFBYSxDQUFDLFNBQVMsQ0FBQztJQUNuQyxDQUFDO0lBR0QsS0FBSztJQUVMLENBQUM7SUFFRCxNQUFNO0lBRU4sQ0FBQztDQUNKO0FBbEJELGdDQWtCQyJ9","assetPath":"Assets/Scripts/Client/Network/RequestSender.ts","manifest":{"properties":[],"name":"RequestSender","description":"","hasAnimatorMove":false},"isCompiled":true}'
+  typescriptHash: 6e233898e29f118ff366613acabc3f1f
   onlyWriteTrigger: 0

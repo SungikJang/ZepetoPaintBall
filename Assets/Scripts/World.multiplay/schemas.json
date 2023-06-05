@@ -1,4 +1,9 @@
 {
-"State" : {"players" : {"map" : "Player"}},
-"Player" : {"userId" : "string","sessionId" : "string","hashCode" : "string"}
+"State" : {"players" : {"map" : "Player"},"SyncTransforms" : {"map" : "SyncTransform"}},
+"Player" : {"sessionId" : "string","zepetoHash" : "string","zepetoUserId" : "string","playerAdditionalValue" : "PlayerAdditionalValue","animationParam" : "ZepetoAnimationParam","gestureName" : "string"},
+"sVector3" : {"x" : "float64","y" : "float64","z" : "float64"},
+"sQuaternion" : {"x" : "float64","y" : "float64","z" : "float64","w" : "float64"},
+"SyncTransform" : {"Id" : "string","position" : "sVector3","localPosition" : "sVector3","rotation" : "sQuaternion","scale" : "sVector3","status" : "number","sendTime" : "number"},
+"ZepetoAnimationParam" : {"State" : "number","MoveState" : "number","JumpState" : "number","LandingState" : "number","MotionSpeed" : "number","FallSpeed" : "number","Acceleration" : "number","MoveProgress" : "number"},
+"PlayerAdditionalValue" : {"additionalWalkSpeed" : "number","additionalRunSpeed" : "number","additionalJumpPower" : "number"}
 }

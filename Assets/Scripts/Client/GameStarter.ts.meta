@@ -22,9 +22,12 @@ ScriptedImporter:
     { value: true });\r\nconst ZEPETO_Script_1 = require(\"ZEPETO.Script\");\r\nconst
     IOC_1 = require(\"./IOC\");\r\nconst Manager_1 = require(\"./Manager/Manager\");\r\nconst
     MyPalyerController_1 = require(\"./MyPlayer/MyPalyerController\");\r\nclass GameStarter
-    extends ZEPETO_Script_1.ZepetoScriptBehaviour {\r\n    Start() {\r\n        IOC_1.default.Instance.createInstance(MyPalyerController_1.MyPlayerController);\r\n       
-    IOC_1.default.Instance.createInstance(Manager_1.default);\r\n    }\r\n    Update()
-    {\r\n        IOC_1.default.Instance.getInstance(MyPalyerController_1.MyPlayerController).Update();\r\n   
-    }\r\n}\r\nexports.default = GameStarter;\r\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiR2FtZVN0YXJ0ZXIuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJHYW1lU3RhcnRlci50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUFBLGlEQUFxRDtBQUNyRCwrQkFBd0I7QUFDeEIsK0NBQXdDO0FBQ3hDLHNFQUFtRTtBQUduRSxNQUFxQixXQUFZLFNBQVEscUNBQXFCO0lBRTFELEtBQUs7UUFDRCxhQUFHLENBQUMsUUFBUSxDQUFDLGNBQWMsQ0FBcUIsdUNBQWtCLENBQUMsQ0FBQztRQUNwRSxhQUFHLENBQUMsUUFBUSxDQUFDLGNBQWMsQ0FBVSxpQkFBTyxDQUFDLENBQUM7SUFDbEQsQ0FBQztJQUVELE1BQU07UUFDRixhQUFHLENBQUMsUUFBUSxDQUFDLFdBQVcsQ0FBQyx1Q0FBa0IsQ0FBQyxDQUFDLE1BQU0sRUFBRSxDQUFDO0lBQzFELENBQUM7Q0FFSjtBQVhELDhCQVdDIn0=","assetPath":"Assets/Scripts/Client/GameStarter.ts","manifest":{"properties":[],"name":"GameStarter","description":"","hasAnimatorMove":false},"isCompiled":true}'
-  typescriptHash: 6d9e66ebc0aa3147860da744395103bd
+    extends ZEPETO_Script_1.ZepetoScriptBehaviour {\r\n    constructor() {\r\n       
+    super(...arguments);\r\n        this.instanceReady = false;\r\n    }\r\n    Awake()
+    {\r\n        IOC_1.default.Instance.createInstance(MyPalyerController_1.MyPlayerController);\r\n       
+    IOC_1.default.Instance.createInstance(Manager_1.default);\r\n        this.instanceReady
+    = true;\r\n    }\r\n    Update() {\r\n        if (this.instanceReady) {\r\n           
+    IOC_1.default.Instance.getInstance(MyPalyerController_1.MyPlayerController).Update();\r\n       
+    }\r\n    }\r\n}\r\nexports.default = GameStarter;\r\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiR2FtZVN0YXJ0ZXIuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJHYW1lU3RhcnRlci50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUFBLGlEQUFxRDtBQUNyRCwrQkFBd0I7QUFDeEIsK0NBQTBEO0FBQzFELHNFQUEyRjtBQUczRixNQUFxQixXQUFZLFNBQVEscUNBQXFCO0lBQTlEOztRQUNZLGtCQUFhLEdBQVksS0FBSyxDQUFDO0lBYzNDLENBQUM7SUFaRyxLQUFLO1FBQ0QsYUFBRyxDQUFDLFFBQVEsQ0FBQyxjQUFjLENBQTBCLHVDQUFrQixDQUFDLENBQUM7UUFDekUsYUFBRyxDQUFDLFFBQVEsQ0FBQyxjQUFjLENBQWUsaUJBQU8sQ0FBQyxDQUFDO1FBQ25ELElBQUksQ0FBQyxhQUFhLEdBQUcsSUFBSSxDQUFDO0lBQzlCLENBQUM7SUFFRCxNQUFNO1FBQ0YsSUFBRyxJQUFJLENBQUMsYUFBYSxFQUFDO1lBQ2xCLGFBQUcsQ0FBQyxRQUFRLENBQUMsV0FBVyxDQUEwQix1Q0FBa0IsQ0FBQyxDQUFDLE1BQU0sRUFBRSxDQUFDO1NBQ2xGO0lBQ0wsQ0FBQztDQUVKO0FBZkQsOEJBZUMifQ==","assetPath":"Assets/Scripts/Client/GameStarter.ts","manifest":{"properties":[],"name":"GameStarter","description":"","hasAnimatorMove":false},"isCompiled":true}'
+  typescriptHash: 6a14397cd0231ee888412f5592786308
   onlyWriteTrigger: 0

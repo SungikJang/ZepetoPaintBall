@@ -5,7 +5,7 @@ import IOC from '../IOC';
 import Manager, { InterManager } from '../Manager/Manager';
 
 export interface InterMyPlayerMovement {
-    init(): void;
+    Init(): void;
 
     Update(): void;
 
@@ -19,9 +19,9 @@ export default class MyPlayerMovement extends ZepetoScriptBehaviour implements I
     private myPlayerObject: GameObject = null;
     
     public manager: InterManager;
-    
 
-    init() {
+
+    Init() {
         console.log("무브이닛")
         this.manager = IOC.Instance.getInstance<InterManager>(Manager);
         //this.serviceManager.EnglishGameService.SubscribeState(this);

@@ -84,7 +84,7 @@ export default class LanguageManager implements InterLanguageManager{
     }
 
     Init() {
-        this.Manager = IOC.Instance.getInstance(Manager);
+        this.Manager = IOC.Instance.getInstance<InterManager>(Manager);
         // this.languageList = Object.keys(Manager.Data.GetValueByKeys('Config/Language')) as string[];
         //this.Translator(BaseScene.Language);
     }

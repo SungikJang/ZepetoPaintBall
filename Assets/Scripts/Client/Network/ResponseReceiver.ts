@@ -1,6 +1,7 @@
 import { ZepetoScriptBehaviour } from 'ZEPETO.Script'
 import NetworkBase from './NetworkBase';
-import WorldMultiPlayStarter from './WorldMultiPlayStarter';
+import {GameObject} from "UnityEngine";
+import MultiplayManager from './MultiplayManager';
 
 export interface InterResponseReceiver {
     ManualSyncResHandlerFunc(room): void;
@@ -10,6 +11,16 @@ export interface InterResponseReceiver {
 
 
 export default class ResponseReceiver extends NetworkBase implements InterResponseReceiver{
+    private static _instance: ResponseReceiver;
+
+    public static get Instance(): ResponseReceiver {
+        if (!ResponseReceiver._instance) {
+            const go = GameObject.Find('ResponseReceiver');
+            ResponseReceiver._instance = go.GetComponent<ResponseReceiver>();
+        }
+        return ResponseReceiver._instance;
+    }
+    
     private init: boolean = false;
 
     public ManualSyncResHandlerFunc(room): void {
@@ -18,11 +29,11 @@ export default class ResponseReceiver extends NetworkBase implements InterRespon
 
     Start() {
         try {
-            if (!WorldMultiPlayStarter.Instance) {
+            if (!MultiplayManager.instance) {
                 //console.log('아직 오토어쩌고 인스턴스가 없음');
                 return;
             } else {
-                const room = WorldMultiPlayStarter.Instance.Room;
+                const room = MultiplayManager.instance.room;
                 if (room) {
                     if (room.IsConnected) {
                         this._room = room;
@@ -37,15 +48,14 @@ export default class ResponseReceiver extends NetworkBase implements InterRespon
         }
     }
 
-
     Update() {
         try {
             if (!this.init) {
-                if (!WorldMultiPlayStarter.Instance) {
+                if (!MultiplayManager.instance) {
                     //console.log('아직 오토어쩌고 인스턴스가 없음');
                     return;
                 } else {
-                    const room = WorldMultiPlayStarter.Instance.Room;
+                    const room = MultiplayManager.instance.room;
                     if (room) {
                         if (room.IsConnected) {
                             this._room = room;

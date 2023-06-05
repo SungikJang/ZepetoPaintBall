@@ -1,0 +1,29 @@
+fileFormatVersion: 2
+guid: 2d57fc9a15dd8854080f923c37222349
+importerOverride: ZEPETO.Script.Compiler:ZEPETO.Script:TypescriptAssetImporter
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: -1123457745, guid: 54cf806323ffe4418a4ce4cc63fe6b9d, type: 3}
+  isAssemblyDeclarations: 0
+  assembly: 
+  generateAllTypes: 1
+  types: []
+  generateWrapper: 0
+  overrideWrapperTypes: 0
+  wrapperTypes: []
+  WrapperFilters: []
+  wrapperOutputDirectory: Generated
+  compiledResult: '{"source":"\"use strict\";\r\nObject.defineProperty(exports, \"__esModule\",
+    { value: true });\r\nconst IOC_1 = require(\"../IOC\");\r\nconst Manager_1 =
+    require(\"./Manager\");\r\nclass SoloFlagGameManager {\r\n    Init() {\r\n       
+    this.manager = IOC_1.default.Instance.getInstance(Manager_1.default);\r\n   
+    }\r\n    GameStart(sessionId) {\r\n    }\r\n    JoinGame() {\r\n    }\r\n   
+    LeaveGame() {\r\n    }\r\n}\r\nexports.default = SoloFlagGameManager;\r\n//#
+    sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiU29sb0ZsYWdHYW1lTWFuYWdlci5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIlNvbG9GbGFnR2FtZU1hbmFnZXIudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFBQSxnQ0FBeUI7QUFDekIsdUNBQWtEO0FBWWxELE1BQXFCLG1CQUFtQjtJQUdwQyxJQUFJO1FBQ0EsSUFBSSxDQUFDLE9BQU8sR0FBRyxhQUFHLENBQUMsUUFBUSxDQUFDLFdBQVcsQ0FBZSxpQkFBTyxDQUFDLENBQUM7SUFDbkUsQ0FBQztJQUVELFNBQVMsQ0FBQyxTQUFpQjtJQUUzQixDQUFDO0lBRUQsUUFBUTtJQUVSLENBQUM7SUFFRCxTQUFTO0lBRVQsQ0FBQztDQUNKO0FBbEJELHNDQWtCQyJ9","assetPath":"Assets/Scripts/Client/Manager/SoloFlagGameManager.ts","manifest":{"properties":[{"assembly":"","name":"manager","type":"C:/Users/hyo05/Desktop/GamePG/PaintBallGame/ZepetoPaintBall/Assets/Scripts/Client/Manager/Manager.InterManager","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]}],"name":"SoloFlagGameManager","description":"","hasAnimatorMove":false},"isCompiled":true}'
+  typescriptHash: c866b399e192f2ea768a432a65dfd0e0
+  onlyWriteTrigger: 0

@@ -179,7 +179,7 @@ export default class UIManager implements InterUIManager{
 
     // life cycle
     public Init(): void {
-        this.Manager = IOC.Instance.getInstance(Manager);
+        this.Manager = IOC.Instance.getInstance<InterManager>(Manager);
         // 이거 무조건 씬에 있어야 함
         this._rootUIPopUp = GameObject.Find('RootUIPopUp');
         if (!this._rootUIPopUp) {

@@ -1,18 +1,22 @@
 import { ZepetoScriptBehaviour } from 'ZEPETO.Script'
 import IOC from './IOC';
-import Manager from './Manager/Manager';
-import { MyPlayerController } from './MyPlayer/MyPalyerController';
+import Manager, { InterManager } from './Manager/Manager';
+import {InterMyPlayerController, MyPlayerController } from './MyPlayer/MyPalyerController';
 
 
 export default class GameStarter extends ZepetoScriptBehaviour {
+    private instanceReady: boolean = false;
 
-    Start() {
-        IOC.Instance.createInstance<MyPlayerController>(MyPlayerController);
-        IOC.Instance.createInstance<Manager>(Manager);
+    Awake() {
+        IOC.Instance.createInstance<InterMyPlayerController>(MyPlayerController);
+        IOC.Instance.createInstance<InterManager>(Manager);
+        this.instanceReady = true;
     }
     
     Update(){
-        IOC.Instance.getInstance(MyPlayerController).Update();
+        if(this.instanceReady){
+            IOC.Instance.getInstance<InterMyPlayerController>(MyPlayerController).Update();
+        }
     }
 
 }

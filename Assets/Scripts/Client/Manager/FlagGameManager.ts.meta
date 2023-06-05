@@ -1,0 +1,28 @@
+fileFormatVersion: 2
+guid: 3fa5c15729efa594fa222edabb34a04a
+importerOverride: ZEPETO.Script.Compiler:ZEPETO.Script:TypescriptAssetImporter
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: -1123457745, guid: 54cf806323ffe4418a4ce4cc63fe6b9d, type: 3}
+  isAssemblyDeclarations: 0
+  assembly: 
+  generateAllTypes: 1
+  types: []
+  generateWrapper: 0
+  overrideWrapperTypes: 0
+  wrapperTypes: []
+  WrapperFilters: []
+  wrapperOutputDirectory: Generated
+  compiledResult: '{"source":"\"use strict\";\r\nObject.defineProperty(exports, \"__esModule\",
+    { value: true });\r\nconst IOC_1 = require(\"../IOC\");\r\nconst Manager_1 =
+    require(\"./Manager\");\r\nclass FlagGameManager {\r\n    Init() {\r\n       
+    this.manager = IOC_1.default.Instance.getInstance(Manager_1.default);\r\n   
+    }\r\n    GameStart(sessionId) {\r\n    }\r\n    JoinGame() {\r\n    }\r\n   
+    LeaveGame() {\r\n    }\r\n}\r\nexports.default = FlagGameManager;\r\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiRmxhZ0dhbWVNYW5hZ2VyLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiRmxhZ0dhbWVNYW5hZ2VyLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7O0FBQUEsZ0NBQXlCO0FBQ3pCLHVDQUFrRDtBQVlsRCxNQUFxQixlQUFlO0lBR2hDLElBQUk7UUFDQSxJQUFJLENBQUMsT0FBTyxHQUFHLGFBQUcsQ0FBQyxRQUFRLENBQUMsV0FBVyxDQUFlLGlCQUFPLENBQUMsQ0FBQztJQUNuRSxDQUFDO0lBRUQsU0FBUyxDQUFDLFNBQWlCO0lBRTNCLENBQUM7SUFFRCxRQUFRO0lBRVIsQ0FBQztJQUVELFNBQVM7SUFFVCxDQUFDO0NBQ0o7QUFsQkQsa0NBa0JDIn0=","assetPath":"Assets/Scripts/Client/Manager/FlagGameManager.ts","manifest":{"properties":[{"assembly":"","name":"manager","type":"C:/Users/hyo05/Desktop/GamePG/PaintBallGame/ZepetoPaintBall/Assets/Scripts/Client/Manager/Manager.InterManager","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]}],"name":"FlagGameManager","description":"","hasAnimatorMove":false},"isCompiled":true}'
+  typescriptHash: eb3ec9618731349987a011379a91a42c
+  onlyWriteTrigger: 0

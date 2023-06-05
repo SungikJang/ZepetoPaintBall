@@ -20,29 +20,33 @@ ScriptedImporter:
   wrapperOutputDirectory: Generated
   compiledResult: "{\"source\":\"\\\"use strict\\\";\\r\\nObject.defineProperty(exports,
     \\\"__esModule\\\", { value: true });\\r\\nconst NetworkBase_1 = require(\\\"./NetworkBase\\\");\\r\\nconst
-    WorldMultiPlayStarter_1 = require(\\\"./WorldMultiPlayStarter\\\");\\r\\nclass
-    ResponseReceiver extends NetworkBase_1.default {\\r\\n    constructor() {\\r\\n       
-    super(...arguments);\\r\\n        this.init = false;\\r\\n    }\\r\\n    ManualSyncResHandlerFunc(room)
-    {\\r\\n    }\\r\\n    Start() {\\r\\n        try {\\r\\n            if (!WorldMultiPlayStarter_1.default.Instance)
+    UnityEngine_1 = require(\\\"UnityEngine\\\");\\r\\nconst MultiplayManager_1 =
+    require(\\\"./MultiplayManager\\\");\\r\\nclass ResponseReceiver extends NetworkBase_1.default
+    {\\r\\n    constructor() {\\r\\n        super(...arguments);\\r\\n        this.init
+    = false;\\r\\n    }\\r\\n    static get Instance() {\\r\\n        if (!ResponseReceiver._instance)
+    {\\r\\n            const go = UnityEngine_1.GameObject.Find('ResponseReceiver');\\r\\n           
+    ResponseReceiver._instance = go.GetComponent($typeof(ResponseReceiver));\\r\\n       
+    }\\r\\n        return ResponseReceiver._instance;\\r\\n    }\\r\\n    ManualSyncResHandlerFunc(room)
+    {\\r\\n    }\\r\\n    Start() {\\r\\n        try {\\r\\n            if (!MultiplayManager_1.default.instance)
     {\\r\\n                //console.log('\uC544\uC9C1 \uC624\uD1A0\uC5B4\uCA4C\uACE0
     \uC778\uC2A4\uD134\uC2A4\uAC00 \uC5C6\uC74C');\\r\\n                return;\\r\\n           
-    }\\r\\n            else {\\r\\n                const room = WorldMultiPlayStarter_1.default.Instance.Room;\\r\\n               
+    }\\r\\n            else {\\r\\n                const room = MultiplayManager_1.default.instance.room;\\r\\n               
     if (room) {\\r\\n                    if (room.IsConnected) {\\r\\n                       
     this._room = room;\\r\\n                        this.ManualSyncResHandlerFunc(room);\\r\\n                       
     this.GetServerTimeDifference();\\r\\n                        this.init = true;\\r\\n                   
     }\\r\\n                }\\r\\n            }\\r\\n        }\\r\\n        catch
     (e) {\\r\\n            console.error(e);\\r\\n        }\\r\\n    }\\r\\n    Update()
     {\\r\\n        try {\\r\\n            if (!this.init) {\\r\\n               
-    if (!WorldMultiPlayStarter_1.default.Instance) {\\r\\n                    //console.log('\uC544\uC9C1
+    if (!MultiplayManager_1.default.instance) {\\r\\n                    //console.log('\uC544\uC9C1
     \uC624\uD1A0\uC5B4\uCA4C\uACE0 \uC778\uC2A4\uD134\uC2A4\uAC00 \uC5C6\uC74C');\\r\\n                   
     return;\\r\\n                }\\r\\n                else {\\r\\n                   
-    const room = WorldMultiPlayStarter_1.default.Instance.Room;\\r\\n                   
+    const room = MultiplayManager_1.default.instance.room;\\r\\n                   
     if (room) {\\r\\n                        if (room.IsConnected) {\\r\\n                           
     this._room = room;\\r\\n                            this.ManualSyncResHandlerFunc(room);\\r\\n                           
     this.GetServerTimeDifference();\\r\\n                            this.init =
     true;\\r\\n                        }\\r\\n                    }\\r\\n               
     }\\r\\n            }\\r\\n        }\\r\\n        catch (e) {\\r\\n           
     console.error(e);\\r\\n        }\\r\\n    }\\r\\n}\\r\\nexports.default = ResponseReceiver;\\r\\n//#
-    sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiUmVzcG9uc2VSZWNlaXZlci5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIlJlc3BvbnNlUmVjZWl2ZXIudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFDQSwrQ0FBd0M7QUFDeEMsbUVBQTREO0FBUzVELE1BQXFCLGdCQUFpQixTQUFRLHFCQUFXO0lBQXpEOztRQUNZLFNBQUksR0FBWSxLQUFLLENBQUM7SUFrRGxDLENBQUM7SUFoRFUsd0JBQXdCLENBQUMsSUFBSTtJQUVwQyxDQUFDO0lBRUQsS0FBSztRQUNELElBQUk7WUFDQSxJQUFJLENBQUMsK0JBQXFCLENBQUMsUUFBUSxFQUFFO2dCQUNqQyxtQ0FBbUM7Z0JBQ25DLE9BQU87YUFDVjtpQkFBTTtnQkFDSCxNQUFNLElBQUksR0FBRywrQkFBcUIsQ0FBQyxRQUFRLENBQUMsSUFBSSxDQUFDO2dCQUNqRCxJQUFJLElBQUksRUFBRTtvQkFDTixJQUFJLElBQUksQ0FBQyxXQUFXLEVBQUU7d0JBQ2xCLElBQUksQ0FBQyxLQUFLLEdBQUcsSUFBSSxDQUFDO3dCQUNsQixJQUFJLENBQUMsd0JBQXdCLENBQUMsSUFBSSxDQUFDLENBQUM7d0JBQ3BDLElBQUksQ0FBQyx1QkFBdUIsRUFBRSxDQUFDO3dCQUMvQixJQUFJLENBQUMsSUFBSSxHQUFHLElBQUksQ0FBQztxQkFDcEI7aUJBQ0o7YUFDSjtTQUNKO1FBQUMsT0FBTyxDQUFDLEVBQUU7WUFDUixPQUFPLENBQUMsS0FBSyxDQUFDLENBQUMsQ0FBQyxDQUFDO1NBQ3BCO0lBQ0wsQ0FBQztJQUdELE1BQU07UUFDRixJQUFJO1lBQ0EsSUFBSSxDQUFDLElBQUksQ0FBQyxJQUFJLEVBQUU7Z0JBQ1osSUFBSSxDQUFDLCtCQUFxQixDQUFDLFFBQVEsRUFBRTtvQkFDakMsbUNBQW1DO29CQUNuQyxPQUFPO2lCQUNWO3FCQUFNO29CQUNILE1BQU0sSUFBSSxHQUFHLCtCQUFxQixDQUFDLFFBQVEsQ0FBQyxJQUFJLENBQUM7b0JBQ2pELElBQUksSUFBSSxFQUFFO3dCQUNOLElBQUksSUFBSSxDQUFDLFdBQVcsRUFBRTs0QkFDbEIsSUFBSSxDQUFDLEtBQUssR0FBRyxJQUFJLENBQUM7NEJBQ2xCLElBQUksQ0FBQyx3QkFBd0IsQ0FBQyxJQUFJLENBQUMsQ0FBQzs0QkFDcEMsSUFBSSxDQUFDLHVCQUF1QixFQUFFLENBQUM7NEJBQy9CLElBQUksQ0FBQyxJQUFJLEdBQUcsSUFBSSxDQUFDO3lCQUNwQjtxQkFDSjtpQkFDSjthQUNKO1NBQ0o7UUFBQyxPQUFPLENBQUMsRUFBRTtZQUNSLE9BQU8sQ0FBQyxLQUFLLENBQUMsQ0FBQyxDQUFDLENBQUM7U0FDcEI7SUFDTCxDQUFDO0NBQ0o7QUFuREQsbUNBbURDIn0=\",\"assetPath\":\"Assets/Scripts/Client/NetworkDivision/ResponseReceiver.ts\",\"manifest\":{\"properties\":[],\"name\":\"ResponseReceiver\",\"description\":\"\",\"hasAnimatorMove\":false},\"isCompiled\":true}"
-  typescriptHash: 0836751130f59b880ead5cbb0c74881c
+    sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiUmVzcG9uc2VSZWNlaXZlci5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIlJlc3BvbnNlUmVjZWl2ZXIudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFDQSwrQ0FBd0M7QUFDeEMsNkNBQXVDO0FBQ3ZDLHlEQUFrRDtBQVNsRCxNQUFxQixnQkFBaUIsU0FBUSxxQkFBVztJQUF6RDs7UUFXWSxTQUFJLEdBQVksS0FBSyxDQUFDO0lBaURsQyxDQUFDO0lBekRVLE1BQU0sS0FBSyxRQUFRO1FBQ3RCLElBQUksQ0FBQyxnQkFBZ0IsQ0FBQyxTQUFTLEVBQUU7WUFDN0IsTUFBTSxFQUFFLEdBQUcsd0JBQVUsQ0FBQyxJQUFJLENBQUMsa0JBQWtCLENBQUMsQ0FBQztZQUMvQyxnQkFBZ0IsQ0FBQyxTQUFTLEdBQUcsRUFBRSxDQUFDLFlBQVksU0FBQyxnQkFBZ0IsRUFBRyxDQUFDO1NBQ3BFO1FBQ0QsT0FBTyxnQkFBZ0IsQ0FBQyxTQUFTLENBQUM7SUFDdEMsQ0FBQztJQUlNLHdCQUF3QixDQUFDLElBQUk7SUFFcEMsQ0FBQztJQUVELEtBQUs7UUFDRCxJQUFJO1lBQ0EsSUFBSSxDQUFDLDBCQUFnQixDQUFDLFFBQVEsRUFBRTtnQkFDNUIsbUNBQW1DO2dCQUNuQyxPQUFPO2FBQ1Y7aUJBQU07Z0JBQ0gsTUFBTSxJQUFJLEdBQUcsMEJBQWdCLENBQUMsUUFBUSxDQUFDLElBQUksQ0FBQztnQkFDNUMsSUFBSSxJQUFJLEVBQUU7b0JBQ04sSUFBSSxJQUFJLENBQUMsV0FBVyxFQUFFO3dCQUNsQixJQUFJLENBQUMsS0FBSyxHQUFHLElBQUksQ0FBQzt3QkFDbEIsSUFBSSxDQUFDLHdCQUF3QixDQUFDLElBQUksQ0FBQyxDQUFDO3dCQUNwQyxJQUFJLENBQUMsdUJBQXVCLEVBQUUsQ0FBQzt3QkFDL0IsSUFBSSxDQUFDLElBQUksR0FBRyxJQUFJLENBQUM7cUJBQ3BCO2lCQUNKO2FBQ0o7U0FDSjtRQUFDLE9BQU8sQ0FBQyxFQUFFO1lBQ1IsT0FBTyxDQUFDLEtBQUssQ0FBQyxDQUFDLENBQUMsQ0FBQztTQUNwQjtJQUNMLENBQUM7SUFFRCxNQUFNO1FBQ0YsSUFBSTtZQUNBLElBQUksQ0FBQyxJQUFJLENBQUMsSUFBSSxFQUFFO2dCQUNaLElBQUksQ0FBQywwQkFBZ0IsQ0FBQyxRQUFRLEVBQUU7b0JBQzVCLG1DQUFtQztvQkFDbkMsT0FBTztpQkFDVjtxQkFBTTtvQkFDSCxNQUFNLElBQUksR0FBRywwQkFBZ0IsQ0FBQyxRQUFRLENBQUMsSUFBSSxDQUFDO29CQUM1QyxJQUFJLElBQUksRUFBRTt3QkFDTixJQUFJLElBQUksQ0FBQyxXQUFXLEVBQUU7NEJBQ2xCLElBQUksQ0FBQyxLQUFLLEdBQUcsSUFBSSxDQUFDOzRCQUNsQixJQUFJLENBQUMsd0JBQXdCLENBQUMsSUFBSSxDQUFDLENBQUM7NEJBQ3BDLElBQUksQ0FBQyx1QkFBdUIsRUFBRSxDQUFDOzRCQUMvQixJQUFJLENBQUMsSUFBSSxHQUFHLElBQUksQ0FBQzt5QkFDcEI7cUJBQ0o7aUJBQ0o7YUFDSjtTQUNKO1FBQUMsT0FBTyxDQUFDLEVBQUU7WUFDUixPQUFPLENBQUMsS0FBSyxDQUFDLENBQUMsQ0FBQyxDQUFDO1NBQ3BCO0lBQ0wsQ0FBQztDQUNKO0FBNURELG1DQTREQyJ9\",\"assetPath\":\"Assets/Scripts/Client/Network/ResponseReceiver.ts\",\"manifest\":{\"properties\":[],\"name\":\"ResponseReceiver\",\"description\":\"\",\"hasAnimatorMove\":false},\"isCompiled\":true}"
+  typescriptHash: ec8706e1aa379e3ec594051bd506244c
   onlyWriteTrigger: 0
