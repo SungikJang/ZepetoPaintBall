@@ -11,6 +11,8 @@ export default class GameStarter extends ZepetoScriptBehaviour {
         IOC.Instance.createInstance<InterMyPlayerController>(MyPlayerController);
         IOC.Instance.createInstance<InterManager>(Manager);
         this.instanceReady = true;
+        IOC.Instance.getInstance(Manager).Init();
+        IOC.Instance.getInstance(Manager).UI.ShowDefaultUI("StartUI")
     }
     
     Update(){

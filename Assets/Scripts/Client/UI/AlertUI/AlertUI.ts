@@ -1,6 +1,8 @@
 import {WaitForSeconds} from 'UnityEngine';
 import {ZepetoScriptBehaviour} from 'ZEPETO.Script';
-import Manager from '../../Manager';
+import IOC from '../../IOC';
+import Manager, { InterManager } from '../../Manager/Manager';
+
 
 export default class AlertUI extends ZepetoScriptBehaviour {
     Start() {
@@ -13,8 +15,8 @@ export default class AlertUI extends ZepetoScriptBehaviour {
 
     *DestroyAlertUI() {
         yield new WaitForSeconds(2);
-        Manager.Resource.Destroy(this.gameObject);
+        IOC.Instance.getInstance<InterManager>(Manager).Resource.Destroy(this.gameObject);
 
-        Manager.UI.ShowAlertUI();
+        //IOC.Instance.getInstance<InterManager>(Manager).UI.ShowAlertUI();
     }
 }

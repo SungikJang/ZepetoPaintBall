@@ -3,6 +3,8 @@ import { ZepetoScriptBehaviour } from 'ZEPETO.Script'
 import {WaitForSeconds, AudioListener, Random} from "UnityEngine";
 import IOC from '../IOC';
 import Manager, { InterManager } from '../Manager/Manager';
+import { PLAYER_STATE } from '../Enums';
+import Connector from '../Network/Connector';
 
 export interface InterMyPlayerData {
     Init(): void;
@@ -10,12 +12,26 @@ export interface InterMyPlayerData {
     SetMyPlayer(player: ZepetoPlayer): void;
 
     Update(): void;
+    
+    SetTeam(team: string): void;
+    
+    SetPlayerState(state: string): void;
+    
+    get Hp();
+    
+    set Hp(value: float);
 }
 
 export default class MyPlayerData extends ZepetoScriptBehaviour implements InterMyPlayerData {
     private _myPlayer: ZepetoPlayer = null;
     
+    private state: string = PLAYER_STATE.Live;
+    
     public manager: InterManager;
+    
+    private team: string = '';
+    
+    private hp: float = 100;
 
 
     Init() {
@@ -30,6 +46,27 @@ export default class MyPlayerData extends ZepetoScriptBehaviour implements Inter
     }
     
     Update(){
-        
+        if(this.state !== PLAYER_STATE.Die){
+            if (this.hp <= 0) {
+                this.state = PLAYER_STATE.Die;
+                Connector.Instance.ReqToServer('PlayerDieReq')
+            }
+        }
+    }
+
+    SetTeam(team: string){
+        this.team = team;
+    }
+
+    SetPlayerState(state: string){
+        this.state = state;
+    }
+
+    get Hp(){
+        return this.hp
+    }
+
+    set Hp(value: float){
+        this.hp = value
     }
 }   

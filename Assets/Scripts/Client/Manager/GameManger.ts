@@ -1,34 +1,53 @@
 import { GAME_NAME } from "../Enums";
 import IOC from "../IOC";
+import Connector from "../Network/Connector";
 import Manager, { InterManager } from "./Manager";
 
 export interface InterGameManager {
-    nowOnGmae: string
+    nowOnGame: string
+
+    GameJoin(sessionId: string, team?: string): void;
     
     GameStart(sessionId: string): void;
     
     Init(): void;
+    
+    get NowOnGame();
+    
+    set NowOnGame(value: string);
 }
 
 export default class GameManager implements InterGameManager{
-    nowOnGmae: string = ''
+    nowOnGame: string = ''
     manager: InterManager;
     
     Init(){
         this.manager = IOC.Instance.getInstance<InterManager>(Manager);
     }
+
+    get NowOnGame(){
+        return this.nowOnGame
+    }
+
+    set NowOnGame(value: string){
+        this.nowOnGame = value;
+    }
     
-    GameStart(sessionId: string){
-        switch(this.nowOnGmae){
+    GameJoin(sessionId: string, team?: string){
+        switch(this.nowOnGame){
             case GAME_NAME.Flag:
-                this.manager.FlagGame.JoinGame();
+                IOC.Instance.getInstance<InterManager>(Manager).FlagGame.JoinGame(team);
                 break
             case GAME_NAME.Siege:
-                this.manager.SeigeGame.JoinGame();
+                IOC.Instance.getInstance<InterManager>(Manager).SeigeGame.JoinGame(team);
                 break
             case GAME_NAME.SoloFlag:
-                this.manager.SoloFlagGame.JoinGame();
+                IOC.Instance.getInstance<InterManager>(Manager).SoloFlagGame.JoinGame();
                 break
         }
+    }
+
+    GameStart(sessionId: string){
+        Connector.Instance.ReqToServer("StartGameReq", {gameName: this.nowOnGame})
     }
 }

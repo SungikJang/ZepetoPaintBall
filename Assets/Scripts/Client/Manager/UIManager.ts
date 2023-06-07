@@ -133,7 +133,7 @@ export default class UIManager implements InterUIManager {
 
     private CreatePopUpUI(uiName: string): GameObject {
         const go: GameObject = IOC.Instance.getInstance(Manager).Resource.Instantiate(`UI\\PopUpUI\\${uiName}`);
-        go.transform.SetParent(this._rootUIPopUp.transform);
+        go.transform.SetParent(this._rootUIPopUp.transform, false);
         this._popUpStack.Push(go);
         this.SetCanvas(go, 20 + this._popUpStack.Count);
         return go;
@@ -193,7 +193,7 @@ export default class UIManager implements InterUIManager {
 
     private CreateDefaultUI(uiName: string) {
         const go: GameObject = IOC.Instance.getInstance(Manager).Resource.Instantiate(`UI\\DefaultUI\\${uiName}`);
-        go.transform.SetParent(this._rootUIPopUpDontDestroy.transform);
+        go.transform.SetParent(this._rootUIPopUpDontDestroy.transform, false);
         this.SetCanvas(go, 10);
         return go;
     }

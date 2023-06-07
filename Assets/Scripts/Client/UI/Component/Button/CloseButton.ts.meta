@@ -19,9 +19,13 @@ ScriptedImporter:
   WrapperFilters: []
   wrapperOutputDirectory: Generated
   compiledResult: '{"source":"\"use strict\";\r\nObject.defineProperty(exports, \"__esModule\",
-    { value: true });\r\nconst ZEPETO_Script_1 = require(\"ZEPETO.Script\");\r\nclass
-    CloseButton extends ZEPETO_Script_1.ZepetoScriptBehaviour {\r\n    Start() {\r\n       
-    this.closeButton.onClick.AddListener(() => {\r\n            this.TargetUIObject.SetActive(false);\r\n       
-    });\r\n    }\r\n}\r\nexports.default = CloseButton;\r\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiQ2xvc2VCdXR0b24uanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJDbG9zZUJ1dHRvbi50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUVBLGlEQUFxRDtBQUVyRCxNQUFxQixXQUFZLFNBQVEscUNBQXFCO0lBSTFELEtBQUs7UUFDRCxJQUFJLENBQUMsV0FBVyxDQUFDLE9BQU8sQ0FBQyxXQUFXLENBQUMsR0FBRyxFQUFFO1lBQ3RDLElBQUksQ0FBQyxjQUFjLENBQUMsU0FBUyxDQUFDLEtBQUssQ0FBQyxDQUFDO1FBQ3pDLENBQUMsQ0FBQyxDQUFDO0lBQ1AsQ0FBQztDQUVKO0FBVkQsOEJBVUMifQ==","assetPath":"Assets/Scripts/Client/UIControllDivision/Component/Button/CloseButton.ts","manifest":{"properties":[{"assembly":"UnityEngine.CoreModule","name":"TargetUIObject","type":"UnityEngine.GameObject","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]},{"assembly":"UnityEngine.UI","name":"closeButton","type":"UnityEngine.UI.Button","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]}],"name":"CloseButton","description":"","hasAnimatorMove":false},"isCompiled":true}'
-  typescriptHash: 37a9efd8c270c88998e2396e167deb86
+    { value: true });\r\nconst UnityEngine_1 = require(\"UnityEngine\");\r\nconst
+    ZEPETO_Script_1 = require(\"ZEPETO.Script\");\r\nconst IOC_1 = require(\"../../../IOC\");\r\nconst
+    Manager_1 = require(\"../../../Manager/Manager\");\r\nclass CloseButton extends
+    ZEPETO_Script_1.ZepetoScriptBehaviour {\r\n    Start() {\r\n        this.closeButton.onClick.AddListener(()
+    => {\r\n            if (this.TargetUIObject.name.includes(\"PopUp\")) {\r\n               
+    IOC_1.default.Instance.getInstance(Manager_1.default).UI.DeletePopUpUI();\r\n           
+    }\r\n            else {\r\n                this.TargetUIObject.SetActive(false);\r\n           
+    }\r\n        });\r\n    }\r\n}\r\nexports.default = CloseButton;\r\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiQ2xvc2VCdXR0b24uanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJDbG9zZUJ1dHRvbi50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUFBLDZDQUF5QztBQUV6QyxpREFBcUQ7QUFDckQsc0NBQStCO0FBQy9CLHNEQUErQztBQUUvQyxNQUFxQixXQUFZLFNBQVEscUNBQXFCO0lBSTFELEtBQUs7UUFDRCxJQUFJLENBQUMsV0FBVyxDQUFDLE9BQU8sQ0FBQyxXQUFXLENBQUMsR0FBRyxFQUFFO1lBQ3RDLElBQUcsSUFBSSxDQUFDLGNBQWMsQ0FBQyxJQUFJLENBQUMsUUFBUSxDQUFDLE9BQU8sQ0FBQyxFQUFDO2dCQUMxQyxhQUFHLENBQUMsUUFBUSxDQUFDLFdBQVcsQ0FBQyxpQkFBTyxDQUFDLENBQUMsRUFBRSxDQUFDLGFBQWEsRUFBRSxDQUFDO2FBQ3hEO2lCQUNHO2dCQUNBLElBQUksQ0FBQyxjQUFjLENBQUMsU0FBUyxDQUFDLEtBQUssQ0FBQyxDQUFDO2FBQ3hDO1FBQ0wsQ0FBQyxDQUFDLENBQUM7SUFDUCxDQUFDO0NBRUo7QUFmRCw4QkFlQyJ9","assetPath":"Assets/Scripts/Client/UI/Component/Button/CloseButton.ts","manifest":{"properties":[{"assembly":"UnityEngine.CoreModule","name":"TargetUIObject","type":"UnityEngine.GameObject","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]},{"assembly":"UnityEngine.UI","name":"closeButton","type":"UnityEngine.UI.Button","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]}],"name":"CloseButton","description":"","hasAnimatorMove":false},"isCompiled":true}'
+  typescriptHash: 6c96c1459ce6e142c486ac43762a1073
   onlyWriteTrigger: 0

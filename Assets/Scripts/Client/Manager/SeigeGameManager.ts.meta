@@ -19,10 +19,18 @@ ScriptedImporter:
   WrapperFilters: []
   wrapperOutputDirectory: Generated
   compiledResult: '{"source":"\"use strict\";\r\nObject.defineProperty(exports, \"__esModule\",
-    { value: true });\r\nconst IOC_1 = require(\"../IOC\");\r\nconst Manager_1 =
-    require(\"./Manager\");\r\nclass SeigeGameManager {\r\n    Init() {\r\n       
-    this.manager = IOC_1.default.Instance.getInstance(Manager_1.default);\r\n   
-    }\r\n    GameStart(sessionId) {\r\n    }\r\n    JoinGame() {\r\n    }\r\n   
-    LeaveGame() {\r\n    }\r\n}\r\nexports.default = SeigeGameManager;\r\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiU2VpZ2VHYW1lTWFuYWdlci5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIlNlaWdlR2FtZU1hbmFnZXIudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFBQSxnQ0FBeUI7QUFDekIsdUNBQWtEO0FBWWxELE1BQXFCLGdCQUFnQjtJQUdqQyxJQUFJO1FBQ0EsSUFBSSxDQUFDLE9BQU8sR0FBRyxhQUFHLENBQUMsUUFBUSxDQUFDLFdBQVcsQ0FBZSxpQkFBTyxDQUFDLENBQUM7SUFDbkUsQ0FBQztJQUVELFNBQVMsQ0FBQyxTQUFpQjtJQUUzQixDQUFDO0lBRUQsUUFBUTtJQUVSLENBQUM7SUFFRCxTQUFTO0lBRVQsQ0FBQztDQUNKO0FBbEJELG1DQWtCQyJ9","assetPath":"Assets/Scripts/Client/Manager/SeigeGameManager.ts","manifest":{"properties":[{"assembly":"","name":"manager","type":"C:/Users/hyo05/Desktop/GamePG/PaintBallGame/ZepetoPaintBall/Assets/Scripts/Client/Manager/Manager.InterManager","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]}],"name":"SeigeGameManager","description":"","hasAnimatorMove":false},"isCompiled":true}'
-  typescriptHash: 9c29c0f28a2d7fb12583cb632478c72d
+    { value: true });\r\nconst Enums_1 = require(\"../Enums\");\r\nconst IOC_1 =
+    require(\"../IOC\");\r\nconst Manager_1 = require(\"./Manager\");\r\nconst UnityEngine_1
+    = require(\"UnityEngine\");\r\nconst MyPalyerController_1 = require(\"../MyPlayer/MyPalyerController\");\r\nclass
+    SeigeGameManager {\r\n    Init() {\r\n        this.manager = IOC_1.default.Instance.getInstance(Manager_1.default);\r\n       
+    this.myPlayerController = IOC_1.default.Instance.getInstance(MyPalyerController_1.MyPlayerController);\r\n   
+    }\r\n    GameStart(sessionId) {\r\n        this.manager.Game.NowOnGame = Enums_1.GAME_NAME.Siege;\r\n       
+    this.manager.Game.GameStart(sessionId);\r\n        this.manager.UI.CloseDefaultUI(''StartUI'');\r\n       
+    this.manager.UI.ShowDefaultUI(''InGameUI'');\r\n        if (!this.SeigeStartPoint)\r\n           
+    this.SeigeStartPoint = UnityEngine_1.GameObject.Find(\"SeigeStartPoint\").transform;\r\n       
+    this.myPlayerController.MyPlayerMovement.Teleport(this.SeigeStartPoint);\r\n       
+    this.myPlayerController.MyPlayerData.SetTeam(''A'');\r\n    }\r\n    JoinGame(team)
+    {\r\n    }\r\n    LeaveGame() {\r\n    }\r\n}\r\nexports.default = SeigeGameManager;\r\n//#
+    sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiU2VpZ2VHYW1lTWFuYWdlci5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIlNlaWdlR2FtZU1hbmFnZXIudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFBQSxvQ0FBcUM7QUFDckMsZ0NBQXlCO0FBQ3pCLHVDQUFrRDtBQUNsRCw2Q0FBa0Q7QUFDbEQsdUVBQTRGO0FBYTVGLE1BQXFCLGdCQUFnQjtJQUtqQyxJQUFJO1FBQ0EsSUFBSSxDQUFDLE9BQU8sR0FBRyxhQUFHLENBQUMsUUFBUSxDQUFDLFdBQVcsQ0FBZSxpQkFBTyxDQUFDLENBQUM7UUFDL0QsSUFBSSxDQUFDLGtCQUFrQixHQUFHLGFBQUcsQ0FBQyxRQUFRLENBQUMsV0FBVyxDQUEwQix1Q0FBa0IsQ0FBQyxDQUFDO0lBQ3BHLENBQUM7SUFFRCxTQUFTLENBQUMsU0FBaUI7UUFDdkIsSUFBSSxDQUFDLE9BQU8sQ0FBQyxJQUFJLENBQUMsU0FBUyxHQUFHLGlCQUFTLENBQUMsS0FBSyxDQUFDO1FBQzlDLElBQUksQ0FBQyxPQUFPLENBQUMsSUFBSSxDQUFDLFNBQVMsQ0FBQyxTQUFTLENBQUMsQ0FBQTtRQUN0QyxJQUFJLENBQUMsT0FBTyxDQUFDLEVBQUUsQ0FBQyxjQUFjLENBQUMsU0FBUyxDQUFDLENBQUM7UUFDMUMsSUFBSSxDQUFDLE9BQU8sQ0FBQyxFQUFFLENBQUMsYUFBYSxDQUFDLFVBQVUsQ0FBQyxDQUFDO1FBQzFDLElBQUcsQ0FBQyxJQUFJLENBQUMsZUFBZTtZQUFFLElBQUksQ0FBQyxlQUFlLEdBQUcsd0JBQVUsQ0FBQyxJQUFJLENBQUMsaUJBQWlCLENBQUMsQ0FBQyxTQUFTLENBQUM7UUFDOUYsSUFBSSxDQUFDLGtCQUFrQixDQUFDLGdCQUFnQixDQUFDLFFBQVEsQ0FBQyxJQUFJLENBQUMsZUFBZSxDQUFDLENBQUE7UUFDdkUsSUFBSSxDQUFDLGtCQUFrQixDQUFDLFlBQVksQ0FBQyxPQUFPLENBQUMsR0FBRyxDQUFDLENBQUE7SUFDckQsQ0FBQztJQUVELFFBQVEsQ0FBQyxJQUFZO0lBRXJCLENBQUM7SUFFRCxTQUFTO0lBRVQsQ0FBQztDQUNKO0FBM0JELG1DQTJCQyJ9","assetPath":"Assets/Scripts/Client/Manager/SeigeGameManager.ts","manifest":{"properties":[{"assembly":"","name":"manager","type":"C:/Users/hyo05/Desktop/GamePG/PaintBallGame/ZepetoPaintBall/Assets/Scripts/Client/Manager/Manager.InterManager","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]},{"assembly":"","name":"myPlayerController","type":"C:/Users/hyo05/Desktop/GamePG/PaintBallGame/ZepetoPaintBall/Assets/Scripts/Client/MyPlayer/MyPalyerController.InterMyPlayerController","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]}],"name":"SeigeGameManager","description":"","hasAnimatorMove":false},"isCompiled":true}'
+  typescriptHash: 31c7b32c4e3575b619928bac744f9284
   onlyWriteTrigger: 0

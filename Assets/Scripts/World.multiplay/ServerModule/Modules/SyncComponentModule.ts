@@ -1,32 +1,99 @@
 import { SandboxPlayer } from "ZEPETO.Multiplay";
 import { IModule } from "../IModule";
 import {sVector3, sQuaternion, SyncTransform, PlayerAdditionalValue, ZepetoAnimationParam} from "ZEPETO.Multiplay.Schema";
+import RespawnTimer from "../RespawnTimer";
 
 export default class SyncComponentModule extends IModule {
     private sessionIdQueue: string[] = [];
     private instantiateObjCaches : InstantiateObj[] = [];
     private masterClient: Function = (): SandboxPlayer | undefined => this.server.loadPlayer(this.sessionIdQueue[0]);
     
+    private teamA: string[] = [];
+    private teamB: string[] = [];
+    private soloGame: string[] = [];
+    
     private adminPlayer: string;
+    private isAdminPlayerAbsence: boolean = false;
     
     private isGameRunning: boolean = false;
     private nowRunningGame: string = 'None'
+    
+    set IsAdminPlayerAbsence(value: boolean){
+        this.isAdminPlayerAbsence = value
+    }
 
     async OnCreate() {
-        this.server.onMessage(MESSAGE.GameStartReq, (client, message) => {
-            console.log("게임시작버튼누름 서버받음")
+        this.ForBasic();
+        this.ForCustomize();
+    }
+
+    async OnJoin(client: SandboxPlayer) {
+        if(!this.adminPlayer){
+            this.adminPlayer = client.sessionId
+        }
+        if(!this.sessionIdQueue.includes(client.sessionId)) {
+            this.sessionIdQueue.push(client.sessionId.toString());
+        }
+    }
+
+    async OnLeave(client: SandboxPlayer) {
+        if(this.sessionIdQueue.includes(client.sessionId)) {
+            const leavePlayerIndex = this.sessionIdQueue.indexOf(client.sessionId);
+            this.sessionIdQueue.splice(leavePlayerIndex, 1);
+            if (leavePlayerIndex == 0) {
+                console.log(`master->, ${this.sessionIdQueue[0]}`);
+                this.server.broadcast(MESSAGE.MasterResponse, this.sessionIdQueue[0]);
+            }
+        }
+    }
+    
+
+    OnTick(deltaTime: number) {
+    }
+    
+    ForCustomize(){
+        this.server.onMessage(MESSAGE.GameStartBtnReq, (client, message) => {
             if(this.isGameRunning){
-                client.send('GameJoinRes', this.nowRunningGame);
+                if(this.nowRunningGame.includes('Solo')){
+                    this.soloGame.push(client.sessionId);
+                    client.send('GameJoinRes', {nowRunningGame: this.nowRunningGame});
+                }
+                else{
+                    let team = '';
+                    if (this.teamA.length >= this.teamB.length) {
+                        this.teamB.push(client.sessionId)
+                        team = 'B'
+                    } else {
+                        this.teamA.push(client.sessionId)
+                        team = 'A'
+                    }
+                    client.send('GameJoinRes', {nowRunningGame: this.nowRunningGame, team: team});
+                }
             }
             else{
                 let admin: boolean = false;
-                if(client.sessionId === this.adminPlayer) admin = true;
-                client.send('GameStartRes', admin)
+                if(client.sessionId === this.adminPlayer) {
+                    admin = true;
+                }
+                client.send('GameStartRes', { isAdmin: admin })
             }
         });
-        
-        
-        
+
+        this.server.onMessage(MESSAGE.StartGameReq, (client, message) => {
+            this.isGameRunning = true;
+            this.nowRunningGame = message.gameName;
+            this.teamA.push(client.sessionId);
+            console.log(this.nowRunningGame)
+        });
+
+        this.server.onMessage(MESSAGE.PlayerDieReq, (client, message) => {
+            const timer = new RespawnTimer(this, client);
+            timer.Start();
+            this.server.broadcast('PlayerDieRes', {player: client.sessionId})
+        });
+    }
+    
+    ForBasic(){
         /**Zepeto Player Sync**/
         this.server.onMessage(MESSAGE.SyncPlayer, (client, message) => {
             const player = this.server.state.players.get(client.sessionId);
@@ -144,29 +211,37 @@ export default class SyncComponentModule extends IModule {
         });
     }
 
-    async OnJoin(client: SandboxPlayer) {
-        if(!this.sessionIdQueue.includes(client.sessionId)) {
-            if(!this.adminPlayer){
-                this.adminPlayer = client.sessionId
-            }
-            this.sessionIdQueue.push(client.sessionId.toString());
-        }
+    public SendRespawn(client: SandboxPlayer){
+        this.server.broadcast('PlayerRespawn', {player: client.sessionId});
     }
-
-    async OnLeave(client: SandboxPlayer) {
-        if(this.sessionIdQueue.includes(client.sessionId)) {
-            const leavePlayerIndex = this.sessionIdQueue.indexOf(client.sessionId);
-            this.sessionIdQueue.splice(leavePlayerIndex, 1);
-            if (leavePlayerIndex == 0) {
-                console.log(`master->, ${this.sessionIdQueue[0]}`);
-                this.server.broadcast(MESSAGE.MasterResponse, this.sessionIdQueue[0]);
+    
+    public UrgeGameStart(client: SandboxPlayer, cnt: number){
+        if(this.isAdminPlayerAbsence){
+            if (cnt > 1) {
+                this.kickPlayer(client, client.sessionId);
+                //  플레이어 퇴장
+                let ind = Math.floor(Math.random() * this.sessionIdQueue.length);
+                this.adminPlayer = this.sessionIdQueue[ind];
+            } else {
+                client.send('UrgeGameStart', {player: client.sessionId});
             }
         }
     }
 
-    OnTick(deltaTime: number) {
-    }
+    async kickPlayer(client: SandboxPlayer, userId: string){
+        let player: SandboxPlayer;
+        if (userId == null) {
+            player = client;
+        } else {
+            const kickPlayerSessionId: string = this.server.state.players.get(userId).sessionId;
+            player = this.server.loadPlayer(kickPlayerSessionId);
+        }
 
+        console.log(`try kick : ${player.userId}`);
+        await this.server.kick(player);
+
+        this.server.broadcast("Log", `kick : ${player.userId}`);
+    }
 }
 interface syncTween {
     Id: string,
@@ -210,5 +285,7 @@ enum MESSAGE {
 
     /** Sample Code **/
 
-    GameStartReq = "GameStartReq",
+    GameStartBtnReq = "GameStartBtnReq",
+    StartGameReq = "StartGameReq",
+    PlayerDieReq = "PlayerDieReq",
 }

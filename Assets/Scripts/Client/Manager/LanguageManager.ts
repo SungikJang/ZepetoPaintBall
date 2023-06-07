@@ -52,6 +52,6 @@ export default class LanguageManager implements InterLanguageManager {
     }
 
     Init() {
-        this.Translator(LANGUAGES.English);
+        //this.Translator(LANGUAGES.English);
     }
 }

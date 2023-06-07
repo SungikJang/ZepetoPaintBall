@@ -19,10 +19,18 @@ ScriptedImporter:
   WrapperFilters: []
   wrapperOutputDirectory: Generated
   compiledResult: '{"source":"\"use strict\";\r\nObject.defineProperty(exports, \"__esModule\",
-    { value: true });\r\nconst IOC_1 = require(\"../IOC\");\r\nconst Manager_1 =
-    require(\"./Manager\");\r\nclass FlagGameManager {\r\n    Init() {\r\n       
-    this.manager = IOC_1.default.Instance.getInstance(Manager_1.default);\r\n   
-    }\r\n    GameStart(sessionId) {\r\n    }\r\n    JoinGame() {\r\n    }\r\n   
-    LeaveGame() {\r\n    }\r\n}\r\nexports.default = FlagGameManager;\r\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiRmxhZ0dhbWVNYW5hZ2VyLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiRmxhZ0dhbWVNYW5hZ2VyLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7O0FBQUEsZ0NBQXlCO0FBQ3pCLHVDQUFrRDtBQVlsRCxNQUFxQixlQUFlO0lBR2hDLElBQUk7UUFDQSxJQUFJLENBQUMsT0FBTyxHQUFHLGFBQUcsQ0FBQyxRQUFRLENBQUMsV0FBVyxDQUFlLGlCQUFPLENBQUMsQ0FBQztJQUNuRSxDQUFDO0lBRUQsU0FBUyxDQUFDLFNBQWlCO0lBRTNCLENBQUM7SUFFRCxRQUFRO0lBRVIsQ0FBQztJQUVELFNBQVM7SUFFVCxDQUFDO0NBQ0o7QUFsQkQsa0NBa0JDIn0=","assetPath":"Assets/Scripts/Client/Manager/FlagGameManager.ts","manifest":{"properties":[{"assembly":"","name":"manager","type":"C:/Users/hyo05/Desktop/GamePG/PaintBallGame/ZepetoPaintBall/Assets/Scripts/Client/Manager/Manager.InterManager","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]}],"name":"FlagGameManager","description":"","hasAnimatorMove":false},"isCompiled":true}'
-  typescriptHash: eb3ec9618731349987a011379a91a42c
+    { value: true });\r\nconst Enums_1 = require(\"../Enums\");\r\nconst IOC_1 =
+    require(\"../IOC\");\r\nconst Manager_1 = require(\"./Manager\");\r\nconst UnityEngine_1
+    = require(\"UnityEngine\");\r\nconst MyPalyerController_1 = require(\"../MyPlayer/MyPalyerController\");\r\nclass
+    FlagGameManager {\r\n    Init() {\r\n        this.manager = IOC_1.default.Instance.getInstance(Manager_1.default);\r\n       
+    this.myPlayerController = IOC_1.default.Instance.getInstance(MyPalyerController_1.MyPlayerController);\r\n   
+    }\r\n    GameStart(sessionId) {\r\n        this.manager.Game.NowOnGame = Enums_1.GAME_NAME.Flag;\r\n       
+    this.manager.Game.GameStart(sessionId);\r\n        this.manager.UI.CloseDefaultUI(''StartUI'');\r\n       
+    this.manager.UI.ShowDefaultUI(''InGameUI'');\r\n        if (!this.FlagStartPoint)\r\n           
+    this.FlagStartPoint = UnityEngine_1.GameObject.Find(\"FlagStartPoint\").transform;\r\n       
+    this.myPlayerController.MyPlayerMovement.Teleport(this.FlagStartPoint);\r\n       
+    this.myPlayerController.MyPlayerData.SetTeam(''A'');\r\n    }\r\n    JoinGame(team)
+    {\r\n    }\r\n    LeaveGame() {\r\n    }\r\n}\r\nexports.default = FlagGameManager;\r\n//#
+    sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiRmxhZ0dhbWVNYW5hZ2VyLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiRmxhZ0dhbWVNYW5hZ2VyLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7O0FBQUEsb0NBQXFDO0FBQ3JDLGdDQUF5QjtBQUN6Qix1Q0FBa0Q7QUFDbEQsNkNBQWtEO0FBQ2xELHVFQUE0RjtBQVk1RixNQUFxQixlQUFlO0lBS2hDLElBQUk7UUFDQSxJQUFJLENBQUMsT0FBTyxHQUFHLGFBQUcsQ0FBQyxRQUFRLENBQUMsV0FBVyxDQUFlLGlCQUFPLENBQUMsQ0FBQztRQUMvRCxJQUFJLENBQUMsa0JBQWtCLEdBQUcsYUFBRyxDQUFDLFFBQVEsQ0FBQyxXQUFXLENBQTBCLHVDQUFrQixDQUFDLENBQUM7SUFDcEcsQ0FBQztJQUVELFNBQVMsQ0FBQyxTQUFpQjtRQUN2QixJQUFJLENBQUMsT0FBTyxDQUFDLElBQUksQ0FBQyxTQUFTLEdBQUcsaUJBQVMsQ0FBQyxJQUFJLENBQUM7UUFDN0MsSUFBSSxDQUFDLE9BQU8sQ0FBQyxJQUFJLENBQUMsU0FBUyxDQUFDLFNBQVMsQ0FBQyxDQUFBO1FBQ3RDLElBQUksQ0FBQyxPQUFPLENBQUMsRUFBRSxDQUFDLGNBQWMsQ0FBQyxTQUFTLENBQUMsQ0FBQztRQUMxQyxJQUFJLENBQUMsT0FBTyxDQUFDLEVBQUUsQ0FBQyxhQUFhLENBQUMsVUFBVSxDQUFDLENBQUM7UUFDMUMsSUFBRyxDQUFDLElBQUksQ0FBQyxjQUFjO1lBQUUsSUFBSSxDQUFDLGNBQWMsR0FBRyx3QkFBVSxDQUFDLElBQUksQ0FBQyxnQkFBZ0IsQ0FBQyxDQUFDLFNBQVMsQ0FBQztRQUMzRixJQUFJLENBQUMsa0JBQWtCLENBQUMsZ0JBQWdCLENBQUMsUUFBUSxDQUFDLElBQUksQ0FBQyxjQUFjLENBQUMsQ0FBQTtRQUN0RSxJQUFJLENBQUMsa0JBQWtCLENBQUMsWUFBWSxDQUFDLE9BQU8sQ0FBQyxHQUFHLENBQUMsQ0FBQTtJQUNyRCxDQUFDO0lBRUQsUUFBUSxDQUFDLElBQVk7SUFFckIsQ0FBQztJQUVELFNBQVM7SUFFVCxDQUFDO0NBQ0o7QUEzQkQsa0NBMkJDIn0=","assetPath":"Assets/Scripts/Client/Manager/FlagGameManager.ts","manifest":{"properties":[{"assembly":"","name":"manager","type":"C:/Users/hyo05/Desktop/GamePG/PaintBallGame/ZepetoPaintBall/Assets/Scripts/Client/Manager/Manager.InterManager","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]},{"assembly":"","name":"myPlayerController","type":"C:/Users/hyo05/Desktop/GamePG/PaintBallGame/ZepetoPaintBall/Assets/Scripts/Client/MyPlayer/MyPalyerController.InterMyPlayerController","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]}],"name":"FlagGameManager","description":"","hasAnimatorMove":false},"isCompiled":true}'
+  typescriptHash: c8e77d8208f0c7982b6f80e65f5027f8
   onlyWriteTrigger: 0

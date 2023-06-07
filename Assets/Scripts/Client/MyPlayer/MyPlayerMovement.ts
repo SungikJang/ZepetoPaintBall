@@ -1,4 +1,4 @@
-import {AudioListener, GameObject, Random, Time, Vector3, WaitForSeconds} from 'UnityEngine';
+import {AudioListener, GameObject, Random, Time, Transform, Vector3, WaitForSeconds} from 'UnityEngine';
 import {ZepetoPlayer, ZepetoPlayers} from 'ZEPETO.Character.Controller';
 import { ZepetoScriptBehaviour } from 'ZEPETO.Script'
 import IOC from '../IOC';
@@ -11,6 +11,7 @@ export interface InterMyPlayerMovement {
 
     SetMyPlayer(player: ZepetoPlayer): void;
 
+    Teleport(pos: Transform): void;
 }
 
 export default class MyPlayerMovement extends ZepetoScriptBehaviour implements InterMyPlayerMovement {
@@ -47,5 +48,8 @@ export default class MyPlayerMovement extends ZepetoScriptBehaviour implements I
         this.myPlayerObject = this.myPlayer.character.gameObject;
         console.log("myplayer세팅완료")
     }
-    
+
+    Teleport(pos: Transform){
+        this.myPlayer.character.Teleport(pos.position, pos.rotation);
+    }
 }

@@ -35,18 +35,23 @@ export default class Connector extends NetworkBase implements InterConnector{
             'GameStartRes',
             (data: { isAdmin: boolean }) => {
                 if(data.isAdmin){
-                    this.manager.UI.ShowPopUpUI('PopUpUI\\GameSelectPopUpUI')
+                    this.manager.UI.ShowPopUpUI('GameSelectPopUpUI')
                 }
                 else{
-                    this.manager.UI.ShowPopUpUI('AlertUI\\NotGameRunningUI')
+                    this.manager.UI.ShowPopUpUI('NotGameRunningUI')
                 }
             }
         );
 
         room.AddMessageHandler(
             'GameJoinRes',
-            (data: { nowRunningGame: string }) => {
-                this.manager.Game.GameStart(data.nowRunningGame)
+            (data: { nowRunningGame: string, team?: string }) => {
+                if(data.team) {
+                    this.manager.Game.GameJoin(data.nowRunningGame, data.team)
+                }
+                else{
+                    this.manager.Game.GameJoin(data.nowRunningGame)
+                }
             }
         );
     }

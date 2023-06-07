@@ -15,6 +15,12 @@ export enum POTION_TYPE {
     MINUS
 }
 
+export enum PLAYER_STATE {
+    Die = 'Die',
+    Live = 'LIVE',
+    Flag = 'Flag'
+}
+
 export enum GAME_NAME {
     None = 'None',
     Flag = 'Flag',

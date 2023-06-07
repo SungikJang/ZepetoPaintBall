@@ -78,7 +78,7 @@ export default class StartUI extends ZepetoScriptBehaviour {
         });
 
         this.GameStartBtn.onClick.AddListener(() => {
-            Connector.Instance.ReqToServer('GameStartReq');
+            Connector.Instance.ReqToServer('GameStartBtnReq');
         });
     }
 
