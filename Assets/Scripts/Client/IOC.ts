@@ -86,9 +86,7 @@ export default class IOC implements IIOC {
     }
 
     private getStringDependencies(classType: any): any[] {
-        console.log('1', classType.toString())
         const constructorArgs = classType.toString().match(/constructor\s*\((.*?)\)/);
-        console.log('2', constructorArgs)
         if (!constructorArgs) {
             return [];
         }
@@ -96,7 +94,6 @@ export default class IOC implements IIOC {
         if (args === '') {
             return [];
         }
-        console.log('3', constructorArgs)
         return args.split(',').map((arg) => arg.trim());
     }
 

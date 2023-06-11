@@ -1,0 +1,74 @@
+fileFormatVersion: 2
+guid: 136b6d19eda1edc4eb175f396edb8e99
+importerOverride: ZEPETO.Script.Compiler:ZEPETO.Script:TypescriptAssetImporter
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: -1123457745, guid: 54cf806323ffe4418a4ce4cc63fe6b9d, type: 3}
+  isAssemblyDeclarations: 0
+  assembly: 
+  generateAllTypes: 1
+  types: []
+  generateWrapper: 0
+  overrideWrapperTypes: 0
+  wrapperTypes: []
+  WrapperFilters: []
+  wrapperOutputDirectory: Generated
+  compiledResult: "{\"source\":\"\\\"use strict\\\";\\r\\nObject.defineProperty(exports,
+    \\\"__esModule\\\", { value: true });\\r\\nconst NetworkBase_1 = require(\\\"./NetworkBase\\\");\\r\\nconst
+    UnityEngine_1 = require(\\\"UnityEngine\\\");\\r\\nconst MultiplayManager_1 =
+    require(\\\"./MultiplayManager\\\");\\r\\nconst MyPalyerController_1 = require(\\\"../MyPlayer/MyPalyerController\\\");\\r\\nconst
+    IOC_1 = require(\\\"../IOC\\\");\\r\\nconst Manager_1 = require(\\\"../Manager/Manager\\\");\\r\\nconst
+    Enums_1 = require(\\\"../Enums\\\");\\r\\nclass Connector extends NetworkBase_1.default
+    {\\r\\n    constructor() {\\r\\n        super(...arguments);\\r\\n        this.init
+    = false;\\r\\n    }\\r\\n    static get Instance() {\\r\\n        if (!Connector._instance)
+    {\\r\\n            const go = UnityEngine_1.GameObject.Find('Connector');\\r\\n           
+    Connector._instance = go.GetComponent($typeof(Connector));\\r\\n        }\\r\\n       
+    return Connector._instance;\\r\\n    }\\r\\n    ManualSyncResHandlerFunc(room)
+    {\\r\\n        room.AddMessageHandler('GameStartRes', (data) => {\\r\\n           
+    if (data.isAdmin) {\\r\\n                this.manager.UI.ShowPopUpUI('GameSelectPopUpUI');\\r\\n           
+    }\\r\\n            else {\\r\\n                this.manager.UI.ShowPopUpUI('NotGameRunningUI');\\r\\n           
+    }\\r\\n        });\\r\\n        room.AddMessageHandler('GameJoinRes', (data)
+    => {\\r\\n            if (data.team) {\\r\\n                this.manager.Game.GameJoin(data.nowRunningGame,
+    data.team);\\r\\n            }\\r\\n            else {\\r\\n                this.manager.Game.GameJoin(data.nowRunningGame);\\r\\n           
+    }\\r\\n        });\\r\\n        room.AddMessageHandler('GameStart', (data) =>
+    {\\r\\n            switch (data.gameName) {\\r\\n                case Enums_1.GAME_NAME.Flag:\\r\\n                   
+    this.manager.FlagGame.RuntheGame();\\r\\n                    break;\\r\\n               
+    case Enums_1.GAME_NAME.Siege:\\r\\n                    this.manager.SeigeGame.RuntheGame();\\r\\n                   
+    break;\\r\\n                case Enums_1.GAME_NAME.SoloFlag:\\r\\n                   
+    this.manager.SoloFlagGame.RuntheGame(data.sessionId);\\r\\n                   
+    break;\\r\\n            }\\r\\n        });\\r\\n        room.AddMessageHandler('UrgeGameStart',
+    (data) => {\\r\\n            this.manager.UI.ShowPopUpUI(\\\"UrgeGameStartPopUpUI\\\");\\r\\n       
+    });\\r\\n        room.AddMessageHandler('GameTime', (data) => {\\r\\n           
+    this.manager.Game.GameTime = data.time;\\r\\n        });\\r\\n    }\\r\\n   
+    Start() {\\r\\n        try {\\r\\n            if (!MultiplayManager_1.default.instance)
+    {\\r\\n                //console.log('\uC544\uC9C1 \uC624\uD1A0\uC5B4\uCA4C\uACE0
+    \uC778\uC2A4\uD134\uC2A4\uAC00 \uC5C6\uC74C');\\r\\n                return;\\r\\n           
+    }\\r\\n            else {\\r\\n                const room = MultiplayManager_1.default.instance.room;\\r\\n               
+    if (room) {\\r\\n                    if (room.IsConnected) {\\r\\n                       
+    this._room = room;\\r\\n                        this.ManualSyncResHandlerFunc(room);\\r\\n                       
+    this.GetServerTimeDifference();\\r\\n                        this.myPlayerController
+    = IOC_1.default.Instance.getInstance(MyPalyerController_1.MyPlayerController);\\r\\n                       
+    this.manager = IOC_1.default.Instance.getInstance(Manager_1.default);\\r\\n                       
+    this.init = true;\\r\\n                    }\\r\\n                }\\r\\n           
+    }\\r\\n        }\\r\\n        catch (e) {\\r\\n            console.error(e);\\r\\n       
+    }\\r\\n    }\\r\\n    Update() {\\r\\n        try {\\r\\n            if (!this.init)
+    {\\r\\n                if (!MultiplayManager_1.default.instance) {\\r\\n                   
+    //console.log('\uC544\uC9C1 \uC624\uD1A0\uC5B4\uCA4C\uACE0 \uC778\uC2A4\uD134\uC2A4\uAC00
+    \uC5C6\uC74C');\\r\\n                    return;\\r\\n                }\\r\\n               
+    else {\\r\\n                    const room = MultiplayManager_1.default.instance.room;\\r\\n                   
+    if (room) {\\r\\n                        if (room.IsConnected) {\\r\\n                           
+    this._room = room;\\r\\n                            this.ManualSyncResHandlerFunc(room);\\r\\n                           
+    this.GetServerTimeDifference();\\r\\n                            this.myPlayerController
+    = IOC_1.default.Instance.getInstance(MyPalyerController_1.MyPlayerController);\\r\\n                           
+    this.manager = IOC_1.default.Instance.getInstance(Manager_1.default);\\r\\n                           
+    this.init = true;\\r\\n                        }\\r\\n                    }\\r\\n               
+    }\\r\\n            }\\r\\n        }\\r\\n        catch (e) {\\r\\n           
+    console.error(e);\\r\\n        }\\r\\n    }\\r\\n}\\r\\nexports.default = Connector;\\r\\n//#
+    sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiQ29ubmVjdG9yLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiQ29ubmVjdG9yLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7O0FBQ0EsK0NBQXdDO0FBQ3hDLDZDQUF1QztBQUN2Qyx5REFBa0Q7QUFFbEQsdUVBQTZGO0FBQzdGLGdDQUF5QjtBQUN6QixnREFBMkQ7QUFDM0Qsb0NBQXFDO0FBU3JDLE1BQXFCLFNBQVUsU0FBUSxxQkFBVztJQUFsRDs7UUFXWSxTQUFJLEdBQVksS0FBSyxDQUFDO0lBOEdsQyxDQUFDO0lBdEhVLE1BQU0sS0FBSyxRQUFRO1FBQ3RCLElBQUksQ0FBQyxTQUFTLENBQUMsU0FBUyxFQUFFO1lBQ3RCLE1BQU0sRUFBRSxHQUFHLHdCQUFVLENBQUMsSUFBSSxDQUFDLFdBQVcsQ0FBQyxDQUFDO1lBQ3hDLFNBQVMsQ0FBQyxTQUFTLEdBQUcsRUFBRSxDQUFDLFlBQVksU0FBQyxTQUFTLEVBQUcsQ0FBQztTQUN0RDtRQUNELE9BQU8sU0FBUyxDQUFDLFNBQVMsQ0FBQztJQUMvQixDQUFDO0lBT00sd0JBQXdCLENBQUMsSUFBSTtRQUNoQyxJQUFJLENBQUMsaUJBQWlCLENBQ2xCLGNBQWMsRUFDZCxDQUFDLElBQTBCLEVBQUUsRUFBRTtZQUMzQixJQUFHLElBQUksQ0FBQyxPQUFPLEVBQUM7Z0JBQ1osSUFBSSxDQUFDLE9BQU8sQ0FBQyxFQUFFLENBQUMsV0FBVyxDQUFDLG1CQUFtQixDQUFDLENBQUE7YUFDbkQ7aUJBQ0c7Z0JBQ0EsSUFBSSxDQUFDLE9BQU8sQ0FBQyxFQUFFLENBQUMsV0FBVyxDQUFDLGtCQUFrQixDQUFDLENBQUE7YUFDbEQ7UUFDTCxDQUFDLENBQ0osQ0FBQztRQUVGLElBQUksQ0FBQyxpQkFBaUIsQ0FDbEIsYUFBYSxFQUNiLENBQUMsSUFBK0MsRUFBRSxFQUFFO1lBQ2hELElBQUcsSUFBSSxDQUFDLElBQUksRUFBRTtnQkFDVixJQUFJLENBQUMsT0FBTyxDQUFDLElBQUksQ0FBQyxRQUFRLENBQUMs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\",\"assetPath\":\"Assets/Scripts/Client/Network/Connector.ts\",\"manifest\":{\"properties\":[{\"assembly\":\"\",\"name\":\"myPlayerController\",\"type\":\"C:/Users/hyo05/Desktop/GamePG/PaintBallGame/ZepetoPaintBall/Assets/Scripts/Client/MyPlayer/MyPalyerController.InterMyPlayerController\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]},{\"assembly\":\"\",\"name\":\"manager\",\"type\":\"C:/Users/hyo05/Desktop/GamePG/PaintBallGame/ZepetoPaintBall/Assets/Scripts/Client/Manager/Manager.InterManager\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]}],\"name\":\"Connector\",\"description\":\"\",\"hasAnimatorMove\":false},\"isCompiled\":true}"
+  typescriptHash: e94a9aa20ca3dfdeaefbadddec08b9b6
+  onlyWriteTrigger: 0

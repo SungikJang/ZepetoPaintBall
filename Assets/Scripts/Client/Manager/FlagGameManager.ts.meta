@@ -1,0 +1,37 @@
+fileFormatVersion: 2
+guid: 3fa5c15729efa594fa222edabb34a04a
+importerOverride: ZEPETO.Script.Compiler:ZEPETO.Script:TypescriptAssetImporter
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: -1123457745, guid: 54cf806323ffe4418a4ce4cc63fe6b9d, type: 3}
+  isAssemblyDeclarations: 0
+  assembly: 
+  generateAllTypes: 1
+  types: []
+  generateWrapper: 0
+  overrideWrapperTypes: 0
+  wrapperTypes: []
+  WrapperFilters: []
+  wrapperOutputDirectory: Generated
+  compiledResult: '{"source":"\"use strict\";\r\nObject.defineProperty(exports, \"__esModule\",
+    { value: true });\r\nconst Enums_1 = require(\"../Enums\");\r\nconst IOC_1 =
+    require(\"../IOC\");\r\nconst Manager_1 = require(\"./Manager\");\r\nconst UnityEngine_1
+    = require(\"UnityEngine\");\r\nconst MyPalyerController_1 = require(\"../MyPlayer/MyPalyerController\");\r\nclass
+    FlagGameManager {\r\n    Init() {\r\n        this.manager = IOC_1.default.Instance.getInstance(Manager_1.default);\r\n       
+    this.myPlayerController = IOC_1.default.Instance.getInstance(MyPalyerController_1.MyPlayerController);\r\n   
+    }\r\n    GameStart(sessionId) {\r\n        this.manager.Game.NowOnGame = Enums_1.GAME_NAME.Flag;\r\n       
+    this.manager.Game.GameStart(sessionId);\r\n    }\r\n    RuntheGame() {\r\n       
+    this.manager.UI.CloseDefaultUI(''StartUI'');\r\n        this.manager.UI.ShowDefaultUI(''InGameUI'');\r\n       
+    if (!this.FlagStartPoint)\r\n            this.FlagStartPoint = UnityEngine_1.GameObject.Find(\"FlagStartPoint\").transform;\r\n       
+    this.myPlayerController.MyPlayerMovement.Teleport(this.FlagStartPoint.GetChild(0).GetChild(0));\r\n       
+    this.myPlayerController.MyPlayerData.SetTeam(''A'');\r\n        this.manager.Game.IsGameRunning
+    = true;\r\n    }\r\n    JoinGame(team) {\r\n    }\r\n    LeaveGame() {\r\n   
+    }\r\n    EndGame() {\r\n    }\r\n}\r\nexports.default = FlagGameManager;\r\n//#
+    sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiRmxhZ0dhbWVNYW5hZ2VyLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiRmxhZ0dhbWVNYW5hZ2VyLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7O0FBQUEsb0NBQXFDO0FBQ3JDLGdDQUF5QjtBQUN6Qix1Q0FBa0Q7QUFDbEQsNkNBQWtEO0FBQ2xELHVFQUE0RjtBQWdCNUYsTUFBcUIsZUFBZTtJQUtoQyxJQUFJO1FBQ0EsSUFBSSxDQUFDLE9BQU8sR0FBRyxhQUFHLENBQUMsUUFBUSxDQUFDLFdBQVcsQ0FBZSxpQkFBTyxDQUFDLENBQUM7UUFDL0QsSUFBSSxDQUFDLGtCQUFrQixHQUFHLGFBQUcsQ0FBQyxRQUFRLENBQUMsV0FBVyxDQUEwQix1Q0FBa0IsQ0FBQyxDQUFDO0lBQ3BHLENBQUM7SUFFRCxTQUFTLENBQUMsU0FBaUI7UUFDdkIsSUFBSSxDQUFDLE9BQU8sQ0FBQyxJQUFJLENBQUMsU0FBUyxHQUFHLGlCQUFTLENBQUMsSUFBSSxDQUFDO1FBQzdDLElBQUksQ0FBQyxPQUFPLENBQUMsSUFBSSxDQUFDLFNBQVMsQ0FBQyxTQUFTLENBQUMsQ0FBQTtJQUMxQyxDQUFDO0lBRUQsVUFBVTtRQUNOLElBQUksQ0FBQyxPQUFPLENBQUMsRUFBRSxDQUFDLGNBQWMsQ0FBQyxTQUFTLENBQUMsQ0FBQztRQUMxQyxJQUFJLENBQUMsT0FBTyxDQUFDLEVBQUUsQ0FBQyxhQUFhLENBQUMsVUFBVSxDQUFDLENBQUM7UUFDMUMsSUFBRyxDQUFDLElBQUksQ0FBQyxjQUFjO1lBQUUsSUFBSSxDQUFDLGNBQWMsR0FBRyx3QkFBVSxDQUFDLElBQUksQ0FBQyxnQkFBZ0IsQ0FBQyxDQUFDLFNBQVMsQ0FBQztRQUMzRixJQUFJLENBQUMsa0JBQWtCLENBQUMsZ0JBQWdCLENBQUMsUUFBUSxDQUFDLElBQUksQ0FBQyxjQUFjLENBQUMsUUFBUSxDQUFDLENBQUMsQ0FBQyxDQUFDLFFBQVEsQ0FBQyxDQUFDLENBQUMsQ0FBQyxDQUFBO1FBQzlGLElBQUksQ0FBQyxrQkFBa0IsQ0FBQyxZQUFZLENBQUMsT0FBTyxDQUFDLEdBQUcsQ0FBQyxDQUFBO1FBQ2pELElBQUksQ0FBQyxPQUFPLENBQUMsSUFBSSxDQUFDLGFBQWEsR0FBRyxJQUFJLENBQUM7SUFDM0MsQ0FBQztJQUVELFFBQVEsQ0FBQyxJQUFZO0lBRXJCLENBQUM7SUFFRCxTQUFTO0lBRVQsQ0FBQztJQUVELE9BQU87SUFFUCxDQUFDO0NBQ0o7QUFuQ0Qsa0NBbUNDIn0=","assetPath":"Assets/Scripts/Client/Manager/FlagGameManager.ts","manifest":{"properties":[{"assembly":"","name":"manager","type":"C:/Users/hyo05/Desktop/GamePG/PaintBallGame/ZepetoPaintBall/Assets/Scripts/Client/Manager/Manager.InterManager","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]},{"assembly":"","name":"myPlayerController","type":"C:/Users/hyo05/Desktop/GamePG/PaintBallGame/ZepetoPaintBall/Assets/Scripts/Client/MyPlayer/MyPalyerController.InterMyPlayerController","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]}],"name":"FlagGameManager","description":"","hasAnimatorMove":false},"isCompiled":true}'
+  typescriptHash: e00664a6956b730bea7bd6d335fe5ecc
+  onlyWriteTrigger: 0

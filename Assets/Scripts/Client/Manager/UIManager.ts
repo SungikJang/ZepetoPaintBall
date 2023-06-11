@@ -1,194 +1,227 @@
-import {Camera, Canvas, Color, Color32, GameObject, RenderMode} from 'UnityEngine';
-import {ZepetoPlayers} from 'ZEPETO.Character.Controller';
+import {Canvas, Color, GameObject, RenderMode, Sprite} from 'UnityEngine';
+import {Image} from 'UnityEngine.UI';
+import {ZepetoScriptBehaviour} from 'ZEPETO.Script';
+import {Boolean} from 'System';
+import {TMP_Text} from 'TMPro';
 import IOC from '../IOC';
-import Manager, { InterManager } from './Manager';
+import Manager from './Manager';
 
-class Stack<GameObject> {
+abstract class Data<T> {
     // property
-    public _data: GameObject[] = [];
-    private _count: int = 0;
+    public _data: T[] = [];
+    private _count: number = 0;
 
     // getter setter
     public get Count() {
         return this._count;
     }
 
+    public set Count(value) {
+        this._count = value;
+    }
+
+    // method
+    abstract Push(item: T): void;
+
+    abstract Peek(): T | null;
+
+    abstract Pop(): T | null;
+}
+
+export class StackGameObject extends Data<GameObject> {
     // method
     public Push(item: GameObject): void {
         this._data.push(item);
-        this._count += 1;
+        this.Count = this.Count + 1;
     }
-    public Peek(): GameObject {
-        return this._data[this._count - 1];
+
+    public Peek(): GameObject | null {
+        if (this.Count === 0) {
+            return null;
+        }
+        return this._data[this.Count - 1];
     }
-    public Pop(): GameObject {
-        this._count -= 1;
+
+    public Pop(): GameObject | null {
+        if (this.Count === 0) {
+            return null;
+        }
+        this.Count = this.Count - 1;
         return this._data.pop();
+    }
+
+    public Delete(itemName): void {
+        for (let i = 0; i < this._data.length; i++) {
+            let popUpGo: GameObject = this._data[i];
+            if (itemName === popUpGo.name) {
+                this._data.splice(i, 1);
+                this.Count = this.Count - 1;
+                return;
+            }
+        }
+    }
+
+    public Search(itemName): GameObject | null {
+        for (let i = 0; i < this._data.length; i++) {
+            let popUpGo: GameObject = this._data[i];
+            if (itemName === popUpGo.name) {
+                return popUpGo;
+            }
+        }
+        return null;
     }
 }
 
 export interface InterUIManager {
-    SetCanvas(go: GameObject): void
+    Init(): void
 
-    ShowUIPopUp(uiName: string): GameObject
+    SetCanvas(go: GameObject, order: int): void
 
-    ShowUIWorldSpace(name: string, parentGameObject: GameObject): GameObject
+    ShowPopUpUI(uiName: string): GameObject
 
-    ClosePopUp(): void
+    DeletePopUpUI(): void
 
-    CloseTargetPopUp(targetUiName: string): void
+    ClosePopUpUI(): void
 
-    CloseWorldSpace(): void
+    CloseTargetPopUp(uiName: string): void
 
-    Init(): void;
+    ClearPopUpUI(): void
+
+    ShowDefaultUI(uiName: string)
+
+    CloseDefaultUI(uiName: string)
+
+    DeleteDefaultUI(uiName: string)
 }
 
-export default class UIManager implements InterUIManager{
-    // property
-    private _canvasOrder = 10;
-    private _rootUIPopUp: GameObject = null;
-    private _rootUIPopUpDontDestroy: GameObject = null;
-    private _gameObjectStackOfUIPopUp: Stack<GameObject> = new Stack<GameObject>();
+export default class UIManager implements InterUIManager {
+    private _rootUIPopUp: GameObject;
+    private _rootUIPopUpDontDestroy: GameObject;
+    private _popUpStack: StackGameObject;
+    private _uIWorldSpace: GameObject;
     private _gameObjectUIWorldSpace: GameObject = null;
+    public isAlertShowing: Boolean = false;
+    public Stick: GameObject;
+    public Jump: GameObject;
 
-    private Manager: InterManager;
+    public Init() {
+        this._rootUIPopUp = GameObject.Find('RootUIPopUp');
+        if (!this._rootUIPopUp) {
+            console.log('RootUIPopUp이 씬에 없습니다');
+        }
 
-    // method
-    public SetCanvas(go: GameObject): void {
+        this._rootUIPopUpDontDestroy = GameObject.Find('RootUIPopUpDontDestroy');
+        if (!this._rootUIPopUpDontDestroy) {
+            console.log('RootUIPopUpDontDestroy 씬에 없습니다');
+        }
+
+        this._popUpStack = new StackGameObject();
+        this._uIWorldSpace = null;
+    }
+
+    public SetCanvas(go: GameObject, order: int): void {
         let canvasComponent: Canvas = go.GetComponent<Canvas>();
         if (!canvasComponent) {
             canvasComponent = go.AddComponent<Canvas>();
         }
-
         canvasComponent.renderMode = RenderMode.ScreenSpaceOverlay;
-        canvasComponent.overrideSorting = false;
-        canvasComponent.sortingOrder = this._canvasOrder;
-
-        this._canvasOrder += 1;
+        canvasComponent.overrideSorting = true;
+        canvasComponent.sortingOrder = order;
+        // canvasComponent.sortingOrder = this._canvasOrder;
+        // this._canvasOrder += 1;
     }
-    public ShowUIPopUp(uiName: string): GameObject {
-        if (!uiName) {
-            return;
-        }
 
-        if (this._rootUIPopUpDontDestroy) {
-            const inactiveGoTransform = this._rootUIPopUpDontDestroy.transform.Find(uiName);
-            if (inactiveGoTransform) {
-                inactiveGoTransform.gameObject.SetActive(true);
-                this._gameObjectStackOfUIPopUp.Push(inactiveGoTransform.gameObject);
-
-                return inactiveGoTransform.gameObject;
-            }
-        } else {
-            console.log('RootUIPopUpDontDestroy는 씬에 있어야 합니다. 문제를 해결하세요');
-        }
-
-        if (this._rootUIPopUp) {
-            const inactiveGoTransform = this._rootUIPopUpDontDestroy.transform.Find(uiName);
-
-            if (!inactiveGoTransform) {
-                const go: GameObject = this.Manager.Resource.Instantiate(`UI\\${uiName}`);
-                go.transform.SetParent(this._rootUIPopUp.transform);
-
-                if (!uiName.includes("Alert")) {
-                    this._gameObjectStackOfUIPopUp.Push(go);
-                }
-
-                return go;
-            }
-        }
-    }
-    public ShowUIWorldSpace(name: string, parentGameObject: GameObject): GameObject {
-        if (!name || !parentGameObject) {
-            return;
-        }
-
-        if (this._gameObjectUIWorldSpace !== null) {
-            this.CloseWorldSpace();
-        }
-
-        const go: GameObject = this.Manager.Resource.Instantiate(`UI\\${name}`);
-        go.transform.SetParent(parentGameObject.transform);
-
-        const canvas = go.GetComponent<Canvas>();
-        canvas.renderMode = RenderMode.WorldSpace;
-        canvas.worldCamera = ZepetoPlayers.instance.ZepetoCamera.camera;
-
-        this._gameObjectUIWorldSpace = go;
-
+    private CreatePopUpUI(uiName: string): GameObject {
+        const go: GameObject = IOC.Instance.getInstance(Manager).Resource.Instantiate(`UI\\PopUpUI\\${uiName}`);
+        go.transform.SetParent(this._rootUIPopUp.transform, false);
+        this._popUpStack.Push(go);
+        this.SetCanvas(go, 20 + this._popUpStack.Count);
         return go;
     }
-    public ClosePopUp(): void {
-        if (this._gameObjectStackOfUIPopUp.Count == 0) {
+
+    public ShowPopUpUI(uiName: string): GameObject {
+        if (!uiName) {
+            return null;
+        }
+        const goTransform = this._rootUIPopUp.transform.Find(uiName);
+        if (!goTransform) {
+            return this.CreatePopUpUI(uiName);
+        } else {
+            let go = goTransform.gameObject;
+            go.SetActive(true);
+            this.SetCanvas(go, 20 + this._popUpStack.Count);
+            return go
+        }
+    }
+
+    public DeletePopUpUI(): void {
+        let popUpGo: GameObject | null = this._popUpStack.Peek() as GameObject;
+        if (!popUpGo) {
             return;
         }
-
-        let popUpGo: GameObject | null = this._gameObjectStackOfUIPopUp.Pop();
-
-        if (this._rootUIPopUpDontDestroy) {
-            let nameOfGameObject = popUpGo.name;
-            const activeGoTransform = this._rootUIPopUpDontDestroy.transform.Find(nameOfGameObject);
-            if (activeGoTransform) {
-                activeGoTransform.gameObject.SetActive(false);
-                return;
-            }
-        } else {
-            console.log('RootUIPopUpDontDestroy는 씬에 있어야 합니다. 문제를 해결하세요');
-        }
-
-        this.Manager.Resource.Destroy(popUpGo, 0);
+        this._popUpStack.Pop();
+        IOC.Instance.getInstance(Manager).Resource.Destroy(popUpGo);
         popUpGo = null;
     }
-    public CloseTargetPopUp(targetUiName: string): void {
-        if (this._gameObjectStackOfUIPopUp.Count == 0) {
+
+    public ClosePopUpUI(): void {
+        let popUpGo: GameObject | null = this._popUpStack.Peek() as GameObject;
+        if (!popUpGo) {
             return;
         }
-
-        for (let i = 0; i < this._gameObjectStackOfUIPopUp._data.length; i++) {
-            let popUpGo = this._gameObjectStackOfUIPopUp._data[i];
-            if (targetUiName === popUpGo.name) {
-                if (this._rootUIPopUpDontDestroy) {
-                    const activeGoTransform = this._rootUIPopUpDontDestroy.transform.Find(targetUiName);
-                    if (activeGoTransform) {
-                        activeGoTransform.gameObject.SetActive(false);
-                        this._gameObjectStackOfUIPopUp._data.splice(i, 1);
-                        return;
-                    }
-                } else {
-                    console.log('RootUIPopUpDontDestroy는 씬에 있어야 합니다. 문제를 해결하세요');
-                }
-
-                this._gameObjectStackOfUIPopUp._data.splice(i, 1);
-                this.Manager.Resource.Destroy(popUpGo, 0);
-                popUpGo = null;
-                return;
-            }
-        }
-    }
-    public CloseWorldSpace(): void {
-        if (this._gameObjectUIWorldSpace === null) {
-            return;
-        }
-
-        let worldSpaceGo: GameObject | null = this._gameObjectUIWorldSpace;
-        this.Manager.Resource.Destroy(worldSpaceGo, 0);
-        this._gameObjectUIWorldSpace = null;
-        worldSpaceGo = null;
+        this._popUpStack.Pop();
+        popUpGo.SetActive(false);
+        popUpGo = null;
     }
 
-
-    // life cycle
-    public Init(): void {
-        this.Manager = IOC.Instance.getInstance(Manager);
-        // 이거 무조건 씬에 있어야 함
-        this._rootUIPopUp = GameObject.Find('RootUIPopUp');
-        if (!this._rootUIPopUp) {
-            console.log('RootUIPopUp는 씬에 있어야 합니다');
+    public CloseTargetPopUp(uiName: string): void {
+        let popUpGo = this._popUpStack.Search(uiName) as GameObject;
+        if (!popUpGo) {
             return;
         }
-        this._rootUIPopUpDontDestroy = GameObject.Find('RootUIPopUpDontDestroy');
-        if (!this._rootUIPopUpDontDestroy) {
-            console.log('RootUIPopUpDontDestroy는 씬에 있어야 합니다');
+        this._popUpStack.Delete(uiName);
+        IOC.Instance.getInstance(Manager).Resource.Destroy(popUpGo);
+        popUpGo = null;
+    }
+
+    public ClearPopUpUI() {
+        while (this._popUpStack.Count > 0) {
+            let go = this._popUpStack.Pop();
+            IOC.Instance.getInstance(Manager).Resource.Destroy(go);
+        }
+    }
+
+    private CreateDefaultUI(uiName: string) {
+        const go: GameObject = IOC.Instance.getInstance(Manager).Resource.Instantiate(`UI\\DefaultUI\\${uiName}`);
+        go.transform.SetParent(this._rootUIPopUpDontDestroy.transform, false);
+        this.SetCanvas(go, 10);
+        return go;
+    }
+
+    public ShowDefaultUI(uiName: string) {
+        const goTransform = this._rootUIPopUpDontDestroy.transform.Find(uiName);
+        if (!goTransform) {
+            this.CreateDefaultUI(uiName);
+        } else {
+            let go = goTransform.gameObject;
+            go.SetActive(true);
+            this.SetCanvas(go, 10);
+        }
+    }
+
+    public CloseDefaultUI(uiName: string) {
+        const goTransform = this._rootUIPopUpDontDestroy.transform.Find(uiName);
+        if (goTransform) {
+            const go = goTransform.gameObject;
+            go.SetActive(false);
+        }
+    }
+
+    public DeleteDefaultUI(uiName: string) {
+        const goTransform = this._rootUIPopUpDontDestroy.transform.Find(uiName);
+        if (goTransform) {
+            const go = goTransform.gameObject;
+            IOC.Instance.getInstance(Manager).Resource.Destroy(go);
         }
     }
 }

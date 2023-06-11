@@ -1,0 +1,61 @@
+fileFormatVersion: 2
+guid: acade2bd2dee62d44a1eb0e7684b9987
+importerOverride: ZEPETO.Script.Compiler:ZEPETO.Script:TypescriptAssetImporter
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: -1123457745, guid: 54cf806323ffe4418a4ce4cc63fe6b9d, type: 3}
+  isAssemblyDeclarations: 0
+  assembly: 
+  generateAllTypes: 1
+  types: []
+  generateWrapper: 0
+  overrideWrapperTypes: 0
+  wrapperTypes: []
+  WrapperFilters: []
+  wrapperOutputDirectory: Generated
+  compiledResult: '{"source":"\"use strict\";\r\nObject.defineProperty(exports, \"__esModule\",
+    { value: true });\r\nconst __UnityEngine__ = require(\"UnityEngine\");\r\nconst
+    UnityEngine_1 = require(\"UnityEngine\");\r\nconst UnityEngine_UI_1 = require(\"UnityEngine.UI\");\r\nclass
+    Utils {\r\n    static FindGameObjectChild(go, goName = null) {\r\n        const
+    transform = this.FindComponentChild(go, goName, ''Transform'');\r\n        if
+    (transform == null) {\r\n            return null;\r\n        }\r\n        return
+    transform.gameObject;\r\n    }\r\n    static FindComponentChild(go, componentName,
+    componentType) {\r\n        if (__UnityEngine__.Object.op_Equality(go, null))
+    {\r\n            return null;\r\n        }\r\n        switch (componentType)
+    {\r\n            case ''Button'':\r\n                const buttonComponents =
+    go.GetComponentsInChildren($typeof(UnityEngine_UI_1.Button));\r\n               
+    for (let i = 0; i < buttonComponents.length; i++) {\r\n                    if
+    (buttonComponents[i].name === componentName) {\r\n                        return
+    buttonComponents[i];\r\n                    }\r\n                }\r\n               
+    return null;\r\n            case ''Text'':\r\n                const textComponents
+    = go.GetComponentsInChildren($typeof(UnityEngine_UI_1.Text));\r\n               
+    for (let i = 0; i < textComponents.length; i++) {\r\n                    if (textComponents[i].name
+    === componentName) {\r\n                        return textComponents[i];\r\n                   
+    }\r\n                }\r\n                return null;\r\n            case ''Image'':\r\n               
+    const imageComponents = go.GetComponentsInChildren($typeof(UnityEngine_UI_1.Image));\r\n               
+    for (let i = 0; i < imageComponents.length; i++) {\r\n                    if
+    (imageComponents[i].name === componentName) {\r\n                        return
+    imageComponents[i];\r\n                    }\r\n                }\r\n               
+    return null;\r\n            case ''Transform'':\r\n                const transformComponents
+    = go.GetComponentsInChildren($typeof(UnityEngine_1.Transform));\r\n               
+    for (let i = 0; i < transformComponents.length; i++) {\r\n                   
+    if (transformComponents[i].name === componentName) {\r\n                       
+    return transformComponents[i];\r\n                    }\r\n                }\r\n               
+    return null;\r\n            case ''ScrollRect'':\r\n                const scrollViewComponents
+    = go.GetComponentsInChildren($typeof(UnityEngine_UI_1.ScrollRect));\r\n               
+    for (let i = 0; i < scrollViewComponents.length; i++) {\r\n                   
+    if (scrollViewComponents[i].name === componentName) {\r\n                       
+    return scrollViewComponents[i];\r\n                    }\r\n                }\r\n               
+    return null;\r\n            default:\r\n                return null;\r\n       
+    }\r\n    }\r\n    static VectorPlusCalc(vector1, vector2) {\r\n        return
+    new UnityEngine_1.Vector3(vector1.x + vector2.x, vector1.y + vector2.y, vector1.z
+    + vector2.z);\r\n    }\r\n    static VectorMinusCalc(vector1, vector2) {\r\n       
+    return new UnityEngine_1.Vector3(vector1.x - vector2.x, vector1.y - vector2.y,
+    vector1.z - vector2.z);\r\n    }\r\n}\r\nexports.default = Utils;\r\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJpbmRleC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7QUFBQSw2Q0FBc0U7QUFDdEUsbURBQStEO0FBRS9ELE1BQXFCLEtBQUs7SUFDZixNQUFNLENBQUMsbUJBQW1CLENBQUMsRUFBYyxFQUFFLFNBQWlCLElBQUk7UUFDbkUsTUFBTSxTQUFTLEdBQWMsSUFBSSxDQUFDLGtCQUFrQixDQUFDLEVBQUUsRUFBRSxNQUFNLEVBQUUsV0FBVyxDQUFjLENBQUM7UUFFM0YsSUFBSSxTQUFTLElBQUksSUFBSSxFQUFFO1lBQ25CLE9BQU8sSUFBSSxDQUFDO1NBQ2Y7UUFFRCxPQUFPLFNBQVMsQ0FBQyxVQUFVLENBQUM7SUFDaEMsQ0FBQztJQUVNLE1BQU0sQ0FBQyxrQkFBa0IsQ0FBQyxFQUFjLEVBQUUsYUFBcUIsRUFBRSxhQUFxQjtRQUN6RiwyQkEwRHdqUSxXQUFZLENBMURoa1EsRUFBRSxFQUFJLElBQUksR0FBRTtZQUNaLE9BQU8sSUFBSSxDQUFDO1NBQ2Y7UUFFRCxRQUFRLGFBQWEsRUFBRTtZQUNuQixLQUFLLFFBQVE7Z0JBQ1QsTUFBTSxnQkFBZ0IsR0FBRyxFQUFFLENBQUMsdUJBQXVCLFNBQUMsdUJBQU0sRUFBRyxDQUFDO2dCQUM5RCxLQUFLLElBQUksQ0FBQyxHQUFHLENBQUMsRUFBRSxDQUFDLEdBQUcsZ0JBQWdCLENBQUMsTUFBTSxFQUFFLENBQUMsRUFBRSxFQUFFO29CQUM5QyxJQUFJLGdCQUFnQixDQUFDLENBQUMsQ0FBQyxDQUFDLElBQUksS0FBSyxhQUFhLEVBQUU7d0JBQzVDLE9BQU8sZ0JBQWdCLENBQUMsQ0FBQyxDQUFDLENBQUM7cUJBQzlCO2lCQUNKO2dCQUNELE9BQU8sSUFBSSxDQUFDO1lBQ2hCLEtBQUssTUFBTTtnQkFDUCxNQUFNLGNBQWMsR0FBRyxFQUFFLENBQUMsdUJBQXVCLFNBQUMscUJBQUksRUFBRyxDQUFDO2dCQUMxRCxLQUFLLElBQUksQ0FBQyxHQUFHLENBQUMsRUFBRSxDQUFDLEdBQUcsY0FBYyxDQUFDLE1BQU0sRUFBRSxDQUFDLEVBQUUsRUFBRTtvQkFDNUMsSUFBSSxjQUFjLENBQUMsQ0FBQyxDQUFDLENBQUMsSUFBSSxLQUFLLGFBQWEsRUFBRTt3QkFDMUMsT0FBTyxjQUFjLENBQUMsQ0FBQyxDQUFDLENBQUM7cUJBQzVCO2lCQUNKO2dCQUNELE9BQU8sSUFBSSxDQUFDO1lBQ2hCLEtBQUssT0FBTztnQkFDUixNQUFNLGVBQWUsR0FBRyxFQUFFLENBQUMsdUJBQXVCLFNBQUMsc0JBQUssRUFBRyxDQUFDO2dCQUM1RCxLQUFLLElBQUksQ0FBQyxHQUFHLENBQUMsRUFBRSxDQUFDLEdBQUcsZUFBZSxDQUFDLE1BQU0sRUFBRSxDQUFDLEVBQUUsRUFBRTtvQkFDN0MsSUFBSSxlQUFlLENBQUMsQ0FBQyxDQUFDLENBQUMsSUFBSSxLQUFLLGFBQWEsRUFBRTt3QkFDM0MsT0FBTyxlQUFlLENBQUMsQ0FBQyxDQUFDLENBQUM7cUJBQzdCO2lCQUNKO2dCQUNELE9BQU8sSUFBSSxDQUFDO1lBQ2hCLEtBQUssV0FBVztnQkFDWixNQUFNLG1CQUFtQixHQUFHLEVBQUUsQ0FBQyx1QkFBdUIsU0FBQyx1QkFBUyxFQUFHLENBQUM7Z0JBQ3BFLEtBQUssSUFBSSxDQUFDLEdBQUcsQ0FBQyxFQUFFLENBQUMsR0FBRyxtQkFBbUIsQ0FBQyxNQUFNLEVBQUUsQ0FBQyxFQUFFLEVBQUU7b0JBQ2pELElBQUksbUJBQW1CLENBQUMsQ0FBQyxDQUFDLENBQUMsSUFBSSxLQUFLLGFBQWEsRUFBRTt3QkFDL0MsT0FBTyxtQkFBbUIsQ0FBQyxDQUFDLENBQUMsQ0FBQztxQkFDakM7aUJBQ0o7Z0JBQ0QsT0FBTyxJQUFJLENBQUM7WUFDaEIsS0FBSyxZQUFZO2dCQUNiLE1BQU0sb0JBQW9CLEdBQUcsRUFBRSxDQUFDLHVCQUF1QixTQUFDLDJCQUFVLEVBQUcsQ0FBQztnQkFDdEUsS0FBSyxJQUFJLENBQUMsR0FBRyxDQUFDLEVBQUUsQ0FBQyxHQUFHLG9CQUFvQixDQUFDLE1BQU0sRUFBRSxDQUFDLEVBQUUsRUFBRTtvQkFDbEQsSUFBSSxvQkFBb0IsQ0FBQyxDQUFDLENBQUMsQ0FBQyxJQUFJLEtBQUssYUFBYSxFQUFFO3dCQUNoRCxPQUFPLG9CQUFvQixDQUFDLENBQUMsQ0FBQyxDQUFDO3FCQUNsQztpQkFDSjtnQkFDRCxPQUFPLElBQUksQ0FBQztZQUNoQjtnQkFDSSxPQUFPLElBQUksQ0FBQztTQUNuQjtJQUNMLENBQUM7SUFFTSxNQUFNLENBQUMsY0FBYyxDQUFDLE9BQWdCLEVBQUUsT0FBZ0I7UUFDM0QsT0FBTyxJQUFJLHFCQUFPLENBQUMsT0FBTyxDQUFDLENBQUMsR0FBRyxPQUFPLENBQUMsQ0FBQyxFQUFFLE9BQU8sQ0FBQyxDQUFDLEdBQUcsT0FBTyxDQUFDLENBQUMsRUFBRSxPQUFPLENBQUMsQ0FBQyxHQUFHLE9BQU8sQ0FBQyxDQUFDLENBQUMsQ0FBQztJQUM1RixDQUFDO0lBRU0sTUFBTSxDQUFDLGVBQWUsQ0FBQyxPQUFnQixFQUFFLE9BQWdCO1FBQzVELE9BQU8sSUFBSSxxQkFBTyxDQUFDLE9BQU8sQ0FBQyxDQUFDLEdBQUcsT0FBTyxDQUFDLENBQUMsRUFBRSxPQUFPLENBQUMsQ0FBQyxHQUFHLE9BQU8sQ0FBQyxDQUFDLEVBQUUsT0FBTyxDQUFDLENBQUMsR0FBRyxPQUFPLENBQUMsQ0FBQyxDQUFDLENBQUM7SUFDNUYsQ0FBQztDQUNKO0FBckVELHdCQXFFQyJ9","assetPath":"Assets/Scripts/Client/Utils/index.ts","manifest":{"properties":[],"name":"Utils","description":"","hasAnimatorMove":false},"isCompiled":true}'
+  typescriptHash: d66d4873cd9c4a8d8b88121ecd1fee89
+  onlyWriteTrigger: 0

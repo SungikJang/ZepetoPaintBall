@@ -1,3 +1,4 @@
+import { WaitForSeconds } from 'UnityEngine';
 import { ZepetoPlayers } from 'ZEPETO.Character.Controller';
 import { ZepetoScriptBehaviour } from 'ZEPETO.Script'
 import IOC from '../IOC';
@@ -9,26 +10,14 @@ export interface InterMyPlayerController {
     get MyPlayerData();
 
     get MyPlayerMovement();
+    
+    Update(): void;
 }
 
 export class MyPlayerController extends ZepetoScriptBehaviour implements InterMyPlayerController{
     private _mpData: InterMyPlayerData;
     private _mpMovement: InterMyPlayerMovement;
-    //private _mpTriggerController: InterMyPlayerTriggerController;
 
-    public get MyPlayerData(): InterMyPlayerData {
-        return this._mpData;
-    }
-
-    public get MyPlayerMovement(): InterMyPlayerMovement {
-        return this._mpMovement;
-        
-    }
-
-    // public get MyPlayerTrigger(): InterMyPlayerTriggerController {
-    //     return this._mpTriggerController;
-    // }
-    
     constructor(
         _MyPlayerData: InterMyPlayerData,
         _MyPlayerMovement: InterMyPlayerMovement,
@@ -38,20 +27,30 @@ export class MyPlayerController extends ZepetoScriptBehaviour implements InterMy
         this._mpData = _MyPlayerData;
         this._mpMovement = _MyPlayerMovement;
         //this._mpTriggerController = _MyPlayerTriggerController
-        
-        
-        this._mpData.init();
-        this._mpMovement.init();
+
+        this._mpMovement.Init();
+        this._mpData.Init();
     }
-    
+
+    public get MyPlayerData(): InterMyPlayerData {
+        return this._mpData;
+    }
+
+    public get MyPlayerMovement(): InterMyPlayerMovement {
+        return this._mpMovement;
+        
+    }
   
     Init() {
         
     }
     
     Update(){
-        this._mpData.Update();
-        this._mpMovement.Update();
+        if(this._mpData){
+            this._mpData.Update();
+        }
+        if(this._mpMovement){
+            this._mpMovement.Update();
+        }
     }
-
 } 

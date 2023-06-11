@@ -18,21 +18,26 @@ ScriptedImporter:
   wrapperTypes: []
   WrapperFilters: []
   wrapperOutputDirectory: Generated
-  compiledResult: "{\"source\":\"\\\"use strict\\\";\\r\\nObject.defineProperty(exports,
-    \\\"__esModule\\\", { value: true });\\r\\nconst ZEPETO_Script_1 = require(\\\"ZEPETO.Script\\\");\\r\\nclass
-    DataManager extends ZEPETO_Script_1.ZepetoScriptBehaviour {\\r\\n    constructor()
-    {\\r\\n        super(...arguments);\\r\\n        // property\\r\\n        this.dataDictionary
-    = {};\\r\\n    }\\r\\n    // method\\r\\n    Init() {\\r\\n        // let Config
-    = Manager.Resource.LoadData('Config');\\r\\n        // let Monster = Manager.Resource.LoadData('Monster');\\r\\n       
-    // let Skill = Manager.Resource.LoadData('Skill');\\r\\n        // let Weapon
-    = Manager.Resource.LoadData('Weapon');\\r\\n        //\\r\\n        // this.dataDictionary
-    = {\\r\\n        //     Config,\\r\\n        //     Monster,\\r\\n        //    
-    Skill,\\r\\n        //     Weapon\\r\\n        // };\\r\\n    }\\r\\n    GetValueByKeys(keys)
-    {\\r\\n        let value = this.dataDictionary;\\r\\n        keys.split('/').forEach((key)
-    => {\\r\\n            if (key in value) {\\r\\n                value = value[key];\\r\\n           
-    }\\r\\n            else {\\r\\n                console.log('[Data Manager] \uC798\uBABB\uB41C
-    \uD0A4 \uACBD\uB85C \uC785\uB2C8\uB2E4.', keys);\\r\\n                return;\\r\\n           
-    }\\r\\n        });\\r\\n        return value;\\r\\n    }\\r\\n}\\r\\nexports.default
-    = DataManager;\\r\\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiRGF0YU1hbmFnZXIuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJEYXRhTWFuYWdlci50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUFBLGlEQUFzRDtBQVF0RCxNQUFxQixXQUFZLFNBQVEscUNBQXFCO0lBQTlEOztRQUNJLFdBQVc7UUFDSCxtQkFBYyxHQUFHLEVBQUUsQ0FBQztJQWdDaEMsQ0FBQztJQTlCRyxTQUFTO0lBRVQsSUFBSTtRQUNBLG9EQUFvRDtRQUNwRCxzREFBc0Q7UUFDdEQsa0RBQWtEO1FBQ2xELG9EQUFvRDtRQUNwRCxFQUFFO1FBQ0YsMEJBQTBCO1FBQzFCLGNBQWM7UUFDZCxlQUFlO1FBQ2YsYUFBYTtRQUNiLGFBQWE7UUFDYixLQUFLO0lBRVQsQ0FBQztJQUVNLGNBQWMsQ0FBQyxJQUFZO1FBQzlCLElBQUksS0FBSyxHQUFHLElBQUksQ0FBQyxjQUFjLENBQUM7UUFDaEMsSUFBSSxDQUFDLEtBQUssQ0FBQyxHQUFHLENBQUMsQ0FBQyxPQUFPLENBQUMsQ0FBQyxHQUFHLEVBQUUsRUFBRTtZQUM1QixJQUFJLEdBQUcsSUFBSSxLQUFLLEVBQUU7Z0JBQ2QsS0FBSyxHQUFHLEtBQUssQ0FBQyxHQUFHLENBQUMsQ0FBQzthQUN0QjtpQkFBTTtnQkFDSCxPQUFPLENBQUMsR0FBRyxDQUFDLDhCQUE4QixFQUFFLElBQUksQ0FBQyxDQUFDO2dCQUNsRCxPQUFPO2FBQ1Y7UUFDTCxDQUFDLENBQUMsQ0FBQztRQUVILE9BQU8sS0FBSyxDQUFDO0lBQ2pCLENBQUM7Q0FDSjtBQWxDRCw4QkFrQ0MifQ==\",\"assetPath\":\"Assets/Scripts/Client/Manager/DataManager.ts\",\"manifest\":{\"properties\":[],\"name\":\"DataManager\",\"description\":\"\",\"hasAnimatorMove\":false},\"isCompiled\":true}"
-  typescriptHash: 2f9a0d6df115f642a61f8a0d6434d515
+  compiledResult: "{\"source\":\"\\\"use strict\\\";\\r\\n// import IOC from '../../Common/IOC';\\r\\n//
+    import {Manager} from '../Manager';\\r\\nObject.defineProperty(exports, \\\"__esModule\\\",
+    { value: true });\\r\\nclass DataManager {\\r\\n    constructor() {\\r\\n       
+    // property\\r\\n        this.dataDictionary = {};\\r\\n    }\\r\\n    Translator(targetLanguage)
+    {\\r\\n        throw new Error('Method not implemented.');\\r\\n    }\\r\\n   
+    // method\\r\\n    Init() {\\r\\n        // let Recipe = IOC.Instance.getInstance(Manager).Resource.LoadData('Recipe');\\r\\n       
+    // let Ingredient = IOC.Instance.getInstance(Manager).Resource.LoadData('Ingredient');\\r\\n       
+    // let StartItem = IOC.Instance.getInstance(Manager).Resource.LoadData('StartItem');\\r\\n       
+    // let Treasure = IOC.Instance.getInstance(Manager).Resource.LoadData('Treasure');\\r\\n       
+    // let Price = IOC.Instance.getInstance(Manager).Resource.LoadData('Price');\\r\\n       
+    // let Config = IOC.Instance.getInstance(Manager).Resource.LoadData('Config');\\r\\n       
+    //\\r\\n        // this.dataDictionary = {\\r\\n        //     Recipe,\\r\\n       
+    //     Ingredient,\\r\\n        //     StartItem,\\r\\n        //     Treasure,\\r\\n       
+    //     Price,\\r\\n        //     Config,\\r\\n        // };\\r\\n    }\\r\\n   
+    GetValueByKeys(keys) {\\r\\n        let value = this.dataDictionary;\\r\\n       
+    keys.split('/').forEach((key) => {\\r\\n            if (key in value) {\\r\\n               
+    value = value[key];\\r\\n            }\\r\\n            else {\\r\\n               
+    console.log('[Data Manager] \uC798\uBABB\uB41C \uD0A4 \uACBD\uB85C \uC785\uB2C8\uB2E4.',
+    keys);\\r\\n                return;\\r\\n            }\\r\\n        });\\r\\n       
+    return value;\\r\\n    }\\r\\n}\\r\\nexports.default = DataManager;\\r\\n//#
+    sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiRGF0YU1hbmFnZXIuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJEYXRhTWFuYWdlci50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiO0FBQUEsc0NBQXNDO0FBQ3RDLHNDQUFzQzs7QUFRdEMsTUFBTSxXQUFXO0lBQWpCO1FBTUksV0FBVztRQUNILG1CQUFjLEdBQUcsRUFBRSxDQUFDO0lBbUNoQyxDQUFDO0lBeENHLFVBQVUsQ0FBQyxjQUFzQjtRQUM3QixNQUFNLElBQUksS0FBSyxDQUFDLHlCQUF5QixDQUFDLENBQUM7SUFDL0MsQ0FBQztJQUtELFNBQVM7SUFFVCxJQUFJO1FBQ0EsOEVBQThFO1FBQzlFLHNGQUFzRjtRQUN0RixvRkFBb0Y7UUFDcEYsa0ZBQWtGO1FBQ2xGLDRFQUE0RTtRQUM1RSw4RUFBOEU7UUFDOUUsRUFBRTtRQUNGLDBCQUEwQjtRQUMxQixjQUFjO1FBQ2Qsa0JBQWtCO1FBQ2xCLGlCQUFpQjtRQUNqQixnQkFBZ0I7UUFDaEIsYUFBYTtRQUNiLGNBQWM7UUFDZCxLQUFLO0lBQ1QsQ0FBQztJQUVNLGNBQWMsQ0FBQyxJQUFZO1FBQzlCLElBQUksS0FBSyxHQUFHLElBQUksQ0FBQyxjQUFjLENBQUM7UUFDaEMsSUFBSSxDQUFDLEtBQUssQ0FBQyxHQUFHLENBQUMsQ0FBQyxPQUFPLENBQUMsQ0FBQyxHQUFHLEVBQUUsRUFBRTtZQUM1QixJQUFJLEdBQUcsSUFBSSxLQUFLLEVBQUU7Z0JBQ2QsS0FBSyxHQUFHLEtBQUssQ0FBQyxHQUFHLENBQUMsQ0FBQzthQUN0QjtpQkFBTTtnQkFDSCxPQUFPLENBQUMsR0FBRyxDQUFDLDhCQUE4QixFQUFFLElBQUksQ0FBQyxDQUFDO2dCQUNsRCxPQUFPO2FBQ1Y7UUFDTCxDQUFDLENBQUMsQ0FBQztRQUVILE9BQU8sS0FBSyxDQUFDO0lBQ2pCLENBQUM7Q0FDSjtBQUVELGtCQUFlLFdBQVcsQ0FBQyJ9\",\"assetPath\":\"Assets/Scripts/Client/Manager/DataManager.ts\",\"manifest\":{\"properties\":[],\"name\":\"DataManager\",\"description\":\"\",\"hasAnimatorMove\":false},\"isCompiled\":true}"
+  typescriptHash: 3f91c30933a9ca6eeef6d34088726169
   onlyWriteTrigger: 0

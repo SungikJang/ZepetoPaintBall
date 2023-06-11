@@ -12,6 +12,8 @@ import { InterUIManager } from './UIManager';
 
 
 export interface InterManager {
+    Init(): void;
+    
     get Language(): InterLanguageManager
 
     get Resource(): InterResourceManager
@@ -63,7 +65,9 @@ export default class Manager extends ZepetoScriptBehaviour implements InterManag
         this._flagGameManager = _FlagGameManager
         this._seigeGameManager = _SeigeGameManager
         this._soloFlagGameManager = _SoloFlagGameManager
-        
+    }
+    
+    Init(){
         this._resourceManager.Init();
         this._languageManager.Init();
         this._uiManager.Init();

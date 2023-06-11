@@ -22,15 +22,23 @@ ScriptedImporter:
     { value: true });\r\nconst UnityEngine_1 = require(\"UnityEngine\");\r\nconst
     ZEPETO_Script_1 = require(\"ZEPETO.Script\");\r\nclass Manager extends ZEPETO_Script_1.ZepetoScriptBehaviour
     {\r\n    constructor(_LanguageManager, _ResourceManager, _UIManager, _SoundManager,
-    _DataManager) {\r\n        super();\r\n        this._uiManager = _UIManager;\r\n       
-    this._resourceManager = _ResourceManager;\r\n        this._soundManager = _SoundManager;\r\n       
+    _DataManager, _GameManager, _FlagGameManager, _SeigeGameManager, _SoloFlagGameManager)
+    {\r\n        super();\r\n        this._uiManager = _UIManager;\r\n        this._resourceManager
+    = _ResourceManager;\r\n        this._soundManager = _SoundManager;\r\n       
     this._languageManager = _LanguageManager;\r\n        this._dataManager = _DataManager;\r\n       
-    this._resourceManager.Init();\r\n        this._languageManager.Init();\r\n       
-    this._uiManager.Init();\r\n    }\r\n    get UI() {\r\n        return this._uiManager;\r\n   
-    }\r\n    get Resource() {\r\n        return this._resourceManager;\r\n    }\r\n   
-    get Sound() {\r\n        return this._soundManager;\r\n    }\r\n    get Language()
-    {\r\n        return this._languageManager;\r\n    }\r\n    get Data() {\r\n       
-    return this._dataManager;\r\n    }\r\n}\r\nexports.default = Manager;\r\n//#
-    sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiTWFuYWdlci5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIk1hbmFnZXIudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFBQSw2Q0FBaUQ7QUFDakQsaURBQXNEO0FBb0J0RCxNQUFxQixPQUFRLFNBQVEscUNBQXFCO0lBT3RELFlBQ0ksZ0JBQXNDLEVBQ3RDLGdCQUFzQyxFQUN0QyxVQUEwQixFQUMxQixhQUFnQyxFQUNoQyxZQUE4QjtRQUU5QixLQUFLLEVBQUUsQ0FBQztRQUNSLElBQUksQ0FBQyxVQUFVLEdBQUcsVUFBVSxDQUFDO1FBQzdCLElBQUksQ0FBQyxnQkFBZ0IsR0FBRyxnQkFBZ0IsQ0FBQztRQUN6QyxJQUFJLENBQUMsYUFBYSxHQUFHLGFBQWEsQ0FBQztRQUNuQyxJQUFJLENBQUMsZ0JBQWdCLEdBQUcsZ0JBQWdCLENBQUM7UUFDekMsSUFBSSxDQUFDLFlBQVksR0FBRyxZQUFZLENBQUE7UUFFaEMsSUFBSSxDQUFDLGdCQUFnQixDQUFDLElBQUksRUFBRSxDQUFDO1FBQzdCLElBQUksQ0FBQyxnQkFBZ0IsQ0FBQyxJQUFJLEVBQUUsQ0FBQztRQUM3QixJQUFJLENBQUMsVUFBVSxDQUFDLElBQUksRUFBRSxDQUFDO0lBQzNCLENBQUM7SUFFRCxJQUFXLEVBQUU7UUFDVCxPQUFPLElBQUksQ0FBQyxVQUFVLENBQUM7SUFDM0IsQ0FBQztJQUVELElBQVcsUUFBUTtRQUNmLE9BQU8sSUFBSSxDQUFDLGdCQUFnQixDQUFDO0lBQ2pDLENBQUM7SUFFRCxJQUFXLEtBQUs7UUFDWixPQUFPLElBQUksQ0FBQyxhQUFhLENBQUM7SUFDOUIsQ0FBQztJQUVELElBQVcsUUFBUTtRQUNmLE9BQU8sSUFBSSxDQUFDLGdCQUFnQixDQUFDO0lBQ2pDLENBQUM7SUFFRCxJQUFXLElBQUk7UUFDWCxPQUFPLElBQUksQ0FBQyxZQUFZLENBQUM7SUFDN0IsQ0FBQztDQUNKO0FBN0NELDBCQTZDQyJ9","assetPath":"Assets/Scripts/Client/Manager/Manager.ts","manifest":{"properties":[],"name":"Manager","description":"","hasAnimatorMove":false},"isCompiled":true}'
-  typescriptHash: d26cccdab2de4e242592bf544d93bb83
+    this._gameManager = _GameManager;\r\n        this._flagGameManager = _FlagGameManager;\r\n       
+    this._seigeGameManager = _SeigeGameManager;\r\n        this._soloFlagGameManager
+    = _SoloFlagGameManager;\r\n    }\r\n    Init() {\r\n        this._resourceManager.Init();\r\n       
+    this._languageManager.Init();\r\n        this._uiManager.Init();\r\n        this._gameManager.Init();\r\n       
+    this._flagGameManager.Init();\r\n        this._seigeGameManager.Init();\r\n       
+    this._soloFlagGameManager.Init();\r\n    }\r\n    get UI() {\r\n        return
+    this._uiManager;\r\n    }\r\n    get Resource() {\r\n        return this._resourceManager;\r\n   
+    }\r\n    get Sound() {\r\n        return this._soundManager;\r\n    }\r\n   
+    get Language() {\r\n        return this._languageManager;\r\n    }\r\n    get
+    Data() {\r\n        return this._dataManager;\r\n    }\r\n    get Game() {\r\n       
+    return this._gameManager;\r\n    }\r\n    get FlagGame() {\r\n        return
+    this._flagGameManager;\r\n    }\r\n    get SeigeGame() {\r\n        return this._seigeGameManager;\r\n   
+    }\r\n    get SoloFlagGame() {\r\n        return this._soloFlagGameManager;\r\n   
+    }\r\n}\r\nexports.default = Manager;\r\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiTWFuYWdlci5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIk1hbmFnZXIudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFBQSw2Q0FBaUQ7QUFDakQsaURBQXNEO0FBa0N0RCxNQUFxQixPQUFRLFNBQVEscUNBQXFCO0lBV3RELFlBQ0ksZ0JBQXNDLEVBQ3RDLGdCQUFzQyxFQUN0QyxVQUEwQixFQUMxQixhQUFnQyxFQUNoQyxZQUE4QixFQUM5QixZQUE4QixFQUM5QixnQkFBc0MsRUFDdEMsaUJBQXdDLEVBQ3hDLG9CQUE4QztRQUU5QyxLQUFLLEVBQUUsQ0FBQztRQUNSLElBQUksQ0FBQyxVQUFVLEdBQUcsVUFBVSxDQUFDO1FBQzdCLElBQUksQ0FBQyxnQkFBZ0IsR0FBRyxnQkFBZ0IsQ0FBQztRQUN6QyxJQUFJLENBQUMsYUFBYSxHQUFHLGFBQWEsQ0FBQztRQUNuQyxJQUFJLENBQUMsZ0JBQWdCLEdBQUcsZ0JBQWdCLENBQUM7UUFDekMsSUFBSSxDQUFDLFlBQVksR0FBRyxZQUFZLENBQUE7UUFDaEMsSUFBSSxDQUFDLFlBQVksR0FBRyxZQUFZLENBQUE7UUFDaEMsSUFBSSxDQUFDLGdCQUFnQixHQUFHLGdCQUFnQixDQUFBO1FBQ3hDLElBQUksQ0FBQyxpQkFBaUIsR0FBRyxpQkFBaUIsQ0FBQTtRQUMxQyxJQUFJLENBQUMsb0JBQW9CLEdBQUcsb0JBQW9CLENBQUE7SUFDcEQsQ0FBQztJQUVELElBQUk7UUFDQSxJQUFJLENBQUMsZ0JBQWdCLENBQUMsSUFBSSxFQUFFLENBQUM7UUFDN0IsSUFBSSxDQUFDLGdCQUFnQixDQUFDLElBQUksRUFBRSxDQUFDO1FBQzdCLElBQUksQ0FBQyxVQUFVLENBQUMsSUFBSSxFQUFFLENBQUM7UUFDdkIsSUFBSSxDQUFDLFlBQVksQ0FBQyxJQUFJLEVBQUUsQ0FBQztRQUN6QixJQUFJLENBQUMsZ0JBQWdCLENBQUMsSUFBSSxFQUFFLENBQUM7UUFDN0IsSUFBSSxDQUFDLGlCQUFpQixDQUFDLElBQUksRUFBRSxDQUFDO1FBQzlCLElBQUksQ0FBQyxvQkFBb0IsQ0FBQyxJQUFJLEVBQUUsQ0FBQztJQUNyQyxDQUFDO0lBRUQsSUFBVyxFQUFFO1FBQ1QsT0FBTyxJQUFJLENBQUMsVUFBVSxDQUFDO0lBQzNCLENBQUM7SUFFRCxJQUFXLFFBQVE7UUFDZixPQUFPLElBQUksQ0FBQyxnQkFBZ0IsQ0FBQztJQUNqQyxDQUFDO0lBRUQsSUFBVyxLQUFLO1FBQ1osT0FBTyxJQUFJLENBQUMsYUFBYSxDQUFDO0lBQzlCLENBQUM7SUFFRCxJQUFXLFFBQVE7UUFDZixPQUFPLElBQUksQ0FBQyxnQkFBZ0IsQ0FBQztJQUNqQyxDQUFDO0lBRUQsSUFBVyxJQUFJO1FBQ1gsT0FBTyxJQUFJLENBQUMsWUFBWSxDQUFDO0lBQzdCLENBQUM7SUFFRCxJQUFXLElBQUk7UUFDWCxPQUFPLElBQUksQ0FBQyxZQUFZLENBQUM7SUFDN0IsQ0FBQztJQUVELElBQVcsUUFBUTtRQUNmLE9BQU8sSUFBSSxDQUFDLGdCQUFnQixDQUFDO0lBQ2pDLENBQUM7SUFFRCxJQUFXLFNBQVM7UUFDaEIsT0FBTyxJQUFJLENBQUMsaUJBQWlCLENBQUM7SUFDbEMsQ0FBQztJQUVELElBQVcsWUFBWTtRQUNuQixPQUFPLElBQUksQ0FBQyxvQkFBb0IsQ0FBQztJQUNyQyxDQUFDO0NBQ0o7QUEvRUQsMEJBK0VDIn0=","assetPath":"Assets/Scripts/Client/Manager/Manager.ts","manifest":{"properties":[],"name":"Manager","description":"","hasAnimatorMove":false},"isCompiled":true}'
+  typescriptHash: 0bf82f9ecedb7a01b77beb5ca18e2873
   onlyWriteTrigger: 0
