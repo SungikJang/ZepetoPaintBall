@@ -17,7 +17,7 @@ export default class AdminGameStartTimer implements IAdminGameStartTimer {
 
     constructor(scm: SyncComponentModule, client: SandboxPlayer) {
         this.scm = scm;
-        this.interval = 5000
+        this.interval = 7000
         this.client = client;
     }
 

@@ -1,0 +1,568 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1652157745
+GameObject: 
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1652157747}
+  - component: {fileID: 1652157746}
+  m_Name: ZepetoScriptContextInitializerComponent
+  m_IsActive: 1
+--- !u!114 &1652157746
+MonoBehaviour:  
+  m_GameObject: {fileID: 1652157745}
+  m_Enabled: 1
+  m_Script: {fileID: -820289043, guid: 921f0445823004a16a499d629dd566a6, type: 3}   
+  initializer: {fileID: 817983362}
+--- !u!4 &1652157747
+Transform:
+  m_GameObject: {fileID: 1652157745}
+--- !u!114 &817983362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 2046837767, guid: 921f0445823004a16a499d629dd566a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  assetBundle: {fileID: 0}
+  assets:
+  - assetPath: __STREAMINGASSETS
+    asset: {fileID: 0}
+  - assetPath: Assets/Ignore/AurynSky/Desert Pack/Scripts/ChestDemo.ts
+    asset: {fileID: 4458252877524076426, guid: c0e05beda083dda4daae084fdba376c9, type: 3}
+  - assetPath: Assets/Ignore/AurynSky/Desert Pack/Scripts/MaterialMover.ts
+    asset: {fileID: 4458252877524076426, guid: b58d5e03c327c534f9ed029325abc062, type: 3}
+  - assetPath: Assets/Ignore/AurynSky/Desert Pack/Scripts/Rotator.ts
+    asset: {fileID: 4458252877524076426, guid: f60d6e445733ec34c9c249c7448a5327, type: 3}
+  - assetPath: Assets/Ignore/AurynSky/Forest Pack/Prefabs/ChestDemo.ts
+    asset: {fileID: 4458252877524076426, guid: 88aacc2ac7c130346817b13926f53c48, type: 3}
+  - assetPath: Assets/Ignore/AurynSky/Forest Pack/Prefabs/MaterialMover.ts
+    asset: {fileID: 4458252877524076426, guid: 6bb8bca55bfac2d4e99b9448f8467986, type: 3}
+  - assetPath: Assets/Ignore/AurynSky/Forest Pack/Prefabs/Rotator.ts
+    asset: {fileID: 4458252877524076426, guid: 3abd2cca6c25d374eadd6ffed06dcdab, type: 3}
+  - assetPath: Assets/Ignore/AurynSky/Forest Pack/Prefabs/WheelController.ts
+    asset: {fileID: 4458252877524076426, guid: a06bbd1cf0cbb5743bdf5933af9d5567, type: 3}
+  - assetPath: Assets/Ignore/AurynSky/WinterArena/Scripts/ChestDemo.ts
+    asset: {fileID: 4458252877524076426, guid: cbe69edd5d6828e40be2a878dc95f151, type: 3}
+  - assetPath: Assets/Ignore/AurynSky/WinterArena/Scripts/Rotator.ts
+    asset: {fileID: 4458252877524076426, guid: 163d4c7d616d0f149a6ff9fd9f8447df, type: 3}
+  - assetPath: Assets/SampleScript.ts
+    asset: {fileID: 4458252877524076426, guid: 3d25bf9424e714998970af8697d33163, type: 3}
+  - assetPath: Assets/Scripts/Client/Enums.ts
+    asset: {fileID: 4458252877524076426, guid: 49a60a2fcadd10242acb63d85bc831f6, type: 3}
+  - assetPath: Assets/Scripts/Client/GameStarter.ts
+    asset: {fileID: 4458252877524076426, guid: 336b89db23f93fa4fb98b3c109f8bfb5, type: 3}
+  - assetPath: Assets/Scripts/Client/IOC.ts
+    asset: {fileID: 4458252877524076426, guid: 8b0c4faf0bfeff746acff791b837d297, type: 3}
+  - assetPath: Assets/Scripts/Client/Manager/DataManager.ts
+    asset: {fileID: 4458252877524076426, guid: cf3bd355a48550245a8254895ef32f28, type: 3}
+  - assetPath: Assets/Scripts/Client/Manager/FlagGameManager.ts
+    asset: {fileID: 4458252877524076426, guid: 3fa5c15729efa594fa222edabb34a04a, type: 3}
+  - assetPath: Assets/Scripts/Client/Manager/GameManger.ts
+    asset: {fileID: 4458252877524076426, guid: 443899fb6fcac764f9e39773cdeaebe2, type: 3}
+  - assetPath: Assets/Scripts/Client/Manager/LanguageManager.ts
+    asset: {fileID: 4458252877524076426, guid: 1176aa9ce91b6d040978eef12060d899, type: 3}
+  - assetPath: Assets/Scripts/Client/Manager/Manager.ts
+    asset: {fileID: 4458252877524076426, guid: 73441baf72b4c174e9419c1f949a0b6a, type: 3}
+  - assetPath: Assets/Scripts/Client/Manager/ResourceManager.ts
+    asset: {fileID: 4458252877524076426, guid: a31c3d59134e7cf43b55116502f833bf, type: 3}
+  - assetPath: Assets/Scripts/Client/Manager/SeigeGameManager.ts
+    asset: {fileID: 4458252877524076426, guid: 6bd7fb94f4f0542459d753dbb3e3c3bc, type: 3}
+  - assetPath: Assets/Scripts/Client/Manager/SoloFlagGameManager.ts
+    asset: {fileID: 4458252877524076426, guid: 2d57fc9a15dd8854080f923c37222349, type: 3}
+  - assetPath: Assets/Scripts/Client/Manager/SoundManager.ts
+    asset: {fileID: 4458252877524076426, guid: 7dbd9b83cb0b91f40b46323bb5f11399, type: 3}
+  - assetPath: Assets/Scripts/Client/Manager/UIManager.ts
+    asset: {fileID: 4458252877524076426, guid: 637804e9d56e01047bdb71ab5aa2ebac, type: 3}
+  - assetPath: Assets/Scripts/Client/MyPlayer/MyPalyerController.ts
+    asset: {fileID: 4458252877524076426, guid: da0b93b768e394a45a96db5410b5ad7e, type: 3}
+  - assetPath: Assets/Scripts/Client/MyPlayer/MyPlayerData.ts
+    asset: {fileID: 4458252877524076426, guid: c3e89ab0eacdf7e4f95ffc157b1b6504, type: 3}
+  - assetPath: Assets/Scripts/Client/MyPlayer/MyPlayerMovement.ts
+    asset: {fileID: 4458252877524076426, guid: 4db7949eadb659b4091fb367fb66e3e8, type: 3}
+  - assetPath: Assets/Scripts/Client/MyPlayer/MyPlayerTriggerController.ts
+    asset: {fileID: 4458252877524076426, guid: 7ea5a492e31db2247b43fbc903eaab5b, type: 3}
+  - assetPath: Assets/Scripts/Client/Network/AnimatorSyncHelper.ts
+    asset: {fileID: 4458252877524076426, guid: b8cdf2ca095fa4b65a277da8f0d19d4d, type: 3}
+  - assetPath: Assets/Scripts/Client/Network/Connector.ts
+    asset: {fileID: 4458252877524076426, guid: 136b6d19eda1edc4eb175f396edb8e99, type: 3}
+  - assetPath: Assets/Scripts/Client/Network/DOTWeenSyncHelper.ts
+    asset: {fileID: 4458252877524076426, guid: 13b7469088ade4d4d8357d75e830ead0, type: 3}
+  - assetPath: Assets/Scripts/Client/Network/MultiplayManager.ts
+    asset: {fileID: 4458252877524076426, guid: daa5246585831481aabbf61fcc5114da, type: 3}
+  - assetPath: Assets/Scripts/Client/Network/NetworkBase.ts
+    asset: {fileID: 4458252877524076426, guid: aaf8964872e8ca943b73c9d56a8e6acc, type: 3}
+  - assetPath: Assets/Scripts/Client/Network/PlayerSync.ts
+    asset: {fileID: 4458252877524076426, guid: 9830cf103d5314dcdab6cffce20157ca, type: 3}
+  - assetPath: Assets/Scripts/Client/Network/SyncIndexManager.ts
+    asset: {fileID: 4458252877524076426, guid: ad4b3e28e8a4241729aec4ffaf41ca8b, type: 3}
+  - assetPath: Assets/Scripts/Client/Network/TransformSyncHelper.ts
+    asset: {fileID: 4458252877524076426, guid: 5419c5d1d2ede4cde844dd059edfebce, type: 3}
+  - assetPath: Assets/Scripts/Client/Network/ZepetoPlayersManager.ts
+    asset: {fileID: 4458252877524076426, guid: 6d846a38c15014273bd5ba91998e261d, type: 3}
+  - assetPath: Assets/Scripts/Client/UI/AlertUI/AlertUI.ts
+    asset: {fileID: 4458252877524076426, guid: c9bf68cee90553c4d99aa3d4cd43dbd1, type: 3}
+  - assetPath: Assets/Scripts/Client/UI/AlertUI/Floating3DTextUI.ts
+    asset: {fileID: 4458252877524076426, guid: 2db38af4b719926468fa18cc56b5788f, type: 3}
+  - assetPath: Assets/Scripts/Client/UI/AlertUI/UI_FloatingText.ts
+    asset: {fileID: 4458252877524076426, guid: e2cb4d25dfcd8894e8a3357996560ca3, type: 3}
+  - assetPath: Assets/Scripts/Client/UI/Component/Button/CloseButton.ts
+    asset: {fileID: 4458252877524076426, guid: 888c41de5f073b04a834eeca8383389a, type: 3}
+  - assetPath: Assets/Scripts/Client/UI/Component/Card/WeaponCardUI.ts
+    asset: {fileID: 4458252877524076426, guid: e9847684a20b5814e90a8f2fbe03a305, type: 3}
+  - assetPath: Assets/Scripts/Client/UI/ControllerUI/ControllerUI.ts
+    asset: {fileID: 4458252877524076426, guid: 1b3963533119268459e80c3f3ac6dcf9, type: 3}
+  - assetPath: Assets/Scripts/Client/UI/DefaultUI/InGameUI.ts
+    asset: {fileID: 4458252877524076426, guid: 8dc71791a50eb9e4ba92e0bc73262958, type: 3}
+  - assetPath: Assets/Scripts/Client/UI/DefaultUI/StartUI.ts
+    asset: {fileID: 4458252877524076426, guid: 0794ec116b0113f4a878334579eb8471, type: 3}
+  - assetPath: Assets/Scripts/Client/UI/PopUpUI/GameSelectPopupUI.ts
+    asset: {fileID: 4458252877524076426, guid: c0f1e97f42dcf2643906d99b7e96ab64, type: 3}
+  - assetPath: Assets/Scripts/Client/UI/PopUpUI/WeaponPopupUI.ts
+    asset: {fileID: 4458252877524076426, guid: a3b72bb34f2d9984c89c8f5ea0e076c9, type: 3}
+  - assetPath: Assets/Scripts/Client/Utils/index.ts
+    asset: {fileID: 4458252877524076426, guid: acade2bd2dee62d44a1eb0e7684b9987, type: 3}
+  - assetPath: Packages/zepeto.world/Editor/Builds/QRCode.js
+    asset: {fileID: 4458252877524076426, guid: 17c98b61ae4046b5938df3de071ac4b9, type: 3}
+  - assetPath: Packages/zepeto.character.controller/Runtime/Scripts/JS/Classes/ZepetoDefaultInputReceiver.js
+    asset: {fileID: 4458252877524076426, guid: bd46341e375f8420d891e82dd4fcc030, type: 3}
+  - assetPath: Assets/Ignore/AurynSky/Forest Pack/Models/ForestTreePineShort.fbx
+    asset: {fileID: 100000, guid: 54e159d3356cea14996fb2dc32d85269, type: 3}
+  - assetPath: Assets/Ignore/AurynSky/Forest Pack/Prefabs/ForestGround01.prefab
+    asset: {fileID: 1619558185565566, guid: 1d9cc67243350f643b8c562ed0503c49, type: 3}
+  - assetPath: Assets/Ignore/AurynSky/Forest Pack/Models/ForestTreeAppleTall.fbx
+    asset: {fileID: 100000, guid: 74836e1c1b626dc41a8fb4207f7026b8, type: 3}
+  - assetPath: Packages/zepeto.character.controller/Runtime/_Resources/Images/touchpad_handle_base.png
+    asset: {fileID: 2800000, guid: 9ca194b00aabf473e8b0ca5a3eaafffe, type: 3}
+  - assetPath: Assets/Ignore/AurynSky/Forest Pack/Textures/CubeParticle.psd
+    asset: {fileID: 2800000, guid: 8ecfe72d7db2e8c449fe684f88ffe010, type: 3}
+  - assetPath: Packages/zepeto.character.controller/Runtime/_Resources/Animations/base/idle.anim
+    asset: {fileID: 7400000, guid: 77b4b5d8cbed146578a40c13e9fb3e29, type: 2}
+  - assetPath: Packages/zepeto.character.controller/Runtime/_Resources/Animations/UI/Controller/touchpad_handle_off.anim
+    asset: {fileID: 7400000, guid: af3a092ab50b042dda8d55bf57df89e2, type: 2}
+  - assetPath: Assets/Ignore/Allsky/Day Sun High/Day Sun High ClearHazy/New Lighting
+      Settings.lighting
+    asset: {fileID: 4890085278179872738, guid: 5d18873c4c082f34492cb3fd871eb6ae, type: 2}
+  - assetPath: Assets/Ignore/AurynSky/Forest Pack/Prefabs/ForestBlock02.prefab
+    asset: {fileID: 1113307236115910, guid: 3f28852fcfaa2fc4a9956ddd15ba61f0, type: 3}
+  - assetPath: Assets/Ignore/AurynSky/Forest Pack/Prefabs/ForestLadder.prefab
+    asset: {fileID: 1045710228479616, guid: 8d102e899c856934a9f58af9c7508d59, type: 3}
+  - assetPath: Assets/Ignore/Allsky/Day Sun High/Day Sun High Clear/Sky_Day Sun High
+      Clear_Cam_5_Down-Y.png
+    asset: {fileID: 2800000, guid: 3d3040425849448d3b60289417db308c, type: 3}
+  - assetPath: Packages/zepeto.character.controller/Runtime/_Resources/InputActions/ZepetoInputControl.inputactions
+    asset: {fileID: -944628639613478452, guid: 090135bc9e5ee4c89b1642240eb723fe, type: 3}
+  - assetPath: Assets/Ignore/AurynSky/Forest Pack/Models/ForestGround02.fbx
+    asset: {fileID: 100000, guid: caca2dfcd7da619408439605ff0667a4, type: 3}
+  - assetPath: Assets/Ignore/AurynSky/Forest Pack/Models/ForestTreeDTall.fbx
+    asset: {fileID: 100000, guid: a2c5addf9682ab24d8a7163ed106e4e8, type: 3}
+  - assetPath: Assets/Ignore/AurynSky/Forest Pack/Prefabs/ForestBarrel.prefab
+    asset: {fileID: 1707827126499572, guid: 31d3a77f906791342bc79acdc84f5218, type: 3}
+  - assetPath: Packages/zepeto.character.controller/Runtime/_Resources/Animations/base/V2/landing_slight.anim
+    asset: {fileID: 7400000, guid: 34a1ea504fe4743649b7fda50421bed6, type: 2}
+  - assetPath: Assets/Ignore/AurynSky/Forest Pack/Models/ForestTreeAppleShort.fbx
+    asset: {fileID: 100000, guid: 55d234882e9a60747b3208b956d8244b, type: 3}
+  - assetPath: Assets/Ignore/AurynSky/Forest Pack/Materials/ColorPaletteRED.mat
+    asset: {fileID: 2100000, guid: 4484256e7ebbe4a4eab77924649bab61, type: 2}
+  - assetPath: Assets/Ignore/AurynSky/Forest Pack/Prefabs/ForestTreeDTall.prefab
+    asset: {fileID: 1685073300064356, guid: eb322b3f7ad50984197dced1b53b11ee, type: 3}
+  - assetPath: Assets/Ignore/Allsky/Day Sun High/Day Sun High Clear/Day Sun High
+      Clear.mat
+    asset: {fileID: 2100000, guid: fdd37c9684c65482e83c0a503372fb48, type: 2}
+  - assetPath: Packages/zepeto.character.controller/Runtime/_Resources/Animations/base/action1.anim
+    asset: {fileID: 7400000, guid: aba17ef185d9c42c095e153a36686ba5, type: 2}
+  - assetPath: Assets/Ignore/AurynSky/Forest Pack/Models/ForestGroundDirt.fbx
+    asset: {fileID: 100000, guid: dac1f6a026468af46b8928893e3eea27, type: 3}
+  - assetPath: Assets/Ignore/AurynSky/Forest Pack/Models/ForestBridgeWide.fbx
+    asset: {fileID: 100000, guid: fe63f0532f7ca0b47b859b94db3dff06, type: 3}
+  - assetPath: Assets/Ignore/AurynSky/Forest Pack/Materials/WaterTile.mat
+    asset: {fileID: 2100000, guid: 3f14906e08078944dab937a623780258, type: 2}
+  - assetPath: Packages/zepeto.character.controller/Runtime/_Resources/Prefabs/Shadow/FxT_BlobShadow.png
+    asset: {fileID: 2800000, guid: 395d040650de243eb9de0bd417e3b0e9, type: 3}
+  - assetPath: Assets/Ignore/AurynSky/Forest Pack/Prefabs/ForestBridgeWide.prefab
+    asset: {fileID: 1935039790392146, guid: ba7e7b47e14ac404fbe09194158fbf80, type: 3}
+  - assetPath: Assets/Ignore/AurynSky/Forest Pack/Models/ForestTreePineTall.fbx
+    asset: {fileID: 100000, guid: 6819aaac952b96048b10875168436abb, type: 3}
+  - assetPath: Assets/Ignore/AurynSky/Forest Pack/Animation/Banner.controller
+    asset: {fileID: 9100000, guid: 638c801f7a2ec7540a80aced12b2e474, type: 2}
+  - assetPath: Assets/Ignore/AurynSky/Forest Pack/Prefabs/ForestGrass02.prefab
+    asset: {fileID: 1913777595529458, guid: 4c9f6adf60a275840b716082e3482212, type: 3}
+  - assetPath: Assets/Ignore/AurynSky/Forest Pack/Models/ForestCatapultBase.fbx
+    asset: {fileID: 100000, guid: e661daaaebf587c4cae7c914305ccc2e, type: 3}
+  - assetPath: Assets/Ignore/AurynSky/Forest Pack/Textures/ColorPaletteRed.png
+    asset: {fileID: 2800000, guid: 5c87e1c6b6eff8b4abe9ea58df2b3b2f, type: 3}
+  - assetPath: Assets/Ignore/AurynSky/Forest Pack/Prefabs/ForestGrass01.prefab
+    asset: {fileID: 1685531937540468, guid: 6c919ec1c1e88a94c95afc28b198b9f8, type: 3}
+  - assetPath: Packages/zepeto.character.controller/Runtime/_Resources/AnimatorController/ZepetoAnimatorV2.controller
+    asset: {fileID: 9100000, guid: d45416f714b4fe74d9ddc118caf5f7c9, type: 2}
+  - assetPath: Packages/zepeto.character.controller/Runtime/_Resources/Animations/Gesture/4_ok.anim
+    asset: {fileID: 7400000, guid: 3ac870d7ab2c84c5bad2ade6d493ac0a, type: 2}
+  - assetPath: Assets/Ignore/AurynSky/Forest Pack/Prefabs/Prefabs_Blue/ForestTower_Blue.prefab
+    asset: {fileID: 1770514590405088, guid: 1cace56ba420dd64c9171c422c8e9aaa, type: 3}
+  - assetPath: Assets/Ignore/AurynSky/Forest Pack/Models/ForestBarrel.fbx
+    asset: {fileID: 100000, guid: 0e448df1bb3fe6d44ae7119bf0d484aa, type: 3}
+  - assetPath: Packages/zepeto.character.controller/Runtime/_Resources/Animations/base/walk.anim
+    asset: {fileID: 7400000, guid: e81fd0a5991d041a592274fbfceff5f6, type: 2}
+  - assetPath: Assets/Ignore/AurynSky/Forest Pack/Prefabs/ForestTreePineShort2.prefab
+    asset: {fileID: 1726046091689300, guid: 7ad57e94574375240b181f8584be81c2, type: 3}
+  - assetPath: Packages/zepeto.character.controller/Runtime/_Resources/Animations/base/V2/move_run_fast.anim
+    asset: {fileID: 7400000, guid: b37b0c3443ebd4913a439b51a0a3d5a4, type: 2}
+  - assetPath: Packages/zepeto.character.controller/Runtime/_Resources/Animations/base/V2/move_turn.anim
+    asset: {fileID: 7400000, guid: 93ca3738330d7459b9000923398ae217, type: 2}
+  - assetPath: Assets/Ignore/AurynSky/Forest Pack/Models/ForestBridgeRegular.fbx
+    asset: {fileID: 100000, guid: 27f378e54c3d81f44b2a8420b6896d59, type: 3}
+  - assetPath: Assets/Ignore/AurynSky/Forest Pack/Models/ForestGround01.fbx
+    asset: {fileID: 100000, guid: f9fc7ec022f09a6418b1b6f97f0c887b, type: 3}
+  - assetPath: Assets/Ignore/AurynSky/Forest Pack/Prefabs/ForestCrate.prefab
+    asset: {fileID: 1362255755749402, guid: 1b5d1a6deebd81e4bba2448d18378844, type: 3}
+  - assetPath: Packages/zepeto.character.controller/Runtime/_Resources/Animations/UI/Controller/touchpad_handle_ziggle.anim
+    asset: {fileID: 7400000, guid: d16ef1916c85b4425a7d66ee8f375e19, type: 2}
+  - assetPath: Packages/zepeto.character.controller/Runtime/_Resources/Animations/UI/Controller/touchpad_handle_on.anim
+    asset: {fileID: 7400000, guid: 30e573d0c755644eaa5e1dfa86eb2462, type: 2}
+  - assetPath: Assets/Ignore/AurynSky/Forest Pack/Prefabs/Prefabs_Blue/ForestBrazzierBlue.prefab
+    asset: {fileID: 1032174159222396, guid: a29d452ee24577e46b40bd1b5396acc5, type: 3}
+  - assetPath: Assets/Ignore/AurynSky/Forest Pack/Materials/CubeParticles.mat
+    asset: {fileID: 2100000, guid: 55d3cd30aa20d634f8c2388d479742d1, type: 2}
+  - assetPath: Packages/zepeto.character.controller/Runtime/_Resources/Animations/base/V2/landing_deep.anim
+    asset: {fileID: 7400000, guid: 74f4980d8d3dc4a9ea0878dea7e21d06, type: 2}
+  - assetPath: Assets/Ignore/AurynSky/Forest Pack/Models/ForestTreeDShort.fbx
+    asset: {fileID: 100000, guid: 7f45a4e3a86ce4b4391131e440bf9e5e, type: 3}
+  - assetPath: Assets/Ignore/AurynSky/Forest Pack/Models/ForestCatapultWheel.fbx
+    asset: {fileID: 100000, guid: 3d789200e36f37548bdc5333aed7f702, type: 3}
+  - assetPath: Assets/Ignore/AurynSky/Forest Pack/Prefabs/Prefabs_Red/ForestBrazzierRed.prefab
+    asset: {fileID: 1685134394710758, guid: b8cd47ec0ed55ef4a81e264386f6aee5, type: 3}
+  - assetPath: Packages/zepeto.character.controller/Runtime/_Resources/Animations/base/V2/move_run.anim
+    asset: {fileID: 7400000, guid: 3ee8a1247c52648f5b43bb0e970fdbec, type: 2}
+  - assetPath: Assets/Ignore/AurynSky/Forest Pack/Prefabs/ForestBridgeRegular.prefab
+    asset: {fileID: 1456910657315934, guid: 38fa18ea33367784c891567389fdfb7a, type: 3}
+  - assetPath: Assets/Ignore/AurynSky/Forest Pack/Animation/Flag.controller
+    asset: {fileID: 9100000, guid: 6f4ceaf0efe7bdc42a298306d8eaca62, type: 2}
+  - assetPath: Packages/zepeto.character.controller/Runtime/_Resources/Animations/base/jump_idle.anim
+    asset: {fileID: 7400000, guid: 089578e3895fc4828923286f37714b31, type: 2}
+  - assetPath: Packages/zepeto.character.controller/Runtime/_Resources/Animations/base/jump_move.anim
+    asset: {fileID: 7400000, guid: ad9db15bb97a241d3941e089707ae455, type: 2}
+  - assetPath: Packages/zepeto.character.controller/Runtime/_Resources/Prefabs/UIController_Touchpad_Horizontal.prefab
+    asset: {fileID: 2787167779785370926, guid: 9b7a03709461140b4b3fc85aa8c5d741, type: 3}
+  - assetPath: Assets/Ignore/AurynSky/Forest Pack/Models/ForestBanner.fbx
+    asset: {fileID: 100010, guid: 73866947821a91c4d9d1b41582ae7767, type: 3}
+  - assetPath: Assets/Ignore/AurynSky/Forest Pack/Models/ForestCastleWindow.fbx
+    asset: {fileID: 100000, guid: 1eab687d6dbcf7847ab55b00b3c9c91b, type: 3}
+  - assetPath: Packages/zepeto.character.controller/Runtime/_Resources/Animations/UI/Controller/touchpad_handle_origin_off.anim
+    asset: {fileID: 7400000, guid: 99e7b142bf1c54f4997386f92637a746, type: 2}
+  - assetPath: Packages/zepeto.character.controller/Runtime/_Resources/AnimatorController/UIControllerTouchpadHandleOrigin.controller
+    asset: {fileID: 9100000, guid: 5f288db86f62c406988dd5a253fe2f94, type: 2}
+  - assetPath: Packages/zepeto.character.controller/Runtime/_Resources/Animations/base/V2/landing_roll.anim
+    asset: {fileID: 7400000, guid: aef7b16c4a1b74b95b6f56d4ce91a801, type: 2}
+  - assetPath: Assets/Ignore/AurynSky/Forest Pack/Prefabs/ForestTreePineShort.prefab
+    asset: {fileID: 1852941587909970, guid: 45fe3ec28eac2064d985117cf812ef9d, type: 3}
+  - assetPath: Packages/zepeto.character.controller/Runtime/_Resources/Animations/base/V2/Falling.anim
+    asset: {fileID: 7400000, guid: 9beb77817f50f4873bb8dd4a41726d06, type: 2}
+  - assetPath: Packages/zepeto.character.controller/Runtime/_Resources/Animations/base/action2.anim
+    asset: {fileID: 7400000, guid: baa1362d8c18f49c6addf31b8a4c9021, type: 2}
+  - assetPath: Packages/zepeto.character.controller/Runtime/_Resources/Prefabs/UIController_Touchpad_Vertical.prefab
+    asset: {fileID: 8523051459139762370, guid: 33446b9369e354b00a7ab43885afbe88, type: 3}
+  - assetPath: Assets/Ignore/AurynSky/Forest Pack/Prefabs/ForestGround02.prefab
+    asset: {fileID: 1560257132984952, guid: 5cbae0602ce9acf41a98fda3a353569a, type: 3}
+  - assetPath: Assets/Ignore/AurynSky/Forest Pack/Materials/ColorPaletteNormal.mat
+    asset: {fileID: 2100000, guid: f731a2ae89bef7a47a008811dfbd4680, type: 2}
+  - assetPath: Packages/zepeto.character.controller/Runtime/_Resources/Images/touchpad_handle_icon.png
+    asset: {fileID: 2800000, guid: c958f44ee4c794bc4915476c48b2df0a, type: 3}
+  - assetPath: Assets/Ignore/AurynSky/Forest Pack/Models/ForestBlock02.fbx
+    asset: {fileID: 100000, guid: 481b9e0107aab3041b49f72c38151e69, type: 3}
+  - assetPath: Assets/Ignore/AurynSky/Forest Pack/Textures/Water.psd
+    asset: {fileID: 2800000, guid: 25315fb78afed0e4b9a0e1681097767f, type: 3}
+  - assetPath: Packages/zepeto.character.controller/Runtime/_Resources/Animations/base/V2/Stamp.anim
+    asset: {fileID: 7400000, guid: e7729cec6e85b463781eec8565e8fb7c, type: 2}
+  - assetPath: Packages/zepeto.character.controller/Runtime/_Resources/Animations/base/V2/jump_Idle.anim
+    asset: {fileID: 7400000, guid: a42caac19eb044aa195dd25afd2eae3c, type: 2}
+  - assetPath: Packages/zepeto.character.controller/Runtime/_Resources/Images/touchpad_jump_icon.png
+    asset: {fileID: 2800000, guid: da6db804593824177bb8ecaab3317f69, type: 3}
+  - assetPath: Assets/Ignore/AurynSky/Forest Pack/Models/ForestCatapultArm.fbx
+    asset: {fileID: 100000, guid: 40ae94ff29e3cc14684b05ba0fd90f05, type: 3}
+  - assetPath: Assets/Ignore/Allsky/Day Sun High/Day Sun High Clear/Sky_Day Sun High
+      Clear_Cam_4_Top+Y.png
+    asset: {fileID: 2800000, guid: 506f37843b60049d8994507572e33c4d, type: 3}
+  - assetPath: Packages/zepeto.character.controller/Runtime/_Resources/AnimatorController/UIControllerTouchpadHandle.controller
+    asset: {fileID: 9100000, guid: 844524d99ff1945d1b2985e983f3775c, type: 2}
+  - assetPath: Assets/Ignore/Allsky/Day Sun High/Day Sun High Clear/Sky_Day Sun High
+      Clear_Cam_0_Front+Z.png
+    asset: {fileID: 2800000, guid: 9fdb0626b8a584e21a49c9aefa278778, type: 3}
+  - assetPath: Assets/Ignore/Allsky/Day Sun High/Day Sun High Clear/Sky_Day Sun High
+      Clear_Cam_2_Back-Z.png
+    asset: {fileID: 2800000, guid: 7b340167fb9e04ee88728e8e2656aa96, type: 3}
+  - assetPath: Assets/Ignore/AurynSky/Forest Pack/Prefabs/ForestTreePineTall2.prefab
+    asset: {fileID: 1755297518104830, guid: bb8b831afcc06c64f9df984b2ccb8642, type: 3}
+  - assetPath: Assets/Ignore/AurynSky/Forest Pack/Models/ForestLadderExtra.fbx
+    asset: {fileID: 100000, guid: d3e0e0f50a8a0244682ed6295d472f6f, type: 3}
+  - assetPath: Assets/Ignore/AurynSky/Forest Pack/Models/ForestLadder.fbx
+    asset: {fileID: 100000, guid: 063e70de915dd8843afde64c2c744ef5, type: 3}
+  - assetPath: Assets/Ignore/AurynSky/Forest Pack/Prefabs/Prefabs_Red/ForestTower_Red.prefab
+    asset: {fileID: 1549123707190546, guid: e7775214e5f7b1f469df26ce7b30e009, type: 3}
+  - assetPath: Packages/zepeto.character.controller/Runtime/_Resources/Animations/base/V2/jump_dash.anim
+    asset: {fileID: 7400000, guid: da3fb1523970c40e986536394f9ddb02, type: 2}
+  - assetPath: Assets/Ignore/AurynSky/Forest Pack/Materials/Water.mat
+    asset: {fileID: 2100000, guid: db6fe5b017a481740b6a70f2ea5860d5, type: 2}
+  - assetPath: Assets/Ignore/AurynSky/Forest Pack/Prefabs/ForestTreePineTall.prefab
+    asset: {fileID: 1683262223191906, guid: e150e8680dcf9784a89843e55668ad0e, type: 3}
+  - assetPath: Assets/Ignore/Allsky/Day Sun High/Day Sun High Clear/Sky_Day Sun High
+      Clear_Cam_1_Right+X.png
+    asset: {fileID: 2800000, guid: 7024e203108954b6495bdba5ec11e728, type: 3}
+  - assetPath: Assets/Ignore/AurynSky/Forest Pack/Textures/ColorPaletteNormal.png
+    asset: {fileID: 2800000, guid: 5d607b30e410f964a9389dfbb7223cdc, type: 3}
+  - assetPath: Assets/Ignore/AurynSky/Forest Pack/Prefabs/ForestTreeDShort.prefab
+    asset: {fileID: 1398384037247820, guid: 018e38b65bc9fb048a9c4271cdad70c2, type: 3}
+  - assetPath: Packages/zepeto.character.controller/Runtime/_Resources/Camera/ZepetoCamera.prefab
+    asset: {fileID: 5806182858035002866, guid: 5be4eddc5b02f4ec0a07a69db26df962, type: 3}
+  - assetPath: Packages/zepeto.character.controller/Runtime/_Resources/Animations/base/run.anim
+    asset: {fileID: 7400000, guid: 69a037643fec04d539fab537f50f143a, type: 2}
+  - assetPath: Assets/Ignore/AurynSky/Forest Pack/Prefabs/WaterQuadPixies.prefab
+    asset: {fileID: 1697305157750618, guid: 01551af6657ebea4ba670ee7b8c26600, type: 3}
+  - assetPath: Packages/zepeto.character.controller/Runtime/_Resources/Prefabs/Shadow/CharacterShadow.prefab
+    asset: {fileID: 1025544020809228, guid: 4512418b2a1844f42961867ad8421ab8, type: 3}
+  - assetPath: Packages/zepeto.character.controller/Runtime/_Resources/Animations/base/V2/move_walk_fast.anim
+    asset: {fileID: 7400000, guid: 4d5c25496692b4602b422bc47c03aeee, type: 2}
+  - assetPath: Assets/Ignore/Allsky/Day Sun High/Day Sun High Clear/Sky_Day Sun High
+      Clear_Cam_3_Left-X.png
+    asset: {fileID: 2800000, guid: 7d599536d5efa4a3ab36e5fa2976db40, type: 3}
+  - assetPath: Packages/zepeto.character.controller/Runtime/_Resources/Images/touchpad_jump_base.png
+    asset: {fileID: 2800000, guid: 5b13d326a52d8420cb9e4b87f84da3a1, type: 3}
+  - assetPath: Packages/zepeto.character.controller/Runtime/_Resources/Animations/base/V2/jump_move.anim
+    asset: {fileID: 7400000, guid: 4ca7e1aa057824010b3a4417e05f0b3e, type: 2}
+  - assetPath: Assets/Ignore/AurynSky/Forest Pack/Prefabs/Prefabs_Red/ForestCatapult_Red.prefab
+    asset: {fileID: 1307900707547382, guid: 1c646272db9f13f40a1cc8d87b080552, type: 3}
+  - assetPath: Assets/Ignore/AurynSky/Forest Pack/Models/ForestFlag.fbx
+    asset: {fileID: 100014, guid: c2384f4f142bbcc4a95566c55927a024, type: 3}
+  - assetPath: Assets/Ignore/AurynSky/Forest Pack/Prefabs/Prefabs_Blue/ForestCatapult_Blue.prefab
+    asset: {fileID: 1368493319012508, guid: 43739d3c57ae2ba4cbe919f44dba1d09, type: 3}
+  - assetPath: Assets/CustomedZepetoAnimator.controller
+    asset: {fileID: 9100000, guid: d473be5b0abd79c4d97622a7815bb978, type: 2}
+  - assetPath: Packages/com.unity.inputsystem/InputSystem/Editor/Icons/InputSystemUIInputModule@64.png
+    asset: {fileID: 2800000, guid: 3028dc075ba8c584d9bc7d1e0255e038, type: 3}
+  - assetPath: Assets/Ignore/AurynSky/Forest Pack/Prefabs/ForestTreeAppleShort.prefab
+    asset: {fileID: 1296487970245184, guid: f4f82206765cef54ca8f19ce34136e8a, type: 3}
+  - assetPath: Assets/Ignore/AurynSky/Forest Pack/Models/ForestGrass01.fbx
+    asset: {fileID: 100000, guid: dc09b7fdd0db0bd499b52f8862b84c83, type: 3}
+  - assetPath: Packages/zepeto.character.controller/Runtime/_Resources/Animations/base/gesture.anim
+    asset: {fileID: 7400000, guid: 298460fd2a0fd41f79d81cfd93cb37e5, type: 2}
+  - assetPath: Packages/zepeto.character.controller/Runtime/_Resources/Animations/base/V2/move_walk.anim
+    asset: {fileID: 7400000, guid: 64a39a4a7a4cb4ba483524044641aa03, type: 2}
+  - assetPath: Assets/Ignore/AurynSky/Forest Pack/Prefabs/ForestGroundDirt.prefab
+    asset: {fileID: 1641819918252310, guid: 13f1670c2e187874784d0f667f9057f5, type: 3}
+  - assetPath: Packages/zepeto.character.controller/Runtime/_Resources/Prefabs/Shadow/FxT_BlobShadow.mat
+    asset: {fileID: 2100000, guid: 5104a9f86b024467999136edaf59654f, type: 2}
+  - assetPath: Assets/Ignore/AurynSky/Forest Pack/Prefabs/RiverQuadCombined.prefab
+    asset: {fileID: 1915119254101614, guid: 7fe364418169a2e4f9dd663ecb4d5311, type: 3}
+  - assetPath: Assets/Ignore/AurynSky/Forest Pack/Models/ForestBlock01.fbx
+    asset: {fileID: 100000, guid: 8f059788f09129548819124918076d2e, type: 3}
+  - assetPath: Assets/Ignore/AurynSky/Forest Pack/Prefabs/RiverQuadSolo.prefab
+    asset: {fileID: 1858695033563648, guid: 358cf835a1cf6dc44be7c394778cb1ce, type: 3}
+  - assetPath: Packages/zepeto.character.controller/Runtime/_Resources/Prefabs/EventSystem.prefab
+    asset: {fileID: 7328100774219155841, guid: 67971ba158b48401988f9aad07940d6f, type: 3}
+  - assetPath: Assets/Ignore/AurynSky/Forest Pack/Models/ForestCrate.fbx
+    asset: {fileID: 100000, guid: a1f37417ef7b6c14cbbc17f7295996c7, type: 3}
+  - assetPath: Assets/Ignore/AurynSky/Forest Pack/Models/ForestTower.fbx
+    asset: {fileID: 100000, guid: 31e91474d696aac42a8e41c3cba06388, type: 3}
+  - assetPath: Packages/zepeto.character.controller/Runtime/_Resources/Animations/base/fall_end.anim
+    asset: {fileID: 7400000, guid: 7af54d170d4a4419e9af291140a5df9e, type: 2}
+  - assetPath: Assets/Ignore/AurynSky/Forest Pack/Materials/ColorPaletteBLUE.mat
+    asset: {fileID: 2100000, guid: e77b003cd8771304abfc74dd93c9f934, type: 2}
+  - assetPath: Assets/Ignore/AurynSky/Forest Pack/Prefabs/WaterFall.prefab
+    asset: {fileID: 1032618985213350, guid: a27d6e7d56bdc84479be345a168e6c70, type: 3}
+  - assetPath: Packages/zepeto.character.controller/Runtime/_Resources/Animations/base/V2/jump_double.anim
+    asset: {fileID: 7400000, guid: 0d8dc1582dd594227be179efe817cac7, type: 2}
+  - assetPath: Assets/Ignore/AurynSky/Forest Pack/Models/ForestBrazzier.fbx
+    asset: {fileID: 100000, guid: d6810d6654be8544f9195fa0f6d1121a, type: 3}
+  - assetPath: Packages/zepeto.character.controller/Runtime/_Resources/Animations/base/V2/idle.anim
+    asset: {fileID: 7400000, guid: dd0408f906f6d4455bfcdea4f2c36bc0, type: 2}
+  - assetPath: Packages/zepeto.character.controller/Runtime/_Resources/Animations/base/hand_idle_01.anim
+    asset: {fileID: 7400000, guid: a8a227925c3f249ed87a8ceeb839e3d7, type: 2}
+  - assetPath: Packages/zepeto.character.controller/Runtime/_Resources/Animations/UI/Controller/touchpad_handle_origin_on.anim
+    asset: {fileID: 7400000, guid: 17b22abf4273e432d99f5151291e7f95, type: 2}
+  - assetPath: Assets/Ignore/AurynSky/Forest Pack/Textures/ColorPaletteBLUE.png
+    asset: {fileID: 2800000, guid: d5fb391f53f55904c8e59e6670523ab9, type: 3}
+  - assetPath: Assets/Ignore/AurynSky/Forest Pack/Models/ForestGrass02.fbx
+    asset: {fileID: 100000, guid: b1243bcbb8ed74e4ab8fd4d283783ff0, type: 3}
+  - assetPath: Assets/Ignore/AurynSky/Forest Pack/Prefabs/ForestTreeAppleTall.prefab
+    asset: {fileID: 1478007673441398, guid: 7747cd3716304194fb26aa4e29900eb1, type: 3}
+  - assetPath: Assets/Ignore/AurynSky/Forest Pack/Models/ForestCannonBall.fbx
+    asset: {fileID: 100000, guid: 18a61d73650d23046b60f8a548888c12, type: 3}
+  - assetPath: Packages/com.unity.inputsystem/InputSystem/Plugins/PlayerInput/DefaultInputActions.inputactions
+    asset: {fileID: -944628639613478452, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  - assetPath: Packages/zepeto.character.controller/Runtime/_Resources/Animations/UI/Controller/touchpad_handle_origin_ziggle.anim
+    asset: {fileID: 7400000, guid: 61185ec652c834c1e91f184f7348bc17, type: 2}
+  resources:
+  - assetPath: Animations/Animator/BasicZepetoAnimatorV2
+    asset: {fileID: 9100000, guid: 7e8a50d6e2e3d314187595439a3325d7, type: 2}
+  - assetPath: Animations/Animator/GunZepetoAnimatorV2
+    asset: {fileID: 9100000, guid: 0521b783729e8324b9090c75c8e963a1, type: 2}
+  - assetPath: Animations/Clips/Basic/Falling
+    asset: {fileID: 7400000, guid: c067f3609aea9094499ad0ae08fb89c7, type: 2}
+  - assetPath: Animations/Clips/Basic/idle
+    asset: {fileID: 7400000, guid: b1f61cc8a612c7a4ab84eeb8e5ad258d, type: 2}
+  - assetPath: Animations/Clips/Basic/jump_dash
+    asset: {fileID: 7400000, guid: 40f1fcaa094ad0b4289e5a184999cc3f, type: 2}
+  - assetPath: Animations/Clips/Basic/jump_double
+    asset: {fileID: 7400000, guid: dc68cc54a15019941bd06a7cb0774ee7, type: 2}
+  - assetPath: Animations/Clips/Basic/jump_Idle
+    asset: {fileID: 7400000, guid: 4087b0baa68654d41a604309e532eaa4, type: 2}
+  - assetPath: Animations/Clips/Basic/jump_move
+    asset: {fileID: 7400000, guid: 2274cccfc28829640af63ea92bace41e, type: 2}
+  - assetPath: Animations/Clips/Basic/landing_deep
+    asset: {fileID: 7400000, guid: 34b432fd8908a794a9d10a4c94e3be8e, type: 2}
+  - assetPath: Animations/Clips/Basic/landing_roll
+    asset: {fileID: 7400000, guid: 7967fb488c63a504587462bb5df4e326, type: 2}
+  - assetPath: Animations/Clips/Basic/landing_slight
+    asset: {fileID: 7400000, guid: 5b2de2bbda0fae54b9ad6a3e3c7b40ea, type: 2}
+  - assetPath: Animations/Clips/Basic/move_run
+    asset: {fileID: 7400000, guid: 321083c7dfe89374d9862be4d15173ad, type: 2}
+  - assetPath: Animations/Clips/Basic/move_run_fast
+    asset: {fileID: 7400000, guid: 024df45306d134941874cbaf1d124665, type: 2}
+  - assetPath: Animations/Clips/Basic/move_turn
+    asset: {fileID: 7400000, guid: 187802192691da1418a4ddd86c24ff44, type: 2}
+  - assetPath: Animations/Clips/Basic/move_walk
+    asset: {fileID: 7400000, guid: 827bfe9c1cf435449b80ca8e32b44056, type: 2}
+  - assetPath: Animations/Clips/Basic/move_walk_fast
+    asset: {fileID: 7400000, guid: a35f7e10ac0a40d4d8b7a74c2408c817, type: 2}
+  - assetPath: Animations/Clips/Basic/Stamp
+    asset: {fileID: 7400000, guid: f711370a2aff89b449b3360e6b5adfa2, type: 2}
+  - assetPath: Animations/Clips/Gun/GunIdle
+    asset: {fileID: 7400000, guid: f7f674bd6366c314081d9e19668408b3, type: 2}
+  - assetPath: Animations/Download/firing rifle
+    asset: {fileID: 919132149155446097, guid: 4844adf25980eb6479b1798e46173263, type: 3}
+  - assetPath: Animations/Download/hit reaction
+    asset: {fileID: 919132149155446097, guid: 2ee012ec7dca3dc49aadb973ecbb0178, type: 3}
+  - assetPath: Animations/Download/reloading
+    asset: {fileID: 919132149155446097, guid: 604757c156730904ca756d2b73611a8b, type: 3}
+  - assetPath: Animations/Download/Remy
+    asset: {fileID: 919132149155446097, guid: 74709a31333d17342b1ef722048b2e4e, type: 3}
+  - assetPath: Animations/Download/rifle aiming idle
+    asset: {fileID: 919132149155446097, guid: 94ba8cd7f2e6d70408b3b911369159bc, type: 3}
+  - assetPath: Animations/Download/rifle jump
+    asset: {fileID: 919132149155446097, guid: 33b6fa5029601914ebc2de1da90ff942, type: 3}
+  - assetPath: Animations/Download/rifle run
+    asset: {fileID: 919132149155446097, guid: a4c3034b508d6a94fb0565dbcc61bff9, type: 3}
+  - assetPath: Animations/Download/run backwards
+    asset: {fileID: 919132149155446097, guid: c2851aca66535b445a43e8f1ce1dd72d, type: 3}
+  - assetPath: Animations/Download/strafe (2)
+    asset: {fileID: 919132149155446097, guid: 5c3239f799c2ff446aae645c926d67e4, type: 3}
+  - assetPath: Animations/Download/strafe left
+    asset: {fileID: 919132149155446097, guid: a0edecd51febd924dab15d54c04f64aa, type: 3}
+  - assetPath: Animations/Download/strafe right
+    asset: {fileID: 919132149155446097, guid: 1c4b5d60ee7b88d42beb7ca76b7cd6b2, type: 3}
+  - assetPath: Animations/Download/strafe
+    asset: {fileID: 919132149155446097, guid: 542226f8f590db24da4f0ed772809068, type: 3}
+  - assetPath: Animations/Download/toss grenade
+    asset: {fileID: 919132149155446097, guid: d5924cffc2bddf248bbb308bd977f6c7, type: 3}
+  - assetPath: Animations/Download/turn left
+    asset: {fileID: 919132149155446097, guid: 982ce19b3fa03a141b64798306560ead, type: 3}
+  - assetPath: Animations/Download/turning right 45 degrees
+    asset: {fileID: 919132149155446097, guid: 89bfbdfcaa8057c4b932abf75d2f1bab, type: 3}
+  - assetPath: Animations/Download/walking backwards
+    asset: {fileID: 919132149155446097, guid: 61bb6b2eb49a9294f868b3fc0dff1e8a, type: 3}
+  - assetPath: Animations/Download/walking
+    asset: {fileID: 919132149155446097, guid: ff7949f7637d30343a14d6c38bff573c, type: 3}
+  - assetPath: Battle_TimerInfo_Common 1
+    asset: {fileID: 4700566575857285038, guid: 2d51f370ed7133043bcf69941e84de91, type: 3}
+  - assetPath: Battle_TimerInfo_WhiteCustom 1
+    asset: {fileID: 7577100231697870777, guid: d1a9306e4f8eb774caf2fde4cb03cb03, type: 3}
+  - assetPath: Btn_Rectangle00_n_Common_Navy
+    asset: {fileID: 7554242588038137411, guid: 24c687164b3eec54dae815e18d0f67b7, type: 3}
+  - assetPath: Btn_Rectangle01_Common
+    asset: {fileID: 4268811757762335575, guid: 47e6d6b6f701b1647afd47a69647a345, type: 3}
+  - assetPath: Inventory 1
+    asset: {fileID: 1330485139455266595, guid: 912bf30524ed45844af015e0317c1420, type: 3}
+  - assetPath: Inventory 1d
+    asset: {fileID: 304108195737705517, guid: be06846b079feb14bb0d8ccc99051833, type: 3}
+  - assetPath: Loading
+    asset: {fileID: 5734438060282724961, guid: 3daf9b8036725134b994a6e499c2b9a1, type: 3}
+  - assetPath: MiddlePopup00_Light 1
+    asset: {fileID: 3668972228217376766, guid: 43f80fc90e83d544081f04e272fd8e4c, type: 3}
+  - assetPath: New Lighting Settings
+    asset: {fileID: 4890085278179872738, guid: 578fe5a384d22544498e7fbbbd880df5, type: 2}
+  - assetPath: PictureFrame00_Light
+    asset: {fileID: 7961545809136755651, guid: cffe546cd741f7e40a725540d1f627d1, type: 3}
+  - assetPath: Prefabs/creatorBaseSet_zepeto
+    asset: {fileID: 919132149155446097, guid: cba771fd6dd720546bea7bd2f400d6ff, type: 3}
+  - assetPath: Prefabs/New Avatar Mask
+    asset: {fileID: 31900000, guid: 3f4a00140cc7adf4c8ea4e264ad237e2, type: 2}
+  - assetPath: Prefabs/SkySphere
+    asset: {fileID: 7881337641447446670, guid: f93c84d7d2f5e8740bc2982baee76cf9, type: 3}
+  - assetPath: Prefabs/Upper
+    asset: {fileID: 31900000, guid: 87a273611ea84c840b550d0aea283d4f, type: 2}
+  - assetPath: Scenes/PaintballGun
+    asset: {fileID: 102900000, guid: 4950a937a613549baa198138952cae55, type: 3}
+  - assetPath: SkySphere
+    asset: {fileID: 919132149155446097, guid: 2527c5df78328c948829396cda1d83aa, type: 3}
+  - assetPath: SkySphere
+    asset: {fileID: 7881337641447446670, guid: da78566665ba4624ca72015498f17883, type: 3}
+  - assetPath: Slider_LoadingBar
+    asset: {fileID: 5143730633103287574, guid: 3fdbdcc736a8ea044a097241d951678f, type: 3}
+  - assetPath: Sprites/CrossStripedInner64
+    asset: {fileID: 2800000, guid: 9895d1cef452f9c449bbb4bef137e34b, type: 3}
+  - assetPath: Sprites/CrossStripedOuter64
+    asset: {fileID: 2800000, guid: f4003cefee1f34a4fb03d113575290d7, type: 3}
+  - assetPath: Status_Group
+    asset: {fileID: 4839073199660521290, guid: b506178ebefc21c44be605c14527974b, type: 3}
+  - assetPath: Text_CriticalNum_Red_64 1
+    asset: {fileID: 4629728454598587928, guid: ba087b84d4eaa374eba67be9f9681026, type: 3}
+  - assetPath: Text_CriticalNum_Transpar_46 1
+    asset: {fileID: 8690655870599168676, guid: 84844cfc08e24374f80e6436144732ad, type: 3}
+  - assetPath: Textures/StartSceneCam
+    asset: {fileID: 8400000, guid: a2f56aba6d2ea934988a22aef1e089fd, type: 2}
+  - assetPath: UI/Component/Button/CloseButton
+    asset: {fileID: 163127019881004965, guid: 2977d89a5a794f14ba0fbdaf72b5cffc, type: 3}
+  - assetPath: UI/Component/Card/CardFrame01_Light-Group
+    asset: {fileID: 1622858705514495925, guid: 6e6560e1dfc5cf54b8e24bdf7162b59a, type: 3}
+  - assetPath: UI/Component/Card/CardFrame01_Light_n_Blue
+    asset: {fileID: 795710624470233586, guid: 27e8c9e9a78fe1d47a1d83e8d442d9ad, type: 3}
+  - assetPath: UI/Component/Card/CardFrame03_Light_Blue
+    asset: {fileID: 3511761480841950432, guid: 78f0e6e2a98d35e40b8651cc70554da9, type: 3}
+  - assetPath: UI/Component/Card/List
+    asset: {fileID: 2725284575756930257, guid: 3065c67d42903bc479ec4d8826892c4d, type: 3}
+  - assetPath: UI/ControllerUI/Customed_UIController_Touchpad_Horizontal
+    asset: {fileID: 2787167779785370926, guid: 65fb88c896adc8d448f6c22d30e40636, type: 3}
+  - assetPath: UI/ControllerUI/Customed_UIController_Touchpad_Vertical
+    asset: {fileID: 8523051459139762370, guid: 90848cc6dd7c927439573a4f18830773, type: 3}
+  - assetPath: UI/DefaultUI/InGameUI
+    asset: {fileID: 2885933696165555785, guid: 4c8f02e2bfcc39f479cb9ff6292df105, type: 3}
+  - assetPath: UI/DefaultUI/StartUI
+    asset: {fileID: 8046165647919730760, guid: f08d3b586fcf3064c93e2c14765e23df, type: 3}
+  - assetPath: UI/PopUpUI/Daily_Bonus_7day 1
+    asset: {fileID: 9200397921595150085, guid: 03ca3fba3f0514f49923149bf4124eab, type: 3}
+  - assetPath: UI/PopUpUI/GameSelectPopUpUI
+    asset: {fileID: 8993601769225900128, guid: f6d21378261a9ae4b998413d40437d57, type: 3}
+  - assetPath: UI/PopUpUI/InGameAlertUI
+    asset: {fileID: 460124990547857513, guid: 9f653c49abfa067409d597e21e76e58a, type: 3}
+  - assetPath: UI/PopUpUI/NotGameRunningUI
+    asset: {fileID: 6192714871358796, guid: def9555bf0e58f24ea9c3161a1c0e00e, type: 3}
+  - assetPath: UI/PopUpUI/UrgeGameStartPopUpUI
+    asset: {fileID: 6192714871358796, guid: ca8d9ffcc39d94a5d8a355db95509219, type: 3}
+  - assetPath: UI/PopUpUI/WeaponPopupUI
+    asset: {fileID: 1522130039966385812, guid: 07ca005b2f4a6754ba111e6a30ec4cbb, type: 3}
+  - assetPath: Fonts & Materials/LiberationSans SDF - Drop Shadow
+    asset: {fileID: 2100000, guid: e73a58f6e2794ae7b1b7e50b7fb811b0, type: 2}
+  - assetPath: Fonts & Materials/LiberationSans SDF - Fallback
+    asset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+  - assetPath: Fonts & Materials/LiberationSans SDF - Outline
+    asset: {fileID: 2100000, guid: 79459efec17a4d00a321bdcc27bbc385, type: 2}
+  - assetPath: Fonts & Materials/LiberationSans SDF
+    asset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  - assetPath: LineBreaking Following Characters
+    asset: {fileID: 4900000, guid: fade42e8bc714b018fac513c043d323b, type: 3}
+  - assetPath: LineBreaking Leading Characters
+    asset: {fileID: 4900000, guid: d82c1b31c7e74239bff1220585707d2b, type: 3}
+  - assetPath: Sprite Assets/EmojiOne
+    asset: {fileID: 11400000, guid: c41005c129ba4d66911b75229fd70b45, type: 2}
+  - assetPath: Style Sheets/Default Style Sheet
+    asset: {fileID: 11400000, guid: f952c082cb03451daed3ee968ac6c63e, type: 2}
+  - assetPath: TMP Settings
+    asset: {fileID: 11400000, guid: 3f5b5dff67a942289a9defa416b206f3, type: 2}
+  manifest: {fileID: 11400000, guid: a0786b0cf392f494a98097bb96b90b75, type: 2}
+  enableCustomTags: 0
+  enableCustomLayers: 1
+  enableResources: 1

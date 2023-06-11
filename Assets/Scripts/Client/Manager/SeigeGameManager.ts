@@ -13,6 +13,10 @@ export interface InterSeigeGameManager {
     JoinGame(team: string): void;
 
     LeaveGame(): void;
+
+    EndGame(): void;
+
+    RuntheGame(): void;
 }
 
 export default class SeigeGameManager implements InterSeigeGameManager{
@@ -28,11 +32,15 @@ export default class SeigeGameManager implements InterSeigeGameManager{
     GameStart(sessionId: string){
         this.manager.Game.NowOnGame = GAME_NAME.Siege;
         this.manager.Game.GameStart(sessionId)
+    }
+
+    RuntheGame(){
         this.manager.UI.CloseDefaultUI('StartUI');
         this.manager.UI.ShowDefaultUI('InGameUI');
         if(!this.SeigeStartPoint) this.SeigeStartPoint = GameObject.Find("SeigeStartPoint").transform;
         this.myPlayerController.MyPlayerMovement.Teleport(this.SeigeStartPoint)
         this.myPlayerController.MyPlayerData.SetTeam('A')
+        this.manager.Game.IsGameRunning = true;
     }
 
     JoinGame(team: string){
@@ -41,5 +49,9 @@ export default class SeigeGameManager implements InterSeigeGameManager{
 
     LeaveGame(){
         
+    }
+
+    EndGame(){
+
     }
 }

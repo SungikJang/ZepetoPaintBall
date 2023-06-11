@@ -2,21 +2,22 @@ import { SandboxPlayer } from "ZEPETO.Multiplay";
 import { IModule } from "../IModule";
 import {sVector3, sQuaternion, SyncTransform, PlayerAdditionalValue, ZepetoAnimationParam} from "ZEPETO.Multiplay.Schema";
 import RespawnTimer from "../RespawnTimer";
+import AdminGameStartTimer from "../AdminGameStartTimer";
+import GameManager from "../GameTimer";
 
 export default class SyncComponentModule extends IModule {
     private sessionIdQueue: string[] = [];
     private instantiateObjCaches : InstantiateObj[] = [];
     private masterClient: Function = (): SandboxPlayer | undefined => this.server.loadPlayer(this.sessionIdQueue[0]);
     
-    private teamA: string[] = [];
-    private teamB: string[] = [];
-    private soloGame: string[] = [];
-    
     private adminPlayer: string;
     private isAdminPlayerAbsence: boolean = false;
     
     private isGameRunning: boolean = false;
     private nowRunningGame: string = 'None'
+    private nowGame: GameManager;
+    private adminTimer: AdminGameStartTimer;
+    private nowGameTime: number;
     
     set IsAdminPlayerAbsence(value: boolean){
         this.isAdminPlayerAbsence = value
@@ -30,6 +31,8 @@ export default class SyncComponentModule extends IModule {
     async OnJoin(client: SandboxPlayer) {
         if(!this.adminPlayer){
             this.adminPlayer = client.sessionId
+            this.adminTimer = new AdminGameStartTimer(this, client);
+            this.adminTimer.Start();
         }
         if(!this.sessionIdQueue.includes(client.sessionId)) {
             this.sessionIdQueue.push(client.sessionId.toString());
@@ -44,6 +47,9 @@ export default class SyncComponentModule extends IModule {
                 console.log(`master->, ${this.sessionIdQueue[0]}`);
                 this.server.broadcast(MESSAGE.MasterResponse, this.sessionIdQueue[0]);
             }
+            if(this.sessionIdQueue.length > 0){
+                this.adminPlayer = this.sessionIdQueue[0];
+            }
         }
     }
     
@@ -55,19 +61,10 @@ export default class SyncComponentModule extends IModule {
         this.server.onMessage(MESSAGE.GameStartBtnReq, (client, message) => {
             if(this.isGameRunning){
                 if(this.nowRunningGame.includes('Solo')){
-                    this.soloGame.push(client.sessionId);
-                    client.send('GameJoinRes', {nowRunningGame: this.nowRunningGame});
+                    this.nowGame.JoinPlayer(client)
                 }
                 else{
-                    let team = '';
-                    if (this.teamA.length >= this.teamB.length) {
-                        this.teamB.push(client.sessionId)
-                        team = 'B'
-                    } else {
-                        this.teamA.push(client.sessionId)
-                        team = 'A'
-                    }
-                    client.send('GameJoinRes', {nowRunningGame: this.nowRunningGame, team: team});
+                    this.nowGame.JoinPlayer(client)
                 }
             }
             else{
@@ -82,14 +79,19 @@ export default class SyncComponentModule extends IModule {
         this.server.onMessage(MESSAGE.StartGameReq, (client, message) => {
             this.isGameRunning = true;
             this.nowRunningGame = message.gameName;
-            this.teamA.push(client.sessionId);
-            console.log(this.nowRunningGame)
+            this.nowGame = new GameManager(this, client, message.gameName)
+            this.adminTimer.Destroy();
+            this.nowGame.Start();
         });
 
         this.server.onMessage(MESSAGE.PlayerDieReq, (client, message) => {
             const timer = new RespawnTimer(this, client);
             timer.Start();
             this.server.broadcast('PlayerDieRes', {player: client.sessionId})
+        });
+        
+        this.server.onMessage(MESSAGE.JoinGameReq, (client, message) => {
+            this.server.broadcast("JoinGameRes", {player: client.sessionId, time: this.nowGameTime})
         });
     }
     
@@ -210,6 +212,23 @@ export default class SyncComponentModule extends IModule {
             }
         });
     }
+    
+    public GameStart(client: SandboxPlayer, gameName: string){
+        client.send('GameStart', {sessionId: client.sessionId, gameName: gameName});
+    }
+
+    public GameJoin(client: SandboxPlayer, gameName: string, team?: string){
+       if(team){
+           client.send('GameJoinRes', {nowRunningGame: gameName, team: team});
+       }
+       else{
+           client.send('GameJoinRes', {nowRunningGame: gameName});
+       }
+    }
+    
+    public EndGame(winningTeam: string){
+        this.server.broadcast('EndGame', {winningTeam: winningTeam});
+    }
 
     public SendRespawn(client: SandboxPlayer){
         this.server.broadcast('PlayerRespawn', {player: client.sessionId});
@@ -220,12 +239,16 @@ export default class SyncComponentModule extends IModule {
             if (cnt > 1) {
                 this.kickPlayer(client, client.sessionId);
                 //  플레이어 퇴장
-                let ind = Math.floor(Math.random() * this.sessionIdQueue.length);
-                this.adminPlayer = this.sessionIdQueue[ind];
+                this.isAdminPlayerAbsence = false;
             } else {
                 client.send('UrgeGameStart', {player: client.sessionId});
             }
         }
+    }
+    
+    public SendGameTime(cnt: number){
+        this.nowGameTime = cnt
+        this.server.broadcast('GameTime', {time: cnt})
     }
 
     async kickPlayer(client: SandboxPlayer, userId: string){
@@ -288,4 +311,5 @@ enum MESSAGE {
     GameStartBtnReq = "GameStartBtnReq",
     StartGameReq = "StartGameReq",
     PlayerDieReq = "PlayerDieReq",
+    JoinGameReq = "JoinGameReq",
 }

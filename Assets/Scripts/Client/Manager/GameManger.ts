@@ -11,18 +11,36 @@ export interface InterGameManager {
     GameStart(sessionId: string): void;
     
     Init(): void;
+
+    get IsGameRunning();
+    
+    set IsGameRunning(value: boolean);
     
     get NowOnGame();
     
     set NowOnGame(value: string);
+
+    get GameTime();
+    
+    set GameTime(value: number);
 }
 
 export default class GameManager implements InterGameManager{
     nowOnGame: string = ''
     manager: InterManager;
+    isGameRunning: boolean = false;
+    gameTime: number = 0;
     
     Init(){
         this.manager = IOC.Instance.getInstance<InterManager>(Manager);
+    }
+
+    get IsGameRunning(){
+        return this.isGameRunning
+    }
+
+    set IsGameRunning(value: boolean){
+        this.isGameRunning = value;
     }
 
     get NowOnGame(){
@@ -31,6 +49,14 @@ export default class GameManager implements InterGameManager{
 
     set NowOnGame(value: string){
         this.nowOnGame = value;
+    }
+
+    get GameTime(){
+        return this.gameTime
+    }
+
+    set GameTime(value: number){
+        this.gameTime = value;
     }
     
     GameJoin(sessionId: string, team?: string){

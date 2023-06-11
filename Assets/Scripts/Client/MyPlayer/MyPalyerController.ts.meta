@@ -20,16 +20,15 @@ ScriptedImporter:
   wrapperOutputDirectory: Generated
   compiledResult: '{"source":"\"use strict\";\r\nObject.defineProperty(exports, \"__esModule\",
     { value: true });\r\nexports.MyPlayerController = void 0;\r\nconst ZEPETO_Script_1
-    = require(\"ZEPETO.Script\");\r\nconst IOC_1 = require(\"../IOC\");\r\nclass
-    MyPlayerController extends ZEPETO_Script_1.ZepetoScriptBehaviour {\r\n    constructor(_MyPlayerData,
-    _MyPlayerMovement) {\r\n        super();\r\n        this._mpData = _MyPlayerData;\r\n       
-    this._mpMovement = _MyPlayerMovement;\r\n        //this._mpTriggerController
-    = _MyPlayerTriggerController\r\n        this._mpMovement.Init();\r\n        this._mpData.Init();\r\n   
-    }\r\n    get MyPlayerData() {\r\n        return this._mpData;\r\n    }\r\n   
-    get MyPlayerMovement() {\r\n        return this._mpMovement;\r\n    }\r\n   
-    Init() {\r\n    }\r\n    Update() {\r\n        if (this._mpData) {\r\n           
+    = require(\"ZEPETO.Script\");\r\nclass MyPlayerController extends ZEPETO_Script_1.ZepetoScriptBehaviour
+    {\r\n    constructor(_MyPlayerData, _MyPlayerMovement) {\r\n        super();\r\n       
+    this._mpData = _MyPlayerData;\r\n        this._mpMovement = _MyPlayerMovement;\r\n       
+    //this._mpTriggerController = _MyPlayerTriggerController\r\n        this._mpMovement.Init();\r\n       
+    this._mpData.Init();\r\n    }\r\n    get MyPlayerData() {\r\n        return this._mpData;\r\n   
+    }\r\n    get MyPlayerMovement() {\r\n        return this._mpMovement;\r\n   
+    }\r\n    Init() {\r\n    }\r\n    Update() {\r\n        if (this._mpData) {\r\n           
     this._mpData.Update();\r\n        }\r\n        if (this._mpMovement) {\r\n           
     this._mpMovement.Update();\r\n        }\r\n    }\r\n}\r\nexports.MyPlayerController
-    = MyPlayerController;\r\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiTXlQYWx5ZXJDb250cm9sbGVyLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiTXlQYWx5ZXJDb250cm9sbGVyLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7OztBQUVBLGlEQUFxRDtBQUNyRCxnQ0FBeUI7QUFhekIsTUFBYSxrQkFBbUIsU0FBUSxxQ0FBcUI7SUFJekQsWUFDSSxhQUFnQyxFQUNoQyxpQkFBd0M7UUFHeEMsS0FBSyxFQUFFLENBQUM7UUFDUixJQUFJLENBQUMsT0FBTyxHQUFHLGFBQWEsQ0FBQztRQUM3QixJQUFJLENBQUMsV0FBVyxHQUFHLGlCQUFpQixDQUFDO1FBQ3JDLHdEQUF3RDtRQUV4RCxJQUFJLENBQUMsV0FBVyxDQUFDLElBQUksRUFBRSxDQUFDO1FBQ3hCLElBQUksQ0FBQyxPQUFPLENBQUMsSUFBSSxFQUFFLENBQUM7SUFDeEIsQ0FBQztJQUVELElBQVcsWUFBWTtRQUNuQixPQUFPLElBQUksQ0FBQyxPQUFPLENBQUM7SUFDeEIsQ0FBQztJQUVELElBQVcsZ0JBQWdCO1FBQ3ZCLE9BQU8sSUFBSSxDQUFDLFdBQVcsQ0FBQztJQUU1QixDQUFDO0lBRUQsSUFBSTtJQUVKLENBQUM7SUFFRCxNQUFNO1FBQ0YsSUFBRyxJQUFJLENBQUMsT0FBTyxFQUFDO1lBQ1osSUFBSSxDQUFDLE9BQU8sQ0FBQyxNQUFNLEVBQUUsQ0FBQztTQUN6QjtRQUNELElBQUcsSUFBSSxDQUFDLFdBQVcsRUFBQztZQUNoQixJQUFJLENBQUMsV0FBVyxDQUFDLE1BQU0sRUFBRSxDQUFDO1NBQzdCO0lBQ0wsQ0FBQztDQUNKO0FBdkNELGdEQXVDQyJ9","assetPath":"Assets/Scripts/Client/MyPlayer/MyPalyerController.ts","manifest":{"properties":[],"name":"MyPlayerController","description":"","hasAnimatorMove":false},"isCompiled":true}'
+    = MyPlayerController;\r\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiTXlQYWx5ZXJDb250cm9sbGVyLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiTXlQYWx5ZXJDb250cm9sbGVyLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7OztBQUVBLGlEQUFxRDtBQWNyRCxNQUFhLGtCQUFtQixTQUFRLHFDQUFxQjtJQUl6RCxZQUNJLGFBQWdDLEVBQ2hDLGlCQUF3QztRQUd4QyxLQUFLLEVBQUUsQ0FBQztRQUNSLElBQUksQ0FBQyxPQUFPLEdBQUcsYUFBYSxDQUFDO1FBQzdCLElBQUksQ0FBQyxXQUFXLEdBQUcsaUJBQWlCLENBQUM7UUFDckMsd0RBQXdEO1FBRXhELElBQUksQ0FBQyxXQUFXLENBQUMsSUFBSSxFQUFFLENBQUM7UUFDeEIsSUFBSSxDQUFDLE9BQU8sQ0FBQyxJQUFJLEVBQUUsQ0FBQztJQUN4QixDQUFDO0lBRUQsSUFBVyxZQUFZO1FBQ25CLE9BQU8sSUFBSSxDQUFDLE9BQU8sQ0FBQztJQUN4QixDQUFDO0lBRUQsSUFBVyxnQkFBZ0I7UUFDdkIsT0FBTyxJQUFJLENBQUMsV0FBVyxDQUFDO0lBRTVCLENBQUM7SUFFRCxJQUFJO0lBRUosQ0FBQztJQUVELE1BQU07UUFDRixJQUFHLElBQUksQ0FBQyxPQUFPLEVBQUM7WUFDWixJQUFJLENBQUMsT0FBTyxDQUFDLE1BQU0sRUFBRSxDQUFDO1NBQ3pCO1FBQ0QsSUFBRyxJQUFJLENBQUMsV0FBVyxFQUFDO1lBQ2hCLElBQUksQ0FBQyxXQUFXLENBQUMsTUFBTSxFQUFFLENBQUM7U0FDN0I7SUFDTCxDQUFDO0NBQ0o7QUF2Q0QsZ0RBdUNDIn0=","assetPath":"Assets/Scripts/Client/MyPlayer/MyPalyerController.ts","manifest":{"properties":[],"name":"MyPlayerController","description":"","hasAnimatorMove":false},"isCompiled":true}'
   typescriptHash: 03582ef8157ff6c0809b42f6cf4c130f
   onlyWriteTrigger: 0

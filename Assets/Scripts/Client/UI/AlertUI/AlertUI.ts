@@ -15,7 +15,7 @@ export default class AlertUI extends ZepetoScriptBehaviour {
 
     *DestroyAlertUI() {
         yield new WaitForSeconds(2);
-        IOC.Instance.getInstance<InterManager>(Manager).Resource.Destroy(this.gameObject);
+        IOC.Instance.getInstance<InterManager>(Manager).Resource.Destroy(this.gameObject.transform.parent.gameObject);
 
         //IOC.Instance.getInstance<InterManager>(Manager).UI.ShowAlertUI();
     }

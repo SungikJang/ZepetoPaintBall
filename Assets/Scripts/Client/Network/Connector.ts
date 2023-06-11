@@ -6,6 +6,7 @@ import {Action$1} from "System";
 import { InterMyPlayerController, MyPlayerController } from '../MyPlayer/MyPalyerController';
 import IOC from '../IOC';
 import Manager, { InterManager } from '../Manager/Manager';
+import { GAME_NAME } from '../Enums';
 
 export interface InterConnector {
     ManualSyncResHandlerFunc(room): void;
@@ -54,6 +55,38 @@ export default class Connector extends NetworkBase implements InterConnector{
                 }
             }
         );
+
+        room.AddMessageHandler(
+            'GameStart',
+            (data: { sessionId: string, gameName: string }) => {
+                switch (data.gameName){
+                    case GAME_NAME.Flag:
+                        this.manager.FlagGame.RuntheGame()
+                        break;
+                    case GAME_NAME.Siege:
+                        this.manager.SeigeGame.RuntheGame()
+                        break;
+                    case GAME_NAME.SoloFlag:
+                        this.manager.SoloFlagGame.RuntheGame(data.sessionId)
+                        break;
+                }
+            }
+        );
+
+        room.AddMessageHandler(
+            'UrgeGameStart',
+            (data: { player: string }) => {
+                this.manager.UI.ShowPopUpUI("UrgeGameStartPopUpUI")
+            }
+        );
+
+        room.AddMessageHandler(
+            'GameTime',
+            (data: { time: number }) => {
+                this.manager.Game.GameTime = data.time;
+            }
+        );
+
     }
 
     Start() {

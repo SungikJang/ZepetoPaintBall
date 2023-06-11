@@ -12,6 +12,10 @@ export interface InterSoloFlagGameManager {
     JoinGame(): void;
 
     LeaveGame(): void;
+
+    EndGame(): void;
+
+    RuntheGame(sessionId: string): void;
 }
 
 export default class SoloFlagGameManager implements InterSoloFlagGameManager{
@@ -27,11 +31,15 @@ export default class SoloFlagGameManager implements InterSoloFlagGameManager{
     GameStart(sessionId: string){
         this.manager.Game.NowOnGame = GAME_NAME.SoloFlag;
         this.manager.Game.GameStart(sessionId);
+    }
+
+    RuntheGame(sessionId: string){
         this.manager.UI.CloseDefaultUI('StartUI');
         this.manager.UI.ShowDefaultUI('InGameUI');
         if(!this.SoloFlagStartPoint) this.SoloFlagStartPoint = GameObject.Find("SoloFlagStartPoint").transform;
         this.myPlayerController.MyPlayerMovement.Teleport(this.SoloFlagStartPoint)
         this.myPlayerController.MyPlayerData.SetTeam(sessionId)
+        this.manager.Game.IsGameRunning = true;
     }
     
     JoinGame(){
@@ -39,6 +47,10 @@ export default class SoloFlagGameManager implements InterSoloFlagGameManager{
     }
 
     LeaveGame(){
+
+    }
+
+    EndGame(){
 
     }
 }

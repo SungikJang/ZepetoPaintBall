@@ -20,12 +20,15 @@ export default class GameSelectPopupUI extends ZepetoScriptBehaviour {
         this.manager = IOC.Instance.getInstance<InterManager>(Manager);
         this.flagBtn.onClick.AddListener(()=>{
             this.manager.FlagGame.GameStart(ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.id);
+            this.manager.UI.DeletePopUpUI()
         });
         this.seigeBtn.onClick.AddListener(()=>{
             this.manager.SeigeGame.GameStart(ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.id);
+            this.manager.UI.DeletePopUpUI()
         });
         this.soloFlagBtn.onClick.AddListener(()=>{
             this.manager.SoloFlagGame.GameStart(ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.id);
+            this.manager.UI.DeletePopUpUI()
         });
         this.Btn1.onClick.AddListener(()=>{
             

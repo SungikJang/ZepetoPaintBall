@@ -1,0 +1,42 @@
+fileFormatVersion: 2
+guid: 8dc71791a50eb9e4ba92e0bc73262958
+importerOverride: ZEPETO.Script.Compiler:ZEPETO.Script:TypescriptAssetImporter
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: -1123457745, guid: 54cf806323ffe4418a4ce4cc63fe6b9d, type: 3}
+  isAssemblyDeclarations: 0
+  assembly: 
+  generateAllTypes: 1
+  types: []
+  generateWrapper: 0
+  overrideWrapperTypes: 0
+  wrapperTypes: []
+  WrapperFilters: []
+  wrapperOutputDirectory: Generated
+  compiledResult: '{"source":"\"use strict\";\r\nObject.defineProperty(exports, \"__esModule\",
+    { value: true });\r\nconst ZEPETO_Script_1 = require(\"ZEPETO.Script\");\r\nconst
+    UnityEngine_1 = require(\"UnityEngine\");\r\nconst MyPalyerController_1 = require(\"../../MyPlayer/MyPalyerController\");\r\nconst
+    Manager_1 = require(\"../../Manager/Manager\");\r\nconst IOC_1 = require(\"../../IOC\");\r\nconst
+    Enums_1 = require(\"../../Enums\");\r\nclass InGameUI extends ZEPETO_Script_1.ZepetoScriptBehaviour
+    {\r\n    Start() {\r\n        this.myPlayerController = IOC_1.default.Instance.getInstance(MyPalyerController_1.MyPlayerController);\r\n       
+    this.manager = IOC_1.default.Instance.getInstance(Manager_1.default);\r\n       
+    switch (this.manager.Game.NowOnGame) {\r\n            case Enums_1.GAME_NAME.Flag:\r\n               
+    this.ScoreObj1.SetActive(true);\r\n                this.ScoreObj2.SetActive(true);\r\n               
+    break;\r\n            case Enums_1.GAME_NAME.Siege:\r\n                this.ScoreObj1.SetActive(true);\r\n               
+    this.ScoreObj2.SetActive(true);\r\n                break;\r\n            case
+    Enums_1.GAME_NAME.SoloFlag:\r\n                break;\r\n        }\r\n    }\r\n   
+    Update() {\r\n        this.UpdateTime();\r\n    }\r\n    UpdateTime() {\r\n       
+    let min = 0;\r\n        let sec = 0;\r\n        min = Math.floor(this.manager.Game.GameTime
+    / 60);\r\n        sec = Math.floor(this.manager.Game.GameTime % 60);\r\n       
+    if (min < 10) {\r\n            this.minText.text = ''0'' + min.toString();\r\n       
+    }\r\n        else {\r\n            this.minText.text = min.toString();\r\n       
+    }\r\n        if (sec < 10) {\r\n            this.secText.text = ''0'' + sec.toString();\r\n       
+    }\r\n        else {\r\n            this.secText.text = sec.toString();\r\n       
+    }\r\n    }\r\n}\r\nexports.default = InGameUI;\r\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiSW5HYW1lVUkuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJJbkdhbWVVSS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUNBLGlEQUFxRDtBQUVyRCw2Q0FBeUM7QUFDekMsMEVBQWdHO0FBQ2hHLG1EQUE4RDtBQUM5RCxtQ0FBNEI7QUFDNUIsdUNBQXdDO0FBRXhDLE1BQXFCLFFBQVMsU0FBUSxxQ0FBcUI7SUFtQnZELEtBQUs7UUFDRCxJQUFJLENBQUMsa0JBQWtCLEdBQUcsYUFBRyxDQUFDLFFBQVEsQ0FBQyxXQUFXLENBQTBCLHVDQUFrQixDQUFDLENBQUM7UUFDaEcsSUFBSSxDQUFDLE9BQU8sR0FBRyxhQUFHLENBQUMsUUFBUSxDQUFDLFdBQVcsQ0FBZSxpQkFBTyxDQUFDLENBQUM7UUFDL0QsUUFBTyxJQUFJLENBQUMsT0FBTyxDQUFDLElBQUksQ0FBQyxTQUFTLEVBQUM7WUFDL0IsS0FBSyxpQkFBUyxDQUFDLElBQUk7Z0JBQ2YsSUFBSSxDQUFDLFNBQVMsQ0FBQyxTQUFTLENBQUMsSUFBSSxDQUFDLENBQUM7Z0JBQy9CLElBQUksQ0FBQyxTQUFTLENBQUMsU0FBUyxDQUFDLElBQUksQ0FBQyxDQUFDO2dCQUMvQixNQUFNO1lBQ1YsS0FBSyxpQkFBUyxDQUFDLEtBQUs7Z0JBQ2hCLElBQUksQ0FBQyxTQUFTLENBQUMsU0FBUyxDQUFDLElBQUksQ0FBQyxDQUFDO2dCQUMvQixJQUFJLENBQUMsU0FBUyxDQUFDLFNBQVMsQ0FBQyxJQUFJLENBQUMsQ0FBQztnQkFDL0IsTUFBTTtZQUNWLEtBQUssaUJBQVMsQ0FBQyxRQUFRO2dCQUVuQixNQUFNO1NBQ2I7SUFDTCxDQUFDO0lBRUQsTUFBTTtRQUNGLElBQUksQ0FBQyxVQUFVLEVBQUUsQ0FBQztJQUN0QixDQUFDO0lBRUQsVUFBVTtRQUNOLElBQUksR0FBRyxHQUFXLENBQUMsQ0FBQztRQUNwQixJQUFJLEdBQUcsR0FBVyxDQUFDLENBQUM7UUFDcEIsR0FBRyxHQUFHLElBQUksQ0FBQyxLQUFLLENBQUMsSUFBSSxDQUFDLE9BQU8sQ0FBQyxJQUFJLENBQUMsUUFBUSxHQUFHLEVBQUUsQ0FBQyxDQUFBO1FBQ2pELEdBQUcsR0FBRyxJQUFJLENBQUMsS0FBSyxDQUFDLElBQUksQ0FBQyxPQUFPLENBQUMsSUFBSSxDQUFDLFFBQVEsR0FBRyxFQUFFLENBQUMsQ0FBQztRQUNsRCxJQUFHLEdBQUcsR0FBRyxFQUFFLEVBQUM7WUFDUixJQUFJLENBQUMsT0FBTyxDQUFDLElBQUksR0FBRyxHQUFHLEdBQUcsR0FBRyxDQUFDLFFBQVEsRUFBRSxDQUFBO1NBQzNDO2FBQ0c7WUFDQSxJQUFJLENBQUMsT0FBTyxDQUFDLElBQUksR0FBRyxHQUFHLENBQUMsUUFBUSxFQUFFLENBQUE7U0FDckM7UUFDRCxJQUFHLEdBQUcsR0FBRyxFQUFFLEVBQUM7WUFDUixJQUFJLENBQUMsT0FBTyxDQUFDLElBQUksR0FBRyxHQUFHLEdBQUcsR0FBRyxDQUFDLFFBQVEsRUFBRSxDQUFBO1NBQzNDO2FBQ0c7WUFDQSxJQUFJLENBQUMsT0FBTyxDQUFDLElBQUksR0FBRyxHQUFHLENBQUMsUUFBUSxFQUFFLENBQUE7U0FDckM7SUFDTCxDQUFDO0NBRUo7QUE1REQsMkJBNERDIn0=","assetPath":"Assets/Scripts/Client/UI/DefaultUI/InGameUI.ts","manifest":{"properties":[{"assembly":"UnityEngine.UI","name":"homeBtn","type":"UnityEngine.UI.Button","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]},{"assembly":"UnityEngine.UI","name":"settingBtn","type":"UnityEngine.UI.Button","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]},{"assembly":"Unity.TextMeshPro","name":"myTeamScore","type":"TMPro.TMP_Text","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]},{"assembly":"Unity.TextMeshPro","name":"opponentScore","type":"TMPro.TMP_Text","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]},{"assembly":"UnityEngine.CoreModule","name":"myTeamFlag","type":"UnityEngine.GameObject","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]},{"assembly":"UnityEngine.CoreModule","name":"opponentFlag","type":"UnityEngine.GameObject","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]},{"assembly":"UnityEngine.CoreModule","name":"myTeamSeige","type":"UnityEngine.GameObject","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]},{"assembly":"UnityEngine.CoreModule","name":"opponentSeige","type":"UnityEngine.GameObject","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]},{"assembly":"UnityEngine.CoreModule","name":"ScoreObj1","type":"UnityEngine.GameObject","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]},{"assembly":"UnityEngine.CoreModule","name":"ScoreObj2","type":"UnityEngine.GameObject","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]},{"assembly":"Unity.TextMeshPro","name":"minText","type":"TMPro.TMP_Text","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]},{"assembly":"Unity.TextMeshPro","name":"secText","type":"TMPro.TMP_Text","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]},{"assembly":"UnityEngine.CoreModule","name":"leaveAlertObj","type":"UnityEngine.GameObject","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]},{"assembly":"","name":"myPlayerController","type":"C:/Users/hyo05/Desktop/GamePG/PaintBallGame/ZepetoPaintBall/Assets/Scripts/Client/MyPlayer/MyPalyerController.InterMyPlayerController","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]},{"assembly":"","name":"manager","type":"C:/Users/hyo05/Desktop/GamePG/PaintBallGame/ZepetoPaintBall/Assets/Scripts/Client/Manager/Manager.InterManager","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]}],"name":"InGameUI","description":"","hasAnimatorMove":false},"isCompiled":true}'
+  typescriptHash: 5a52aa5ec0b3a4530c8539f5a52e891e
+  onlyWriteTrigger: 0

@@ -1,4 +1,4 @@
-import {AudioListener, GameObject, Random, Time, Transform, Vector3, WaitForSeconds} from 'UnityEngine';
+import {AudioListener, GameObject, Quaternion, Random, Time, Transform, Vector3, WaitForSeconds} from 'UnityEngine';
 import {ZepetoPlayer, ZepetoPlayers} from 'ZEPETO.Character.Controller';
 import { ZepetoScriptBehaviour } from 'ZEPETO.Script'
 import IOC from '../IOC';
@@ -38,9 +38,11 @@ export default class MyPlayerMovement extends ZepetoScriptBehaviour implements I
     // }
 
     Update(){
-        if(this.isInStartUI && this.myPlayerObject){
-            this.myPlayerObject.transform.Rotate(Vector3.up * Time.deltaTime * 30);
+        if(!this.manager){
+            this.manager = IOC.Instance.getInstance<InterManager>(Manager);
         }
+        this.Rotate();
+        this.LookDir();
     }
 
     SetMyPlayer(player: ZepetoPlayer){
@@ -48,8 +50,24 @@ export default class MyPlayerMovement extends ZepetoScriptBehaviour implements I
         this.myPlayerObject = this.myPlayer.character.gameObject;
         console.log("myplayer세팅완료")
     }
-
+                           
     Teleport(pos: Transform){
         this.myPlayer.character.Teleport(pos.position, pos.rotation);
+    }
+    
+    Rotate(){
+        if(!this.manager.Game.IsGameRunning){
+            if(this.isInStartUI && this.myPlayerObject){
+                this.myPlayerObject.transform.Rotate(Vector3.up * Time.deltaTime * 30);
+            }
+        }
+    }
+    
+    LookDir(){
+        if(this.manager.Game.IsGameRunning){
+            let q = this.myPlayer.character.gameObject.transform.rotation.eulerAngles
+            let cq = ZepetoPlayers.instance.LocalPlayer.zepetoCamera.camera.gameObject.transform.rotation.eulerAngles
+            this.myPlayer.character.gameObject.transform.rotation = Quaternion.Euler(new Vector3(q.x, cq.y, q.z))
+        }
     }
 }

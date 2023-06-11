@@ -12,6 +12,10 @@ export interface InterFlagGameManager {
     JoinGame(team: string): void;
 
     LeaveGame(): void;
+    
+    EndGame(): void;
+
+    RuntheGame(): void;
 }
 
 export default class FlagGameManager implements InterFlagGameManager{
@@ -27,11 +31,15 @@ export default class FlagGameManager implements InterFlagGameManager{
     GameStart(sessionId: string){
         this.manager.Game.NowOnGame = GAME_NAME.Flag;
         this.manager.Game.GameStart(sessionId)
+    }
+    
+    RuntheGame(){
         this.manager.UI.CloseDefaultUI('StartUI');
         this.manager.UI.ShowDefaultUI('InGameUI');
         if(!this.FlagStartPoint) this.FlagStartPoint = GameObject.Find("FlagStartPoint").transform;
-        this.myPlayerController.MyPlayerMovement.Teleport(this.FlagStartPoint)
+        this.myPlayerController.MyPlayerMovement.Teleport(this.FlagStartPoint.GetChild(0).GetChild(0))
         this.myPlayerController.MyPlayerData.SetTeam('A')
+        this.manager.Game.IsGameRunning = true;
     }
 
     JoinGame(team: string){
@@ -40,5 +48,9 @@ export default class FlagGameManager implements InterFlagGameManager{
 
     LeaveGame(){
 
+    }
+
+    EndGame(){
+        
     }
 }

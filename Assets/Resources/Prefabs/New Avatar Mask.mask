@@ -1,0 +1,223 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: New Avatar Mask
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: hips
+    m_Weight: 1
+  - m_Path: hips/hips_scale
+    m_Weight: 1
+  - m_Path: hips/pelvis
+    m_Weight: 1
+  - m_Path: hips/pelvis/pelvis_scale
+    m_Weight: 1
+  - m_Path: hips/pelvis/upperLeg_L
+    m_Weight: 1
+  - m_Path: hips/pelvis/upperLeg_L/upperLeg_L_scale
+    m_Weight: 1
+  - m_Path: hips/pelvis/upperLeg_L/upperLegTwist_L
+    m_Weight: 1
+  - m_Path: hips/pelvis/upperLeg_L/upperLegTwist_L/lowerLeg_L
+    m_Weight: 1
+  - m_Path: hips/pelvis/upperLeg_L/upperLegTwist_L/lowerLeg_L/lowerLeg_L_scale
+    m_Weight: 1
+  - m_Path: hips/pelvis/upperLeg_L/upperLegTwist_L/lowerLeg_L/lowerLegTwist_L
+    m_Weight: 1
+  - m_Path: hips/pelvis/upperLeg_L/upperLegTwist_L/lowerLeg_L/lowerLegTwist_L/foot_L
+    m_Weight: 1
+  - m_Path: hips/pelvis/upperLeg_L/upperLegTwist_L/lowerLeg_L/lowerLegTwist_L/foot_L/heel_L
+    m_Weight: 1
+  - m_Path: hips/pelvis/upperLeg_L/upperLegTwist_L/lowerLeg_L/lowerLegTwist_L/foot_L/toes_L
+    m_Weight: 1
+  - m_Path: hips/pelvis/upperLeg_L/upperLegTwist_L/lowerLeg_L/lowerLegTwist_L/lowerLegTwist_L_scale
+    m_Weight: 1
+  - m_Path: hips/pelvis/upperLeg_L/upperLegTwist_L/upperLegTwist_L_scale
+    m_Weight: 1
+  - m_Path: hips/pelvis/upperReg_R
+    m_Weight: 1
+  - m_Path: hips/pelvis/upperReg_R/upperReg_R_scale
+    m_Weight: 1
+  - m_Path: hips/pelvis/upperReg_R/upperRegTwist_R
+    m_Weight: 1
+  - m_Path: hips/pelvis/upperReg_R/upperRegTwist_R/lowerReg_R
+    m_Weight: 1
+  - m_Path: hips/pelvis/upperReg_R/upperRegTwist_R/lowerReg_R/lowerReg_R_scale
+    m_Weight: 1
+  - m_Path: hips/pelvis/upperReg_R/upperRegTwist_R/lowerReg_R/lowerRegTwist_R
+    m_Weight: 1
+  - m_Path: hips/pelvis/upperReg_R/upperRegTwist_R/lowerReg_R/lowerRegTwist_R/foot_R
+    m_Weight: 1
+  - m_Path: hips/pelvis/upperReg_R/upperRegTwist_R/lowerReg_R/lowerRegTwist_R/foot_R/heel_R
+    m_Weight: 1
+  - m_Path: hips/pelvis/upperReg_R/upperRegTwist_R/lowerReg_R/lowerRegTwist_R/foot_R/toes_R
+    m_Weight: 1
+  - m_Path: hips/pelvis/upperReg_R/upperRegTwist_R/lowerReg_R/lowerRegTwist_R/lowerRegTwist_R_scale
+    m_Weight: 1
+  - m_Path: hips/pelvis/upperReg_R/upperRegTwist_R/upperRegTwist_R_scale
+    m_Weight: 1
+  - m_Path: hips/spine
+    m_Weight: 1
+  - m_Path: hips/spine/chest
+    m_Weight: 1
+  - m_Path: hips/spine/chest/chest_scale
+    m_Weight: 1
+  - m_Path: hips/spine/chest/chestUpper
+    m_Weight: 1
+  - m_Path: hips/spine/chest/chestUpper/chestUpper_scale
+    m_Weight: 1
+  - m_Path: hips/spine/chest/chestUpper/neck
+    m_Weight: 1
+  - m_Path: hips/spine/chest/chestUpper/neck/head
+    m_Weight: 1
+  - m_Path: hips/spine/chest/chestUpper/neck/head/hairAll
+    m_Weight: 1
+  - m_Path: hips/spine/chest/chestUpper/neck/head/hairAll/headUpper
+    m_Weight: 1
+  - m_Path: hips/spine/chest/chestUpper/neck/head/hairAll/headUpper/foreHead
+    m_Weight: 1
+  - m_Path: hips/spine/chest/chestUpper/neck/head/hairAll/jBone
+    m_Weight: 1
+  - m_Path: hips/spine/chest/chestUpper/neck/head/iScale_L
+    m_Weight: 1
+  - m_Path: hips/spine/chest/chestUpper/neck/head/iScale_L/eLineIn_L
+    m_Weight: 1
+  - m_Path: hips/spine/chest/chestUpper/neck/head/iScale_L/eLineOut_L
+    m_Weight: 1
+  - m_Path: hips/spine/chest/chestUpper/neck/head/iScale_L/eye_L
+    m_Weight: 1
+  - m_Path: hips/spine/chest/chestUpper/neck/head/iScale_R
+    m_Weight: 1
+  - m_Path: hips/spine/chest/chestUpper/neck/head/iScale_R/eLineIn_R
+    m_Weight: 1
+  - m_Path: hips/spine/chest/chestUpper/neck/head/iScale_R/eLineOut_R
+    m_Weight: 1
+  - m_Path: hips/spine/chest/chestUpper/neck/head/iScale_R/eye_R
+    m_Weight: 1
+  - m_Path: hips/spine/chest/chestUpper/neck/head/jaw
+    m_Weight: 1
+  - m_Path: hips/spine/chest/chestUpper/neck/head/mouth
+    m_Weight: 1
+  - m_Path: hips/spine/chest/chestUpper/neck/head/mouth/lip_L
+    m_Weight: 1
+  - m_Path: hips/spine/chest/chestUpper/neck/head/mouth/lip_R
+    m_Weight: 1
+  - m_Path: hips/spine/chest/chestUpper/neck/head/nose
+    m_Weight: 1
+  - m_Path: hips/spine/chest/chestUpper/neck/neck_scale
+    m_Weight: 1
+  - m_Path: hips/spine/chest/chestUpper/shoulder_L
+    m_Weight: 1
+  - m_Path: hips/spine/chest/chestUpper/shoulder_L/shoulder_L_scale
+    m_Weight: 1
+  - m_Path: hips/spine/chest/chestUpper/shoulder_L/upperArm_L
+    m_Weight: 1
+  - m_Path: hips/spine/chest/chestUpper/shoulder_L/upperArm_L/upperArm_L_scale
+    m_Weight: 1
+  - m_Path: hips/spine/chest/chestUpper/shoulder_L/upperArm_L/upperArmTwist_L
+    m_Weight: 1
+  - m_Path: hips/spine/chest/chestUpper/shoulder_L/upperArm_L/upperArmTwist_L/lowerArm_L
+    m_Weight: 1
+  - m_Path: hips/spine/chest/chestUpper/shoulder_L/upperArm_L/upperArmTwist_L/lowerArm_L/lowerArm_L_scale
+    m_Weight: 1
+  - m_Path: hips/spine/chest/chestUpper/shoulder_L/upperArm_L/upperArmTwist_L/lowerArm_L/lowerArmTwist_L
+    m_Weight: 1
+  - m_Path: hips/spine/chest/chestUpper/shoulder_L/upperArm_L/upperArmTwist_L/lowerArm_L/lowerArmTwist_L/hand_L
+    m_Weight: 1
+  - m_Path: hips/spine/chest/chestUpper/shoulder_L/upperArm_L/upperArmTwist_L/lowerArm_L/lowerArmTwist_L/hand_L/indexPro_L
+    m_Weight: 1
+  - m_Path: hips/spine/chest/chestUpper/shoulder_L/upperArm_L/upperArmTwist_L/lowerArm_L/lowerArmTwist_L/hand_L/indexPro_L/indexInt_L
+    m_Weight: 1
+  - m_Path: hips/spine/chest/chestUpper/shoulder_L/upperArm_L/upperArmTwist_L/lowerArm_L/lowerArmTwist_L/hand_L/indexPro_L/indexInt_L/indexDis_L
+    m_Weight: 1
+  - m_Path: hips/spine/chest/chestUpper/shoulder_L/upperArm_L/upperArmTwist_L/lowerArm_L/lowerArmTwist_L/hand_L/littlePro_L
+    m_Weight: 1
+  - m_Path: hips/spine/chest/chestUpper/shoulder_L/upperArm_L/upperArmTwist_L/lowerArm_L/lowerArmTwist_L/hand_L/littlePro_L/littleInt_L
+    m_Weight: 1
+  - m_Path: hips/spine/chest/chestUpper/shoulder_L/upperArm_L/upperArmTwist_L/lowerArm_L/lowerArmTwist_L/hand_L/littlePro_L/littleInt_L/littleDis_L
+    m_Weight: 1
+  - m_Path: hips/spine/chest/chestUpper/shoulder_L/upperArm_L/upperArmTwist_L/lowerArm_L/lowerArmTwist_L/hand_L/middlePro_L
+    m_Weight: 1
+  - m_Path: hips/spine/chest/chestUpper/shoulder_L/upperArm_L/upperArmTwist_L/lowerArm_L/lowerArmTwist_L/hand_L/middlePro_L/middleInt_L
+    m_Weight: 1
+  - m_Path: hips/spine/chest/chestUpper/shoulder_L/upperArm_L/upperArmTwist_L/lowerArm_L/lowerArmTwist_L/hand_L/middlePro_L/middleInt_L/middleDis_L
+    m_Weight: 1
+  - m_Path: hips/spine/chest/chestUpper/shoulder_L/upperArm_L/upperArmTwist_L/lowerArm_L/lowerArmTwist_L/hand_L/ringPro_L
+    m_Weight: 1
+  - m_Path: hips/spine/chest/chestUpper/shoulder_L/upperArm_L/upperArmTwist_L/lowerArm_L/lowerArmTwist_L/hand_L/ringPro_L/ringInt_L
+    m_Weight: 1
+  - m_Path: hips/spine/chest/chestUpper/shoulder_L/upperArm_L/upperArmTwist_L/lowerArm_L/lowerArmTwist_L/hand_L/ringPro_L/ringInt_L/ringDis_L
+    m_Weight: 1
+  - m_Path: hips/spine/chest/chestUpper/shoulder_L/upperArm_L/upperArmTwist_L/lowerArm_L/lowerArmTwist_L/hand_L/thumbPro_L
+    m_Weight: 1
+  - m_Path: hips/spine/chest/chestUpper/shoulder_L/upperArm_L/upperArmTwist_L/lowerArm_L/lowerArmTwist_L/hand_L/thumbPro_L/thumbInt_L
+    m_Weight: 1
+  - m_Path: hips/spine/chest/chestUpper/shoulder_L/upperArm_L/upperArmTwist_L/lowerArm_L/lowerArmTwist_L/hand_L/thumbPro_L/thumbInt_L/thumbDis_L
+    m_Weight: 1
+  - m_Path: hips/spine/chest/chestUpper/shoulder_L/upperArm_L/upperArmTwist_L/lowerArm_L/lowerArmTwist_L/lowerArmTwist_L_scale
+    m_Weight: 1
+  - m_Path: hips/spine/chest/chestUpper/shoulder_L/upperArm_L/upperArmTwist_L/upperArmTwist_L_scale
+    m_Weight: 1
+  - m_Path: hips/spine/chest/chestUpper/shoulder_R
+    m_Weight: 1
+  - m_Path: hips/spine/chest/chestUpper/shoulder_R/shoulder_R_scale
+    m_Weight: 1
+  - m_Path: hips/spine/chest/chestUpper/shoulder_R/upperArm_R
+    m_Weight: 1
+  - m_Path: hips/spine/chest/chestUpper/shoulder_R/upperArm_R/upperArm_R_scale
+    m_Weight: 1
+  - m_Path: hips/spine/chest/chestUpper/shoulder_R/upperArm_R/upperArmTwist_R
+    m_Weight: 1
+  - m_Path: hips/spine/chest/chestUpper/shoulder_R/upperArm_R/upperArmTwist_R/lowerArm_R
+    m_Weight: 1
+  - m_Path: hips/spine/chest/chestUpper/shoulder_R/upperArm_R/upperArmTwist_R/lowerArm_R/lowerArm_R_scale
+    m_Weight: 1
+  - m_Path: hips/spine/chest/chestUpper/shoulder_R/upperArm_R/upperArmTwist_R/lowerArm_R/lowerArmTwist_R
+    m_Weight: 1
+  - m_Path: hips/spine/chest/chestUpper/shoulder_R/upperArm_R/upperArmTwist_R/lowerArm_R/lowerArmTwist_R/hand_R
+    m_Weight: 1
+  - m_Path: hips/spine/chest/chestUpper/shoulder_R/upperArm_R/upperArmTwist_R/lowerArm_R/lowerArmTwist_R/hand_R/indexPro_R
+    m_Weight: 1
+  - m_Path: hips/spine/chest/chestUpper/shoulder_R/upperArm_R/upperArmTwist_R/lowerArm_R/lowerArmTwist_R/hand_R/indexPro_R/indexInt_R
+    m_Weight: 1
+  - m_Path: hips/spine/chest/chestUpper/shoulder_R/upperArm_R/upperArmTwist_R/lowerArm_R/lowerArmTwist_R/hand_R/indexPro_R/indexInt_R/indexDis_R
+    m_Weight: 1
+  - m_Path: hips/spine/chest/chestUpper/shoulder_R/upperArm_R/upperArmTwist_R/lowerArm_R/lowerArmTwist_R/hand_R/littlePro_R
+    m_Weight: 1
+  - m_Path: hips/spine/chest/chestUpper/shoulder_R/upperArm_R/upperArmTwist_R/lowerArm_R/lowerArmTwist_R/hand_R/littlePro_R/littleInt_R
+    m_Weight: 1
+  - m_Path: hips/spine/chest/chestUpper/shoulder_R/upperArm_R/upperArmTwist_R/lowerArm_R/lowerArmTwist_R/hand_R/littlePro_R/littleInt_R/littleDis_R
+    m_Weight: 1
+  - m_Path: hips/spine/chest/chestUpper/shoulder_R/upperArm_R/upperArmTwist_R/lowerArm_R/lowerArmTwist_R/hand_R/middlePro_R
+    m_Weight: 1
+  - m_Path: hips/spine/chest/chestUpper/shoulder_R/upperArm_R/upperArmTwist_R/lowerArm_R/lowerArmTwist_R/hand_R/middlePro_R/middleInt_R
+    m_Weight: 1
+  - m_Path: hips/spine/chest/chestUpper/shoulder_R/upperArm_R/upperArmTwist_R/lowerArm_R/lowerArmTwist_R/hand_R/middlePro_R/middleInt_R/middleDis_R
+    m_Weight: 1
+  - m_Path: hips/spine/chest/chestUpper/shoulder_R/upperArm_R/upperArmTwist_R/lowerArm_R/lowerArmTwist_R/hand_R/ringPro_R
+    m_Weight: 1
+  - m_Path: hips/spine/chest/chestUpper/shoulder_R/upperArm_R/upperArmTwist_R/lowerArm_R/lowerArmTwist_R/hand_R/ringPro_R/ringInt_R
+    m_Weight: 1
+  - m_Path: hips/spine/chest/chestUpper/shoulder_R/upperArm_R/upperArmTwist_R/lowerArm_R/lowerArmTwist_R/hand_R/ringPro_R/ringInt_R/ringDis_R
+    m_Weight: 1
+  - m_Path: hips/spine/chest/chestUpper/shoulder_R/upperArm_R/upperArmTwist_R/lowerArm_R/lowerArmTwist_R/hand_R/thumbPro_R
+    m_Weight: 1
+  - m_Path: hips/spine/chest/chestUpper/shoulder_R/upperArm_R/upperArmTwist_R/lowerArm_R/lowerArmTwist_R/hand_R/thumbPro_R/thumbInt_R
+    m_Weight: 1
+  - m_Path: hips/spine/chest/chestUpper/shoulder_R/upperArm_R/upperArmTwist_R/lowerArm_R/lowerArmTwist_R/hand_R/thumbPro_R/thumbInt_R/thumbDis_R
+    m_Weight: 1
+  - m_Path: hips/spine/chest/chestUpper/shoulder_R/upperArm_R/upperArmTwist_R/lowerArm_R/lowerArmTwist_R/lowerArmTwist_R_scale
+    m_Weight: 1
+  - m_Path: hips/spine/chest/chestUpper/shoulder_R/upperArm_R/upperArmTwist_R/upperArmTwist_R_scale
+    m_Weight: 1
+  - m_Path: hips/spine/spine_scale
+    m_Weight: 1
+  - m_Path: mask
+    m_Weight: 1
