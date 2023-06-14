@@ -18,25 +18,56 @@ ScriptedImporter:
   wrapperTypes: []
   WrapperFilters: []
   wrapperOutputDirectory: Generated
-  compiledResult: "{\"source\":\"\\\"use strict\\\";\\r\\nObject.defineProperty(exports,
-    \\\"__esModule\\\", { value: true });\\r\\nconst ZEPETO_Script_1 = require(\\\"ZEPETO.Script\\\");\\r\\nconst
-    UnityEngine_1 = require(\\\"UnityEngine\\\");\\r\\nconst IOC_1 = require(\\\"../IOC\\\");\\r\\nconst
-    Manager_1 = require(\\\"../Manager/Manager\\\");\\r\\nconst Enums_1 = require(\\\"../Enums\\\");\\r\\nconst
-    Connector_1 = require(\\\"../Network/Connector\\\");\\r\\nclass MyPlayerData
-    extends ZEPETO_Script_1.ZepetoScriptBehaviour {\\r\\n    constructor() {\\r\\n       
-    super(...arguments);\\r\\n        this._myPlayer = null;\\r\\n        this.state
-    = Enums_1.PLAYER_STATE.Live;\\r\\n        this.team = '';\\r\\n        this.hp
-    = 100;\\r\\n    }\\r\\n    Init() {\\r\\n        this.manager = IOC_1.default.Instance.getInstance(Manager_1.default);\\r\\n       
-    console.log(\\\"\uB370\uC5B4\uC774\uB2DB\\\");\\r\\n    }\\r\\n    SetMyPlayer(player)
-    {\\r\\n        this._myPlayer = player;\\r\\n        this._myPlayer.character.gameObject.AddComponent($typeof(UnityEngine_1.AudioListener));\\r\\n       
-    console.log(\\\"myplayer\uC138\uD305\uC644\uB8CC\\\");\\r\\n    }\\r\\n    Update()
-    {\\r\\n        if (this.state !== Enums_1.PLAYER_STATE.Die) {\\r\\n           
-    if (this.hp <= 0) {\\r\\n                this.state = Enums_1.PLAYER_STATE.Die;\\r\\n               
-    Connector_1.default.Instance.ReqToServer('PlayerDieReq');\\r\\n            }\\r\\n       
-    }\\r\\n    }\\r\\n    SetTeam(team) {\\r\\n        this.team = team;\\r\\n   
-    }\\r\\n    SetPlayerState(state) {\\r\\n        this.state = state;\\r\\n   
-    }\\r\\n    get Hp() {\\r\\n        return this.hp;\\r\\n    }\\r\\n    set Hp(value)
-    {\\r\\n        this.hp = value;\\r\\n    }\\r\\n}\\r\\nexports.default = MyPlayerData;\\r\\n//#
-    sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiTXlQbGF5ZXJEYXRhLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiTXlQbGF5ZXJEYXRhLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7O0FBQ0EsaURBQXFEO0FBQ3JELDZDQUFrRTtBQUNsRSxnQ0FBeUI7QUFDekIsZ0RBQTJEO0FBQzNELG9DQUF3QztBQUN4QyxvREFBNkM7QUFrQjdDLE1BQXFCLFlBQWEsU0FBUSxxQ0FBcUI7SUFBL0Q7O1FBQ1ksY0FBUyxHQUFpQixJQUFJLENBQUM7UUFFL0IsVUFBSyxHQUFXLG9CQUFZLENBQUMsSUFBSSxDQUFDO1FBSWxDLFNBQUksR0FBVyxFQUFFLENBQUM7UUFFbEIsT0FBRSxHQUFVLEdBQUcsQ0FBQztJQXNDNUIsQ0FBQztJQW5DRyxJQUFJO1FBQ0EsSUFBSSxDQUFDLE9BQU8sR0FBRyxhQUFHLENBQUMsUUFBUSxDQUFDLFdBQVcsQ0FBZSxpQkFBTyxDQUFDLENBQUM7UUFDL0QsT0FBTyxDQUFDLEdBQUcsQ0FBQyxNQUFNLENBQUMsQ0FBQTtJQUN2QixDQUFDO0lBRUQsV0FBVyxDQUFDLE1BQW9CO1FBQzVCLElBQUksQ0FBQyxTQUFTLEdBQUcsTUFBTSxDQUFDO1FBQ3hCLElBQUksQ0FBQyxTQUFTLENBQUMsU0FBUyxDQUFDLFVBQVUsQ0FBQyxZQUFZLFNBQUMsMkJBQWEsR0FBSTtRQUNsRSxPQUFPLENBQUMsR0FBRyxDQUFDLGNBQWMsQ0FBQyxDQUFBO0lBQy9CLENBQUM7SUFFRCxNQUFNO1FBQ0YsSUFBRyxJQUFJLENBQUMsS0FBSyxLQUFLLG9CQUFZLENBQUMsR0FBRyxFQUFDO1lBQy9CLElBQUksSUFBSSxDQUFDLEVBQUUsSUFBSSxDQUFDLEVBQUU7Z0JBQ2QsSUFBSSxDQUFDLEtBQUssR0FBRyxvQkFBWSxDQUFDLEdBQUcsQ0FBQztnQkFDOUIsbUJBQVMsQ0FBQyxRQUFRLENBQUMsV0FBVyxDQUFDLGNBQWMsQ0FBQyxDQUFBO2FBQ2pEO1NBQ0o7SUFDTCxDQUFDO0lBRUQsT0FBTyxDQUFDLElBQVk7UUFDaEIsSUFBSSxDQUFDLElBQUksR0FBRyxJQUFJLENBQUM7SUFDckIsQ0FBQztJQUVELGNBQWMsQ0FBQyxLQUFhO1FBQ3hCLElBQUksQ0FBQyxLQUFLLEdBQUcsS0FBSyxDQUFDO0lBQ3ZCLENBQUM7SUFFRCxJQUFJLEVBQUU7UUFDRixPQUFPLElBQUksQ0FBQyxFQUFFLENBQUE7SUFDbEIsQ0FBQztJQUVELElBQUksRUFBRSxDQUFDLEtBQVk7UUFDZixJQUFJLENBQUMsRUFBRSxHQUFHLEtBQUssQ0FBQTtJQUNuQixDQUFDO0NBQ0o7QUEvQ0QsK0JBK0NDIn0=\",\"assetPath\":\"Assets/Scripts/Client/MyPlayer/MyPlayerData.ts\",\"manifest\":{\"properties\":[{\"assembly\":\"\",\"name\":\"manager\",\"type\":\"C:/Users/hyo05/Desktop/GamePG/PaintBallGame/ZepetoPaintBall/Assets/Scripts/Client/Manager/Manager.InterManager\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]}],\"name\":\"MyPlayerData\",\"description\":\"\",\"hasAnimatorMove\":false},\"isCompiled\":true}"
-  typescriptHash: b52c69101894abb09116e848a0ceefe7
+  compiledResult: '{"source":"\"use strict\";\r\nObject.defineProperty(exports, \"__esModule\",
+    { value: true });\r\nconst ZEPETO_Script_1 = require(\"ZEPETO.Script\");\r\nconst
+    UnityEngine_1 = require(\"UnityEngine\");\r\nconst IOC_1 = require(\"../IOC\");\r\nconst
+    Manager_1 = require(\"../Manager/Manager\");\r\nconst Enums_1 = require(\"../Enums\");\r\nconst
+    Connector_1 = require(\"../Network/Connector\");\r\nconst index_1 = require(\"../Utils/index\");\r\nconst
+    MyPalyerController_1 = require(\"./MyPalyerController\");\r\nclass MyPlayerData
+    extends ZEPETO_Script_1.ZepetoScriptBehaviour {\r\n    constructor() {\r\n       
+    super(...arguments);\r\n        this._myPlayer = null;\r\n        this._mySessionId
+    = null;\r\n        this.state = Enums_1.PLAYER_STATE.Live;\r\n        this.team
+    = '''';\r\n        this.myWeaponInfoArr = [\"O\", \"X\", \"X\", \"X\", \"X\",
+    \"X\", \"X\", \"X\", \"X\", \"X\", \"X\", \"X\"];\r\n    }\r\n    get MyPlayer()
+    {\r\n        return this._myPlayer;\r\n    }\r\n    get MySessionId() {\r\n       
+    return this._myPlayer;\r\n    }\r\n    get MyGoldPass() {\r\n        return this.myGoldPass;\r\n   
+    }\r\n    set MyGoldPass(value) {\r\n        this.myGoldPass = value;\r\n    }\r\n   
+    get MyDiaPass() {\r\n        return this.myDiaPass;\r\n    }\r\n    set MyDiaPass(value)
+    {\r\n        this.myDiaPass = value;\r\n    }\r\n    get MyZem() {\r\n       
+    return this.myZem;\r\n    }\r\n    set MyZem(value) {\r\n        this.myZem =
+    value;\r\n        if (!this.manager) {\r\n            this.manager = IOC_1.default.Instance.getInstance(Manager_1.default);\r\n       
+    }\r\n        this.manager.UI.StartUI.SetZem(value);\r\n    }\r\n    get MyGold()
+    {\r\n        return this.myGold;\r\n    }\r\n    set MyGold(value) {\r\n       
+    this.myGold = value;\r\n        if (!this.manager) {\r\n            this.manager
+    = IOC_1.default.Instance.getInstance(Manager_1.default);\r\n        }\r\n       
+    this.manager.UI.StartUI.SetGold(value);\r\n    }\r\n    get MyDia() {\r\n       
+    return this.myDia;\r\n    }\r\n    set MyDia(value) {\r\n        this.myDia =
+    value;\r\n        if (!this.manager) {\r\n            this.manager = IOC_1.default.Instance.getInstance(Manager_1.default);\r\n       
+    }\r\n        this.manager.UI.StartUI.SetDia(value);\r\n    }\r\n    get MyWeaponInfo()
+    {\r\n        return this.myWeaponInfo;\r\n    }\r\n    set MyWeaponInfo(value)
+    {\r\n        this.myWeaponInfo = value;\r\n        this.myWeaponInfoArr = this.myWeaponInfo.split(\"_\");\r\n   
+    }\r\n    get MyWeaponInfoArr() {\r\n        return this.myWeaponInfoArr;\r\n   
+    }\r\n    get NowWeapon() {\r\n        return this.nowWeapon;\r\n    }\r\n   
+    set NowWeapon(value) {\r\n        this.nowWeapon = value;\r\n    }\r\n    Init()
+    {\r\n        this.manager = IOC_1.default.Instance.getInstance(Manager_1.default);\r\n   
+    }\r\n    SetMyPlayer(player) {\r\n        this._myPlayer = player;\r\n       
+    this._mySessionId = this._myPlayer.id;\r\n        this._myPlayer.character.gameObject.AddComponent($typeof(UnityEngine_1.AudioListener));\r\n   
+    }\r\n    Update() {\r\n        // if(this.state !== PLAYER_STATE.Die){\r\n       
+    //     if (this.hp <= 0) {\r\n        //         this.state = PLAYER_STATE.Die;\r\n       
+    //         Connector.Instance.ReqToServer(''PlayerDieReq'')\r\n        //    
+    }\r\n        // }\r\n    }\r\n    SetData(myGold, myDia, myGoldPass, myDiaPass,
+    myWeaponInfo) {\r\n        this.myGold = myGold;\r\n        this.myDia = myDia;\r\n       
+    this.myGoldPass = myGoldPass;\r\n        this.myDiaPass = myDiaPass;\r\n       
+    this.myWeaponInfo = myWeaponInfo;\r\n    }\r\n    SetTeam(team) {\r\n       
+    this.team = team;\r\n    }\r\n    SetPlayerState(state) {\r\n        this.state
+    = state;\r\n    }\r\n    get Team() {\r\n        return this.team;\r\n    }\r\n   
+    EqiupGun(name) {\r\n        if (!this.manager) {\r\n            this.manager
+    = IOC_1.default.Instance.getInstance(Manager_1.default);\r\n        }\r\n       
+    if (this.nowWeapon) {\r\n            UnityEngine_1.GameObject.Destroy(this.nowWeapon);\r\n       
+    }\r\n        this.nowWeapon = this.manager.Resource.Instantiate(\"Prefabs\\\\Guns\\\\\"
+    + name);\r\n        this.nowWeapon.transform.SetParent(IOC_1.default.Instance.getInstance(MyPalyerController_1.MyPlayerController).MyPlayerMovement.MyAnimator.GetBoneTransform(UnityEngine_1.HumanBodyBones.RightIndexIntermediate),
+    false);\r\n        this.nowWeapon.transform.localPosition = UnityEngine_1.Vector3.zero;\r\n       
+    this.nowWeapon.transform.localRotation = UnityEngine_1.Quaternion.Euler(UnityEngine_1.Vector3.zero);\r\n   
+    }\r\n}\r\nexports.default = MyPlayerData;\r\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiTXlQbGF5ZXJEYXRhLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiTXlQbGF5ZXJEYXRhLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7O0FBQ0EsaURBQXFEO0FBQ3JELDZDQUFtSDtBQUNuSCxnQ0FBeUI7QUFDekIsZ0RBQTJEO0FBQzNELG9DQUF3QztBQUN4QyxvREFBNkM7QUFDN0MsMENBQWtDO0FBQ2xDLDZEQUFtRjtBQW9EbkYsTUFBcUIsWUFBYSxTQUFRLHFDQUFxQjtJQUEvRDs7UUFDWSxjQUFTLEdBQWlCLElBQUksQ0FBQztRQUUvQixpQkFBWSxHQUFXLElBQUksQ0FBQztRQUU1QixVQUFLLEdBQVcsb0JBQVksQ0FBQyxJQUFJLENBQUM7UUFJbEMsU0FBSSxHQUFXLEVBQUUsQ0FBQztRQWNsQixvQkFBZSxHQUFhLENBQUMsR0FBRyxFQUFFLEdBQUcsRUFBRSxHQUFHLEVBQUUsR0FBRyxFQUFFLEdBQUcsRUFBRSxHQUFHLEVBQUUsR0FBRyxFQUFFLEdBQUcsRUFBRSxHQUFHLEVBQUUsR0FBRyxFQUFFLEdBQUcsRUFBRSxHQUFHLENBQUMsQ0FBQztJQXlJckcsQ0FBQztJQXJJRyxJQUFJLFFBQVE7UUFDUixPQUFPLElBQUksQ0FBQyxTQUFTLENBQUE7SUFDekIsQ0FBQztJQUVELElBQUksV0FBVztRQUNYLE9BQU8sSUFBSSxDQUFDLFNBQVMsQ0FBQTtJQUN6QixDQUFDO0lBRUQsSUFBSSxVQUFVO1FBQ1YsT0FBTyxJQUFJLENBQUMsVUFBVSxDQUFBO0lBQzFCLENBQUM7SUFFRCxJQUFJLFVBQVUsQ0FBQyxLQUFjO1FBQ3pCLElBQUksQ0FBQyxVQUFVLEdBQUcsS0FBSyxDQUFBO0lBQzNCLENBQUM7SUFFRCxJQUFJLFNBQVM7UUFDVCxPQUFPLElBQUksQ0FBQyxTQUFTLENBQUE7SUFDekIsQ0FBQztJQUVELElBQUksU0FBUyxDQUFDLEtBQWM7UUFDeEIsSUFBSSxDQUFDLFNBQVMsR0FBRyxLQUFLLENBQUE7SUFDMUIsQ0FBQztJQUVELElB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","assetPath":"Assets/Scripts/Client/MyPlayer/MyPlayerData.ts","manifest":{"properties":[{"assembly":"","name":"manager","type":"C:/Users/hyo05/Desktop/GamePG/PaintBallGame/ZepetoPaintBall/Assets/Scripts/Client/Manager/Manager.InterManager","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]}],"name":"MyPlayerData","description":"","hasAnimatorMove":false},"isCompiled":true}'
+  typescriptHash: 4561e1788a1d423bb0038127da7ed28a
   onlyWriteTrigger: 0

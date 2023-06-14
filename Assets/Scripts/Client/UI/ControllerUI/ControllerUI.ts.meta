@@ -18,11 +18,51 @@ ScriptedImporter:
   wrapperTypes: []
   WrapperFilters: []
   wrapperOutputDirectory: Generated
-  compiledResult: '{"source":"\"use strict\";\r\nObject.defineProperty(exports, \"__esModule\",
-    { value: true });\r\nconst ZEPETO_Script_1 = require(\"ZEPETO.Script\");\r\nclass
-    ControllerUI extends ZEPETO_Script_1.ZepetoScriptBehaviour {\r\n    Start() {\r\n       
-    this.padObject.SetActive(false);\r\n        this.jumpObject.SetActive(false);\r\n       
-    this.jumpBtn.onClick.AddListener(() => {\r\n        });\r\n    }\r\n}\r\nexports.default
-    = ControllerUI;\r\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiQ29udHJvbGxlclVJLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiQ29udHJvbGxlclVJLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7O0FBRUEsaURBQXFEO0FBRXJELE1BQXFCLFlBQWEsU0FBUSxxQ0FBcUI7SUFLM0QsS0FBSztRQUNELElBQUksQ0FBQyxTQUFTLENBQUMsU0FBUyxDQUFDLEtBQUssQ0FBQyxDQUFDO1FBQ2hDLElBQUksQ0FBQyxVQUFVLENBQUMsU0FBUyxDQUFDLEtBQUssQ0FBQyxDQUFDO1FBQ2pDLElBQUksQ0FBQyxPQUFPLENBQUMsT0FBTyxDQUFDLFdBQVcsQ0FBQyxHQUFFLEVBQUU7UUFFckMsQ0FBQyxDQUFDLENBQUM7SUFDUCxDQUFDO0NBRUo7QUFiRCwrQkFhQyJ9","assetPath":"Assets/Scripts/Client/UIControllDivision/ControllerUI/ControllerUI.ts","manifest":{"properties":[{"assembly":"UnityEngine.CoreModule","name":"padObject","type":"UnityEngine.GameObject","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]},{"assembly":"UnityEngine.CoreModule","name":"jumpObject","type":"UnityEngine.GameObject","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]},{"assembly":"UnityEngine.UI","name":"jumpBtn","type":"UnityEngine.UI.Button","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]}],"name":"ControllerUI","description":"","hasAnimatorMove":false},"isCompiled":true}'
-  typescriptHash: 31b8aa74163c615c424c24e8907ea6ca
+  compiledResult: "{\"source\":\"\\\"use strict\\\";\\r\\nObject.defineProperty(exports,
+    \\\"__esModule\\\", { value: true });\\r\\nconst UnityEngine_1 = require(\\\"UnityEngine\\\");\\r\\nconst
+    ZEPETO_Script_1 = require(\\\"ZEPETO.Script\\\");\\r\\nconst IOC_1 = require(\\\"../../IOC\\\");\\r\\nconst
+    Manager_1 = require(\\\"../../Manager/Manager\\\");\\r\\nconst MyPalyerController_1
+    = require(\\\"../../MyPlayer/MyPalyerController\\\");\\r\\nclass ControllerUI
+    extends ZEPETO_Script_1.ZepetoScriptBehaviour {\\r\\n    constructor() {\\r\\n       
+    super(...arguments);\\r\\n        this.MousePressed = false;\\r\\n        this.instanceSet
+    = false;\\r\\n    }\\r\\n    Start() {\\r\\n        this.myPlayerController =
+    IOC_1.default.Instance.getInstance(MyPalyerController_1.MyPlayerController);\\r\\n       
+    this.manager = IOC_1.default.Instance.getInstance(Manager_1.default);\\r\\n       
+    this.StartCoroutine(this.GetInstance());\\r\\n        this.manager.UI.ControllerUI
+    = this;\\r\\n        this.padObject.SetActive(false);\\r\\n        this.jumpObject.SetActive(false);\\r\\n       
+    // this.jumpBtn.onClick.AddListener(()=>{\\r\\n        //    \\r\\n        //
+    });\\r\\n        this.fireBtn.onClick.AddListener(() => {\\r\\n            if
+    (this.OffFire.activeSelf) {\\r\\n                this.OffFire.SetActive(false);\\r\\n               
+    this.OnFire.SetActive(true);\\r\\n                if (!this.myPlayerController.MyPlayerMovement.OnFire)
+    {\\r\\n                    this.myPlayerController.MyPlayerMovement.OnFire =
+    true;\\r\\n                }\\r\\n            }\\r\\n            else {\\r\\n               
+    this.OffFire.SetActive(true);\\r\\n                this.OnFire.SetActive(false);\\r\\n           
+    }\\r\\n        });\\r\\n    }\\r\\n    Update() {\\r\\n        this.MouseInputController();\\r\\n   
+    }\\r\\n    SetPad(OnOff) {\\r\\n        this.padObject.SetActive(OnOff);\\r\\n   
+    }\\r\\n    SetJump(OnOff) {\\r\\n        this.jumpObject.SetActive(OnOff);\\r\\n   
+    }\\r\\n    MouseInputController() {\\r\\n        if (UnityEngine_1.Input.GetMouseButton(0))
+    {\\r\\n            if (!this.MousePressed) {\\r\\n                // \uD130\uCE58\uD558\uB294
+    \uC21C\uAC04\\r\\n                this.MousePressed = true;\\r\\n               
+    this.PressedTime = UnityEngine_1.Time.time;\\r\\n            }\\r\\n           
+    else {\\r\\n                // \uD130\uCE58\uD558\uB294 \uC911\\r\\n               
+    if (this.OffFire.activeSelf) {\\r\\n                    this.Fire();\\r\\n               
+    }\\r\\n            }\\r\\n        }\\r\\n        else {\\r\\n            if (this.MousePressed)
+    {\\r\\n                if (UnityEngine_1.Time.time - this.PressedTime < 0.1)
+    {\\r\\n                    //\uD130\uCE58 \uD568\\r\\n                }\\r\\n               
+    else {\\r\\n                    //\uD130\uCE58 \uB5BC\uB294 \uC21C\uAC04\\r\\n               
+    }\\r\\n                this.MousePressed = false;\\r\\n                this.PressedTime
+    = 0;\\r\\n                if (this.myPlayerController) {\\r\\n                   
+    if (this.myPlayerController.MyPlayerMovement.OnFire) {\\r\\n                       
+    this.myPlayerController.MyPlayerMovement.OnFire = false;\\r\\n                   
+    }\\r\\n                }\\r\\n            }\\r\\n        }\\r\\n    }\\r\\n   
+    Fire() {\\r\\n        if (this.myPlayerController) {\\r\\n            if (!this.myPlayerController.MyPlayerMovement.OnFire)
+    {\\r\\n                this.myPlayerController.MyPlayerMovement.OnFire = true;\\r\\n           
+    }\\r\\n        }\\r\\n    }\\r\\n    *GetInstance() {\\r\\n        while (!this.instanceSet)
+    {\\r\\n            this.myPlayerController = IOC_1.default.Instance.getInstance(MyPalyerController_1.MyPlayerController);\\r\\n           
+    this.manager = IOC_1.default.Instance.getInstance(Manager_1.default);\\r\\n           
+    if (this.manager && this.myPlayerController) {\\r\\n                this.instanceSet
+    = true;\\r\\n                return;\\r\\n            }\\r\\n            yield
+    new UnityEngine_1.WaitForSeconds(0.1);\\r\\n        }\\r\\n    }\\r\\n}\\r\\nexports.default
+    = ControllerUI;\\r\\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiQ29udHJvbGxlclVJLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiQ29udHJvbGxlclVJLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7O0FBQUEsNkNBQTZFO0FBRTdFLGlEQUFxRDtBQUNyRCxtQ0FBNEI7QUFDNUIsbURBQThEO0FBQzlELDBFQUFnRztBQVVoRyxNQUFxQixZQUFhLFNBQVEscUNBQXFCO0lBQS9EOztRQVFZLGlCQUFZLEdBQVksS0FBSyxDQUFDO1FBTTlCLGdCQUFXLEdBQVksS0FBSyxDQUFDO0lBeUZ6QyxDQUFDO0lBdkZHLEtBQUs7UUFDRCxJQUFJLENBQUMsa0JBQWtCLEdBQUcsYUFBRyxDQUFDLFFBQVEsQ0FBQyxXQUFXLENBQTBCLHVDQUFrQixDQUFDLENBQUM7UUFDaEcsSUFBSSxDQUFDLE9BQU8sR0FBRyxhQUFHLENBQUMsUUFBUSxDQUFDLFdBQVcsQ0FBZSxpQkFBTyxDQUFDLENBQUM7UUFDL0QsSUFBSSxDQUFDLGNBQWMsQ0FBQyxJQUFJLENBQUMsV0FBVyxFQUFFLENBQUMsQ0FBQztRQUN4QyxJQUFJLENBQUMsT0FBTyxDQUFDLEVBQUUsQ0FBQyxZQUFZLEdBQUcsSUFBSSxDQUFDO1FBQ3BDLElBQUksQ0FBQyxTQUFTLENBQUMsU0FBUyxDQUFDLEtBQUssQ0FBQyxDQUFDO1FBQ2hDLElBQUksQ0FBQyxVQUFVLENBQUMsU0FBUyxDQUFDLEtBQUssQ0FBQyxDQUFDO1FBQ2pDLHlDQUF5QztRQUN6QyxNQUFNO1FBQ04sTUFBTTtRQUNOLElBQUksQ0FBQyxPQUFPLENBQUMsT0FBTyxDQUFDLFdBQVcsQ0FBQyxHQUFFLEVBQUU7WUFDakMsSUFBRyxJQUFJLENBQUMsT0FBTyxDQUFDLFVBQVUsRUFBQztnQkFDdkIsSUFBSSxDQUFDLE9BQU8sQ0FBQyxTQUFTLENBQUMsS0FBSyxDQUFDLENBQUE7Z0JBQzdCLElBQUksQ0FBQyxNQUFNLENBQUMsU0FBUyxDQUFDLElBQUksQ0FBQyxDQUFBO2dCQUMzQixJQUFHLENBQUMsSUFB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\",\"assetPath\":\"Assets/Scripts/Client/UI/ControllerUI/ControllerUI.ts\",\"manifest\":{\"properties\":[{\"assembly\":\"UnityEngine.CoreModule\",\"name\":\"padObject\",\"type\":\"UnityEngine.GameObject\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]},{\"assembly\":\"UnityEngine.CoreModule\",\"name\":\"jumpObject\",\"type\":\"UnityEngine.GameObject\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]},{\"assembly\":\"UnityEngine.UI\",\"name\":\"jumpBtn\",\"type\":\"UnityEngine.UI.Button\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]},{\"assembly\":\"UnityEngine.UI\",\"name\":\"fireBtn\",\"type\":\"UnityEngine.UI.Button\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]},{\"assembly\":\"UnityEngine.CoreModule\",\"name\":\"OnFire\",\"type\":\"UnityEngine.GameObject\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]},{\"assembly\":\"UnityEngine.CoreModule\",\"name\":\"OffFire\",\"type\":\"UnityEngine.GameObject\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]},{\"assembly\":\"\",\"name\":\"manager\",\"type\":\"C:/Users/hyo05/Desktop/GamePG/PaintBallGame/ZepetoPaintBall/Assets/Scripts/Client/Manager/Manager.InterManager\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]},{\"assembly\":\"\",\"name\":\"myPlayerController\",\"type\":\"C:/Users/hyo05/Desktop/GamePG/PaintBallGame/ZepetoPaintBall/Assets/Scripts/Client/MyPlayer/MyPalyerController.InterMyPlayerController\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]}],\"name\":\"ControllerUI\",\"description\":\"\",\"hasAnimatorMove\":false},\"isCompiled\":true}"
+  typescriptHash: 6d1843ea7591ac69dfcadfa9b4fd6152
   onlyWriteTrigger: 0

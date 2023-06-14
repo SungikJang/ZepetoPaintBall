@@ -36,3 +36,8 @@ export enum GAME_GRADE {
     E,
     F
 }
+
+export enum Currency{
+    Gold = "zepetogunsgold",
+    Diamond = "zepetogunsdia",
+}

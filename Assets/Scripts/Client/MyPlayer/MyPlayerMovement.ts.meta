@@ -18,34 +18,44 @@ ScriptedImporter:
   wrapperTypes: []
   WrapperFilters: []
   wrapperOutputDirectory: Generated
-  compiledResult: "{\"source\":\"\\\"use strict\\\";\\r\\nObject.defineProperty(exports,
-    \\\"__esModule\\\", { value: true });\\r\\nconst UnityEngine_1 = require(\\\"UnityEngine\\\");\\r\\nconst
-    ZEPETO_Character_Controller_1 = require(\\\"ZEPETO.Character.Controller\\\");\\r\\nconst
-    ZEPETO_Script_1 = require(\\\"ZEPETO.Script\\\");\\r\\nconst IOC_1 = require(\\\"../IOC\\\");\\r\\nconst
-    Manager_1 = require(\\\"../Manager/Manager\\\");\\r\\nclass MyPlayerMovement
-    extends ZEPETO_Script_1.ZepetoScriptBehaviour {\\r\\n    constructor() {\\r\\n       
-    super(...arguments);\\r\\n        this.isInStartUI = true;\\r\\n        this.myPlayer
-    = null;\\r\\n        this.myPlayerObject = null;\\r\\n    }\\r\\n    Init() {\\r\\n       
-    console.log(\\\"\uBB34\uBE0C\uC774\uB2DB\\\");\\r\\n        this.manager = IOC_1.default.Instance.getInstance(Manager_1.default);\\r\\n       
-    //this.serviceManager.EnglishGameService.SubscribeState(this);\\r\\n        //this.StartCoroutine(this.Spin())\\r\\n   
-    }\\r\\n    // * Spin(){\\r\\n    //     while(true){\\r\\n    //         console.log(\\\"????\\\")\\r\\n   
-    //         ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.character.transform.Rotate(new
-    Vector3(0,1,0))\\r\\n    //         yield new WaitForSeconds(0.2);\\r\\n    //    
-    }\\r\\n    // }\\r\\n    Update() {\\r\\n        if (!this.manager) {\\r\\n           
-    this.manager = IOC_1.default.Instance.getInstance(Manager_1.default);\\r\\n       
-    }\\r\\n        this.Rotate();\\r\\n        this.LookDir();\\r\\n    }\\r\\n   
-    SetMyPlayer(player) {\\r\\n        this.myPlayer = player;\\r\\n        this.myPlayerObject
-    = this.myPlayer.character.gameObject;\\r\\n        console.log(\\\"myplayer\uC138\uD305\uC644\uB8CC\\\");\\r\\n   
-    }\\r\\n    Teleport(pos) {\\r\\n        this.myPlayer.character.Teleport(pos.position,
-    pos.rotation);\\r\\n    }\\r\\n    Rotate() {\\r\\n        if (!this.manager.Game.IsGameRunning)
-    {\\r\\n            if (this.isInStartUI && this.myPlayerObject) {\\r\\n               
-    this.myPlayerObject.transform.Rotate(UnityEngine_1.Vector3.op_Multiply(UnityEngine_1.Vector3.op_Multiply(UnityEngine_1.Vector3.up,
-    UnityEngine_1.Time.deltaTime), 30));\\r\\n            }\\r\\n        }\\r\\n   
-    }\\r\\n    LookDir() {\\r\\n        if (this.manager.Game.IsGameRunning) {\\r\\n           
-    let q = this.myPlayer.character.gameObject.transform.rotation.eulerAngles;\\r\\n           
-    let cq = ZEPETO_Character_Controller_1.ZepetoPlayers.instance.LocalPlayer.zepetoCamera.camera.gameObject.transform.rotation.eulerAngles;\\r\\n           
+  compiledResult: '{"source":"\"use strict\";\r\nObject.defineProperty(exports, \"__esModule\",
+    { value: true });\r\nconst UnityEngine_1 = require(\"UnityEngine\");\r\nconst
+    ZEPETO_Character_Controller_1 = require(\"ZEPETO.Character.Controller\");\r\nconst
+    ZEPETO_Script_1 = require(\"ZEPETO.Script\");\r\nconst IOC_1 = require(\"../IOC\");\r\nconst
+    Manager_1 = require(\"../Manager/Manager\");\r\nconst Connector_1 = require(\"../Network/Connector\");\r\nclass
+    MyPlayerMovement extends ZEPETO_Script_1.ZepetoScriptBehaviour {\r\n    constructor()
+    {\r\n        super(...arguments);\r\n        this.isInStartUI = true;\r\n       
+    this.myPlayer = null;\r\n        this.myPlayerObject = null;\r\n        this.lastSpineAngle
+    = 0;\r\n        this.onFire = false;\r\n    }\r\n    Init() {\r\n        this.manager
+    = IOC_1.default.Instance.getInstance(Manager_1.default);\r\n        //this.serviceManager.EnglishGameService.SubscribeState(this);\r\n       
+    //this.StartCoroutine(this.Spin())\r\n    }\r\n    // * Spin(){\r\n    //    
+    while(true){\r\n    //         console.log(\"????\")\r\n    //         ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.character.transform.Rotate(new
+    Vector3(0,1,0))\r\n    //         yield new WaitForSeconds(0.2);\r\n    //    
+    }\r\n    // }\r\n    Update() {\r\n        if (!this.manager) {\r\n           
+    this.manager = IOC_1.default.Instance.getInstance(Manager_1.default);\r\n       
+    }\r\n        this.Rotate();\r\n        this.LookDir();\r\n    }\r\n    SetMyPlayer(player)
+    {\r\n        this.myPlayer = player;\r\n        this.myPlayerObject = this.myPlayer.character.gameObject;\r\n       
+    this.myAnimator = player.character.ZepetoAnimator;\r\n    }\r\n    Teleport(pos)
+    {\r\n        this.myPlayer.character.Teleport(pos.position, pos.rotation);\r\n   
+    }\r\n    Rotate() {\r\n        if (!this.manager.Game.IsGameRunning) {\r\n           
+    if (this.isInStartUI && this.myPlayerObject) {\r\n                this.myPlayerObject.transform.Rotate(UnityEngine_1.Vector3.op_Multiply(UnityEngine_1.Vector3.op_Multiply(UnityEngine_1.Vector3.up,
+    UnityEngine_1.Time.deltaTime), 30));\r\n            }\r\n        }\r\n    }\r\n   
+    LookDir() {\r\n        if (this.manager.Game.IsGameRunning) {\r\n           
+    let q = this.myPlayer.character.gameObject.transform.rotation.eulerAngles;\r\n           
+    let cq = ZEPETO_Character_Controller_1.ZepetoPlayers.instance.LocalPlayer.zepetoCamera.camera.gameObject.transform.rotation.eulerAngles;\r\n           
     this.myPlayer.character.gameObject.transform.rotation = UnityEngine_1.Quaternion.Euler(new
-    UnityEngine_1.Vector3(q.x, cq.y, q.z));\\r\\n        }\\r\\n    }\\r\\n}\\r\\nexports.default
-    = MyPlayerMovement;\\r\\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiTXlQbGF5ZXJNb3ZlbWVudC5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIk15UGxheWVyTW92ZW1lbnQudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFBQSw2Q0FBb0g7QUFDcEgsNkVBQXdFO0FBQ3hFLGlEQUFxRDtBQUNyRCxnQ0FBeUI7QUFDekIsZ0RBQTJEO0FBWTNELE1BQXFCLGdCQUFpQixTQUFRLHFDQUFxQjtJQUFuRTs7UUFDWSxnQkFBVyxHQUFZLElBQUksQ0FBQztRQUM1QixhQUFRLEdBQWlCLElBQUksQ0FBQztRQUM5QixtQkFBYyxHQUFlLElBQUksQ0FBQztJQXFEOUMsQ0FBQztJQWhERyxJQUFJO1FBQ0EsT0FBTyxDQUFDLEdBQUcsQ0FBQyxNQUFNLENBQUMsQ0FBQTtRQUNuQixJQUFJLENBQUMsT0FBTyxHQUFHLGFBQUcsQ0FBQyxRQUFRLENBQUMsV0FBVyxDQUFlLGlCQUFPLENBQUMsQ0FBQztRQUMvRCw4REFBOEQ7UUFDOUQsa0NBQWtDO0lBQ3RDLENBQUM7SUFFRCxZQUFZO0lBQ1osbUJBQW1CO0lBQ25CLDhCQUE4QjtJQUM5Qix5R0FBeUc7SUFDekcseUNBQXlDO0lBQ3pDLFFBQVE7SUFDUixJQUFJO0lBRUosTUFBTTtRQUNGLElBQUcsQ0FBQyxJQUFJLENBQUMsT0FBTyxFQUFDO1lBQ2IsSUFBSSxDQUFDLE9BQU8sR0FBRyxhQUFHLENBQUMsUUFBUSxDQUFDLFdBQVcsQ0FBZSxpQkFBTyxDQUFDLENBQUM7U0FDbEU7UUFDRCxJQUFJLENBQUMsTUFBTSxFQUFFLENBQUM7UUFDZCxJQUFJLENBQUMsT0FBTyxFQUFFLENBQUM7SUFDbkIsQ0FBQztJQUVELFdBQVcsQ0FBQyxNQUFvQjtRQUM1QixJQUFJLENBQUMsUUFBUSxHQUFHLE1BQU0sQ0FBQztRQUN2QixJQUFJLENBQUMsY0FBYyxHQUFHLElBQUksQ0FBQyxRQUFRLENBQUMsU0FBUyxDQUFDLFVBQVUsQ0FBQztRQUN6RCxPQUFPLENBQUMsR0FBRyxDQUFDLGNBQWMsQ0FBQyxDQUFBO0lBQy9CLENBQUM7SUFFRCxRQUFRLENBQUMsR0FBYztRQUNuQixJQUFJLENBQUMsUUFBUSxDQUFDLFNBQVMsQ0FBQyxRQUFRLENBQUMsR0FBRyxDQUFDLFFBQVEsRUFBRSxHQUFHLENBQUMsUUFBUSxDQUFDLENBQUM7SUFDakUsQ0FBQztJQUVELE1BQU07UUFDRixJQUFHLENBQUMsSUFBSSxDQUFDLE9BQU8sQ0FBQyxJQUFJLENBQUMsYUFBYSxFQUFDO1lBQ2hDLElBQUcsSUFBSSxDQUFDLFdBQVcsSUFBSSxJQUFJLENBQUMsY0FBYyxFQUFDO2dCQUN2QyxJQUFJLENBQUMsY0FBYyxDQUFDLFNBQVMsQ0FBQyxNQUFNLENBNURvQixxQkFBTyxDQXdFNmxuQixXQUFZLENBeEVobm5CLHFCQUFPLENBd0U2bG5CLFdBQVksQ0Fabm9uQixxQkFBTyxDQUFDLEVBQUUsRUFBRyxrQkFBSSxDQUFDLFNBQVMsR0FBRyxFQUFFLEVBQUMsQ0FBQzthQUMxRTtTQUNKO0lBQ0wsQ0FBQztJQUVELE9BQU87UUFDSCxJQUFHLElBQUksQ0FBQyxPQUFPLENBQUMsSUFBSSxDQUFDLGFBQWEsRUFBQztZQUMvQixJQUFJLENBQUMsR0FBRyxJQUFJLENBQUMsUUFBUSxDQUFDLFNBQVMsQ0FBQyxVQUFVLENBQUMsU0FBUyxDQUFDLFFBQVEsQ0FBQyxXQUFXLENBQUE7WUFDekUsSUFBSSxFQUFFLEdBQUcsMkNBQWEsQ0FBQyxRQUFRLENBQUMsV0FBVyxDQUFDLFlBQVksQ0FBQyxNQUFNLENBQUMsVUFBVSxDQUFDLFNBQVMsQ0FBQyxRQUFRLENBQUMsV0FBVyxDQUFBO1lBQ3pHLElBQUksQ0FBQyxRQUFRLENBQUMsU0FBUyxDQUFDLFVBQVUsQ0FBQyxTQUFTLENBQUMsUUFBUSxHQUFHLHdCQUFVLENBQUMsS0FBSyxDQUFDLElBQUkscUJBQU8sQ0FBQyxDQUFDLENBQUMsQ0FBQyxFQUFFLEVBQUUsQ0FBQyxDQUFDLEVBQUUsQ0FBQyxDQUFDLENBQUMsQ0FBQyxDQUFDLENBQUE7U0FDeEc7SUFDTCxDQUFDO0NBQ0o7QUF4REQsbUNBd0RDIn0=\",\"assetPath\":\"Assets/Scripts/Client/MyPlayer/MyPlayerMovement.ts\",\"manifest\":{\"properties\":[{\"assembly\":\"\",\"name\":\"manager\",\"type\":\"C:/Users/hyo05/Desktop/GamePG/PaintBallGame/ZepetoPaintBall/Assets/Scripts/Client/Manager/Manager.InterManager\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]}],\"name\":\"MyPlayerMovement\",\"description\":\"\",\"hasAnimatorMove\":false},\"isCompiled\":true}"
-  typescriptHash: d9dd26d82d6ba78a00dfaf54f4dcb190
+    UnityEngine_1.Vector3(q.x, cq.y, q.z));\r\n            console.log(cq.x, cq.y,
+    cq.z);\r\n            let sa = 0;\r\n            if (cq.x === 0) {\r\n               
+    sa = 0;\r\n            }\r\n            else {\r\n                if (cq.x >
+    300) {\r\n                    sa = (360 - cq.x) / 36;\r\n                }\r\n               
+    else {\r\n                    sa = cq.x / -45;\r\n                }\r\n           
+    }\r\n            let val = this.lastSpineAngle - sa;\r\n            if (Math.abs(val)
+    > 0.001) {\r\n                Connector_1.default.Instance.ReqToServer(\"SpineAngle\",
+    { spineAngle: sa });\r\n                this.lastSpineAngle = sa;\r\n           
+    }\r\n        }\r\n    }\r\n    get OnFire() {\r\n        return this.onFire;\r\n   
+    }\r\n    set OnFire(value) {\r\n        this.onFire = value;\r\n    }\r\n   
+    get MyAnimator() {\r\n        return this.myAnimator;\r\n    }\r\n    SetSpineAngle(spineAngle)
+    {\r\n        this.myAnimator.SetFloat(\"SpineAngle\", spineAngle);\r\n    }\r\n}\r\nexports.default
+    = MyPlayerMovement;\r\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiTXlQbGF5ZXJNb3ZlbWVudC5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIk15UGxheWVyTW92ZW1lbnQudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFBQSw2Q0FBOEg7QUFDOUgsNkVBQXdFO0FBQ3hFLGlEQUFxRDtBQUNyRCxnQ0FBeUI7QUFDekIsZ0RBQTJEO0FBQzNELG9EQUE2QztBQW9CN0MsTUFBcUIsZ0JBQWlCLFNBQVEscUNBQXFCO0lBQW5FOztRQUNZLGdCQUFXLEdBQVksSUFBSSxDQUFDO1FBQzVCLGFBQVEsR0FBaUIsSUFBSSxDQUFDO1FBQzlCLG1CQUFjLEdBQWUsSUFBSSxDQUFDO1FBRWxDLG1CQUFjLEdBQVUsQ0FBQyxDQUFDO1FBRTFCLFdBQU0sR0FBWSxLQUFLLENBQUM7SUF1RnBDLENBQUM7SUFsRkcsSUFBSTtRQUNBLElBQUksQ0FBQyxPQUFPLEdBQUcsYUFBRyxDQUFDLFFBQVEsQ0FBQyxXQUFXLENBQWUsaUJBQU8sQ0FBQyxDQUFDO1FBQy9ELDhEQUE4RDtRQUM5RCxrQ0FBa0M7SUFDdEMsQ0FBQztJQUVELFlBQVk7SUFDWixtQkFBbUI7SUFDbkIsOEJBQThCO0lBQzlCLHlHQUF5RztJQUN6Ryx5Q0FBeUM7SUFDekMsUUFBUTtJQUNSLElBQUk7SUFFSixNQUFNO1FBQ0YsSUFBRyxDQUFDLElBQUksQ0FBQyxPQUFPLEVBQUM7WUFDYixJQUFJLENBQUMsT0FBTyxHQUFHLGFBQUcsQ0FBQyxRQUFRLENBQUMsV0FBVyxDQUFlLGlCQUFPLENBQUMsQ0FBQztTQUNsRTtRQUNELElBQUksQ0FBQyxNQUFNLEVBQUUsQ0FBQztRQUNkLElBQUksQ0FBQyxPQUFPLEVBQUUsQ0FBQztJQUNuQixDQUFDO0lBRUQsV0FBVyxDQUFDLE1BQW9CO1FBQzVCLElBQUksQ0FBQyxRQUFRLEdBQUcsTUFBTSxDQUFDO1FBQ3ZCLElBQUksQ0FBQyxjQUFjLEdBQUcsSUFBSSxDQUFDLFFBQVEsQ0FBQyxTQUFTLENBQUMsVUFBVSxDQUFDO1FBQ3pE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","assetPath":"Assets/Scripts/Client/MyPlayer/MyPlayerMovement.ts","manifest":{"properties":[{"assembly":"","name":"manager","type":"C:/Users/hyo05/Desktop/GamePG/PaintBallGame/ZepetoPaintBall/Assets/Scripts/Client/Manager/Manager.InterManager","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]}],"name":"MyPlayerMovement","description":"","hasAnimatorMove":false},"isCompiled":true}'
+  typescriptHash: 2a48c59d6ba4404c233814894710fbf6
   onlyWriteTrigger: 0

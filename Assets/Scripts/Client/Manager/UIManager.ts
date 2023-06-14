@@ -5,6 +5,8 @@ import {Boolean} from 'System';
 import {TMP_Text} from 'TMPro';
 import IOC from '../IOC';
 import Manager from './Manager';
+import ControllerUI, { InterControllerUI } from '../UI/ControllerUI/ControllerUI';
+import {InterStartUI} from '../UI/DefaultUI/StartUI';
 
 abstract class Data<T> {
     // property
@@ -92,6 +94,18 @@ export interface InterUIManager {
     CloseDefaultUI(uiName: string)
 
     DeleteDefaultUI(uiName: string)
+
+    get ControllerUI(): InterControllerUI
+
+    set ControllerUI(value: InterControllerUI)
+
+    get StartUI(): InterStartUI
+
+    set StartUI(value: InterStartUI)
+
+    get NowPopUpWeaponNum()
+    
+    set NowPopUpWeaponNum(value: string)
 }
 
 export default class UIManager implements InterUIManager {
@@ -103,6 +117,10 @@ export default class UIManager implements InterUIManager {
     public isAlertShowing: Boolean = false;
     public Stick: GameObject;
     public Jump: GameObject;
+    public nowPopUpWeaponNum: string;
+
+    private controllerUI: InterControllerUI;
+    private startUI: InterStartUI;
 
     public Init() {
         this._rootUIPopUp = GameObject.Find('RootUIPopUp');
@@ -223,5 +241,30 @@ export default class UIManager implements InterUIManager {
             const go = goTransform.gameObject;
             IOC.Instance.getInstance(Manager).Resource.Destroy(go);
         }
+    }
+    
+    get ControllerUI(){
+        return this.controllerUI;
+    }
+    
+    set ControllerUI(value: InterControllerUI){
+        this.controllerUI = value;
+    }
+
+    get StartUI(){
+        return this.startUI;
+    }
+
+    set StartUI(value: InterStartUI){
+        this.startUI = value;
+    }
+
+    get NowPopUpWeaponNum(){
+        return this.nowPopUpWeaponNum;
+    }
+
+    set NowPopUpWeaponNum(value: string){
+        this.nowPopUpWeaponNum = value;
+        console.log(this.nowPopUpWeaponNum)
     }
 }

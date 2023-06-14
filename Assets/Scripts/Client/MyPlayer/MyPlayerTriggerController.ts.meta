@@ -23,8 +23,12 @@ ScriptedImporter:
     MyPlayerTriggerController extends ZEPETO_Script_1.ZepetoScriptBehaviour {\r\n   
     static get Instance() {\r\n        return this._instance;\r\n    }\r\n    Start()
     {\r\n        if (!MyPlayerTriggerController._instance) {\r\n            MyPlayerTriggerController._instance
-    = this;\r\n        }\r\n    }\r\n    OnTriggerEnter(collider) {\r\n    }\r\n}\r\nexports.default
-    = MyPlayerTriggerController;\r\nMyPlayerTriggerController._instance = null;\r\n//#
-    sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiTXlQbGF5ZXJUcmlnZ2VyQ29udHJvbGxlci5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIk15UGxheWVyVHJpZ2dlckNvbnRyb2xsZXIudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFBQSxpREFBcUQ7QUFJckQsTUFBcUIseUJBQTBCLFNBQVEscUNBQXFCO0lBR2pFLE1BQU0sS0FBSyxRQUFRO1FBQ3RCLE9BQU8sSUFBSSxDQUFDLFNBQVMsQ0FBQztJQUMxQixDQUFDO0lBRUQsS0FBSztRQUNELElBQUksQ0FBQyx5QkFBeUIsQ0FBQyxTQUFTLEVBQUU7WUFDdEMseUJBQXlCLENBQUMsU0FBUyxHQUFHLElBQUksQ0FBQztTQUM5QztJQUNMLENBQUM7SUFFRCxjQUFjLENBQUMsUUFBb0I7SUFFbkMsQ0FBQzs7QUFmTCw0Q0FpQkM7QUFoQmtCLG1DQUFTLEdBQThCLElBQUksQ0FBQyJ9","assetPath":"Assets/Scripts/Client/MyPlayer/MyPlayerTriggerController.ts","manifest":{"properties":[],"name":"MyPlayerTriggerController","description":"","hasAnimatorMove":false},"isCompiled":true}'
-  typescriptHash: 7f647b3e6db8b6723cb338f75326175f
+    = this;\r\n        }\r\n    }\r\n    OnTriggerEnter(collider) {\r\n        if
+    (collider.gameObject.CompareTag(\"B\")) {\r\n        }\r\n        else if (collider.gameObject.CompareTag(\"A\"))
+    {\r\n        }\r\n        else if (collider.gameObject.CompareTag(\"Solo\"))
+    {\r\n        }\r\n        else if (collider.gameObject.CompareTag(\"Flag\"))
+    {\r\n        }\r\n        else if (collider.gameObject.CompareTag(\"Seige\"))
+    {\r\n        }\r\n    }\r\n}\r\nexports.default = MyPlayerTriggerController;\r\nMyPlayerTriggerController._instance
+    = null;\r\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiTXlQbGF5ZXJUcmlnZ2VyQ29udHJvbGxlci5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIk15UGxheWVyVHJpZ2dlckNvbnRyb2xsZXIudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFBQSxpREFBcUQ7QUFJckQsTUFBcUIseUJBQTBCLFNBQVEscUNBQXFCO0lBR2pFLE1BQU0sS0FBSyxRQUFRO1FBQ3RCLE9BQU8sSUFBSSxDQUFDLFNBQVMsQ0FBQztJQUMxQixDQUFDO0lBRUQsS0FBSztRQUNELElBQUksQ0FBQyx5QkFBeUIsQ0FBQyxTQUFTLEVBQUU7WUFDdEMseUJBQXlCLENBQUMsU0FBUyxHQUFHLElBQUksQ0FBQztTQUM5QztJQUNMLENBQUM7SUFFRCxjQUFjLENBQUMsUUFBb0I7UUFDL0IsSUFBSSxRQUFRLENBQUMsVUFBVSxDQUFDLFVBQVUsQ0FBQyxHQUFHLENBQUMsRUFBRTtTQUV4QzthQUNJLElBQUcsUUFBUSxDQUFDLFVBQVUsQ0FBQyxVQUFVLENBQUMsR0FBRyxDQUFDLEVBQUM7U0FFM0M7YUFDSSxJQUFHLFFBQVEsQ0FBQyxVQUFVLENBQUMsVUFBVSxDQUFDLE1BQU0sQ0FBQyxFQUFDO1NBRTlDO2FBQ0ksSUFBRyxRQUFRLENBQUMsVUFBVSxDQUFDLFVBQVUsQ0FBQyxNQUFNLENBQUMsRUFBQztTQUU5QzthQUNJLElBQUcsUUFBUSxDQUFDLFVBQVUsQ0FBQyxVQUFVLENBQUMsT0FBTyxDQUFDLEVBQUM7U0FFL0M7SUFDTCxDQUFDOztBQTdCTCw0Q0ErQkM7QUE5QmtCLG1DQUFTLEdBQThCLElBQUksQ0FBQyJ9","assetPath":"Assets/Scripts/Client/MyPlayer/MyPlayerTriggerController.ts","manifest":{"properties":[],"name":"MyPlayerTriggerController","description":"","hasAnimatorMove":false},"isCompiled":true}'
+  typescriptHash: 7f5bc41f2d21f2bdbc91b6a3b336aabb
   onlyWriteTrigger: 0

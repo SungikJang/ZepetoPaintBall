@@ -7,6 +7,7 @@ import { InterMyPlayerController, MyPlayerController } from '../MyPlayer/MyPalye
 import IOC from '../IOC';
 import Manager, { InterManager } from '../Manager/Manager';
 import { GAME_NAME } from '../Enums';
+import {ZepetoPlayers} from "ZEPETO.Character.Controller";
 
 export interface InterConnector {
     ManualSyncResHandlerFunc(room): void;
@@ -32,6 +33,18 @@ export default class Connector extends NetworkBase implements InterConnector{
     public manager: InterManager;
 
     public ManualSyncResHandlerFunc(room): void {
+        room.AddMessageHandler(
+            'PlayerDateRes',
+            (data: { goldPassInfo: boolean,
+                diaPassInfo: boolean,
+                weaponInfo: string,
+                gold: number,
+                dia: number }) => {
+                console.log("?")
+                this.myPlayerController.MyPlayerData.SetData(data.gold, data.dia, data.goldPassInfo, data.diaPassInfo, data.weaponInfo)
+            }
+        );
+        
         room.AddMessageHandler(
             'GameStartRes',
             (data: { isAdmin: boolean }) => {
@@ -84,6 +97,25 @@ export default class Connector extends NetworkBase implements InterConnector{
             'GameTime',
             (data: { time: number }) => {
                 this.manager.Game.GameTime = data.time;
+            }
+        );
+
+        room.AddMessageHandler(
+            'EndGame',
+            (data: { winningTeam: string }) => {
+                this.manager.Game.GameEnd();
+            }
+        );
+
+        room.AddMessageHandler(
+            'SpineAngleRes',
+            (data: { player: string, spineAngle: float }) => {
+                if(data.player === this.myPlayerController.MyPlayerData.MySessionId){
+                    this.myPlayerController.MyPlayerMovement.SetSpineAngle(data.spineAngle);
+                }
+                else{
+                    ZepetoPlayers.instance.GetPlayer(data.player).character.ZepetoAnimator.SetFloat("SpineAngle", data.spineAngle);
+                }
             }
         );
 

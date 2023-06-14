@@ -1,0 +1,96 @@
+fileFormatVersion: 2
+guid: d83ad6c5b971d1948be8786e1faa3875
+importerOverride: ZEPETO.Script.Compiler:ZEPETO.Script:TypescriptAssetImporter
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: -1123457745, guid: 54cf806323ffe4418a4ce4cc63fe6b9d, type: 3}
+  isAssemblyDeclarations: 0
+  assembly: 
+  generateAllTypes: 1
+  types: []
+  generateWrapper: 0
+  overrideWrapperTypes: 0
+  wrapperTypes: []
+  WrapperFilters: []
+  wrapperOutputDirectory: Generated
+  compiledResult: '{"source":"\"use strict\";\r\nObject.defineProperty(exports, \"__esModule\",
+    { value: true });\r\nconst ZEPETO_Script_1 = require(\"ZEPETO.Script\");\r\nconst
+    ZEPETO_Product_1 = require(\"ZEPETO.Product\");\r\nconst UnityEngine_1 = require(\"UnityEngine\");\r\nconst
+    IOC_1 = require(\"../IOC\");\r\nconst Manager_1 = require(\"../Manager/Manager\");\r\nconst
+    ZEPETO_Currency_1 = require(\"ZEPETO.Currency\");\r\nconst MyPalyerController_1
+    = require(\"../MyPlayer/MyPalyerController\");\r\nconst Enums_1 = require(\"../Enums\");\r\nconst
+    ZEPETO_Inventory_1 = require(\"ZEPETO.Inventory\");\r\nconst Connector_1 = require(\"./Connector\");\r\nconst
+    index_1 = require(\"../Utils/index\");\r\nclass ProductSync extends ZEPETO_Script_1.ZepetoScriptBehaviour
+    {\r\n    Start() {\r\n        this.StartCoroutine(this.LoadAllItems()); //ItemsCache
+    Product\r\n        this.myPlayerController = IOC_1.default.Instance.getInstance(MyPalyerController_1.MyPlayerController);\r\n       
+    IOC_1.default.Instance.getInstance(Manager_1.default).Product.ProductSyncinstance
+    = this.gameObject.GetComponent($typeof(ProductSync));\r\n        this.StartCoroutine(this.WaitForStartUI());\r\n       
+    //this.StartRefreshBalance();\r\n    }\r\n    *LoadAllItems() {\r\n        const
+    request = ZEPETO_Product_1.ProductService.GetProductsAsync();\r\n        yield
+    new UnityEngine_1.WaitUntil(() => request.keepWaiting == false);\r\n        while
+    (true) {\r\n            if (IOC_1.default.Instance.getInstance(Manager_1.default))
+    {\r\n                if (request.responseData.isSuccess) {\r\n                   
+    IOC_1.default.Instance.getInstance(Manager_1.default).Product.ItemsCache = [];\r\n                   
+    request.responseData.products.forEach((pr) => {\r\n                        if
+    (pr.ProductType == ZEPETO_Product_1.ProductType.Item) {\r\n                           
+    IOC_1.default.Instance.getInstance(Manager_1.default).Product.ItemsCache.push(pr);\r\n                       
+    }\r\n                        if (pr.ProductType == ZEPETO_Product_1.ProductType.ItemPackage)
+    {\r\n                            IOC_1.default.Instance.getInstance(Manager_1.default).Product.ItemsPackageCache.push(pr);\r\n                       
+    }\r\n                        if (pr.ProductType == ZEPETO_Product_1.ProductType.CurrencyPackage)
+    {\r\n                            IOC_1.default.Instance.getInstance(Manager_1.default).Product.CurrencyPackageCache.push(pr);\r\n                       
+    }\r\n                    });\r\n                    if (IOC_1.default.Instance.getInstance(Manager_1.default).Product.ItemsCache.length
+    == 0) {\r\n                        console.warn(\"no Item information\");\r\n                       
+    return;\r\n                    }\r\n                    return;\r\n               
+    }\r\n                else {\r\n                    console.warn(\"Product Load
+    Failed\");\r\n                }\r\n            }\r\n            yield new UnityEngine_1.WaitForSeconds(0.2);\r\n       
+    }\r\n    }\r\n    *OnClickPurchaseItemImmediately(productId) {\r\n        const
+    request = ZEPETO_Product_1.ProductService.PurchaseProductAsync(productId);\r\n       
+    yield new UnityEngine_1.WaitUntil(() => request.keepWaiting == false);\r\n       
+    if (request.responseData.isSuccess) {\r\n            // is purchase success\r\n       
+    }\r\n        else {\r\n            // is purchase fail\r\n        }\r\n    }\r\n   
+    *RefreshBalance() {\r\n        console.log(''c'');\r\n        const request =
+    ZEPETO_Currency_1.CurrencyService.GetUserCurrencyBalancesAsync();\r\n       
+    yield new UnityEngine_1.WaitUntil(() => request.keepWaiting == false);\r\n       
+    if (request.responseData.isSuccess) {\r\n            let g = request.responseData.currencies?.ContainsKey(Enums_1.Currency.Gold)
+    ? request.responseData.currencies?.get_Item(Enums_1.Currency.Gold).toString()
+    : \"0\";\r\n            this.myPlayerController.MyPlayerData.MyGold = Number(g);\r\n           
+    let d = request.responseData.currencies?.ContainsKey(Enums_1.Currency.Diamond)
+    ? request.responseData.currencies?.get_Item(Enums_1.Currency.Diamond).toString()
+    : \"0\";\r\n            this.myPlayerController.MyPlayerData.MyDia = Number(d);\r\n       
+    }\r\n    }\r\n    *RefreshOfficialCurrencyUI() {\r\n        console.log(''oc'');\r\n       
+    const request = ZEPETO_Currency_1.CurrencyService.GetOfficialCurrencyBalanceAsync();\r\n       
+    yield new UnityEngine_1.WaitUntil(() => request.keepWaiting == false);\r\n       
+    let z = request.responseData.currency.quantity.toString();\r\n        this.myPlayerController.MyPlayerData.MyZem
+    = Number(z);\r\n    }\r\n    StartRefreshBalance() {\r\n        this.StartCoroutine(this.RefreshBalance());\r\n       
+    this.StartCoroutine(this.RefreshOfficialCurrencyUI());\r\n    }\r\n    StartRefreshInventory()
+    {\r\n        this.StartCoroutine(this.RefreshInventory());\r\n    }\r\n    *RefreshInventory()
+    {\r\n        console.log(''inv'');\r\n        const request = ZEPETO_Inventory_1.InventoryService.GetListAsync();\r\n       
+    yield new UnityEngine_1.WaitUntil(() => request.keepWaiting == false);\r\n       
+    if (request.responseData.isSuccess) {\r\n            const items = request.responseData.products;\r\n           
+    items.forEach((ir, index) => {\r\n                if (ir.productId.includes(\"gun\"))
+    {\r\n                    if (!this.myPlayerController) {\r\n                       
+    this.myPlayerController = IOC_1.default.Instance.getInstance(MyPalyerController_1.MyPlayerController);\r\n                   
+    }\r\n                    let ind = Number(index_1.default.ExtractNumberStr(ir.productId));\r\n                   
+    this.myPlayerController.MyPlayerData.MyWeaponInfoArr[ind - 1] = \"O\";\r\n               
+    }\r\n            });\r\n            // items.forEach((ir, index) => {\r\n           
+    //     // If there are zero consumable items, delete them from the inventory.\r\n           
+    //     if (ir.quantity <= 0 && IOC.Instance.getInstance<InterManager>(Manager).Product.ProductCache.get(ir.productId).PurchaseType
+    == PurchaseType.Consumable) {\r\n            //         // remove inventory\r\n           
+    //         const data = new RoomData();\r\n            //         data.Add(\"productId\",
+    ir.productId);\r\n            //         Connector.Instance.ReqToServer(\"onRemoveInventory\",
+    {productId: ir.productId});\r\n            //         return;\r\n           
+    //     }\r\n            //\r\n            // });\r\n        }\r\n    }\r\n   
+    *WaitForStartUI() {\r\n        while (true) {\r\n            console.log(\"1\");\r\n           
+    if (!this.manager) {\r\n                this.manager = IOC_1.default.Instance.getInstance(Manager_1.default);\r\n               
+    console.log(\"2\");\r\n            }\r\n            if (this.manager.UI.StartUI)
+    {\r\n                console.log(\"3\");\r\n                this.StartRefreshBalance();\r\n               
+    this.StartRefreshInventory();\r\n                return;\r\n            }\r\n           
+    yield new UnityEngine_1.WaitForSeconds(0.2);\r\n        }\r\n    }\r\n}\r\nexports.default
+    = ProductSync;\r\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiUHJvZHVjdFN5bmMuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJQcm9kdWN0U3luYy50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUFBLGlEQUFxRDtBQUNyRCxtREFBZ0c7QUFDaEcsNkNBQXNEO0FBQ3RELGdDQUF5QjtBQUN6QixnREFBMkQ7QUFDM0QscURBQWdEO0FBQ2hELHVFQUE2RjtBQUM3RixvQ0FBb0M7QUFDcEMsdURBQW1FO0FBRW5FLDJDQUFvQztBQUNwQywwQ0FBa0M7QUFFbEMsTUFBcUIsV0FBWSxTQUFRLHFDQUFxQjtJQUkxRCxLQUFLO1FBQ0QsSUFBSSxDQUFDLGNBQWMsQ0FBQyxJQUFJLENBQUMsWUFBWSxFQUFFLENBQUMsQ0FBQSxDQUFBLG9CQUFvQjtRQUM1RCxJQUFJLENBQUMsa0JBQWtCLEdBQUcsYUFBRyxDQUFDLFFBQVEsQ0FBQyxXQUFXLENBQTBCLHVDQUFrQixDQUFDLENBQUM7UUFDaEcsYUFBRyxDQUFDLFFBQVEsQ0FBQyxXQUFXLENBQWUsaUJBQU8sQ0FBQyxDQUFDLE9BQU8sQ0FBQyxtQkFBbUIsR0FBRyxJQUFJLENBQUMsVUFBVSxDQUFDLFlBQVksU0FBQyxXQUFXLEVBQUcsQ0FBQztRQUMxSCxJQUFJLENBQUMsY0FBYyxDQUFDLElBQUksQ0FBQyxjQUFjLEVBQUUsQ0FBQyxDQUFBO1FBQzFDLDZCQUE2QjtJQUNqQyxDQUFDO0lBR00sQ0FBRSxZQUFZO1FBQ2pCLE1BQU0sT0FBTyxHQUFHLCtCQUFjLENBQUMsZ0JBQWdCLEVBQUUsQ0FBQztRQUNsRCxNQUFNLElBQUksdUJBQVMsQ0FBQyxHQUFHLEVBQUUsQ0FBQyxPQUFPLENBQUMsV0FBVyxJQUFJLEtBQUssQ0FBQyxDQUFDO1FBQ3hELE9BQU0sSUFBSSxFQUFDO1lBQ1AsSUFBRyxhQUFHLENBQUMsUUFBUSxDQUFDLFdBQVcsQ0FBQyxpQkFBTyxDQUFDLEVBQUM7Z0JBQ2pDLElBQUksT0FBTyxDQUFDLFlBQVksQ0FBQyxTQUFTLEVBQUU7b0JBQ2hDLGFB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","assetPath":"Assets/Scripts/Client/Network/ProductSync.ts","manifest":{"properties":[{"assembly":"","name":"myPlayerController","type":"C:/Users/hyo05/Desktop/GamePG/PaintBallGame/ZepetoPaintBall/Assets/Scripts/Client/MyPlayer/MyPalyerController.InterMyPlayerController","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]},{"assembly":"","name":"manager","type":"C:/Users/hyo05/Desktop/GamePG/PaintBallGame/ZepetoPaintBall/Assets/Scripts/Client/Manager/Manager.InterManager","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]}],"name":"ProductSync","description":"","hasAnimatorMove":false},"isCompiled":true}'
+  typescriptHash: cf5ff6103cacf17d75e0735d3a90d3da
+  onlyWriteTrigger: 0

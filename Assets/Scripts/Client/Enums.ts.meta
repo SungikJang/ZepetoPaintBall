@@ -19,13 +19,13 @@ ScriptedImporter:
   WrapperFilters: []
   wrapperOutputDirectory: Generated
   compiledResult: '{"source":"\"use strict\";\r\nObject.defineProperty(exports, \"__esModule\",
-    { value: true });\r\nexports.GAME_GRADE = exports.GAME_NAME = exports.PLAYER_STATE
-    = exports.POTION_TYPE = exports.LANGUAGES = void 0;\r\nvar LANGUAGES;\r\n(function
-    (LANGUAGES) {\r\n    LANGUAGES[\"Korean\"] = \"Korean\";\r\n    LANGUAGES[\"English\"]
-    = \"English\";\r\n    LANGUAGES[\"Japanese\"] = \"Japanese\";\r\n    LANGUAGES[\"Indonesian\"]
-    = \"Indonesian\";\r\n    LANGUAGES[\"Thai\"] = \"Thai\";\r\n    LANGUAGES[\"Vietnamese\"]
-    = \"Vietnamese\";\r\n    LANGUAGES[\"Spanish\"] = \"Spanish\";\r\n    LANGUAGES[\"French\"]
-    = \"French\";\r\n    LANGUAGES[\"Portuguese\"] = \"Portuguese\";\r\n})(LANGUAGES
+    { value: true });\r\nexports.Currency = exports.GAME_GRADE = exports.GAME_NAME
+    = exports.PLAYER_STATE = exports.POTION_TYPE = exports.LANGUAGES = void 0;\r\nvar
+    LANGUAGES;\r\n(function (LANGUAGES) {\r\n    LANGUAGES[\"Korean\"] = \"Korean\";\r\n   
+    LANGUAGES[\"English\"] = \"English\";\r\n    LANGUAGES[\"Japanese\"] = \"Japanese\";\r\n   
+    LANGUAGES[\"Indonesian\"] = \"Indonesian\";\r\n    LANGUAGES[\"Thai\"] = \"Thai\";\r\n   
+    LANGUAGES[\"Vietnamese\"] = \"Vietnamese\";\r\n    LANGUAGES[\"Spanish\"] = \"Spanish\";\r\n   
+    LANGUAGES[\"French\"] = \"French\";\r\n    LANGUAGES[\"Portuguese\"] = \"Portuguese\";\r\n})(LANGUAGES
     = exports.LANGUAGES || (exports.LANGUAGES = {}));\r\nvar POTION_TYPE;\r\n(function
     (POTION_TYPE) {\r\n    POTION_TYPE[POTION_TYPE[\"PLUS\"] = 0] = \"PLUS\";\r\n   
     POTION_TYPE[POTION_TYPE[\"MINUS\"] = 1] = \"MINUS\";\r\n})(POTION_TYPE = exports.POTION_TYPE
@@ -40,6 +40,8 @@ ScriptedImporter:
     = 1] = \"B\";\r\n    GAME_GRADE[GAME_GRADE[\"C\"] = 2] = \"C\";\r\n    GAME_GRADE[GAME_GRADE[\"D\"]
     = 3] = \"D\";\r\n    GAME_GRADE[GAME_GRADE[\"E\"] = 4] = \"E\";\r\n    GAME_GRADE[GAME_GRADE[\"F\"]
     = 5] = \"F\";\r\n})(GAME_GRADE = exports.GAME_GRADE || (exports.GAME_GRADE =
-    {}));\r\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiRW51bXMuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJFbnVtcy50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7QUFBQSxJQUFZLFNBVVg7QUFWRCxXQUFZLFNBQVM7SUFDakIsOEJBQWlCLENBQUE7SUFDakIsZ0NBQW1CLENBQUE7SUFDbkIsa0NBQXFCLENBQUE7SUFDckIsc0NBQXlCLENBQUE7SUFDekIsMEJBQWEsQ0FBQTtJQUNiLHNDQUF5QixDQUFBO0lBQ3pCLGdDQUFtQixDQUFBO0lBQ25CLDhCQUFpQixDQUFBO0lBQ2pCLHNDQUF5QixDQUFBO0FBQzdCLENBQUMsRUFWVyxTQUFTLEdBQVQsaUJBQVMsS0FBVCxpQkFBUyxRQVVwQjtBQUVELElBQVksV0FHWDtBQUhELFdBQVksV0FBVztJQUNuQiw2Q0FBSSxDQUFBO0lBQ0osK0NBQUssQ0FBQTtBQUNULENBQUMsRUFIVyxXQUFXLEdBQVgsbUJBQVcsS0FBWCxtQkFBVyxRQUd0QjtBQUVELElBQVksWUFJWDtBQUpELFdBQVksWUFBWTtJQUNwQiwyQkFBVyxDQUFBO0lBQ1gsNkJBQWEsQ0FBQTtJQUNiLDZCQUFhLENBQUE7QUFDakIsQ0FBQyxFQUpXLFlBQVksR0FBWixvQkFBWSxLQUFaLG9CQUFZLFFBSXZCO0FBRUQsSUFBWSxTQUtYO0FBTEQsV0FBWSxTQUFTO0lBQ2pCLDBCQUFhLENBQUE7SUFDYiwwQkFBYSxDQUFBO0lBQ2IsNEJBQWUsQ0FBQTtJQUNmLGtDQUFxQixDQUFBO0FBQ3pCLENBQUMsRUFMVyxTQUFTLEdBQVQsaUJBQVMsS0FBVCxpQkFBUyxRQUtwQjtBQUVELElBQVksVUFPWDtBQVBELFdBQVksVUFBVTtJQUNsQixxQ0FBQyxDQUFBO0lBQ0QscUNBQUMsQ0FBQTtJQUNELHFDQUFDLENBQUE7SUFDRCxxQ0FBQyxDQUFBO0lBQ0QscUNBQUMsQ0FBQTtJQUNELHFDQUFDLENBQUE7QUFDTCxDQUFDLEVBUFcsVUFBVSxHQUFWLGtCQUFVLEtBQVYsa0JBQVUsUUFPckIifQ==","assetPath":"Assets/Scripts/Client/Enums.ts","manifest":{"properties":[],"name":"Enums","description":"","hasAnimatorMove":false},"isCompiled":true}'
-  typescriptHash: bb80b088e34bcbf7ff36763a7adb96e0
+    {}));\r\nvar Currency;\r\n(function (Currency) {\r\n    Currency[\"Gold\"] =
+    \"zepetogunsgold\";\r\n    Currency[\"Diamond\"] = \"zepetogunsdia\";\r\n})(Currency
+    = exports.Currency || (exports.Currency = {}));\r\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiRW51bXMuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJFbnVtcy50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7QUFBQSxJQUFZLFNBVVg7QUFWRCxXQUFZLFNBQVM7SUFDakIsOEJBQWlCLENBQUE7SUFDakIsZ0NBQW1CLENBQUE7SUFDbkIsa0NBQXFCLENBQUE7SUFDckIsc0NBQXlCLENBQUE7SUFDekIsMEJBQWEsQ0FBQTtJQUNiLHNDQUF5QixDQUFBO0lBQ3pCLGdDQUFtQixDQUFBO0lBQ25CLDhCQUFpQixDQUFBO0lBQ2pCLHNDQUF5QixDQUFBO0FBQzdCLENBQUMsRUFWVyxTQUFTLEdBQVQsaUJBQVMsS0FBVCxpQkFBUyxRQVVwQjtBQUVELElBQVksV0FHWDtBQUhELFdBQVksV0FBVztJQUNuQiw2Q0FBSSxDQUFBO0lBQ0osK0NBQUssQ0FBQTtBQUNULENBQUMsRUFIVyxXQUFXLEdBQVgsbUJBQVcsS0FBWCxtQkFBVyxRQUd0QjtBQUVELElBQVksWUFJWDtBQUpELFdBQVksWUFBWTtJQUNwQiwyQkFBVyxDQUFBO0lBQ1gsNkJBQWEsQ0FBQTtJQUNiLDZCQUFhLENBQUE7QUFDakIsQ0FBQyxFQUpXLFlBQVksR0FBWixvQkFBWSxLQUFaLG9CQUFZLFFBSXZCO0FBRUQsSUFBWSxTQUtYO0FBTEQsV0FBWSxTQUFTO0lBQ2pCLDBCQUFhLENBQUE7SUFDYiwwQkFBYSxDQUFBO0lBQ2IsNEJBQWUsQ0FBQTtJQUNmLGtDQUFxQixDQUFBO0FBQ3pCLENBQUMsRUFMVyxTQUFTLEdBQVQsaUJBQVMsS0FBVCxpQkFBUyxRQUtwQjtBQUVELElBQVksVUFPWDtBQVBELFdBQVksVUFBVTtJQUNsQixxQ0FBQyxDQUFBO0lBQ0QscUNBQUMsQ0FBQTtJQUNELHFDQUFDLENBQUE7SUFDRCxxQ0FBQyxDQUFBO0lBQ0QscUNBQUMsQ0FBQTtJQUNELHFDQUFDLENBQUE7QUFDTCxDQUFDLEVBUFcsVUFBVSxHQUFWLGtCQUFVLEtBQVYsa0JBQVUsUUFPckI7QUFFRCxJQUFZLFFBR1g7QUFIRCxXQUFZLFFBQVE7SUFDaEIsbUNBQXVCLENBQUE7SUFDdkIscUNBQXlCLENBQUE7QUFDN0IsQ0FBQyxFQUhXLFFBQVEsR0FBUixnQkFBUSxLQUFSLGdCQUFRLFFBR25CIn0=","assetPath":"Assets/Scripts/Client/Enums.ts","manifest":{"properties":[],"name":"Enums","description":"","hasAnimatorMove":false},"isCompiled":true}'
+  typescriptHash: 8588abb39dadaec420b55fd701eb75a6
   onlyWriteTrigger: 0

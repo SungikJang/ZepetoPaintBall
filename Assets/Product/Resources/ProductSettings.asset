@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1531310573, guid: 5ed5fc990562640bca475bb90d769b51, type: 3}
+  m_Name: ProductSettings
+  m_EditorClassIdentifier: 
+  productTextureInfo:
+  - targetId: goldpack1
+    targetAssetPath: Assets/Product/Resources/product_Icon_ColorIcon_Coin_l.png
+  - targetId: gun1
+    targetAssetPath: Assets/Resources/Sprites/Guns/1.png
+  - targetId: gun10
+    targetAssetPath: Assets/Resources/Sprites/Guns/10.png
+  - targetId: gun11
+    targetAssetPath: Assets/Resources/Sprites/Guns/11.png
+  - targetId: gun12
+    targetAssetPath: Assets/Resources/Sprites/Guns/12.png
+  - targetId: gun2
+    targetAssetPath: Assets/Resources/Sprites/Guns/2.png
+  - targetId: gun3
+    targetAssetPath: Assets/Resources/Sprites/Guns/3.png
+  - targetId: gun4
+    targetAssetPath: Assets/Resources/Sprites/Guns/4.png
+  - targetId: gun5
+    targetAssetPath: Assets/Resources/Sprites/Guns/5.png
+  - targetId: gun6
+    targetAssetPath: Assets/Resources/Sprites/Guns/6.png
+  - targetId: gun7
+    targetAssetPath: Assets/Resources/Sprites/Guns/7.png
+  - targetId: gun8
+    targetAssetPath: Assets/Resources/Sprites/Guns/8.png
+  - targetId: gun9
+    targetAssetPath: Assets/Resources/Sprites/Guns/9.png
+  currencyTextureInfo:
+  - targetId: zepetogunsdia
+    targetAssetPath: Assets/Product/Resources/currency_IconGroup_MenuIcon5_Gem.png
+  - targetId: zepetogunsgold
+    targetAssetPath: Assets/Product/Resources/currency_Icon_ColorIcon_Coin_m.png

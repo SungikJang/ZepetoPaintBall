@@ -16,7 +16,21 @@ export default class MyPlayerTriggerController extends ZepetoScriptBehaviour {
     }
 
     OnTriggerEnter(collider: GameObject) {
-        
+        if (collider.gameObject.CompareTag("B")) {
+            
+        }
+        else if(collider.gameObject.CompareTag("A")){
+            
+        }
+        else if(collider.gameObject.CompareTag("Solo")){
+
+        }
+        else if(collider.gameObject.CompareTag("Flag")){
+
+        }
+        else if(collider.gameObject.CompareTag("Seige")){
+
+        }
     }
 
 }

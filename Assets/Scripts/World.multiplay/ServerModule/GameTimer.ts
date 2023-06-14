@@ -68,6 +68,15 @@ export default class GameManager implements IGameManager {
             }
         }
     }
+
+    LeavePlayer(client: SandboxPlayer){
+        if(this.teamA.includes(client.sessionId)){
+            this.teamA.splice(this.teamA.indexOf(client.sessionId), 1)
+        }
+        else{
+            this.teamB.splice(this.teamB.indexOf(client.sessionId), 1)
+        }
+    }
     
     EndGame(){
         this.scm.EndGame(this.winningTeam);

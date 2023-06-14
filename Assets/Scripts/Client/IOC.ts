@@ -8,6 +8,7 @@ import SeigeGameManager from "./Manager/SeigeGameManager";
 import SoloFlagGameManager from "./Manager/SoloFlagGameManager";
 import SoundManager from "./Manager/SoundManager";
 import UIManager from "./Manager/UIManager";
+import ProductManager from "./Manager/ProductManager";
 import { MyPlayerController } from "./MyPlayer/MyPalyerController";
 import MyPlayerData from "./MyPlayer/MyPlayerData";
 import MyPlayerMovement from "./MyPlayer/MyPlayerMovement";
@@ -53,6 +54,7 @@ export default class IOC implements IIOC {
         this.classTypeMap.set('_FlagGameManager', FlagGameManager);
         this.classTypeMap.set('_SeigeGameManager', SeigeGameManager);
         this.classTypeMap.set('_SoloFlagGameManager', SoloFlagGameManager);
+        this.classTypeMap.set('_ProductManager', ProductManager);
     }
 
     public static get Instance(): IOC {

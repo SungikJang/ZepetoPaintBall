@@ -5,10 +5,12 @@ import {SpawnInfo, ZepetoPlayer, ZepetoPlayers} from 'ZEPETO.Character.Controlle
 import {State, Player} from "ZEPETO.Multiplay.Schema";
 import {AudioListener, GameObject, Object, Quaternion, Vector3, WaitForSeconds} from "UnityEngine";
 import PlayerSync from './PlayerSync';
+import Connector from './Connector';
 import TransformSyncHelper, {PositionExtrapolationType, PositionInterpolationType } from './TransformSyncHelper';
 import MyPlayerTriggerController from '../MyPlayer/MyPlayerTriggerController';
 import IOC from '../IOC';
 import { InterMyPlayerController, MyPlayerController } from '../MyPlayer/MyPalyerController';
+import MyPlayerCoroutineController from '../MyPlayer/MyplayerCoroutineController';
 
 
 export enum ZepetoPlayerSpawnType {
@@ -77,8 +79,10 @@ export default class ZepetoPlayersManager extends ZepetoScriptBehaviour {
                     const player = ZepetoPlayers.instance.GetPlayer(sessionId);
                     if (player.isLocalPlayer) {
                         player.character.gameObject.AddComponent<MyPlayerTriggerController>();
+                        player.character.gameObject.AddComponent<MyPlayerCoroutineController>();
                         IOC.Instance.getInstance<InterMyPlayerController>(MyPlayerController).MyPlayerData.SetMyPlayer(player);
                         IOC.Instance.getInstance<InterMyPlayerController>(MyPlayerController).MyPlayerMovement.SetMyPlayer(player);
+                        IOC.Instance.getInstance<InterMyPlayerController>(MyPlayerController).MyPlayerData.EqiupGun('1');
                     }
                     else {
                         // player.character.gameObject.AddComponent<OtherZepetoCharacterController>();

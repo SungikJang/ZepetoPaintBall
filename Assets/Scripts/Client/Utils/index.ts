@@ -70,4 +70,26 @@ export default class Utils {
     public static VectorMinusCalc(vector1: Vector3, vector2: Vector3): Vector3 {
         return new Vector3(vector1.x - vector2.x, vector1.y - vector2.y, vector1.z - vector2.z);
     }
+
+    public static VectorMultiCalc(vector1: Vector3, multi: number): Vector3 {
+        return new Vector3(vector1.x * multi, vector1.y * multi, vector1.z * multi);
+    }
+    
+    public static RandomInt(min: number, max: number){
+        return Math.floor(Math.random() * (max - min + 1))
+    }
+
+    public static GetThousandCommaText(datan?: number, datas?: string){
+        if(datan){
+            return datan.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+        }
+        if(datas){
+            return datas.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+        }
+    }
+    
+    public static ExtractNumberStr(str: string){
+        let regex =  /[^0-9]/g;
+        return str.replace(regex, "");
+    }
 }

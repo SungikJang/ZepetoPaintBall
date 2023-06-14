@@ -1,0 +1,70 @@
+fileFormatVersion: 2
+guid: 334d24e97e68ad944a5b55bcaecbe1d8
+importerOverride: ZEPETO.Script.Compiler:ZEPETO.Script:TypescriptAssetImporter
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: -1123457745, guid: 54cf806323ffe4418a4ce4cc63fe6b9d, type: 3}
+  isAssemblyDeclarations: 0
+  assembly: 
+  generateAllTypes: 1
+  types: []
+  generateWrapper: 0
+  overrideWrapperTypes: 0
+  wrapperTypes: []
+  WrapperFilters: []
+  wrapperOutputDirectory: Generated
+  compiledResult: '{"source":"\"use strict\";\r\nObject.defineProperty(exports, \"__esModule\",
+    { value: true });\r\nconst ZEPETO_Product_1 = require(\"ZEPETO.Product\");\r\nconst
+    ZEPETO_Multiplay_1 = require(\"ZEPETO.Multiplay\");\r\nconst ProductSync_1 =
+    require(\"../Network/ProductSync\");\r\nclass ProductManager {\r\n    constructor()
+    {\r\n        this._itemsCache = [];\r\n        this._itemsPackageCache = [];\r\n       
+    this._currencyPackageCache = [];\r\n        this._productCache = new Map();\r\n   
+    }\r\n    Init() {\r\n        ZEPETO_Product_1.ProductService.OnPurchaseCompleted.AddListener((product,
+    response) => {\r\n            console.log(`${response.productId} Purchase Completed`);\r\n           
+    if (product.ProductType == ZEPETO_Product_1.ProductType.Item) {\r\n               
+    this.RefreshBalance();\r\n                this.RefreshInventory();\r\n           
+    }\r\n            if (product.ProductType == ZEPETO_Product_1.ProductType.ItemPackage)
+    {\r\n                this.RefreshBalance();\r\n                this.RefreshInventory();\r\n           
+    }\r\n            if (product.ProductType == ZEPETO_Product_1.ProductType.CurrencyPackage)
+    {\r\n                this.RefreshBalance();\r\n            }\r\n        });\r\n       
+    ZEPETO_Product_1.ProductService.OnPurchaseFailed.AddListener((product, response)
+    => {\r\n            console.log(response.message);\r\n        });\r\n    }\r\n   
+    get ItemsCache() {\r\n        return this._itemsCache;\r\n    }\r\n    set ItemsCache(value)
+    {\r\n        this._itemsCache = value;\r\n    }\r\n    get ItemsPackageCache()
+    {\r\n        return this._itemsPackageCache;\r\n    }\r\n    set ItemsPackageCache(value)
+    {\r\n        this._itemsPackageCache = value;\r\n    }\r\n    get CurrencyPackageCache()
+    {\r\n        return this._currencyPackageCache;\r\n    }\r\n    set CurrencyPackageCache(value)
+    {\r\n        this._currencyPackageCache = value;\r\n    }\r\n    get ProductSyncinstance()
+    {\r\n        return this._productSync;\r\n    }\r\n    set ProductSyncinstance(value)
+    {\r\n        this._productSync = value;\r\n    }\r\n    get ProductCache() {\r\n       
+    return this._productCache;\r\n    }\r\n    set ProductCache(value) {\r\n       
+    this._productCache = value;\r\n    }\r\n    GainBalance(currencyId, quantity)
+    {\r\n        const data = new ZEPETO_Multiplay_1.RoomData();\r\n        data.Add(\"currencyId\",
+    currencyId);\r\n        data.Add(\"quantity\", quantity);\r\n        this._multiplay.Room?.Send(\"onCredit\",
+    data.GetObject());\r\n    }\r\n    UseBalance(currencyId, quantity) {\r\n       
+    const data = new ZEPETO_Multiplay_1.RoomData();\r\n        data.Add(\"currencyId\",
+    currencyId);\r\n        data.Add(\"quantity\", quantity);\r\n        this._multiplay.Room?.Send(\"onDebit\",
+    data.GetObject());\r\n    }\r\n    PurchaseItem(ProductId) {\r\n        const
+    product = this._itemsCache.find(ir => ir.productId === ProductId);\r\n       
+    if (product) {\r\n            ZEPETO_Product_1.ProductService.OpenPurchaseUI(product);\r\n       
+    }\r\n        else {\r\n            console.log(`Non-consumable product does not
+    exist.`);\r\n        }\r\n    }\r\n    PurchaseItemsPackage(PackageId) {\r\n       
+    const product = this._itemsPackageCache.find(ir => ir.productId === PackageId);\r\n       
+    if (product) {\r\n            ZEPETO_Product_1.ProductService.OpenPurchaseUI(product);\r\n       
+    }\r\n        else {\r\n            console.log(`Non-consumable product does not
+    exist.`);\r\n        }\r\n    }\r\n    PurchaseCurrencyPackage(PackageId) {\r\n       
+    const product = this._currencyPackageCache.find(ir => ir.productId === PackageId);\r\n       
+    if (product) {\r\n            ZEPETO_Product_1.ProductService.OpenPurchaseUI(product);\r\n       
+    }\r\n        else {\r\n            console.log(`Non-consumable product does not
+    exist.`);\r\n        }\r\n    }\r\n    RefreshBalance() {\r\n        if (this._productSync)
+    {\r\n            this._productSync.StartRefreshBalance();\r\n        }\r\n   
+    }\r\n    RefreshInventory() {\r\n        if (this._productSync) {\r\n           
+    this._productSync.StartRefreshInventory();\r\n        }\r\n    }\r\n}\r\nexports.default
+    = ProductManager;\r\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiUHJvZHVjdE1hbmFnZXIuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJQcm9kdWN0TWFuYWdlci50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUVBLG1EQUF3RjtBQUV4Rix1REFBZ0Q7QUFDaEQsd0RBQWlEO0FBeUNqRCxNQUFxQixjQUFjO0lBQW5DO1FBRVksZ0JBQVcsR0FBb0IsRUFBRSxDQUFDO1FBQ2xDLHVCQUFrQixHQUFvQixFQUFFLENBQUE7UUFDeEMsMEJBQXFCLEdBQW9CLEVBQUUsQ0FBQTtRQUczQyxrQkFBYSxHQUErQixJQUFJLEdBQUcsRUFBeUIsQ0FBQztJQXdIekYsQ0FBQztJQXBIRyxJQUFJO1FBQ0EsK0JBQWMsQ0FBQyxtQkFBbUIsQ0FBQyxXQUFXLENBQUMsQ0FBQyxPQUFPLEVBQUUsUUFBUSxFQUFFLEVBQUU7WUFDakUsT0FBTyxDQUFDLEdBQUcsQ0FBQyxHQUFHLFFBQVEsQ0FBQyxTQUFTLHFCQUFxQixDQUFDLENBQUM7WUFDeEQsSUFBSSxPQUFPLENBQUMsV0FBVyxJQUFJLDRCQUFXLENBQUMsSUFBSSxFQUFFO2dCQUN6QyxJQUFJLENBQUMsY0FBYyxFQUFFLENBQUE7Z0JBQ3JCLElBQUksQ0FBQyxnQkFBZ0IsRUFBRSxDQUFBO2FBQzFCO1lBQ0QsSUFBSSxPQUFPLENBQUMsV0FBVyxJQUFJLDRCQUFXLENBQUMsV0FBVyxFQUFFO2dCQUNoRCxJQUFJLENBQUMsY0FBYyxFQUFFLENBQUE7Z0JBQ3JCLElBQUksQ0FBQyxnQkFBZ0IsRUFBRSxDQUFBO2FBQzFCO1lBQ0QsSUFBSSxPQUFPLENBQUMsV0FBVyxJQUFJLDRCQUFXLENBQUMsZUFBZSxFQUFFO2dCQUNwRCxJQUFJLENBQUMsY0FBYyxFQUFFLENBQUE7YUFDeEI7UUFDTCxDQUFDLENBQUMsQ0FBQztRQUNILCtCQUFjLENBQUMsZ0JBQWdCLENBQUMsV0FBVyxDQUFDLENBQUMsT0FBTyxFQUFFLFFBQVEsRUFBRSxFQUFFO1lBQzlELE9BQU8sQ0FBQyxHQUFHLENB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","assetPath":"Assets/Scripts/Client/Manager/ProductManager.ts","manifest":{"properties":[],"name":"ProductManager","description":"","hasAnimatorMove":false},"isCompiled":true}'
+  typescriptHash: 6b1894424d5cbdf2e1500ed4f244e156
+  onlyWriteTrigger: 0

@@ -1,8 +1,9 @@
 import { GAME_NAME } from "../Enums";
 import IOC from "../IOC";
 import Manager, { InterManager } from "./Manager";
-import {GameObject, Transform} from "UnityEngine";
+import {GameObject, Quaternion, Transform, Vector3} from "UnityEngine";
 import {InterMyPlayerController, MyPlayerController } from "../MyPlayer/MyPalyerController";
+import Utils from "../Utils/index"
 
 
 export interface InterSeigeGameManager {
@@ -44,11 +45,27 @@ export default class SeigeGameManager implements InterSeigeGameManager{
     }
 
     JoinGame(team: string){
-        
+        if(!this.SeigeStartPoint) this.SeigeStartPoint = GameObject.Find("FlagStartPoint").transform;
+        const ind = Utils.RandomInt(0, this.SeigeStartPoint.GetChild(0).childCount);
+        if(team === "A") {
+            this.myPlayerController.MyPlayerMovement.Teleport(this.SeigeStartPoint.GetChild(0).GetChild(ind))
+        }
+        else{
+            this.myPlayerController.MyPlayerMovement.Teleport(this.SeigeStartPoint.GetChild(1).GetChild(ind))
+        }
+        this.myPlayerController.MyPlayerData.SetTeam(team)
+        this.manager.Game.IsGameRunning = true;
     }
 
     LeaveGame(){
-        
+        this.myPlayerController.MyPlayerData.SetTeam("")
+        this.manager.Game.IsGameRunning = false;
+        let t: Transform;
+        t.position = Vector3.zero;
+        t.rotation = Quaternion.Euler(Vector3.zero)
+        this.myPlayerController.MyPlayerMovement.Teleport(t);
+        this.manager.UI.CloseDefaultUI('InGameUI')
+        this.manager.UI.ShowDefaultUI('StartUI')
     }
 
     EndGame(){

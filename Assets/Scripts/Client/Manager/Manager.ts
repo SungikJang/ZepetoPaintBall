@@ -4,6 +4,7 @@ import { InterDataManager } from './DataManager';
 import { InterFlagGameManager } from './FlagGameManager';
 import { InterGameManager } from './GameManger';
 import { InterLanguageManager } from './LanguageManager';
+import { InterProductManager } from './ProductManager';
 import { InterResourceManager } from './ResourceManager';
 import { InterSeigeGameManager } from './SeigeGameManager';
 import { InterSoloFlagGameManager } from './SoloFlagGameManager';
@@ -31,6 +32,8 @@ export interface InterManager {
     get SeigeGame(): InterSeigeGameManager
 
     get SoloFlagGame(): InterSoloFlagGameManager
+
+    get Product(): InterProductManager
 }
 
 export default class Manager extends ZepetoScriptBehaviour implements InterManager {
@@ -43,6 +46,7 @@ export default class Manager extends ZepetoScriptBehaviour implements InterManag
     private _flagGameManager: InterFlagGameManager
     private _seigeGameManager: InterSeigeGameManager
     private _soloFlagGameManager: InterSoloFlagGameManager
+    private _productManager: InterProductManager
 
     constructor(
         _LanguageManager: InterLanguageManager,
@@ -53,7 +57,8 @@ export default class Manager extends ZepetoScriptBehaviour implements InterManag
         _GameManager: InterGameManager,
         _FlagGameManager: InterFlagGameManager,
         _SeigeGameManager: InterSeigeGameManager,
-        _SoloFlagGameManager: InterSoloFlagGameManager
+        _SoloFlagGameManager: InterSoloFlagGameManager,
+        _ProductManager: InterProductManager,
     ) {
         super();
         this._uiManager = _UIManager;
@@ -65,6 +70,7 @@ export default class Manager extends ZepetoScriptBehaviour implements InterManag
         this._flagGameManager = _FlagGameManager
         this._seigeGameManager = _SeigeGameManager
         this._soloFlagGameManager = _SoloFlagGameManager
+        this._productManager = _ProductManager
     }
     
     Init(){
@@ -75,6 +81,8 @@ export default class Manager extends ZepetoScriptBehaviour implements InterManag
         this._flagGameManager.Init();
         this._seigeGameManager.Init();
         this._soloFlagGameManager.Init();
+        this._dataManager.Init();
+        this._productManager.Init();
     }
 
     public get UI(): InterUIManager {
@@ -111,5 +119,9 @@ export default class Manager extends ZepetoScriptBehaviour implements InterManag
 
     public get SoloFlagGame(): InterSoloFlagGameManager {
         return this._soloFlagGameManager;
+    }
+    
+    public get Product(): InterProductManager{
+        return this._productManager;
     }
 }

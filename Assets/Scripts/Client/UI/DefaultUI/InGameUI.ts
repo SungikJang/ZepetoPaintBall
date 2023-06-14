@@ -1,11 +1,12 @@
 import { Button } from 'UnityEngine.UI';
 import { ZepetoScriptBehaviour } from 'ZEPETO.Script'
 import {TMP_Text} from 'TMPro';
-import { GameObject } from 'UnityEngine';
+import {GameObject, WaitForSeconds} from 'UnityEngine';
 import { InterMyPlayerController, MyPlayerController } from '../../MyPlayer/MyPalyerController';
 import Manager, { InterManager } from '../../Manager/Manager';
 import IOC from '../../IOC';
 import { GAME_NAME } from "../../Enums";
+import ControllerUI from '../ControllerUI/ControllerUI';
 
 export default class InGameUI extends ZepetoScriptBehaviour {
     
@@ -25,10 +26,20 @@ export default class InGameUI extends ZepetoScriptBehaviour {
 
     public myPlayerController: InterMyPlayerController;
     public manager: InterManager;
+    
+    private instanceSet: boolean = false;
 
     Start() {
         this.myPlayerController = IOC.Instance.getInstance<InterMyPlayerController>(MyPlayerController);
         this.manager = IOC.Instance.getInstance<InterManager>(Manager);
+        this.StartCoroutine(this.GetInstance());
+        this.homeBtn.onClick.AddListener(()=>{
+            this.manager.Game.LeaveGame();
+        });
+    }
+    
+    OnEnable(){
+        if(!this.manager) this.manager = IOC.Instance.getInstance<InterManager>(Manager);
         switch(this.manager.Game.NowOnGame){
             case GAME_NAME.Flag:
                 this.ScoreObj1.SetActive(true);
@@ -39,9 +50,14 @@ export default class InGameUI extends ZepetoScriptBehaviour {
                 this.ScoreObj2.SetActive(true);
                 break;
             case GAME_NAME.SoloFlag:
-                
+
                 break;
         }
+    }
+    
+    OnDisAble(){
+        this.ScoreObj1.SetActive(false);
+        this.ScoreObj2.SetActive(false);
     }
     
     Update(){
@@ -67,4 +83,15 @@ export default class InGameUI extends ZepetoScriptBehaviour {
         }
     }
 
+    * GetInstance(){
+        while(!this.instanceSet){
+            this.myPlayerController = IOC.Instance.getInstance<InterMyPlayerController>(MyPlayerController);
+            this.manager = IOC.Instance.getInstance<InterManager>(Manager);
+            if(this.manager && this.myPlayerController){
+                this.instanceSet = true;
+                return;
+            }
+            yield new WaitForSeconds(0.1);
+        }
+    }
 }
