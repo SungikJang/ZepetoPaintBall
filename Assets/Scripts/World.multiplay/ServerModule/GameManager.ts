@@ -53,12 +53,11 @@ export default class GameManager implements IGameManager {
                 this.teamA.push(this.Starter.sessionId)
             }
         }
-        this.winningTeam = "A"
         this.scm.GameStart(this.Starter, this.gameName);
         this.timer = setInterval(() => {
             this.scm.SendGameTime(this.cnt);
             this.cnt += 1
-            if(this.cnt > 20){
+            if(this.cnt > 200){
                 this.EndGame();
                 this.Destroy();
             }

@@ -47,10 +47,6 @@ export interface InterGameManager {
 
     set ControllerUI(value: ControllerUI)
 
-    get OtherPlayerWeaponInfo()
-
-    set OtherPlayerWeaponInfo(value: Map<string, string>)
-
     GameReady()
     //
     // get OtherInGamePlayers()
@@ -69,8 +65,6 @@ export default class GameManager implements InterGameManager{
     private gunController: GunController
     
     private controllerUI: ControllerUI
-    
-    private otherPlayerWeaponInfo: Map<string, string> = new Map<string, string>();
     
     // private otherPlayers: string[] = [];
     //
@@ -111,14 +105,6 @@ export default class GameManager implements InterGameManager{
     set HomePoint(value: Transform){
         this.homePoint = value;
     }
-
-    get OtherPlayerWeaponInfo(){
-        return this.otherPlayerWeaponInfo
-    }
-
-    set OtherPlayerWeaponInfo(value: Map<string, string>){
-        this.otherPlayerWeaponInfo = value
-    }
     //
     // get OtherInGamePlayers()
     // {
@@ -131,7 +117,6 @@ export default class GameManager implements InterGameManager{
     // }
     
     GameJoin(sessionId: string, team?: string){
-        Connector.Instance.ReqToServer("InGamePlayerReq");
         switch(this.nowOnGame){
             case GAME_NAME.Flag:
                 IOC.Instance.getInstance<InterManager>(Manager).FlagGame.JoinGame(team);

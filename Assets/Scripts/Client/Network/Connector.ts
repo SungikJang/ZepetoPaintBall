@@ -1,6 +1,6 @@
 import { ZepetoScriptBehaviour } from 'ZEPETO.Script'
 import NetworkBase from './NetworkBase';
-import {GameObject, Vector3} from "UnityEngine";
+import {GameObject, LayerMask, Vector3} from "UnityEngine";
 import MultiplayManager from './MultiplayManager';
 import {Action$1} from "System";
 import { InterMyPlayerController, MyPlayerController } from '../MyPlayer/MyPalyerController';
@@ -56,23 +56,13 @@ export default class Connector extends NetworkBase implements InterConnector{
                         this.manager.Game.GameJoin(data.nowRunningGame)
                     }
                 }
-                else{
-                    //this.manager.Game.OtherInGamePlayers.push(data.player)
-                    ZepetoPlayers.instance.GetPlayer(data.player).character.Context.gameObject.SetActive(true);
-                    let name = this.manager.Game.OtherPlayerWeaponInfo.get(data.player)
-                    ZepetoPlayers.instance.GetPlayer(data.player).character.gameObject.GetComponent<OtherZepetoCharacterController>().EqiupGun(name)
-                }
             }
         );
 
         room.AddMessageHandler(
             'LeaveGameRes',
             (data: { player: string }) => {
-                if(data.player === this.myPlayerController.MyPlayerData.MySessionId){
-                }
-                else{
-                    ZepetoPlayers.instance.GetPlayer(data.player).character.Context.gameObject.SetActive(false);
-                }
+                
             }
         );
 
@@ -112,12 +102,6 @@ export default class Connector extends NetworkBase implements InterConnector{
             (data: { winningTeam: string, players: string[] }) => {
                 if(data.players.includes(this.myPlayerController.MyPlayerData.MySessionId)){
                     this.manager.Game.GameEnd(data.winningTeam);
-                    for (let i = 0; i < data.players.length; i++) {
-                        let p = ZepetoPlayers.instance.GetPlayer(data.players[i])
-                        if (!p.isLocalPlayer) {
-                            p.character.Context.gameObject.SetActive(false);
-                        }
-                    }
                 }
             }
         );
@@ -149,7 +133,7 @@ export default class Connector extends NetworkBase implements InterConnector{
                     if(opc.haveFlag){
                         this.manager.FlagGame.FreeFlag();
                     }
-                    ZepetoPlayers.instance.GetPlayer(data.player).character.Context.gameObject.SetActive(false);
+                    ZepetoPlayers.instance.GetPlayer(data.player).character.gameObject.layer = LayerMask.NameToLayer("hitted")
                 }
             }
         );
@@ -158,16 +142,13 @@ export default class Connector extends NetworkBase implements InterConnector{
             'PlayerRespawn',
             (data: { player: string, team: string }) => {
                 if (data.player === this.myPlayerController.MyPlayerData.MySessionId) {
+                    this.myPlayerController.MyPlayerData.MyPlayer.character.gameObject.layer = LayerMask.NameToLayer("player")
                     this.manager.UI.InGameUI.readyObj.SetActive(true);
                 }
                 else{
                     if(this.manager.Game.IsGamePlaying){
                         let c = ZepetoPlayers.instance.GetPlayer(data.player).character
-                        c.Context.gameObject.SetActive(true)
-                        if(c.Context.gameObject.activeSelf){
-                            let n = this.manager.Game.OtherPlayerWeaponInfo.get(data.player);
-                            c.gameObject.GetComponent<OtherZepetoCharacterController>().EqiupGun(n)
-                        }
+                        c.gameObject.layer = LayerMask.NameToLayer("otherPlayer")
                     }
                 }
             }
@@ -246,22 +227,10 @@ export default class Connector extends NetworkBase implements InterConnector{
             'EqiupGunRes',
             (data: { player: string, name: string }) => {
                 if (data.player !== this.myPlayerController.MyPlayerData.MySessionId) {
-                    //ZepetoPlayers.instance.GetPlayer(data.player).character.gameObject.GetComponent<OtherZepetoCharacterController>().EqiupGun(data.name)
-                    this.manager.Game.OtherPlayerWeaponInfo.set(data.player, data.name);
-                    let c = ZepetoPlayers.instance.GetPlayer(data.player).character
-                    if(this.manager.Game.IsGamePlaying){
-                        if(c.Context.gameObject.activeSelf){
-                           c.gameObject.GetComponent<OtherZepetoCharacterController>().EqiupGun(data.name)
-                        }
-                    }
+                    ZepetoPlayers.instance.GetPlayer(data.player).character.gameObject.GetComponent<OtherZepetoCharacterController>().EqiupGun(data.name)
+                    // this.manager.Game.OtherPlayerWeaponInfo.set(data.player, data.name);
+                    // let c = ZepetoPlayers.instance.GetPlayer(data.player).character
                 }
-            }
-        );
-
-        room.AddMessageHandler(
-            'LastEquipWeaponRes',
-            (data: { lastEquipWeapon: string }) => {
-                this.myPlayerController.MyPlayerData.EqiupGun(data.lastEquipWeapon)
             }
         );
 
@@ -278,26 +247,17 @@ export default class Connector extends NetworkBase implements InterConnector{
         room.AddMessageHandler(
             'GetFlagRes',
             (data: { player: string, team: string }) => {
-                console.log("3")
                 this.manager.FlagGame.GetFlag(data.team, data.player);
             }
         );
 
         room.AddMessageHandler(
-            'InGamePlayerRes',
-            (data: { players: string[], playerWeapon: string[] }) => {
-                for (let i = 0; i < data.playerWeapon.length; i++){
-                    let s = data.playerWeapon[i].split(" ");
-                    this.manager.Game.OtherPlayerWeaponInfo.set(s[0], s[1])
-                }
-                for (let i = 0; i < data.players.length; i++){
-                    // if(this.manager.Game.OtherInGamePlayers.includes(data.players[i])){
-                    //     this.manager.Game.OtherInGamePlayers.push(data.players[i])
-                    //     ZepetoPlayers.instance.GetPlayer(data.players[i]).character.Context.gameObject.SetActive(true);
-                    // }
-                    ZepetoPlayers.instance.GetPlayer(data.players[i]).character.Context.gameObject.SetActive(true);
-                    let name = this.manager.Game.OtherPlayerWeaponInfo.get(data.players[i])
-                    ZepetoPlayers.instance.GetPlayer(data.players[i]).character.gameObject.GetComponent<OtherZepetoCharacterController>().EqiupGun(name)
+            'StartInfoRes',
+            (data: { lastEquipWeapon: string, playerWeapon: string[] }) => {
+                this.myPlayerController.MyPlayerData.EqiupGun(data.lastEquipWeapon)
+                for(let i = 0; i < data.playerWeapon.length; i++){
+                    let s: string[] = data.playerWeapon[i].split(" ");
+                    ZepetoPlayers.instance.GetPlayer(s[0]).character.gameObject.GetComponent<OtherZepetoCharacterController>().EqiupGun(s[1])
                 }
             }
         );
@@ -305,7 +265,6 @@ export default class Connector extends NetworkBase implements InterConnector{
         room.AddMessageHandler(
             'SyncBalances',
             (data: { players: string}) => {
-                console.log("???????")
                 this.manager.Product.ProductSyncinstance.StartRefreshBalance()
             }
         );

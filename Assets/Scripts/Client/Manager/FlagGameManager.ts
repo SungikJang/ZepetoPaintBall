@@ -1,7 +1,7 @@
 import { GAME_NAME } from "../Enums";
 import IOC from "../IOC";
 import Manager, { InterManager } from "./Manager";
-import {BoxCollider, GameObject, Quaternion, Random, Transform, Vector3} from "UnityEngine";
+import {BoxCollider, GameObject, LayerMask, Quaternion, Random, Transform, Vector3} from "UnityEngine";
 import {InterMyPlayerController, MyPlayerController } from "../MyPlayer/MyPalyerController";
 import Utils from "../Utils/index"
 import Connector from "../Network/Connector";
@@ -200,9 +200,9 @@ export default class FlagGameManager implements InterFlagGameManager{
 
     FreeFlag(){
         if(!this.flagObj) this.flagObj = GameObject.Find("Flag")
-        this.flagObj.transform.SetParent(null)
         let p = this.flagObj.transform.position
         this.flagObj.transform.position = new Vector3(p.x, p.y - 2, p.z)
+        this.flagObj.transform.SetParent(GameObject.Find("Colliders").transform)
         Connector.Instance.ReqToServer("FreeFlag")
     }
 }

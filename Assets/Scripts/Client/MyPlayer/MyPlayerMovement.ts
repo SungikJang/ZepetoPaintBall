@@ -1,4 +1,15 @@
-import {Animator, AudioListener, GameObject, Quaternion, Random, Time, Transform, Vector3, WaitForSeconds} from 'UnityEngine';
+import {
+    Animator,
+    AudioListener,
+    GameObject,
+    LayerMask,
+    Quaternion,
+    Random,
+    Time,
+    Transform,
+    Vector3,
+    WaitForSeconds
+} from 'UnityEngine';
 import {ZepetoPlayer, ZepetoPlayers} from 'ZEPETO.Character.Controller';
 import { ZepetoScriptBehaviour } from 'ZEPETO.Script'
 import GunController from '../Controller/GunController';
@@ -230,7 +241,7 @@ export default class MyPlayerMovement extends ZepetoScriptBehaviour implements I
     }
 
     GetHit(){
-        this.myPlayer.character.Context.gameObject.SetActive(false)
+        this.myPlayer.character.gameObject.layer = LayerMask.NameToLayer("hitted")
         this.manager.UI.InGameUI.InGameWeaponUI.SetActive(true);
     }
 
@@ -246,7 +257,7 @@ export default class MyPlayerMovement extends ZepetoScriptBehaviour implements I
         console.log("6")
         this.haveFlag = true;
         flagObj.transform.SetParent(this.myPlayer.character.gameObject.transform)
-        flagObj.transform.localPosition = new Vector3(-25.7740002,110.563004,7.01800013)
+        flagObj.transform.localPosition = new Vector3(0,1.5,0)
     }
     
     LostFlag(){

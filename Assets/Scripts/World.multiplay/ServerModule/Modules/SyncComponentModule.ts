@@ -22,7 +22,7 @@ export default class SyncComponentModule extends IModule {
     private gameVote: GameVoteTimer;
     private adminTimer: AdminGameStartTimer;
     
-    private playerWeaponInfo: string[] = [];
+    private playerWeaponInfo: Map<string,string> = new Map<string,string>();
     
     private HittedPlayer: string[] = []
 
@@ -57,6 +57,7 @@ export default class SyncComponentModule extends IModule {
             if(this.sessionIdQueue.length > 0){
                 this.adminPlayer = this.server.loadPlayer(this.sessionIdQueue[0]);
             }
+            this.playerWeaponInfo.delete(client.sessionId)
         }
     }
     
@@ -146,17 +147,21 @@ export default class SyncComponentModule extends IModule {
         this.server.onMessage(MESSAGE.EqiupGunReq, (client, message) => {
             const db: DataStorage = client.loadDataStorage();
             db.set('lastEquipWeapon', message.name);
-            this.playerWeaponInfo.push(client.sessionId + " " + message.name)
+            this.playerWeaponInfo.set(client.sessionId, message.name)
             this.server.broadcast("EqiupGunRes", {player: client.sessionId, name: message.name})
         });
 
-        this.server.onMessage(MESSAGE.LastEquipWeaponReq, async (client) => {
+        this.server.onMessage(MESSAGE.StartInfoReq, async (client) => {
             const db: DataStorage = client.loadDataStorage();
             let last = (await db.get('lastEquipWeapon')) as string;
             if (!last) {
                 last = "1"
             }
-            client.send("LastEquipWeaponRes", {lastEquipWeapon: last})
+            let playerweapon: string[] = []
+            this.playerWeaponInfo.forEach((values, key, obj) => {
+                playerweapon.push(values + " " + key)
+            })
+            client.send("StartInfoRes", {lastEquipWeapon: last, playerWeapon: playerweapon})
         });
 
         this.server.onMessage(MESSAGE.SiegeReq, (client, message) => {
@@ -168,10 +173,6 @@ export default class SyncComponentModule extends IModule {
             console.log("2")
             this.server.broadcast("GetFlagRes", {player:client.sessionId, team: message.team})
             this.nowGame.GetFlag(message.team)
-        });
-
-        this.server.onMessage(MESSAGE.InGamePlayerReq, (client) => {
-            client.send("InGamePlayerRes", {players: this.nowGame.GetPlayers(), playerWeapon: this.playerWeaponInfo})
         });
 
         this.server.onMessage(MESSAGE.FreeFlag, (client) => {
@@ -591,7 +592,7 @@ enum MESSAGE {
     LastEquipWeaponReq = "LastEquipWeaponReq",
     SiegeReq = "SiegeReq",
     GetFlagReq = "GetFlagReq",
-    InGamePlayerReq = "InGamePlayerReq",
+    StartInfoReq = "StartInfoReq",
     FreeFlag = "FreeFlag",
     onCredit = "onCredit",
     onDebit = "onDebit",

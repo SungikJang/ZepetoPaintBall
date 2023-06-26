@@ -72,6 +72,10 @@ export interface InterMyPlayerData {
 
     set WaitingWeeapon(value: string)
 
+    get Flag()
+
+    set Flag(value: GameObject)
+
     EqiupGun(name: string);
 }
 
@@ -109,6 +113,8 @@ export default class MyPlayerData extends ZepetoScriptBehaviour implements Inter
     private shotGunDirs: Vector3[]
     
     private waitingWeeapon: string = '';
+    
+    private flag: GameObject;
     
     get MyPlayer(){
         return this._myPlayer
@@ -229,6 +235,14 @@ export default class MyPlayerData extends ZepetoScriptBehaviour implements Inter
 
     set WaitingWeeapon(value: string){
         this.waitingWeeapon = value
+    }
+
+    get Flag(){
+        return this.flag
+    }
+
+    set Flag(value: GameObject){
+        this.flag = value;
     }
 
 

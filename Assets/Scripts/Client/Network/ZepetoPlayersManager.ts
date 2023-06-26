@@ -3,7 +3,7 @@ import {WorldService, ZepetoWorldMultiplay, Content, OfficialContentType, Zepeto
 import {Room} from "ZEPETO.Multiplay";
 import {SpawnInfo, ZepetoPlayer, ZepetoPlayers} from 'ZEPETO.Character.Controller';
 import {State, Player} from "ZEPETO.Multiplay.Schema";
-import {AudioListener, GameObject, Object, Quaternion, Vector3, WaitForSeconds} from "UnityEngine";
+import {AudioListener, GameObject, Object, Quaternion, Vector3, WaitForSeconds,LayerMask} from "UnityEngine";
 import PlayerSync from './PlayerSync';
 import Connector from './Connector';
 import TransformSyncHelper, {PositionExtrapolationType, PositionInterpolationType } from './TransformSyncHelper';
@@ -89,9 +89,8 @@ export default class ZepetoPlayersManager extends ZepetoScriptBehaviour {
                     }
                     else {
                         //IOC.Instance.getInstance<InterManager>(Manager).Game.OtherPlayers.push(sessionId)
-                        player.character.Context.gameObject.SetActive(false);
-                        // player.character.gameObject.AddComponent<OtherZepetoCharacterController>();
-                        // player.character.gameObject.GetComponent<OtherZepetoCharacterController>().SessionId = sessionId;
+                        player.character.gameObject.layer = LayerMask.NameToLayer("otherPlayer")
+                        player.character.gameObject.AddComponent<OtherZepetoCharacterController>();
                     }
                     this.AddPlayerSync(sessionId);
                 });
@@ -144,7 +143,6 @@ export default class ZepetoPlayersManager extends ZepetoScriptBehaviour {
 
     private OnLeavePlayer(sessionId: string, player: Player) {
         console.log(`[OnLeavePlayer] players - sessionId : ${sessionId}`);
-        IOC.Instance.getInstance<InterManager>(Manager).Game.OtherPlayerWeaponInfo.delete(sessionId)
         const p = ZepetoPlayers.instance.GetPlayer(sessionId);
         if(!p.isLocalPlayer){
             if(p.character.gameObject.GetComponent<OtherZepetoCharacterController>().haveFlag){
