@@ -21,6 +21,12 @@ export enum PLAYER_STATE {
     Flag = 'Flag'
 }
 
+export enum WEAPON_TYPE {
+    Riffle = 'RIFFLE',
+    Shotgun = 'SHOTGUN',
+    Sniper = 'SNIPER'
+}
+
 export enum GAME_NAME {
     None = 'None',
     Flag = 'Flag',

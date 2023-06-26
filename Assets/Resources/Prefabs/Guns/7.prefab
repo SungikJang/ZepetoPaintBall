@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1071575207726484338}
   - component: {fileID: 387076892264705083}
   - component: {fileID: 6965626431477738010}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ReflexB_mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,7 +106,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 518908369410104094}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: muzzle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139,7 +139,7 @@ GameObject:
   - component: {fileID: 8325898263640506776}
   - component: {fileID: 546152289656846461}
   - component: {fileID: 2853653165797916164}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SMG_Silencer_mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -235,7 +235,7 @@ GameObject:
   - component: {fileID: 8103778069136597314}
   - component: {fileID: 2068090166254353838}
   - component: {fileID: 5612874067765061912}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: TriggerA_mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -331,7 +331,7 @@ GameObject:
   - component: {fileID: 8292791734284700433}
   - component: {fileID: 2810230264271234740}
   - component: {fileID: 9129452252385219560}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Mag_SMG_mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -428,7 +428,7 @@ GameObject:
   - component: {fileID: 6206951035049581562}
   - component: {fileID: 5419795563003591729}
   - component: {fileID: 2310341908698500197}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: MediumLaserCombo_mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -522,7 +522,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2313785279673791360}
-  m_Layer: 0
+  - component: {fileID: 5505356671297666809}
+  m_Layer: 9
   m_Name: 7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -544,6 +545,39 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5505356671297666809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6022854103900254131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1673316429, guid: 921f0445823004a16a499d629dd566a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  applyRootMotion: 0
+  script:
+    keys:
+    - muzzle
+    - manager
+    - myPlayerController
+    - bulletPool
+    unityValues:
+    - {fileID: 864779094744590989}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    values:
+    - 
+    - 
+    - 
+    - 
+    unityArrayValues: []
+    arrayValues: []
+    script: {fileID: 4458252877524076426, guid: 550b6420783f30f4c9a729dbfdd4017d, type: 3}
+    isExpaned: 0
 --- !u!1 &7262515730321960947
 GameObject:
   m_ObjectHideFlags: 0
@@ -556,7 +590,7 @@ GameObject:
   - component: {fileID: 3443561514749863894}
   - component: {fileID: 9004232328848137007}
   - component: {fileID: 3972591393735205348}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: 7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -659,7 +693,7 @@ GameObject:
   - component: {fileID: 3035013281512001876}
   - component: {fileID: 4302721341014110732}
   - component: {fileID: 8219133920609998618}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SMGIronSight_mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}

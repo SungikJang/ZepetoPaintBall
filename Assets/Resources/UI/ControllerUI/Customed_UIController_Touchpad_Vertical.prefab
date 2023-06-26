@@ -732,15 +732,24 @@ MonoBehaviour:
     - padObject
     - jumpObject
     - jumpBtn
-    - FireArea
+    - fireBtn
     - manager
+    - OnFire
+    - OffFire
+    - myPlayerController
     unityValues:
     - {fileID: 64529607102942355}
     - {fileID: 8523051460540605944}
     - {fileID: 8523051460540605948}
     - {fileID: 0}
     - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
     values:
+    - 
+    - 
+    - 
     - 
     - 
     - 

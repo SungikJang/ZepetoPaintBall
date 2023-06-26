@@ -10,15 +10,16 @@ import {InventoryRecord, InventoryService} from "ZEPETO.Inventory";
 import {RoomData} from "ZEPETO.Multiplay";
 import Connector from './Connector';
 import Utils from "../Utils/index"
+import {ZepetoWorldMultiplay} from "ZEPETO.World";
 
 export default class ProductSync extends ZepetoScriptBehaviour {
     public myPlayerController: InterMyPlayerController;
     public manager: InterManager;
+    public multiplay: ZepetoWorldMultiplay
 
     Start() {
         this.StartCoroutine(this.LoadAllItems())//ItemsCache Product
-        this.myPlayerController = IOC.Instance.getInstance<InterMyPlayerController>(MyPlayerController);
-        IOC.Instance.getInstance<InterManager>(Manager).Product.ProductSyncinstance = this.gameObject.GetComponent<ProductSync>();
+        this.StartCoroutine(this.SetInstance())//ItemsCache Product
         this.StartCoroutine(this.WaitForStartUI())
         //this.StartRefreshBalance();
     }
@@ -67,7 +68,7 @@ export default class ProductSync extends ZepetoScriptBehaviour {
     }
 
     private *RefreshBalance(){
-        console.log('c')
+        console.log('caaadasdawawwcascasd')
         const request = CurrencyService.GetUserCurrencyBalancesAsync();
         yield new WaitUntil(()=>request.keepWaiting == false);
         if(request.responseData.isSuccess) {
@@ -79,7 +80,7 @@ export default class ProductSync extends ZepetoScriptBehaviour {
     }
     
     private *RefreshOfficialCurrencyUI(){
-        console.log('oc')
+        console.log('ocasrg546yujdfygkghilo')
         const request = CurrencyService.GetOfficialCurrencyBalanceAsync();
         yield new WaitUntil(()=>request.keepWaiting == false);
         let z = request.responseData.currency.quantity.toString();
@@ -137,6 +138,19 @@ export default class ProductSync extends ZepetoScriptBehaviour {
                 console.log("3")
                 this.StartRefreshBalance();
                 this.StartRefreshInventory();
+                return
+            }
+            yield new WaitForSeconds(0.2);
+        }
+    }
+    
+    * SetInstance(){
+        while(true){
+            if(!this.manager && !this.myPlayerController){
+                this.manager = IOC.Instance.getInstance<InterManager>(Manager)
+                this.myPlayerController = IOC.Instance.getInstance<InterMyPlayerController>(MyPlayerController);
+                this.manager.Product.ProductSyncinstance = this.gameObject.GetComponent<ProductSync>();
+                this.manager.Product.SetMultiPlay(this.multiplay)
                 return
             }
             yield new WaitForSeconds(0.2);

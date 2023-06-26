@@ -22,26 +22,26 @@ ScriptedImporter:
     { value: true });\r\nconst UnityEngine_1 = require(\"UnityEngine\");\r\nconst
     ZEPETO_Script_1 = require(\"ZEPETO.Script\");\r\nclass Manager extends ZEPETO_Script_1.ZepetoScriptBehaviour
     {\r\n    constructor(_LanguageManager, _ResourceManager, _UIManager, _SoundManager,
-    _DataManager, _GameManager, _FlagGameManager, _SeigeGameManager, _SoloFlagGameManager,
+    _DataManager, _GameManager, _FlagGameManager, _SiegeGameManager, _SoloFlagGameManager,
     _ProductManager) {\r\n        super();\r\n        this._uiManager = _UIManager;\r\n       
     this._resourceManager = _ResourceManager;\r\n        this._soundManager = _SoundManager;\r\n       
     this._languageManager = _LanguageManager;\r\n        this._dataManager = _DataManager;\r\n       
     this._gameManager = _GameManager;\r\n        this._flagGameManager = _FlagGameManager;\r\n       
-    this._seigeGameManager = _SeigeGameManager;\r\n        this._soloFlagGameManager
+    this._siegeGameManager = _SiegeGameManager;\r\n        this._soloFlagGameManager
     = _SoloFlagGameManager;\r\n        this._productManager = _ProductManager;\r\n   
     }\r\n    Init() {\r\n        this._resourceManager.Init();\r\n        this._languageManager.Init();\r\n       
     this._uiManager.Init();\r\n        this._gameManager.Init();\r\n        this._flagGameManager.Init();\r\n       
-    this._seigeGameManager.Init();\r\n        this._soloFlagGameManager.Init();\r\n       
+    this._siegeGameManager.Init();\r\n        this._soloFlagGameManager.Init();\r\n       
     this._dataManager.Init();\r\n        this._productManager.Init();\r\n    }\r\n   
     get UI() {\r\n        return this._uiManager;\r\n    }\r\n    get Resource()
     {\r\n        return this._resourceManager;\r\n    }\r\n    get Sound() {\r\n       
     return this._soundManager;\r\n    }\r\n    get Language() {\r\n        return
     this._languageManager;\r\n    }\r\n    get Data() {\r\n        return this._dataManager;\r\n   
     }\r\n    get Game() {\r\n        return this._gameManager;\r\n    }\r\n    get
-    FlagGame() {\r\n        return this._flagGameManager;\r\n    }\r\n    get SeigeGame()
-    {\r\n        return this._seigeGameManager;\r\n    }\r\n    get SoloFlagGame()
+    FlagGame() {\r\n        return this._flagGameManager;\r\n    }\r\n    get SiegeGame()
+    {\r\n        return this._siegeGameManager;\r\n    }\r\n    get SoloFlagGame()
     {\r\n        return this._soloFlagGameManager;\r\n    }\r\n    get Product()
     {\r\n        return this._productManager;\r\n    }\r\n}\r\nexports.default =
     Manager;\r\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiTWFuYWdlci5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIk1hbmFnZXIudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFBQSw2Q0FBaUQ7QUFDakQsaURBQXNEO0FBcUN0RCxNQUFxQixPQUFRLFNBQVEscUNBQXFCO0lBWXRELFlBQ0ksZ0JBQXNDLEVBQ3RDLGdCQUFzQyxFQUN0QyxVQUEwQixFQUMxQixhQUFnQyxFQUNoQyxZQUE4QixFQUM5QixZQUE4QixFQUM5QixnQkFBc0MsRUFDdEMsaUJBQXdDLEVBQ3hDLG9CQUE4QyxFQUM5QyxlQUFvQztRQUVwQyxLQUFLLEVBQUUsQ0FBQztRQUNSLElBQUksQ0FBQyxVQUFVLEdBQUcsVUFBVSxDQUFDO1FBQzdCLElBQUksQ0FBQyxnQkFBZ0IsR0FBRyxnQkFBZ0IsQ0FBQztRQUN6QyxJQUFJLENBQUMsYUFBYSxHQUFHLGFBQWEsQ0FBQztRQUNuQyxJQUFJLENBQUMsZ0JBQWdCLEdBQUcsZ0JBQWdCLENBQUM7UUFDekMsSUFBSSxDQUFDLFlBQVksR0FBRyxZQUFZLENBQUE7UUFDaEMsSUFBSSxDQUFDLFlBQVksR0FBRyxZQUFZLENBQUE7UUFDaEMsSUFBSSxDQUFDLGdCQUFnQixHQUFHLGdCQUFnQixDQUFBO1FBQ3hDLElBQUksQ0FBQyxpQkFBaUIsR0FBRyxpQkFBaUIsQ0FBQTtRQUMxQyxJQUFJLENBQUMsb0JBQW9CLEdBQUcsb0JBQW9CLENBQUE7UUFDaEQsSUFBSSxDQUFDLGVBQWUsR0FBRyxlQUFlLENBQUE7SUFDMUMsQ0FBQztJQUVELElBQUk7UUFDQSxJQUFJLENBQUMsZ0JBQWdCLENBQUMsSUFBSSxFQUFFLENBQUM7UUFDN0IsSUFBSSxDQUFDLGdCQUFnQixDQUFDLElBQUksRUFBRSxDQUFDO1FBQzdCLElBQUksQ0FBQyxVQUFVLENBQUMsSUFBSSxFQUFFLENBQUM7UUFDdkIsSUFBSSxDQUFDLFlBQVksQ0FBQyxJQUFJLEVBQUUsQ0FBQztRQUN6QixJQUFJLENBQUMsZ0JBQWdCLENBQUMsSUFBSSxFQUFFLENBQUM7UUFDN0IsSUFBSSxDQUFDLGlCQUFpQixDQUFDLElBQUksRUFBRSxDQUFDO1FBQzlCLElBQUksQ0FBQyxvQkFBb0IsQ0FBQyxJQUFJLEVBQUUsQ0FBQztRQUNqQyxJQUFJLENBQUMsWUFBWSxDQUFDLElBQUksRUFBRSxDQUFDO1FBQ3pCLElBQUksQ0FBQyxlQUFlLENBQUMsSUFBSSxFQUFFLENBQUM7SUFDaEMsQ0FBQztJQUVELElBQVcsRUFBRTtRQUNULE9BQU8sSUFBSSxDQUFDLFVBQVUsQ0FBQztJQUMzQixDQUFDO0lBRUQsSUFBVyxRQUFRO1FBQ2YsT0FBTyxJQUFJLENBQUMsZ0JBQWdCLENBQUM7SUFDakMsQ0FBQztJQUVELElBQVcsS0FBSztRQUNaLE9BQU8sSUFBSSxDQUFDLGFBQWEsQ0FBQztJQUM5QixDQUFDO0lBRUQsSUFBVyxRQUFRO1FBQ2YsT0FBTyxJQUFJLENBQUMsZ0JBQWdCLENBQUM7SUFDakMsQ0FBQztJQUVELElBQVcsSUFBSTtRQUNYLE9BQU8sSUFBSSxDQUFDLFlBQVksQ0FBQztJQUM3QixDQUFDO0lBRUQsSUFBVyxJQUFJO1FBQ1gsT0FBTyxJQUFJLENBQUMsWUFBWSxDQUFDO0lBQzdCLENBQUM7SUFFRCxJQUFXLFFBQVE7UUFDZixPQUFPLElBQUksQ0FBQyxnQkFBZ0IsQ0FBQztJQUNqQyxDQUFDO0lBRUQsSUFBVyxTQUFTO1FBQ2hCLE9BQU8sSUFBSSxDQUFDLGlCQUFpQixDQUFDO0lBQ2xDLENBQUM7SUFFRCxJQUFXLFlBQVk7UUFDbkIsT0FBTyxJQUFJLENBQUMsb0JBQW9CLENBQUM7SUFDckMsQ0FBQztJQUVELElBQVcsT0FBTztRQUNkLE9BQU8sSUFBSSxDQUFDLGVBQWUsQ0FBQztJQUNoQyxDQUFDO0NBQ0o7QUF4RkQsMEJBd0ZDIn0=","assetPath":"Assets/Scripts/Client/Manager/Manager.ts","manifest":{"properties":[],"name":"Manager","description":"","hasAnimatorMove":false},"isCompiled":true}'
-  typescriptHash: ca4b084d42f6233b405443e41b56fae6
+  typescriptHash: 1ba32b597dd58f3e6e4b91f002fded27
   onlyWriteTrigger: 0

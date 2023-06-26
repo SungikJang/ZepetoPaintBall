@@ -5,6 +5,8 @@ import {Room, RoomData} from "ZEPETO.Multiplay";
 import TransformSyncHelper, { UpdateOwner } from './TransformSyncHelper';
 import AnimatorSyncHelper from './AnimatorSyncHelper';
 import DOTWeenSyncHelper from './DOTWeenSyncHelper';
+import IOC from '../IOC';
+import Manager, { InterManager } from '../Manager/Manager';
 
 export default class MultiplayManager extends ZepetoScriptBehaviour {
     public multiplay: ZepetoWorldMultiplay;
@@ -46,8 +48,10 @@ export default class MultiplayManager extends ZepetoScriptBehaviour {
     }
 
     private Start() {
-        if(!this.multiplay)
+        if(!this.multiplay) {
             this.multiplay = this.GetComponent<ZepetoWorldMultiplay>();
+            IOC.Instance.getInstance<InterManager>(Manager).Product.SetMultiPlay(this.multiplay)
+        }
         if(!this.multiplay) console.warn("Add ZepetoWorldMultiplay First");
         this.multiplay.RoomJoined += (room: Room) => {
             this.room = room;

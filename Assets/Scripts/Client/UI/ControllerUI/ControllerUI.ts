@@ -1,9 +1,13 @@
-import {Animator, GameObject, Input, Time, WaitForSeconds} from 'UnityEngine'
+import {Animator, GameObject, Input, Time, Vector3, WaitForSeconds} from 'UnityEngine'
 import { Button,Image } from 'UnityEngine.UI';
 import { ZepetoScriptBehaviour } from 'ZEPETO.Script'
+import { WEAPON_TYPE } from '../../Enums';
 import IOC from '../../IOC';
 import Manager, { InterManager } from '../../Manager/Manager';
 import { InterMyPlayerController, MyPlayerController } from '../../MyPlayer/MyPalyerController';
+import Connector from "../../Network/Connector"
+import {TMP_Text} from "TMPro";
+import {ZepetoPlayers} from "ZEPETO.Character.Controller";
 
 export interface InterControllerUI {
     Start(): void
@@ -14,12 +18,21 @@ export interface InterControllerUI {
 }
 
 export default class ControllerUI extends ZepetoScriptBehaviour implements InterControllerUI {
+    public pad: GameObject;
+    public padBackG: GameObject;
+    public padAnim: Animator;
     public padObject: GameObject;
     public jumpObject: GameObject;
     public jumpBtn: Button;
-    public fireBtn: Button;
-    public OnFire: GameObject;
-    public OffFire: GameObject;
+    public reloadBtn: Button;
+    public reloadObj: GameObject
+    public zoomBtn: Button;
+    public zoomObj: GameObject;
+    public SRUI: GameObject;
+    public cross: GameObject;
+
+    public bulletcnt: TMP_Text;
+    public bullets: TMP_Text;
     
     private MousePressed: boolean = false;
     private PressedTime: float;
@@ -36,26 +49,22 @@ export default class ControllerUI extends ZepetoScriptBehaviour implements Inter
         this.manager.UI.ControllerUI = this;
         this.padObject.SetActive(false);
         this.jumpObject.SetActive(false);
-        // this.jumpBtn.onClick.AddListener(()=>{
-        //    
-        // });
-        this.fireBtn.onClick.AddListener(()=>{
-            if(this.OffFire.activeSelf){
-                this.OffFire.SetActive(false)
-                this.OnFire.SetActive(true)
-                if(!this.myPlayerController.MyPlayerMovement.OnFire){
-                    this.myPlayerController.MyPlayerMovement.OnFire = true;
-                }
-            }
-            else{
-                this.OffFire.SetActive(true)
-                this.OnFire.SetActive(false)
-            }
+        this.jumpBtn.onClick.AddListener(()=>{
+            console.log("?????")
+            this.myPlayerController.MyPlayerMovement.Jump();
         });
+        this.reloadBtn.onClick.AddListener(()=>{
+            this.manager.Game.GunController.StartReload();
+        });
+        this.zoomBtn.onClick.AddListener(()=>{
+            this.manager.Game.GunController.Zoom();
+        });
+        this.manager.Game.ControllerUI = this
     }
 
     Update(){
         this.MouseInputController();
+        this.PadInputController();
     }
 
     SetPad(OnOff: boolean){
@@ -68,14 +77,20 @@ export default class ControllerUI extends ZepetoScriptBehaviour implements Inter
     
     MouseInputController(){
         if (Input.GetMouseButton(0)) {
-            if (!this.MousePressed) {
-                // 터치하는 순간
-                this.MousePressed = true;
-                this.PressedTime = Time.time;
-            } else {
-                // 터치하는 중
-                if(this.OffFire.activeSelf){
-                    this.Fire();
+            if(Input.mousePosition.x > this.manager.UI.ScreenCenter.x){
+                if (!this.MousePressed) {
+                    // 터치하는 순간
+                    this.MousePressed = true;
+                    this.PressedTime = Time.time;
+                    if (this.manager.Game.IsGamePlaying) {
+                        this.Fire();
+                        this.myPlayerController.MyPlayerMovement.Shoot();
+                    }
+                } else {
+                    // 터치하는 중
+                    if (this.manager.Game.IsGamePlaying) {
+                        this.Fire();
+                    }
                 }
             }
         }
@@ -89,17 +104,51 @@ export default class ControllerUI extends ZepetoScriptBehaviour implements Inter
                 this.MousePressed = false;
                 this.PressedTime = 0;
                 if(this.myPlayerController){
-                    if(this.myPlayerController.MyPlayerMovement.OnFire){
+                    if(this.myPlayerController.MyPlayerMovement.OnFire) {
                         this.myPlayerController.MyPlayerMovement.OnFire = false;
+                        if (this.myPlayerController.MyPlayerData.MyWeaponType !== WEAPON_TYPE.Sniper) {
+                            Connector.Instance.ReqToServer("StopShootReq")
+                        }
                     }
                 }
             }
         }
     }
     
+    PadInputController(){
+        if(this.padAnim.GetCurrentAnimatorStateInfo(0).IsName("touchpad_handle_on")){
+            let v: Vector3 = this.pad.transform.position - this.padBackG.transform.position;
+            // if(!this.myPlayerController.MyPlayerMovement.IsMoving){
+            //     this.myPlayerController.MyPlayerMovement.IsMoving = true;
+            //     this.myPlayerController.MyPlayerMovement.SetAnimParam("State", 102);
+            // }
+            this.myPlayerController.MyPlayerMovement.SetAnimParam("State", 102);
+            if(v.magnitude > 12){
+                this.myPlayerController.MyPlayerMovement.SetAnimParam("MoveState", 1);
+            }
+            else{
+                this.myPlayerController.MyPlayerMovement.SetAnimParam("MoveState", 0);
+            }
+            if(v.magnitude > 27){
+                this.myPlayerController.MyPlayerMovement.Move(v.normalized.y, v.normalized.x, 27)
+            }
+            else {
+                this.myPlayerController.MyPlayerMovement.Move(v.normalized.y, v.normalized.x, v.magnitude)
+            }
+        }
+        else{
+            // if(this.myPlayerController.MyPlayerMovement.IsMoving){
+            //     this.myPlayerController.MyPlayerMovement.IsMoving = false;
+            //     this.myPlayerController.MyPlayerMovement.SetAnimParam("State", 1);
+            // }
+            this.myPlayerController.MyPlayerMovement.SetAnimParam("State", 1);
+        }
+    }
+    
     Fire(){
         if(this.myPlayerController){
             if(!this.myPlayerController.MyPlayerMovement.OnFire){
+                //Connector.Instance.ReqToServer("FireReq", {fire: true}) 
                 this.myPlayerController.MyPlayerMovement.OnFire = true;
             }
         }
@@ -115,5 +164,11 @@ export default class ControllerUI extends ZepetoScriptBehaviour implements Inter
             }
             yield new WaitForSeconds(0.1);
         }
+    }
+
+    UpdateBullet(){
+        this.bullets.text = this.manager.Game.GunController.Bullets.toString();
+        let b = this.manager.Game.GunController.Bullets - this.manager.Game.GunController.BulletCnt;
+        this.bulletcnt.text = b.toString();
     }
 }

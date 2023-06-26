@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1859270045592703349}
   - component: {fileID: 1994600358170553671}
   - component: {fileID: 4878290395144249917}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: AR_Silencer_mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 5830102383902806569}
   - component: {fileID: 3560033157787076869}
   - component: {fileID: 7395180440596509047}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Mag_M_mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -205,7 +205,7 @@ GameObject:
   - component: {fileID: 493190257694359205}
   - component: {fileID: 6189248287049368156}
   - component: {fileID: 2175431919201515671}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -305,7 +305,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1303799584587453001}
-  m_Layer: 0
+  - component: {fileID: 4346246978577272283}
+  m_Layer: 9
   m_Name: 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -327,6 +328,39 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4346246978577272283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6044266787440346908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1673316429, guid: 921f0445823004a16a499d629dd566a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  applyRootMotion: 0
+  script:
+    keys:
+    - muzzle
+    - manager
+    - myPlayerController
+    - bulletPool
+    unityValues:
+    - {fileID: 7379267725054753815}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    values:
+    - 
+    - 
+    - 
+    - 
+    unityArrayValues: []
+    arrayValues: []
+    script: {fileID: 4458252877524076426, guid: 550b6420783f30f4c9a729dbfdd4017d, type: 3}
+    isExpaned: 0
 --- !u!1 &6451325436374592378
 GameObject:
   m_ObjectHideFlags: 0
@@ -339,7 +373,7 @@ GameObject:
   - component: {fileID: 1547106030423946118}
   - component: {fileID: 5131647402834660407}
   - component: {fileID: 6179959451890478245}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: LargeLaserCombo_mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -433,7 +467,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 509722026024390635}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: muzzle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -466,7 +500,7 @@ GameObject:
   - component: {fileID: 5591650546750209200}
   - component: {fileID: 4628590068223822645}
   - component: {fileID: 5143134238535277155}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Holo_mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -563,7 +597,7 @@ GameObject:
   - component: {fileID: 5283942572204100372}
   - component: {fileID: 1548014835084205447}
   - component: {fileID: 456394156905510792}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: TriggerC_mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -659,7 +693,7 @@ GameObject:
   - component: {fileID: 4609008345271722198}
   - component: {fileID: 2484965161976514010}
   - component: {fileID: 7404348211171045663}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ARIronSights_mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}

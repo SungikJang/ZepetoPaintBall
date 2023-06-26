@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2967238320415808214}
   - component: {fileID: 8431386133740325957}
   - component: {fileID: 7362429225106613834}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: TriggerC_mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 2562808529432127224}
   - component: {fileID: 6656188454369528581}
   - component: {fileID: 9033819224772840602}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ShotgunIronSights_mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -201,7 +201,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6352020036959665390}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: muzzle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -231,7 +231,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8039513130593855371}
-  m_Layer: 0
+  - component: {fileID: 5303649771092029372}
+  m_Layer: 9
   m_Name: 6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -253,6 +254,39 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5303649771092029372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2008106965258693220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1673316429, guid: 921f0445823004a16a499d629dd566a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  applyRootMotion: 0
+  script:
+    keys:
+    - muzzle
+    - manager
+    - myPlayerController
+    - bulletPool
+    unityValues:
+    - {fileID: 1874293271306616741}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    values:
+    - 
+    - 
+    - 
+    - 
+    unityArrayValues: []
+    arrayValues: []
+    script: {fileID: 4458252877524076426, guid: 550b6420783f30f4c9a729dbfdd4017d, type: 3}
+    isExpaned: 0
 --- !u!1 &2756599086032373801
 GameObject:
   m_ObjectHideFlags: 0
@@ -265,7 +299,7 @@ GameObject:
   - component: {fileID: 291751083849016027}
   - component: {fileID: 8256470665044290275}
   - component: {fileID: 6283925714449772764}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Grip_mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -361,7 +395,7 @@ GameObject:
   - component: {fileID: 3499654752196281323}
   - component: {fileID: 5845158868405409991}
   - component: {fileID: 493459873421222069}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Mag_M_mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -458,7 +492,7 @@ GameObject:
   - component: {fileID: 7395407168990326631}
   - component: {fileID: 3863326280116097950}
   - component: {fileID: 9099880954788899157}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: 6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -560,7 +594,7 @@ GameObject:
   - component: {fileID: 482650904899164142}
   - component: {fileID: 6382634203189446735}
   - component: {fileID: 7471849009127376911}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ReflexA_mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -1,4 +1,4 @@
-import {Canvas, Color, GameObject, RenderMode, Sprite} from 'UnityEngine';
+import {Canvas, Color, GameObject, Rect, RenderMode, Sprite, Texture, Texture2D, Vector2, Vector3} from 'UnityEngine';
 import {Image} from 'UnityEngine.UI';
 import {ZepetoScriptBehaviour} from 'ZEPETO.Script';
 import {Boolean} from 'System';
@@ -7,6 +7,9 @@ import IOC from '../IOC';
 import Manager from './Manager';
 import ControllerUI, { InterControllerUI } from '../UI/ControllerUI/ControllerUI';
 import {InterStartUI} from '../UI/DefaultUI/StartUI';
+import InGameUI from '../UI/DefaultUI/InGameUI';
+import {ZepetoWorldHelper} from "ZEPETO.World";
+import GameVoteUI from '../UI/DefaultUI/GameVoteUI';
 
 abstract class Data<T> {
     // property
@@ -81,7 +84,7 @@ export interface InterUIManager {
 
     ShowPopUpUI(uiName: string): GameObject
 
-    DeletePopUpUI(): void
+    DeletePopUpUI(uiName?: string): void
 
     ClosePopUpUI(): void
 
@@ -92,8 +95,18 @@ export interface InterUIManager {
     ShowDefaultUI(uiName: string)
 
     CloseDefaultUI(uiName: string)
-
+    
     DeleteDefaultUI(uiName: string)
+
+    GetSprite(texture: Texture)
+
+    get InGameUI(): InGameUI
+
+    set InGameUI(value: InGameUI)
+
+    get GameVoteUI()
+    
+    set GameVoteUI(value: GameVoteUI)
 
     get ControllerUI(): InterControllerUI
 
@@ -106,6 +119,14 @@ export interface InterUIManager {
     get NowPopUpWeaponNum()
     
     set NowPopUpWeaponNum(value: string)
+
+    get ScreenCenter()
+
+    set ScreenCenter(value: Vector3)
+
+    get SGCenter()
+
+    set SGCenter(value: Vector3[])
 }
 
 export default class UIManager implements InterUIManager {
@@ -117,11 +138,15 @@ export default class UIManager implements InterUIManager {
     public isAlertShowing: Boolean = false;
     public Stick: GameObject;
     public Jump: GameObject;
-    public nowPopUpWeaponNum: string;
+    public nowPopUpWeaponNum: string = "1";
 
+    private inGameUI: InGameUI
     private controllerUI: InterControllerUI;
     private startUI: InterStartUI;
-
+    private gameVoteUI: GameVoteUI
+    private screenCenter: Vector3
+    private sGCenter: Vector3[] = []
+    
     public Init() {
         this._rootUIPopUp = GameObject.Find('RootUIPopUp');
         if (!this._rootUIPopUp) {
@@ -172,14 +197,25 @@ export default class UIManager implements InterUIManager {
         }
     }
 
-    public DeletePopUpUI(): void {
-        let popUpGo: GameObject | null = this._popUpStack.Peek() as GameObject;
-        if (!popUpGo) {
-            return;
+    public DeletePopUpUI(uiName?: string): void {
+        if (!uiName) {
+            let popUpGo: GameObject | null = this._popUpStack.Peek() as GameObject;
+            if (!popUpGo) {
+                return;
+            }
+            this._popUpStack.Pop();
+            IOC.Instance.getInstance(Manager).Resource.Destroy(popUpGo);
+            popUpGo = null;
         }
-        this._popUpStack.Pop();
-        IOC.Instance.getInstance(Manager).Resource.Destroy(popUpGo);
-        popUpGo = null;
+        else{
+            let goTransform = this._rootUIPopUp.transform.Find(uiName).gameObject;
+            if (!goTransform) {
+                return ;
+            }
+            this._popUpStack.Delete(uiName)
+            IOC.Instance.getInstance(Manager).Resource.Destroy(goTransform);
+            goTransform = null;
+        }
     }
 
     public ClosePopUpUI(): void {
@@ -242,11 +278,32 @@ export default class UIManager implements InterUIManager {
             IOC.Instance.getInstance(Manager).Resource.Destroy(go);
         }
     }
+
+    GetSprite(texture: Texture) {
+        let rect: Rect = new Rect(0, 0, texture.width, texture.height);
+        return Sprite.Create(texture as Texture2D, rect, new Vector2(0.5, 0.5));
+    }
     
+    get GameVoteUI(){
+        return this.gameVoteUI;
+    }
+    
+    set GameVoteUI(value: GameVoteUI){
+        this.gameVoteUI = value;
+    }
+
+    get InGameUI(){
+        return this.inGameUI;
+    }
+
+    set InGameUI(value: InGameUI){
+        this.inGameUI = value;
+    }
+
     get ControllerUI(){
         return this.controllerUI;
     }
-    
+
     set ControllerUI(value: InterControllerUI){
         this.controllerUI = value;
     }
@@ -267,4 +324,21 @@ export default class UIManager implements InterUIManager {
         this.nowPopUpWeaponNum = value;
         console.log(this.nowPopUpWeaponNum)
     }
+    
+    get ScreenCenter(){
+        return this.screenCenter
+    }
+
+    set ScreenCenter(value: Vector3){
+        this.screenCenter = value
+    }
+
+    get SGCenter(){
+        return this.sGCenter
+    }
+
+    set SGCenter(value: Vector3[]){
+        this.sGCenter = value
+    }
+        
 }

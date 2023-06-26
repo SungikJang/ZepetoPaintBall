@@ -69,32 +69,32 @@
         "Name": "SNIPER_1",
         "BuyPrice": 3000,
         "Speed": 1,
-        "Bullets": 20,
-        "Power": 100,
-        "Type": "SHOTGUN"
+        "Bullets": 5,
+        "Power": 300,
+        "Type": "SNIPER"
     },
     "10": {
         "Name": "SNIPER_2",
         "BuyPrice": 4000,
         "Speed": 1,
-        "Bullets": 20,
-        "Power": 120,
+        "Bullets": 5,
+        "Power": 350,
         "Type": "SNIPER"
     },
     "11": {
         "Name": "SNIPER_3",
         "BuyPrice": 5000,
         "Speed": 1,
-        "Bullets": 20,
-        "Power": 140,
+        "Bullets": 5,
+        "Power": 400,
         "Type": "SNIPER"
     },
     "12": {
         "Name": "SNIPER_4",
         "BuyPrice": 6000,
         "Speed": 1,
-        "Bullets": 20,
-        "Power": 160,
+        "Bullets": 7,
+        "Power": 500,
         "Type": "SNIPER"
     }
 }

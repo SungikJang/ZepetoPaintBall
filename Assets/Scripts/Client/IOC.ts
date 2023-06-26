@@ -4,7 +4,7 @@ import GameManager from "./Manager/GameManger";
 import LanguageManager from "./Manager/LanguageManager";
 import Manager from "./Manager/Manager";
 import ResourceManager from "./Manager/ResourceManager";
-import SeigeGameManager from "./Manager/SeigeGameManager";
+import SiegeGameManager from "./Manager/SiegeGameManager";
 import SoloFlagGameManager from "./Manager/SoloFlagGameManager";
 import SoundManager from "./Manager/SoundManager";
 import UIManager from "./Manager/UIManager";
@@ -12,7 +12,6 @@ import ProductManager from "./Manager/ProductManager";
 import { MyPlayerController } from "./MyPlayer/MyPalyerController";
 import MyPlayerData from "./MyPlayer/MyPlayerData";
 import MyPlayerMovement from "./MyPlayer/MyPlayerMovement";
-//import MyPlayerTriggerController from "./MyPlayerDivision/MyPlayerTriggerController";
 
 export interface Injectable {
     injectable: boolean;
@@ -52,7 +51,7 @@ export default class IOC implements IIOC {
         this.classTypeMap.set('_SoundManager', SoundManager);
         this.classTypeMap.set('_GameManager', GameManager);
         this.classTypeMap.set('_FlagGameManager', FlagGameManager);
-        this.classTypeMap.set('_SeigeGameManager', SeigeGameManager);
+        this.classTypeMap.set('_SiegeGameManager', SiegeGameManager);
         this.classTypeMap.set('_SoloFlagGameManager', SoloFlagGameManager);
         this.classTypeMap.set('_ProductManager', ProductManager);
     }

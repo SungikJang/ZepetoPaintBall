@@ -1,0 +1,57 @@
+fileFormatVersion: 2
+guid: ca4a16eb501ead5459365b6a37ee4a98
+importerOverride: ZEPETO.Script.Compiler:ZEPETO.Script:TypescriptAssetImporter
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: -1123457745, guid: 54cf806323ffe4418a4ce4cc63fe6b9d, type: 3}
+  isAssemblyDeclarations: 0
+  assembly: 
+  generateAllTypes: 1
+  types: []
+  generateWrapper: 0
+  overrideWrapperTypes: 0
+  wrapperTypes: []
+  WrapperFilters: []
+  wrapperOutputDirectory: Generated
+  compiledResult: '{"source":"\"use strict\";\r\nObject.defineProperty(exports, \"__esModule\",
+    { value: true });\r\nconst UnityEngine_UI_1 = require(\"UnityEngine.UI\");\r\nconst
+    UnityEngine_1 = require(\"UnityEngine\");\r\nconst ZEPETO_Script_1 = require(\"ZEPETO.Script\");\r\nconst
+    Connector_1 = require(\"../../Network/Connector\");\r\nconst IOC_1 = require(\"../../IOC\");\r\nconst
+    Manager_1 = require(\"../../Manager/Manager\");\r\nconst TMPro_1 = require(\"TMPro\");\r\nconst
+    ZEPETO_World_1 = require(\"ZEPETO.World\");\r\nclass GameVoteUI extends ZEPETO_Script_1.ZepetoScriptBehaviour
+    {\r\n    constructor() {\r\n        super(...arguments);\r\n        this.SeletedGame
+    = '''';\r\n    }\r\n    Start() {\r\n        IOC_1.default.Instance.getInstance(Manager_1.default).UI.GameVoteUI
+    = this;\r\n        IOC_1.default.Instance.getInstance(Manager_1.default).Product.ProductSyncinstance.StartRefreshBalance();\r\n       
+    this.FlagBtn.onClick.AddListener(() => {\r\n            if (this.SeletedGame
+    !== \"Flag\") {\r\n                Connector_1.default.Instance.ReqToServer(\"GameVote\",
+    { gameName: \"Flag\" });\r\n                this.SeletedGame = \"Flag\";\r\n           
+    }\r\n        });\r\n        this.SiegeBtn.onClick.AddListener(() => {\r\n           
+    if (this.SeletedGame !== \"Siege\") {\r\n                Connector_1.default.Instance.ReqToServer(\"GameVote\",
+    { gameName: \"Siege\" });\r\n                this.SeletedGame = \"Siege\";\r\n           
+    }\r\n        });\r\n    }\r\n    SetGold(quantity) {\r\n        this.goldtext.text
+    = quantity.toString();\r\n    }\r\n    SetDia(quantity) {\r\n        this.diatext.text
+    = quantity.toString();\r\n    }\r\n    SetZem(quantity) {\r\n        this.zemtext.text
+    = quantity.toString();\r\n    }\r\n    CreatUserImage(player, userId, gameName)
+    {\r\n        let mask;\r\n        mask = UnityEngine_1.GameObject.Find(\"Mask\"
+    + player);\r\n        if (mask) {\r\n            mask.name = \"Mask\";\r\n           
+    mask.SetActive(false);\r\n        }\r\n        if (gameName === \"Flag\") {\r\n           
+    for (let i = 0; i < this.flagVoteObj.transform.childCount; i++) {\r\n               
+    if (!this.flagVoteObj.transform.GetChild(i).gameObject.activeSelf) {\r\n                   
+    mask = this.flagVoteObj.transform.GetChild(i).gameObject;\r\n                   
+    mask.SetActive(true);\r\n                    break;\r\n                }\r\n           
+    }\r\n        }\r\n        else {\r\n            for (let i = 0; i < this.siegeVoteObj.transform.childCount;
+    i++) {\r\n                if (!this.siegeVoteObj.transform.GetChild(i).gameObject.activeSelf)
+    {\r\n                    mask = this.siegeVoteObj.transform.GetChild(i).gameObject;\r\n                   
+    mask.SetActive(true);\r\n                    break;\r\n                }\r\n           
+    }\r\n        }\r\n        mask.name = \"Mask\" + player;\r\n        ZEPETO_World_1.ZepetoWorldHelper.GetProfileTexture(userId,
+    (texture) => {\r\n            mask.transform.GetChild(0).gameObject.GetComponent($typeof(UnityEngine_UI_1.Image)).sprite
+    = IOC_1.default.Instance.getInstance(Manager_1.default).UI.GetSprite(texture);\r\n       
+    }, (error) => {\r\n            console.log(error);\r\n        });\r\n    }\r\n}\r\nexports.default
+    = GameVoteUI;\r\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiR2FtZVZvdGVVSS5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIkdhbWVWb3RlVUkudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFBQSxtREFBNkM7QUFDN0MsNkNBQWdEO0FBQ2hELGlEQUFxRDtBQUNyRCx1REFBZ0Q7QUFDaEQsbUNBQTRCO0FBQzVCLG1EQUE0QztBQUM1QyxpQ0FBK0I7QUFDL0IsK0NBQStDO0FBRS9DLE1BQXFCLFVBQVcsU0FBUSxxQ0FBcUI7SUFBN0Q7O1FBRVksZ0JBQVcsR0FBVyxFQUFFLENBQUM7SUFzRXJDLENBQUM7SUE3REcsS0FBSztRQUNELGFBQUcsQ0FBQyxRQUFRLENBQUMsV0FBVyxDQUFDLGlCQUFPLENBQUMsQ0FBQyxFQUFFLENBQUMsVUFBVSxHQUFHLElBQUksQ0FBQztRQUN2RCxhQUFHLENBQUMsUUFBUSxDQUFDLFdBQVcsQ0FBQyxpQkFBTyxDQUFDLENBQUMsT0FBTyxDQUFDLG1CQUFtQixDQUFDLG1CQUFtQixFQUFFLENBQUM7UUFDcEYsSUFBSSxDQUFDLE9BQU8sQ0FBQyxPQUFPLENBQUMsV0FBVyxDQUFDLEdBQUcsRUFBRTtZQUNsQyxJQUFHLElBQUksQ0FBQyxXQUFXLEtBQUssTUFBTSxFQUFDO2dCQUMzQixtQkFBUyxDQUFDLFFBQVEsQ0FBQyxXQUFXLENBQUMsVUFBVSxFQUFFLEVBQUMsUUFBUSxFQUFFLE1BQU0sRUFBQyxDQUFDLENBQUE7Z0JBQzlELElBQUksQ0FBQyxXQUFXLEdBQUcsTUFBTSxDQUFBO2FBQzVCO1FBQ0wsQ0FBQyxDQUFDLENBQUE7UUFDRixJQUFJLENBQUMsUUFBUSxDQUFDLE9BQU8sQ0FBQyxXQUFXLENBQUMsR0FBRyxFQUFFO1lBQ25DLElBQUcsSUFBSSxDQUFDLFdBQVcsS0FBSyxPQUFPLEVBQUM7Z0JBQzVCLG1CQUFTLENBQUMsUUFBUSxDQUFDLFdBQVcsQ0FBQyxVQUFVLEVBQUUsRUFBQyxRQUFRLEVBQUUsT0FBTyxFQUFDLENBQUMsQ0FBQTtnQkFDL0QsSUFBSSxD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","assetPath":"Assets/Scripts/Client/UI/DefaultUI/GameVoteUI.ts","manifest":{"properties":[{"assembly":"UnityEngine.UI","name":"FlagBtn","type":"UnityEngine.UI.Button","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]},{"assembly":"UnityEngine.UI","name":"SiegeBtn","type":"UnityEngine.UI.Button","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]},{"assembly":"UnityEngine.CoreModule","name":"flagVoteObj","type":"UnityEngine.GameObject","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]},{"assembly":"UnityEngine.CoreModule","name":"siegeVoteObj","type":"UnityEngine.GameObject","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]},{"assembly":"Unity.TextMeshPro","name":"goldtext","type":"TMPro.TMP_Text","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]},{"assembly":"Unity.TextMeshPro","name":"diatext","type":"TMPro.TMP_Text","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]},{"assembly":"Unity.TextMeshPro","name":"zemtext","type":"TMPro.TMP_Text","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]}],"name":"GameVoteUI","description":"","hasAnimatorMove":false},"isCompiled":true}'
+  typescriptHash: 479b500eddff8b8a30d5c3a96b08842e
+  onlyWriteTrigger: 0

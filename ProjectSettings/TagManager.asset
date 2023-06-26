@@ -3,7 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - player
+  - bullet
+  - flag
+  - siegeZone
+  - respawnZone
   layers:
   - Default
   - TransparentFX
@@ -12,9 +17,9 @@ TagManager:
   - Water
   - UI
   - environment
-  - 
-  - 
-  - 
+  - bullet
+  - player
+  - gun
   - 
   - 
   - 

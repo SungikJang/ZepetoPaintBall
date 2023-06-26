@@ -43,8 +43,13 @@ export default class WeaponPopupUI extends ZepetoScriptBehaviour {
         this.manager = IOC.Instance.getInstance<InterManager>(Manager);
         this.selectBtn.onClick.AddListener(()=>{
             if(this.myPlayerController.MyPlayerData.MyWeaponInfoArr[Number(this.manager.UI.NowPopUpWeaponNum)-1] === "O"){
-                if(this.myPlayerController.MyPlayerData.NowWeapon.name !== this.manager.UI.NowPopUpWeaponNum) {
-                    this.myPlayerController.MyPlayerData.EqiupGun(this.manager.UI.NowPopUpWeaponNum);
+                if(this.myPlayerController.MyPlayerData.MyPlayer.character.Context.gameObject.activeSelf){
+                    if (this.myPlayerController.MyPlayerData.NowWeapon.name !== this.manager.UI.NowPopUpWeaponNum) {
+                        this.myPlayerController.MyPlayerData.EqiupGun(this.manager.UI.NowPopUpWeaponNum);
+                    }
+                }
+                else{
+                    this.myPlayerController.MyPlayerData.WaitingWeeapon = this.manager.UI.NowPopUpWeaponNum
                 }
                 //장찻
                 this.manager.UI.DeletePopUpUI();
@@ -63,6 +68,7 @@ export default class WeaponPopupUI extends ZepetoScriptBehaviour {
         this.manager = IOC.Instance.getInstance<InterManager>(Manager);
         const path = 'Weapon/' + this.manager.UI.NowPopUpWeaponNum;
         this.weaponName.text = this.manager.Data.GetValueByKeys(path + '/Name') as string;
+        this.myPlayerController.MyPlayerData.MyWeaponType = this.weaponName.text;
         this.weaponType.text = this.manager.Data.GetValueByKeys(path + '/Type') as string;
         let s = this.manager.Data.GetValueByKeys(path + '/BuyPrice') as number;
         this.PriceText.text = s.toString();

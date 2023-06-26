@@ -1,9 +1,11 @@
 import { ZepetoScriptBehaviour } from 'ZEPETO.Script'
-import {Transform, WaitUntil} from "UnityEngine";
+import {GameObject, Transform, WaitUntil} from "UnityEngine";
 import {ProductRecord, ProductService, ProductType, PurchaseType} from "ZEPETO.Product";
 import {ZepetoWorldMultiplay} from "ZEPETO.World";
 import {Room, RoomData} from "ZEPETO.Multiplay";
 import ProductSync from '../Network/ProductSync';
+import Connector from '../Network/Connector';
+import { Currency } from '../Enums';
 
 
 export interface InterProductManager {
@@ -42,6 +44,8 @@ export interface InterProductManager {
     RefreshBalance()
 
     RefreshInventory()
+    
+    SetMultiPlay(value: ZepetoWorldMultiplay)
 }
 
 export default class ProductManager implements InterProductManager{
@@ -117,17 +121,13 @@ export default class ProductManager implements InterProductManager{
     }
 
     GainBalance(currencyId: string, quantity: number) {
-        const data = new RoomData();
-        data.Add("currencyId", currencyId);
-        data.Add("quantity", quantity);
-        this._multiplay.Room?.Send("onCredit", data.GetObject());
+        console.log("GainBalance")
+        Connector.Instance.ReqToServer("onCredit", {currencyId: Currency.Gold, quantity: quantity})
     }
 
     UseBalance(currencyId: string, quantity: number) {
-        const data = new RoomData();
-        data.Add("currencyId", currencyId);
-        data.Add("quantity", quantity);
-        this._multiplay.Room?.Send("onDebit", data.GetObject());
+        console.log("UseBalance")
+        Connector.Instance.ReqToServer("onDebit", {currencyId: Currency.Diamond, quantity: quantity})
     }
 
     PurchaseItem(ProductId: string) {
@@ -170,5 +170,9 @@ export default class ProductManager implements InterProductManager{
         if(this._productSync){
             this._productSync.StartRefreshInventory();
         }
+    }
+
+    SetMultiPlay(value: ZepetoWorldMultiplay){
+        this._multiplay = value;
     }
 }

@@ -1,0 +1,50 @@
+fileFormatVersion: 2
+guid: 4c56d95e141e32e4c8e67bf73f91ce65
+importerOverride: ZEPETO.Script.Compiler:ZEPETO.Script:TypescriptAssetImporter
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: -1123457745, guid: 54cf806323ffe4418a4ce4cc63fe6b9d, type: 3}
+  isAssemblyDeclarations: 0
+  assembly: 
+  generateAllTypes: 1
+  types: []
+  generateWrapper: 0
+  overrideWrapperTypes: 0
+  wrapperTypes: []
+  WrapperFilters: []
+  wrapperOutputDirectory: Generated
+  compiledResult: '{"source":"\"use strict\";\r\nObject.defineProperty(exports, \"__esModule\",
+    { value: true });\r\nconst ZEPETO_Script_1 = require(\"ZEPETO.Script\");\r\nconst
+    UnityEngine_1 = require(\"UnityEngine\");\r\nconst Manager_1 = require(\"../Manager/Manager\");\r\nconst
+    MyPalyerController_1 = require(\"../MyPlayer/MyPalyerController\");\r\nconst
+    IOC_1 = require(\"../IOC\");\r\nconst OtherGunController_1 = require(\"./OtherGunController\");\r\nclass
+    OtherZepetoCharacterController extends ZEPETO_Script_1.ZepetoScriptBehaviour
+    {\r\n    constructor() {\r\n        super(...arguments);\r\n        this.haveFlag
+    = false;\r\n        this.instanceSet = false;\r\n    }\r\n    Start() {\r\n       
+    this.StartCoroutine(this.GetInstance());\r\n    }\r\n    GetHit() {\r\n       
+    this.gameObject.SetActive(false);\r\n    }\r\n    Shoot() {\r\n        this.gunController.Eject();\r\n   
+    }\r\n    StartShoot() {\r\n        this.gunController.StartShoot();\r\n    }\r\n   
+    StopShoot() {\r\n        this.gunController.StopShoot();\r\n    }\r\n    TakeFlag(flagObj)
+    {\r\n        this.haveFlag = true;\r\n        //\r\n    }\r\n    EqiupGun(name)
+    {\r\n        if (!this.manager) {\r\n            this.manager = IOC_1.default.Instance.getInstance(Manager_1.default);\r\n       
+    }\r\n        if (this.nowWeapon) {\r\n            UnityEngine_1.GameObject.Destroy(this.nowWeapon);\r\n       
+    }\r\n        this.nowWeapon = this.manager.Resource.Instantiate(\"Prefabs\\\\OtherGuns\\\\\"
+    + name);\r\n        this.nowWeapon.transform.SetParent(IOC_1.default.Instance.getInstance(MyPalyerController_1.MyPlayerController).MyPlayerMovement.MyAnimator.GetBoneTransform(UnityEngine_1.HumanBodyBones.RightIndexIntermediate),
+    false);\r\n        this.nowWeapon.transform.localPosition = UnityEngine_1.Vector3.zero;\r\n       
+    this.nowWeapon.transform.localRotation = UnityEngine_1.Quaternion.Euler(UnityEngine_1.Vector3.zero);\r\n       
+    this.nowWeapon.name += \"_\";\r\n        this.nowWeapon.name += this.gameObject.name;\r\n       
+    this.gunController = this.nowWeapon.GetComponent($typeof(OtherGunController_1.default));\r\n   
+    }\r\n    *GetInstance() {\r\n        while (!this.instanceSet) {\r\n           
+    this.myPlayerController = IOC_1.default.Instance.getInstance(MyPalyerController_1.MyPlayerController);\r\n           
+    this.manager = IOC_1.default.Instance.getInstance(Manager_1.default);\r\n           
+    if (this.manager && this.myPlayerController) {\r\n                this.instanceSet
+    = true;\r\n                return;\r\n            }\r\n            yield new
+    UnityEngine_1.WaitForSeconds(0.1);\r\n        }\r\n    }\r\n}\r\nexports.default
+    = OtherZepetoCharacterController;\r\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiT3RoZXJaZXBldG9DaGFyYWN0ZXJDb250cm9sbGVyLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiT3RoZXJaZXBldG9DaGFyYWN0ZXJDb250cm9sbGVyLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7O0FBQUEsaURBQXFEO0FBRXJELDZDQUE0RjtBQUM1RixnREFBMkQ7QUFDM0QsdUVBQTZGO0FBQzdGLGdDQUF5QjtBQUN6Qiw2REFBc0Q7QUFFdEQsTUFBcUIsOEJBQStCLFNBQVEscUNBQXFCO0lBQWpGOztRQUtXLGFBQVEsR0FBWSxLQUFLLENBQUM7UUFJekIsZ0JBQVcsR0FBWSxLQUFLLENBQUM7SUF3RHpDLENBQUM7SUFwREcsS0FBSztRQUNELElBQUksQ0FBQyxjQUFjLENBQUMsSUFBSSxDQUFDLFdBQVcsRUFBRSxDQUFDLENBQUE7SUFDM0MsQ0FBQztJQUVNLE1BQU07UUFDVCxJQUFJLENBQUMsVUFBVSxDQUFDLFNBQVMsQ0FBQyxLQUFLLENBQUMsQ0FBQTtJQUNwQyxDQUFDO0lBRUQsS0FBSztRQUNELElBQUksQ0FBQyxhQUFhLENBQUMsS0FBSyxFQUFFLENBQUE7SUFDOUIsQ0FBQztJQUVELFVBQVU7UUFDTixJQUFJLENBQUMsYUFBYSxDQUFDLFVBQVUsRUFBRSxDQUFBO0lBQ25DLENBQUM7SUFFRCxTQUFTO1FBQ0wsSUFBSSxDQUFDLGFBQWEsQ0FBQyxTQUFTLEVBQUUsQ0FBQTtJQUNsQyxDQUFDO0lBRUQsUUFBUSxDQUFDLE9BQW1CO1FBQ3hCLElBQUksQ0FBQyxRQUFRLEdBQUcsSUFBSSxDQUFDO1FBQ3JCLEVBQUU7SUFDTixDQUFDO0lBRUQsUUFBUSxDQUFDLElBQVk7UUFDakIsSUFBRyxDQUFDLElBQUksQ0FBQyxPQUFPLEVBQUM7WUFDYixJQUFJLENBQUMsT0FBTyxHQUFHLGFBQUcsQ0FBQyxRQUFRLENBQUMsV0FBVyxDQUFDLGlCQUFPLENBQUMsQ0FBQTtTQUNuRDtRQUNELElBQUcsSUFBSSxDQUFDLFNBQVMsRUFBQztZQUNkLHdCQUFVLENBQUMsT0FBTyxDQUFDLElBQUksQ0FBQyxTQUFTLENBQUMsQ0FBQTtTQUNyQztRQUNELElBQUksQ0FBQyxTQUFTLEdBQUcsSUFBSSxDQUFDLE9BQU8sQ0FBQyxRQUFRLENBQUMsV0FBVyxDQUFDLHNCQUFzQixHQUFHLElBQUksQ0FBQyxDQUFDO1FBQ2xGLElBQUksQ0FBQyxTQUFTLENBQUMsU0FBUyxDQUFDLFNBQVMsQ0FBQyxhQUFHLENBQUMsUUFBUSxDQUFDLFdBQVcsQ0FBMEIsdUNBQWtCLENBQUMsQ0FBQyxnQkFBZ0IsQ0FBQyxVQUFVLENBQUMsZ0JBQWdCLENBQUMsNEJBQWMsQ0FBQyxzQkFBc0IsQ0FBQyxFQUFFLEtBQUssQ0FBQyxDQUFDO1FBQ3JNLElBQUksQ0FBQyxTQUFTLENBQUMsU0FBUyxDQUFDLGFBQWEsR0FBRyxxQkFBTyxDQUFDLElBQUksQ0FBQztRQUN0RCxJQUFJLENBQUMsU0FBUyxDQUFDLFNBQVMsQ0FBQyxhQUFhLEdBQUcsd0JBQVUsQ0FBQyxLQUFLLENBQUMscUJBQU8sQ0FBQyxJQUFJLENBQUMsQ0FBQztRQUN4RSxJQUFJLENBQUMsU0FBUyxDQUFDLElBQUksSUFBSSxHQUFHLENBQUM7UUFDM0IsSUFBSSxDQUFDLFNBQVMsQ0FBQyxJQUFJLElBQUksSUFBSSxDQUFDLFVBQVUsQ0FBQyxJQUFJLENBQUM7UUFDNUMsSUFBSSxDQUFDLGFBQWEsR0FBRyxJQUFJLENBQUMsU0FBUyxDQUFDLFlBQVksU0FBQyw0QkFBa0IsRUFBRyxDQUFDO0lBQzNFLENBQUM7SUFFRCxDQUFFLFdBQVc7UUFDVCxPQUFNLENBQUMsSUFBSSxDQUFDLFdBQVcsRUFBQztZQUNwQixJQUFJLENBQUMsa0JBQWtCLEdBQUcsYUFBRyxDQUFDLFFBQVEsQ0FBQyxXQUFXLENBQTBCLHVDQUFrQixDQUFDLENBQUM7WUFDaEcsSUFBSSxDQUFDLE9BQU8sR0FBRyxhQUFHLENBQUMsUUFBUSxDQUFDLFdBQVcsQ0FBZSxpQkFBTyxDQUFDLENBQUM7WUFDL0QsSUFBRyxJQUFJLENBQUMsT0FBTyxJQUFJLElBQUksQ0FBQyxrQkFBa0IsRUFBQztnQkFDdkMsSUFBSSxDQUFDLFdBQVcsR0FBRyxJQUFJLENBQUM7Z0JBQ3hCLE9BQU87YUFDVjtZQUNELE1BQU0sSUFBSSw0QkFBYyxDQUFDLEdBQUcsQ0FBQyxDQUFDO1NBQ2pDO0lBQ0wsQ0FBQztDQUNKO0FBakVELGlEQWlFQyJ9","assetPath":"Assets/Scripts/Client/Controller/OtherZepetoCharacterController.ts","manifest":{"properties":[{"assembly":"UnityEngine.CoreModule","name":"ShotGunDirs","type":"UnityEngine.Vector3[]","isArray":true,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]},{"assembly":"UnityEngine.CoreModule","name":"ShootDir","type":"UnityEngine.Vector3","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]},{"assembly":"mscorlib","name":"team","type":"System.String","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]},{"assembly":"mscorlib","name":"haveFlag","type":"System.Boolean","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]}],"name":"OtherZepetoCharacterController","description":"","hasAnimatorMove":false},"isCompiled":true}'
+  typescriptHash: b72533bd8b4bae2f7966eb20993ff627
+  onlyWriteTrigger: 0

@@ -1,0 +1,115 @@
+fileFormatVersion: 2
+guid: 6bd7fb94f4f0542459d753dbb3e3c3bc
+importerOverride: ZEPETO.Script.Compiler:ZEPETO.Script:TypescriptAssetImporter
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: -1123457745, guid: 54cf806323ffe4418a4ce4cc63fe6b9d, type: 3}
+  isAssemblyDeclarations: 0
+  assembly: 
+  generateAllTypes: 1
+  types: []
+  generateWrapper: 0
+  overrideWrapperTypes: 0
+  wrapperTypes: []
+  WrapperFilters: []
+  wrapperOutputDirectory: Generated
+  compiledResult: "{\"source\":\"\\\"use strict\\\";\\r\\nObject.defineProperty(exports,
+    \\\"__esModule\\\", { value: true });\\r\\nconst Enums_1 = require(\\\"../Enums\\\");\\r\\nconst
+    IOC_1 = require(\\\"../IOC\\\");\\r\\nconst Manager_1 = require(\\\"./Manager\\\");\\r\\nconst
+    UnityEngine_1 = require(\\\"UnityEngine\\\");\\r\\nconst MyPalyerController_1
+    = require(\\\"../MyPlayer/MyPalyerController\\\");\\r\\nconst index_1 = require(\\\"../Utils/index\\\");\\r\\nclass
+    SiegeGameManager {\\r\\n    constructor() {\\r\\n        this.siegeteam = \\\"\\\";\\r\\n   
+    }\\r\\n    Init() {\\r\\n        this.manager = IOC_1.default.Instance.getInstance(Manager_1.default);\\r\\n       
+    this.myPlayerController = IOC_1.default.Instance.getInstance(MyPalyerController_1.MyPlayerController);\\r\\n       
+    this.SiegeEnv = UnityEngine_1.GameObject.Find(\\\"SiegeGameZone\\\");\\r\\n       
+    this.SiegeEnv.SetActive(false);\\r\\n    }\\r\\n    GameStart(sessionId) {\\r\\n       
+    this.manager.Game.NowOnGame = Enums_1.GAME_NAME.Siege;\\r\\n        this.manager.Game.GameStart(sessionId);\\r\\n   
+    }\\r\\n    RuntheGame() {\\r\\n        this.manager.UI.CloseDefaultUI('StartUI');\\r\\n       
+    this.manager.UI.ShowDefaultUI('InGameUI');\\r\\n        if (!this.SiegeStartPoint)\\r\\n           
+    this.SiegeStartPoint = UnityEngine_1.GameObject.Find(\\\"SiegeStartPoint\\\").transform;\\r\\n       
+    if (!this.SiegeEnv)\\r\\n            this.SiegeEnv = UnityEngine_1.GameObject.Find(\\\"SiegeGameZone\\\");\\r\\n       
+    if (!this.SiegeEnv.activeSelf) {\\r\\n            this.SiegeEnv.SetActive(true);\\r\\n       
+    }\\r\\n        this.manager.UI.ControllerUI.SetJump(true);\\r\\n        this.manager.UI.ControllerUI.SetPad(true);\\r\\n       
+    if (!this.SiegeStartPoint)\\r\\n            this.SiegeStartPoint = UnityEngine_1.GameObject.Find(\\\"SiegeStartPoint\\\").transform;\\r\\n       
+    let rangeCollider = this.SiegeStartPoint.GetChild(0).GetChild(0).GetComponent($typeof(UnityEngine_1.BoxCollider));\\r\\n       
+    let range_X = rangeCollider.bounds.size.x;\\r\\n        let range_Z = rangeCollider.bounds.size.z;\\r\\n       
+    range_X = UnityEngine_1.Random.Range((range_X / 2) * -1, range_X / 2);\\r\\n       
+    range_Z = UnityEngine_1.Random.Range((range_Z / 2) * -1, range_Z / 2);\\r\\n       
+    let respawnPosition = index_1.default.VectorPlusCalc(this.SiegeStartPoint.GetChild(0).GetChild(0).transform.position,
+    new UnityEngine_1.Vector3(range_X, 0, range_Z));\\r\\n        this.myPlayerController.MyPlayerMovement.Teleport(respawnPosition,
+    UnityEngine_1.Quaternion.Euler(UnityEngine_1.Vector3.zero));\\r\\n        this.myPlayerController.MyPlayerData.SetTeam('A');\\r\\n       
+    this.manager.Game.IsGamePlaying = true;\\r\\n    }\\r\\n    JoinGame(team) {\\r\\n       
+    this.manager.UI.CloseDefaultUI('StartUI');\\r\\n        this.manager.UI.ShowDefaultUI('InGameUI');\\r\\n       
+    this.manager.UI.ControllerUI.SetJump(true);\\r\\n        this.manager.UI.ControllerUI.SetPad(true);\\r\\n       
+    if (!this.SiegeEnv)\\r\\n            this.SiegeEnv = UnityEngine_1.GameObject.Find(\\\"SiegeGameZone\\\");\\r\\n       
+    if (!this.SiegeEnv.activeSelf) {\\r\\n            this.SiegeEnv.SetActive(true);\\r\\n       
+    }\\r\\n        if (!this.SiegeStartPoint)\\r\\n            this.SiegeStartPoint
+    = UnityEngine_1.GameObject.Find(\\\"SiegeStartPoint\\\").transform;\\r\\n       
+    let rangeCollider;\\r\\n        let respawnPosition;\\r\\n        if (team ===
+    \\\"A\\\") {\\r\\n            rangeCollider = this.SiegeStartPoint.GetChild(0).GetChild(0).GetComponent($typeof(UnityEngine_1.BoxCollider));\\r\\n           
+    let range_X = rangeCollider.bounds.size.x;\\r\\n            let range_Z = rangeCollider.bounds.size.z;\\r\\n           
+    range_X = UnityEngine_1.Random.Range((range_X / 2) * -1, range_X / 2);\\r\\n           
+    range_Z = UnityEngine_1.Random.Range((range_Z / 2) * -1, range_Z / 2);\\r\\n           
+    respawnPosition = index_1.default.VectorPlusCalc(this.SiegeStartPoint.GetChild(0).GetChild(0).position,
+    new UnityEngine_1.Vector3(range_X, 0, range_Z));\\r\\n        }\\r\\n       
+    else {\\r\\n            rangeCollider = this.SiegeStartPoint.GetChild(1).GetChild(0).GetComponent($typeof(UnityEngine_1.BoxCollider));\\r\\n           
+    let range_X = rangeCollider.bounds.size.x;\\r\\n            let range_Z = rangeCollider.bounds.size.z;\\r\\n           
+    range_X = UnityEngine_1.Random.Range((range_X / 2) * -1, range_X / 2);\\r\\n           
+    range_Z = UnityEngine_1.Random.Range((range_Z / 2) * -1, range_Z / 2);\\r\\n           
+    respawnPosition = index_1.default.VectorPlusCalc(this.SiegeStartPoint.GetChild(1).GetChild(0).position,
+    new UnityEngine_1.Vector3(range_X, 0, range_Z));\\r\\n        }\\r\\n       
+    this.myPlayerController.MyPlayerMovement.Teleport(respawnPosition, UnityEngine_1.Quaternion.Euler(UnityEngine_1.Vector3.zero));\\r\\n       
+    this.myPlayerController.MyPlayerData.SetTeam(team);\\r\\n        this.manager.Game.IsGamePlaying
+    = true;\\r\\n    }\\r\\n    LeaveGame() {\\r\\n        this.myPlayerController.MyPlayerData.SetTeam(\\\"\\\");\\r\\n       
+    this.manager.Game.IsGamePlaying = false;\\r\\n        if (!this.manager.Game.HomePoint)\\r\\n           
+    this.manager.Game.HomePoint = UnityEngine_1.GameObject.Find(\\\"HomePoint\\\").transform;\\r\\n       
+    this.myPlayerController.MyPlayerMovement.Teleport(this.manager.Game.HomePoint.position,
+    this.manager.Game.HomePoint.rotation);\\r\\n        this.manager.UI.CloseDefaultUI('InGameUI');\\r\\n       
+    this.manager.UI.ShowDefaultUI('StartUI');\\r\\n        this.manager.UI.ControllerUI.SetJump(false);\\r\\n       
+    this.manager.UI.ControllerUI.SetPad(false);\\r\\n    }\\r\\n    EndGame(winningTeam)
+    {\\r\\n        this.manager.UI.CloseDefaultUI('InGameUI');\\r\\n        this.manager.UI.ControllerUI.SetJump(false);\\r\\n       
+    this.manager.UI.ControllerUI.SetPad(false);\\r\\n        if (!this.SiegeEnv)\\r\\n           
+    this.SiegeEnv = UnityEngine_1.GameObject.Find(\\\"SiegeGameZone\\\");\\r\\n       
+    if (this.SiegeEnv.activeSelf) {\\r\\n            this.SiegeEnv.SetActive(false);\\r\\n       
+    }\\r\\n        if (winningTeam === this.myPlayerController.MyPlayerData.Team)
+    {\\r\\n            //\uBCF4\uC0C1\\r\\n        }\\r\\n        this.myPlayerController.MyPlayerData.SetTeam(\\\"\\\");\\r\\n       
+    this.manager.Game.IsGamePlaying = false;\\r\\n        if (!this.manager.Game.HomePoint)\\r\\n           
+    this.manager.Game.HomePoint = UnityEngine_1.GameObject.Find(\\\"HomePoint\\\").transform;\\r\\n       
+    this.myPlayerController.MyPlayerMovement.Teleport(this.manager.Game.HomePoint.position,
+    this.manager.Game.HomePoint.rotation);\\r\\n    }\\r\\n    Respawn(team) {\\r\\n       
+    if (!this.SiegeEnv)\\r\\n            this.SiegeEnv = UnityEngine_1.GameObject.Find(\\\"SiegeGameZone\\\");\\r\\n       
+    if (!this.SiegeEnv.activeSelf) {\\r\\n            this.SiegeEnv.SetActive(true);\\r\\n       
+    }\\r\\n        if (!this.SiegeStartPoint)\\r\\n            this.SiegeStartPoint
+    = UnityEngine_1.GameObject.Find(\\\"SiegeStartPoint\\\").transform;\\r\\n       
+    let rangeCollider;\\r\\n        let respawnPosition;\\r\\n        if (team ===
+    \\\"A\\\") {\\r\\n            rangeCollider = this.SiegeStartPoint.GetChild(0).GetChild(0).GetComponent($typeof(UnityEngine_1.BoxCollider));\\r\\n           
+    let range_X = rangeCollider.bounds.size.x;\\r\\n            let range_Z = rangeCollider.bounds.size.z;\\r\\n           
+    range_X = UnityEngine_1.Random.Range((range_X / 2) * -1, range_X / 2);\\r\\n           
+    range_Z = UnityEngine_1.Random.Range((range_Z / 2) * -1, range_Z / 2);\\r\\n           
+    respawnPosition = index_1.default.VectorPlusCalc(this.SiegeStartPoint.GetChild(0).GetChild(0).position,
+    new UnityEngine_1.Vector3(range_X, 0, range_Z));\\r\\n        }\\r\\n       
+    else {\\r\\n            rangeCollider = this.SiegeStartPoint.GetChild(1).GetChild(0).GetComponent($typeof(UnityEngine_1.BoxCollider));\\r\\n           
+    let range_X = rangeCollider.bounds.size.x;\\r\\n            let range_Z = rangeCollider.bounds.size.z;\\r\\n           
+    range_X = UnityEngine_1.Random.Range((range_X / 2) * -1, range_X / 2);\\r\\n           
+    range_Z = UnityEngine_1.Random.Range((range_Z / 2) * -1, range_Z / 2);\\r\\n           
+    respawnPosition = index_1.default.VectorPlusCalc(this.SiegeStartPoint.GetChild(1).GetChild(0).position,
+    new UnityEngine_1.Vector3(range_X, 0, range_Z));\\r\\n        }\\r\\n       
+    this.myPlayerController.MyPlayerMovement.Teleport(respawnPosition, UnityEngine_1.Quaternion.Euler(UnityEngine_1.Vector3.zero));\\r\\n   
+    }\\r\\n    Siege(team) {\\r\\n        if (team === \\\"A\\\") {\\r\\n           
+    this.manager.UI.InGameUI.BteamSiege.SetActive(false);\\r\\n            this.manager.UI.InGameUI.AteamSiege.SetActive(true);\\r\\n       
+    }\\r\\n        else {\\r\\n            this.manager.UI.InGameUI.AteamSiege.SetActive(false);\\r\\n           
+    this.manager.UI.InGameUI.BteamSiege.SetActive(true);\\r\\n        }\\r\\n       
+    if (team === this.myPlayerController.MyPlayerData.Team) {\\r\\n            //\uC6B0\uB9AC\uD300\uC774
+    \uC810\uB839 \uC131\uACF5\uD588\uB2E4 UI\\r\\n            this.manager.UI.ShowPopUpUI(\\\"MyTeamSiege\\\");\\r\\n       
+    }\\r\\n        else {\\r\\n            //\uC801\uC774 \uC810\uB839 \uC131\uACF5\uD588\uB2E4
+    UI\\r\\n            this.manager.UI.ShowPopUpUI(\\\"OpponentSiege\\\");\\r\\n       
+    }\\r\\n        this.siegeteam = team;\\r\\n    }\\r\\n    get SiegeTeam() {\\r\\n       
+    return this.siegeteam;\\r\\n    }\\r\\n}\\r\\nexports.default = SiegeGameManager;\\r\\n//#
+    sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiU2llZ2VHYW1lTWFuYWdlci5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIlNpZWdlR2FtZU1hbmFnZXIudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFBQSxvQ0FBcUM7QUFDckMsZ0NBQXlCO0FBQ3pCLHVDQUFrRDtBQUNsRCw2Q0FBNEY7QUFDNUYsdUVBQTRGO0FBQzVGLDBDQUFrQztBQXVCbEMsTUFBcUIsZ0JBQWdCO0lBQXJDO1FBS1ksY0FBUyxHQUFXLEVBQUUsQ0FBQztJQThKbkMsQ0FBQztJQTVKRyxJQUFJO1FBQ0EsSUFBSSxDQUFDLE9BQU8sR0FBRyxhQUFHLENBQUMsUUFBUSxDQUFDLFdBQVcsQ0FBZSxpQkFBTyxDQUFDLENBQUM7UUFDL0QsSUFBSSxDQUFDLGtCQUFrQixHQUFHLGFBQUcsQ0FBQyxRQUFRLENBQUMsV0FBVyxDQUEwQix1Q0FBa0IsQ0FBQyxDQUFDO1FBQ2hHLElBQUksQ0FBQyxRQUFRLEdBQUcsd0JBQVUsQ0FBQyxJQUFJLENBQUMsZUFBZSxDQUFDLENBQUE7UUFDaEQsSUFBSSxDQUFDLFFBQVEsQ0FBQyxTQUFTLENBQUMsS0FBSyxDQUFDLENBQUM7SUFDbkMsQ0FBQztJQUVELFNBQVMsQ0FBQyxTQUFpQjtRQUN2QixJQUFJLENBQUMsT0FBTyxDQUFDLElBQUksQ0FBQyxTQUFTLEdBQUcsaUJBQVMsQ0FBQyxLQUFLLENBQUM7UUFDOUMsSUFBSSxDQUFDLE9BQU8sQ0FBQyxJQUFJLENBQUMsU0FBUyxDQUFDLFNBQVMsQ0FBQyxDQUFBO0lBQzFDLENBQUM7SUFFRCxVQUFVO1FBQ04sSUFBSSxDQUFDLE9BQU8sQ0FBQyxFQUFFLENBQUMsY0FBYyxDQUFDLFNBQVMsQ0FBQyxDQUFDO1FBQzFDLElBQUksQ0FBQyxPQUFPLENBQUMsRUFBRSxDQUFDLGFBQWEsQ0FBQyxVQUFVLENBQUMsQ0FBQztRQUMxQyxJQUFHLENBQUMsSUFBSSxDQUFDLGVBQWU7WUFBRSxJQUFJLENBQUMsZUFBZSxHQUFHLHdCQUFVLENBQUMsSUFBSSxDQUFDLGlCQUFpQixDQUFDLENBQUMsU0FBUyxDQUFDO1FBQzlGLElBQUcsQ0FBQyxJQUFJLENBQUMsUUFBUTtZQUFFLElBQUksQ0FBQyxRQUFRLEdBQUcsd0JBQVUsQ0FBQyxJQUFJLENBQUMsZUFBZSxDQUFDLENBQUM7UUFDcEUsSUFBRyxDQUFDLElBQUksQ0FBQyxRQUFRLENBQUMsVUFBVSxFQUFDO1lBQ3pCLElBQUksQ0FBQyxRQUFRLENBQUMsU0FBUyxDQUFDLElBQUksQ0FBQyxDQUFBO1NBQ2hDO1FBQ0QsSUFBSSxDQUFDLE9BQU8sQ0FBQyxFQUFFLENBQUMsWUFBWSxDQUFDLE9BQU8sQ0FBQyxJQUFJLENBQUMsQ0FBQztRQUMzQyxJQUFJLENBQUMsT0FBTyxDQUFDLEVBQUUsQ0FBQyxZQUFZLENBQUMsTUFBTSxDQUFDLElBQUksQ0FBQyxDQUFDO1FBQzFDLElBQUcsQ0FBQyxJQUFJLENBQUMsZUFBZTtZQUFFLElBQUksQ0FBQyxlQUFlLEdBQUcsd0JBQVUsQ0FBQyxJQUFJLENBQUMsaUJBQWlCLENBQUMsQ0FBQyxTQUFTLENBQUM7UUFDOUYsSUFBSSxhQUFhLEdBQUcsSUFBSSxDQUFDLGVBQWUsQ0FBQyxRQUFRLENBQUMsQ0FBQyxDQUFDLENBQUMsUUFBUSxDQUFDLENBQUMsQ0FBQyxDQUFDLFlBQVksU0FBQyx5QkFBVyxFQUFHLENBQUM7UUFDN0YsSUFBSSxPQUFPLEdBQUcsYUFBYSxDQUFDLE1BQU0sQ0FBQyxJQUFJLENBQUMsQ0FBQyxDQUFDO1FBQzFDLElBQUksT0FBTyxHQUFHLGFBQWEsQ0FBQyxNQUFNLENBQUMsSUFBSSxDQUFDLENBQUMsQ0FBQztRQUUxQyxPQUFPLEdBQUcsb0JBQU0sQ0FBQyxLQUFLLENBQUUsQ0FBQyxPQUFPLEdBQUcsQ0FBQyxDQUFDLEdBQUcsQ0FBQyxDQUFDLEVBQUUsT0FBTyxHQUFHLENBQUMsQ0FBQyxDQUFDO1FBQ3pELE9BQU8sR0FBRyxvQkFBTSxDQUFDLEtBQUssQ0FBRSxDQUFDLE9BQU8sR0FBRyxDQUFDLENBQUMsR0FBRyxDQUFDLENBQUMsRUFBRSxPQUFPLEdBQUcsQ0FBQyxDQUFDLENBQUM7UUFFekQsSUFBSSxlQUFlLEdBQUcsZUFBSyxDQUFDLGNBQWMsQ0FBQyxJQUFJLENBQUMsZUFBZSxDQUFDLFFBQVEsQ0FBQyxDQUFDLENBQUMsQ0FBQyxRQUFRLENBQUMsQ0FBQyxDQUFDLENBQUMsU0FBUyxDQUFDLFFBQVEsRUFBRSxJQUFJLHFCQUFPLENBQUMsT0FBTyxFQUFFLENBQUMsRUFBRSxPQUFPLENBQUMsQ0FBQyxDQUFDO1FBQzlJLElBQUksQ0FBQyxrQkFBa0IsQ0FBQyxnQkFBZ0IsQ0FBQyxRQUFRLENBQUMsZUFBZSxFQUFFLHdCQUFVLENBQUMsS0FBSyxDQUFDLHFCQUFPLENBQUMsSUFBSSxDQUFDLENBQUMsQ0FBQTtRQUNsRyxJQUFJLENBQUMsa0JBQWtCLENBQUMsWUFBWSxDQUFDLE9BQU8sQ0FBQyxHQUFHLENBQUMsQ0FBQTtRQUNqRCxJQUFJLENBQUMsT0FBTyxDQUFDLElBQUksQ0FBQyxhQUFhLEdBQUcsSUFBSSxDQUFDO0lBQzNDLENBQUM7SUFFRCxRQUFRLENBQUMsSUFBWTtRQUNqQixJQUFJLENBQUMsT0FBTyxDQUFDLEVBQUUsQ0FBQyxjQUFjLENBQUMsU0FBUyxDQUFDLENBQUM7UUFDMUMsSUFBSSxDQUFDLE9BQU8sQ0FBQyxFQUFFLENBQUMsYUFBYSxDQUFDLFVBQVUsQ0FBQyxDQUFDO1FBQzFDLElBQUksQ0FBQyxPQUFPLENBQUMsRUFBRSxDQUFDLFlBQVksQ0FBQyxPQUFPLENBQUMsSUFBSSxDQUFDLENBQUM7UUFDM0MsSUFBSSxDQUFDLE9BQU8sQ0FBQyxFQUFFLENBQUMsWUFBWSxDQUFDLE1BQU0sQ0FBQyxJQUFJLENBQUMsQ0FBQztRQUMxQyxJQUFHLENBQUMsSUFBSSxDQUFDLFFBQVE7WUFBRSxJQUFJLENBQUMsUUFBUSxHQUFHLHdCQUFVLENBQUMsSUFBSSxDQUFDLGVBQWUsQ0FBQyxDQUFDO1FBQ3BFLElBQUcsQ0FBQyxJQUFJLENBQUMsUUFBUSxDQUFDLFVBQVUsRUFBQztZQUN6QixJQUFJLENBQUMsUUFBUSxDQUFDLFNBQVMsQ0FBQyxJQUFJLENBQUMsQ0FBQTtTQUNoQztRQUNELElBQUcsQ0FBQyxJQUFJLENBQUMsZUFBZTtZQUFFLElBQUksQ0FBQyxlQUFlLEdBQUcsd0JBQVUsQ0FBQyxJQUFJLENBQUMsaUJBQWlCLENBQUMsQ0FBQyxTQUFTLENBQUM7UUFDOUYsSUFBSSxhQUEwQixDQUFDO1FBQy9CLElBQUksZUFBd0IsQ0FBQTtRQUM1QixJQUFHLElBQUksS0FBSyxHQUFHLEVBQUU7WUFDYixhQUFhLEdBQUcsSUFBSSxDQUFDLGVBQWUsQ0FBQyxRQUFRLENBQUMsQ0FBQyxDQUFDLENBQUMsUUFBUSxDQUFDLENBQUMsQ0FBQyxDQUFDLFlBQVksU0FBQyx5QkFBVyxFQUFHLENBQUM7WUFDekYsSUFBSSxPQUFPLEdBQUcsYUFBYSxDQUFDLE1BQU0sQ0FBQyxJQUFJLENBQUMsQ0FBQyxDQUFDO1lBQzFDLElBQUksT0FBTyxHQUFHLGFBQWEsQ0FBQyxNQUFNLENBQUMsSUFBSSxDQUFDLENBQUMsQ0FBQztZQUUxQyxPQUFPLEdBQUcsb0JBQU0sQ0FBQyxLQUFLLENBQUUsQ0FBQyxPQUFPLEdBQUcsQ0FBQyxDQUFDLEdBQUcsQ0FBQyxDQUFDLEVBQUUsT0FBTyxHQUFHLENBQUMsQ0FBQyxDQUFDO1lBQ3pELE9BQU8sR0FBRyxvQkFBTSxDQUFDLEtBQUssQ0FBRSxDQUFDLE9BQU8sR0FBRyxDQUFDLENBQUMsR0FBRyxDQUFDLENBQUMsRUFBRSxPQUFPLEdBQUcsQ0FBQyxDQUFDLENBQUM7WUFFekQsZUFBZSxHQUFHLGVBQUssQ0FBQyxjQUFjLENBQUMsSUFBSSxDQUFDLGVBQWUsQ0FBQyxRQUFRLENBQUMsQ0FBQyxDQUFDLENBQUMsUUFBUSxDQUFDLENBQUMsQ0FBQyxDQUFDLFFBQVEsRUFBRSxJQUFJLHFCQUFPLENBQUMsT0FBTyxFQUFFLENBQUMsRUFBRSxPQUFPLENBQUMsQ0FBQyxDQUFDO1NBQ25JO2FBQ0c7WUFDQSxhQUFhLEdBQUcsSUFBSSxDQUFDLGVBQWUsQ0FBQyxRQUFRLENBQUMsQ0FBQyxDQUFDLENBQUMsUUFBUSxDQUFDLENBQUMsQ0FBQyxDQUFDLFlBQVksU0FBQyx5QkFBVyxFQUFHLENBQUM7WUFDekYsSUFBSSxPQUFPLEdBQUcsYUFBYSxDQUFDLE1BQU0sQ0FBQyxJQUFJLENBQUMsQ0FBQyxDQUFDO1lBQzFDLElBQUksT0FBTyxHQUFHLGFBQWEsQ0FBQyxNQUFNLENBQUMsSUFBSSxDQUFDLENBQUMsQ0FBQztZQUUxQyxPQUFPLEdBQUcsb0JBQU0sQ0FBQyxLQUFLLENBQUUsQ0FBQyxPQUFPLEdBQUcsQ0FBQyxDQUFDLEdBQUcsQ0FBQyxDQUFDLEVBQUUsT0FBTyxHQUFHLENBQUMsQ0FBQyxDQUFDO1lBQ3pELE9BQU8sR0FBRyxvQkFBTSxDQUFDLEtBQUssQ0FBRSxDQUFDLE9BQU8sR0FBRyxDQUFDLENBQUMsR0FBRyxDQUFDLENBQUMsRUFBRSxPQUFPLEdBQUcsQ0FBQyxDQUFDLENBQUM7WUFFekQsZUFBZSxHQUFHLGVBQUssQ0FBQyxjQUFjLENBQUMsSUFBSSxDQUFDLGVBQWUsQ0FBQyxRQUFRLENBQUMsQ0FBQyxDQUFDLENBQUMsUUFBUSxDQUFDLENBQUMsQ0FBQyxDQUFDLFFBQVEsRUFBRSxJQUFJLHFCQUFPLENBQUMsT0FBTyxFQUFFLENBQUMsRUFBRSxPQUFPLENBQUMsQ0FBQyxDQUFDO1NBQ25JO1FBQ0QsSUFBSSxDQUFDLGtCQUFrQixDQUFDLGdCQUFnQixDQUFDLFFBQVEsQ0FBQyxlQUFlLEVBQUUsd0JBQVUsQ0FBQyxLQUFLLENBQUMscUJBQU8sQ0FBQyxJQUFJLENBQUMsQ0FBQyxDQUFBO1FBQ2xHLElBQUksQ0FBQyxrQkFBa0IsQ0FBQyxZQUFZLENBQUMsT0FBTyxDQUFDLElBQUksQ0FBQyxDQUFBO1FBQ2xELElBQUksQ0FBQyxPQUFPLENBQUMsSUFBSSxDQUFDLGFBQWEsR0FBRyxJQUFJLENBQUM7SUFDM0MsQ0FBQztJQUVELFNBQVM7UUFDTCxJQUFJLENBQUMsa0JBQWtCLENBQUMsWUFBWSxDQUFDLE9BQU8sQ0FBQyxFQUFFLENBQUMsQ0FBQTtRQUNoRCxJQUFJLENBQUMsT0FBTyxDQUFDLElBQUksQ0FBQyxhQUFhLEdBQUcsS0FBSyxDQUFDO1FBQ3hDLElBQUcsQ0FBQyxJQUFJLENBQUMsT0FBTyxDQUFDLElBQUksQ0FBQyxTQUFTO1lBQUUsSUFBSSxDQUFDLE9BQU8sQ0FBQyxJQUFJLENBQUMsU0FBUyxHQUFHLHdCQUFVLENBQUMsSUFBSSxDQUFDLFdBQVcsQ0FBQyxDQUFDLFNBQVMsQ0FBQztRQUN0RyxJQUFJLENBQUMsa0JBQWtCLENBQUMsZ0JBQWdCLENBQUMsUUFBUSxDQUFDLElBQUksQ0FBQyxPQUFPLENBQUMsSUFBSSxDQUFDLFNBQVMsQ0FBQyxRQUFRLEVBQUUsSUFBSSxDQUFDLE9BQU8sQ0FBQyxJQUFJLENBQUMsU0FBUyxDQUFDLFFBQVEsQ0FBQyxDQUFDO1FBQzlILElBQUksQ0FBQyxPQUFPLENBQUMsRUFBRSxDQUFDLGNBQWMsQ0FBQyxVQUFVLENBQUMsQ0FBQTtRQUMxQyxJQUFJLENBQUMsT0FBTyxDQUFDLEVBQUUsQ0FBQyxhQUFhLENBQUMsU0FBUyxDQUFDLENBQUE7UUFDeEMsSUFBSSxDQUFDLE9BQU8sQ0FBQyxFQUFFLENBQUMsWUFBWSxDQUFDLE9BQU8sQ0FBQyxLQUFLLENBQUMsQ0FBQztRQUM1QyxJQUFJLENBQUMsT0FBTyxDQUFDLEVBQUUsQ0FBQyxZQUFZLENBQUMsTUFBTSxDQUFDLEtBQUssQ0FBQyxDQUFDO0lBQy9DLENBQUM7SUFFRCxPQUFPLENBQUMsV0FBbUI7UUFDdkIsSUFBSSxDQUFDLE9BQU8sQ0FBQyxFQUFFLENBQUMsY0FBYyxDQUFDLFVBQVUsQ0FBQyxDQUFBO1FBQzFDLElBQUksQ0FBQyxPQUFPLENBQUMsRUFBRSxDQUFDLFlBQVksQ0FBQyxPQUFPLENBQUMsS0FBSyxDQUFDLENBQUM7UUFDNUMsSUFBSSxDQUFDLE9BQU8sQ0FBQyxFQUFFLENBQUMsWUFBWSxDQUFDLE1BQU0sQ0FBQyxLQUFLLENBQUMsQ0FBQztRQUMzQyxJQUFHLENBQUMsSUFBSSxDQUFDLFFBQVE7WUFBRSxJQUFJLENBQUMsUUFBUSxHQUFHLHdCQUFVLENBQUMsSUFBSSxDQUFDLGVBQWUsQ0FBQyxDQUFDO1FBQ3BFLElBQUcsSUFBSSxDQUFDLFFBQVEsQ0FBQyxVQUFVLEVBQUM7WUFDeEIsSUFBSSxDQUFDLFFBQVEsQ0FBQyxTQUFTLENBQUMsS0FBSyxDQUFDLENBQUE7U0FDakM7UUFDRCxJQUFHLFdBQVcsS0FBSyxJQUFJLENBQUMsa0JBQWtCLENBQUMsWUFBWSxDQUFDLElBQUksRUFBQztZQUN6RCxJQUFJO1NBQ1A7UUFDRCxJQUFJLENBQUMsa0JBQWtCLENBQUMsWUFBWSxDQUFDLE9BQU8sQ0FBQyxFQUFFLENBQUMsQ0FBQTtRQUNoRCxJQUFJLENBQUMsT0FBTyxDQUFDLElBQUksQ0FBQyxhQUFhLEdBQUcsS0FBSyxDQUFDO1FBQ3hDLElBQUcsQ0FBQyxJQUFJLENBQUMsT0FBTyxDQUFDLElBQUksQ0FBQyxTQUFTO1lBQUUsSUFBSSxDQUFDLE9BQU8sQ0FBQyxJQUFJLENBQUMsU0FBUyxHQUFHLHdCQUFVLENBQUMsSUFBSSxDQUFDLFdBQVcsQ0FBQyxDQUFDLFNBQVMsQ0FBQztRQUN0RyxJQUFJLENBQUMsa0JBQWtCLENBQUMsZ0JBQWdCLENBQUMsUUFBUSxDQUFDLElBQUksQ0FBQyxPQUFPLENBQUMsSUFBSSxDQUFDLFNBQVMsQ0FBQyxRQUFRLEVBQUUsSUFBSSxDQUFDLE9BQU8sQ0FBQyxJQUFJLENBQUMsU0FBUyxDQUFDLFFBQVEsQ0FBQyxDQUFDO0lBQ2xJLENBQUM7SUFFRCxPQUFPLENBQUMsSUFBWTtRQUNoQixJQUFHLENBQUMsSUFBSSxDQUFDLFFBQVE7WUFBRSxJQUFJLENBQUMsUUFBUSxHQUFHLHdCQUFVLENBQUMsSUFBSSxDQUFDLGVBQWUsQ0FBQyxDQUFDO1FBQ3BFLElBQUcsQ0FBQyxJQUFJLENBQUMsUUFBUSxDQUFDLFVBQVUsRUFBQztZQUN6QixJQUFJLENBQUMsUUFBUSxDQUFDLFNBQVMsQ0FBQyxJQUFJLENBQUMsQ0FBQTtTQUNoQztRQUNELElBQUcsQ0FBQyxJQUFJLENBQUMsZUFBZTtZQUFFLElBQUksQ0FBQyxlQUFlLEdBQUcsd0JBQVUsQ0FBQyxJQUFJLENBQUMsaUJBQWlCLENBQUMsQ0FBQyxTQUFTLENBQUM7UUFDOUYsSUFBSSxhQUEwQixDQUFDO1FBQy9CLElBQUksZUFBd0IsQ0FBQTtRQUM1QixJQUFHLElBQUksS0FBSyxHQUFHLEVBQUU7WUFDYixhQUFhLEdBQUcsSUFBSSxDQUFDLGVBQWUsQ0FBQyxRQUFRLENBQUMsQ0FBQyxDQUFDLENBQUMsUUFBUSxDQUFDLENBQUMsQ0FBQyxDQUFDLFlBQVksU0FBQyx5QkFBVyxFQUFHLENBQUM7WUFDekYsSUFBSSxPQUFPLEdBQUcsYUFBYSxDQUFDLE1BQU0sQ0FBQyxJQUFJLENBQUMsQ0FBQyxDQUFDO1lBQzFDLElBQUksT0FBTyxHQUFHLGFBQWEsQ0FBQyxNQUFNLENBQUMsSUFBSSxDQUFDLENBQUMsQ0FBQztZQUUxQyxPQUFPLEdBQUcsb0JBQU0sQ0FBQyxLQUFLLENBQUUsQ0FBQyxPQUFPLEdBQUcsQ0FBQyxDQUFDLEdBQUcsQ0FBQyxDQUFDLEVBQUUsT0FBTyxHQUFHLENBQUMsQ0FBQyxDQUFDO1lBQ3pELE9BQU8sR0FBRyxvQkFBTSxDQUFDLEtBQUssQ0FBRSxDQUFDLE9BQU8sR0FBRyxDQUFDLENBQUMsR0FBRyxDQUFDLENBQUMsRUFBRSxPQUFPLEdBQUcsQ0FBQyxDQUFDLENBQUM7WUFFekQsZUFBZSxHQUFHLGVBQUssQ0FBQyxjQUFjLENBQUMsSUFBSSxDQUFDLGVBQWUsQ0FBQyxRQUFRLENBQUMsQ0FBQyxDQUFDLENBQUMsUUFBUSxDQUFDLENBQUMsQ0FBQyxDQUFDLFFBQVEsRUFBRSxJQUFJLHFCQUFPLENBQUMsT0FBTyxFQUFFLENBQUMsRUFBRSxPQUFPLENBQUMsQ0FBQyxDQUFDO1NBQ25JO2FBQ0c7WUFDQSxhQUFhLEdBQUcsSUFBSSxDQUFDLGVBQWUsQ0FBQyxRQUFRLENBQUMsQ0FBQyxDQUFDLENBQUMsUUFBUSxDQUFDLENBQUMsQ0FBQyxDQUFDLFlBQVksU0FBQyx5QkFBVyxFQUFHLENBQUM7WUFDekYsSUFBSSxPQUFPLEdBQUcsYUFBYSxDQUFDLE1BQU0sQ0FBQyxJQUFJLENBQUMsQ0FBQyxDQUFDO1lBQzFDLElBQUksT0FBTyxHQUFHLGFBQWEsQ0FBQyxNQUFNLENBQUMsSUFBSSxDQUFDLENBQUMsQ0FBQztZQUUxQyxPQUFPLEdBQUcsb0JBQU0sQ0FBQyxLQUFLLENBQUUsQ0FBQyxPQUFPLEdBQUcsQ0FBQyxDQUFDLEdBQUcsQ0FBQyxDQUFDLEVBQUUsT0FBTyxHQUFHLENBQUMsQ0FBQyxDQUFDO1lBQ3pELE9BQU8sR0FBRyxvQkFBTSxDQUFDLEtBQUssQ0FBRSxDQUFDLE9BQU8sR0FBRyxDQUFDLENBQUMsR0FBRyxDQUFDLENBQUMsRUFBRSxPQUFPLEdBQUcsQ0FBQyxDQUFDLENBQUM7WUFFekQsZUFBZSxHQUFHLGVBQUssQ0FBQyxjQUFjLENBQUMsSUFBSSxDQUFDLGVBQWUsQ0FBQyxRQUFRLENBQUMsQ0FBQyxDQUFDLENBQUMsUUFBUSxDQUFDLENBQUMsQ0FBQyxDQUFDLFFBQVEsRUFBRSxJQUFJLHFCQUFPLENBQUMsT0FBTyxFQUFFLENBQUMsRUFBRSxPQUFPLENBQUMsQ0FBQyxDQUFDO1NBQ25JO1FBQ0QsSUFBSSxDQUFDLGtCQUFrQixDQUFDLGdCQUFnQixDQUFDLFFBQVEsQ0FBQyxlQUFlLEVBQUUsd0JBQVUsQ0FBQyxLQUFLLENBQUMscUJBQU8sQ0FBQyxJQUFJLENBQUMsQ0FBQyxDQUFBO0lBQ3RHLENBQUM7SUFFRCxLQUFLLENBQUMsSUFBWTtRQUNkLElBQUcsSUFBSSxLQUFLLEdBQUcsRUFBQztZQUNaLElBQUksQ0FBQyxPQUFPLENBQUMsRUFBRSxDQUFDLFFBQVEsQ0FBQyxVQUFVLENBQUMsU0FBUyxDQUFDLEtBQUssQ0FBQyxDQUFBO1lBQ3BELElBQUksQ0FBQyxPQUFPLENBQUMsRUFBRSxDQUFDLFFBQVEsQ0FBQyxVQUFVLENBQUMsU0FBUyxDQUFDLElBQUksQ0FBQyxDQUFBO1NBQ3REO2FBQ0c7WUFDQSxJQUFJLENBQUMsT0FBTyxDQUFDLEVBQUUsQ0FBQyxRQUFRLENBQUMsVUFBVSxDQUFDLFNBQVMsQ0FBQyxLQUFLLENBQUMsQ0FBQTtZQUNwRCxJQUFJLENBQUMsT0FBTyxDQUFDLEVBQUUsQ0FBQyxRQUFRLENBQUMsVUFBVSxDQUFDLFNBQVMsQ0FBQyxJQUFJLENBQUMsQ0FBQTtTQUN0RDtRQUVELElBQUcsSUFBSSxLQUFLLElBQUksQ0FBQyxrQkFBa0IsQ0FBQyxZQUFZLENBQUMsSUFBSSxFQUFDO1lBQ2xELGlCQUFpQjtZQUNqQixJQUFJLENBQUMsT0FBTyxDQUFDLEVBQUUsQ0FBQyxXQUFXLENBQUMsYUFBYSxDQUFDLENBQUE7U0FDN0M7YUFDRztZQUNBLGVBQWU7WUFDZixJQUFJLENBQUMsT0FBTyxDQUFDLEVBQUUsQ0FBQyxXQUFXLENBQUMsZUFBZSxDQUFDLENBQUE7U0FDL0M7UUFDRCxJQUFJLENBQUMsU0FBUyxHQUFHLElBQUksQ0FBQTtJQUN6QixDQUFDO0lBRUQsSUFBSSxTQUFTO1FBQ1QsT0FBTyxJQUFJLENBQUMsU0FBUyxDQUFBO0lBQ3pCLENBQUM7Q0FDSjtBQW5LRCxtQ0FtS0MifQ==\",\"assetPath\":\"Assets/Scripts/Client/Manager/SiegeGameManager.ts\",\"manifest\":{\"properties\":[{\"assembly\":\"\",\"name\":\"manager\",\"type\":\"C:/Users/hyo05/Desktop/GamePG/PaintBallGame/ZepetoPaintBall/Assets/Scripts/Client/Manager/Manager.InterManager\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]},{\"assembly\":\"\",\"name\":\"myPlayerController\",\"type\":\"C:/Users/hyo05/Desktop/GamePG/PaintBallGame/ZepetoPaintBall/Assets/Scripts/Client/MyPlayer/MyPalyerController.InterMyPlayerController\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]}],\"name\":\"SiegeGameManager\",\"description\":\"\",\"hasAnimatorMove\":false},\"isCompiled\":true}"
+  typescriptHash: 56c8f3ea7bb6e98c41b668b7ca955634
+  onlyWriteTrigger: 0

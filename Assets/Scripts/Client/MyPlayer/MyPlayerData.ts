@@ -7,12 +7,12 @@ import { PLAYER_STATE } from '../Enums';
 import Connector from '../Network/Connector';
 import Utils from "../Utils/index"
 import { InterMyPlayerController, MyPlayerController } from './MyPalyerController';
-import MyPlayerCoroutineController from './MyplayerCoroutineController';
+import MyPlayerAttachedController from './MyPlayerAttachedController';
 
 export interface InterMyPlayerData {
     Init(): void;
 
-    SetMyPlayer(player: ZepetoPlayer): void;
+    SetMyPlayer(player: ZepetoPlayer, sessionId: string): void;
 
     Update(): void;
     
@@ -46,9 +46,9 @@ export interface InterMyPlayerData {
 
     set MyDia(value: number)
 
-    get MyWeaponInfo()
+    get MyWeaponType()
 
-    set MyWeaponInfo(value: string)
+    set MyWeaponType(value: string)
 
     get NowWeapon()
 
@@ -56,9 +56,21 @@ export interface InterMyPlayerData {
 
     get MyWeaponInfoArr()
 
-    get MyCoroutineController()
+    get MyPlayerAttachedController()
 
-    set MyCoroutineController(value: MyPlayerCoroutineController)
+    set MyPlayerAttachedController(value: MyPlayerAttachedController)
+
+    get ShootDir()
+
+    set ShootDir(value: Vector3)
+
+    get ShotGunDirs()
+
+    set ShotGunDirs(value: Vector3[])
+
+    get WaitingWeeapon()
+
+    set WaitingWeeapon(value: string)
 
     EqiupGun(name: string);
 }
@@ -84,20 +96,26 @@ export default class MyPlayerData extends ZepetoScriptBehaviour implements Inter
 
     private myDiaPass: boolean;
 
-    private myWeaponInfo: string;
+    private myWeaponType: string;
 
     private myWeaponInfoArr: string[] = ["O", "X", "X", "X", "X", "X", "X", "X", "X", "X", "X", "X"];
     
     private nowWeapon: GameObject;
     
-    private myCoroutineController: MyPlayerCoroutineController
+    private myPlayerAttachedController: MyPlayerAttachedController
+    
+    private shootDir: Vector3;
+    
+    private shotGunDirs: Vector3[]
+    
+    private waitingWeeapon: string = '';
     
     get MyPlayer(){
         return this._myPlayer
     }
 
     get MySessionId(){
-        return this._myPlayer
+        return this._mySessionId
     }
 
     get MyGoldPass(){
@@ -126,6 +144,9 @@ export default class MyPlayerData extends ZepetoScriptBehaviour implements Inter
             this.manager = IOC.Instance.getInstance(Manager)
         }
         this.manager.UI.StartUI.SetZem(value);
+        if(this.manager.UI.GameVoteUI){
+            this.manager.UI.GameVoteUI.SetZem(value);
+        }
     }
 
     get MyGold(){
@@ -138,6 +159,9 @@ export default class MyPlayerData extends ZepetoScriptBehaviour implements Inter
             this.manager = IOC.Instance.getInstance(Manager)
         }
         this.manager.UI.StartUI.SetGold(value);
+        if(this.manager.UI.GameVoteUI){
+            this.manager.UI.GameVoteUI.SetGold(value);
+        }
     }
 
     get MyDia(){
@@ -150,15 +174,17 @@ export default class MyPlayerData extends ZepetoScriptBehaviour implements Inter
             this.manager = IOC.Instance.getInstance(Manager)
         }
         this.manager.UI.StartUI.SetDia(value);
+        if(this.manager.UI.GameVoteUI){
+            this.manager.UI.GameVoteUI.SetDia(value);
+        }
     }
 
-    get MyWeaponInfo(){
-        return this.myWeaponInfo
+    get MyWeaponType(){
+        return this.myWeaponType
     }
 
-    set MyWeaponInfo(value: string){
-        this.myWeaponInfo = value
-        this.myWeaponInfoArr = this.myWeaponInfo.split("_")
+    set MyWeaponType(value: string){
+        this.myWeaponType = value
     }
 
     get MyWeaponInfoArr(){
@@ -173,12 +199,36 @@ export default class MyPlayerData extends ZepetoScriptBehaviour implements Inter
         this.nowWeapon = value
     }
 
-    get MyCoroutineController(){
-        return this.myCoroutineController
+    get MyPlayerAttachedController(){
+        return this.myPlayerAttachedController
     }
 
-    set MyCoroutineController(value: MyPlayerCoroutineController){
-        this.myCoroutineController = value
+    set MyPlayerAttachedController(value: MyPlayerAttachedController){
+        this.myPlayerAttachedController = value
+    }
+
+    get ShootDir(){
+        return this.shootDir
+    }
+
+    set ShootDir(value: Vector3){
+        this.shootDir = value
+    }
+
+    get ShotGunDirs(){
+        return this.shotGunDirs
+    }
+
+    set ShotGunDirs(value: Vector3[]){
+        this.shotGunDirs = value
+    }
+
+    get WaitingWeeapon(){
+        return this.waitingWeeapon
+    }
+
+    set WaitingWeeapon(value: string){
+        this.waitingWeeapon = value
     }
 
 
@@ -186,9 +236,9 @@ export default class MyPlayerData extends ZepetoScriptBehaviour implements Inter
         this.manager = IOC.Instance.getInstance<InterManager>(Manager);
     }
     
-    SetMyPlayer(player: ZepetoPlayer){
+    SetMyPlayer(player: ZepetoPlayer, sessionId: string){
         this._myPlayer = player;
-        this._mySessionId = this._myPlayer.id;
+        this._mySessionId = sessionId;
         this._myPlayer.character.gameObject.AddComponent<AudioListener>();
     }
     
@@ -199,14 +249,6 @@ export default class MyPlayerData extends ZepetoScriptBehaviour implements Inter
         //         Connector.Instance.ReqToServer('PlayerDieReq')
         //     }
         // }
-    }
-    
-    SetData(myGold: number, myDia: number, myGoldPass: boolean, myDiaPass: boolean, myWeaponInfo: string){
-        this.myGold = myGold
-        this.myDia = myDia
-        this.myGoldPass = myGoldPass
-        this.myDiaPass = myDiaPass
-        this.myWeaponInfo = myWeaponInfo
     }
 
     SetTeam(team: string){
@@ -232,5 +274,8 @@ export default class MyPlayerData extends ZepetoScriptBehaviour implements Inter
         this.nowWeapon.transform.SetParent(IOC.Instance.getInstance<InterMyPlayerController>(MyPlayerController).MyPlayerMovement.MyAnimator.GetBoneTransform(HumanBodyBones.RightIndexIntermediate), false);
         this.nowWeapon.transform.localPosition = Vector3.zero;
         this.nowWeapon.transform.localRotation = Quaternion.Euler(Vector3.zero);
+        this.nowWeapon.name += "_";
+        this.nowWeapon.name += this._mySessionId;
+        Connector.Instance.ReqToServer("EqiupGunReq", name)
     }
 }   

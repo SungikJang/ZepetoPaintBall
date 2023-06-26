@@ -1,0 +1,30 @@
+fileFormatVersion: 2
+guid: ec408385fa61b9248b0ee7b464bc86bb
+importerOverride: ZEPETO.Script.Compiler:ZEPETO.Script:TypescriptAssetImporter
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: -1123457745, guid: 54cf806323ffe4418a4ce4cc63fe6b9d, type: 3}
+  isAssemblyDeclarations: 0
+  assembly: 
+  generateAllTypes: 1
+  types: []
+  generateWrapper: 0
+  overrideWrapperTypes: 0
+  wrapperTypes: []
+  WrapperFilters: []
+  wrapperOutputDirectory: Generated
+  compiledResult: '{"source":"\"use strict\";\r\nObject.defineProperty(exports, \"__esModule\",
+    { value: true });\r\nconst ZEPETO_Script_1 = require(\"ZEPETO.Script\");\r\nconst
+    IOC_1 = require(\"./Client/IOC\");\r\nconst Manager_1 = require(\"./Client/Manager/Manager\");\r\nclass
+    test extends ZEPETO_Script_1.ZepetoScriptBehaviour {\r\n    Start() {\r\n       
+    this.pbtn.onClick.AddListener(() => {\r\n            IOC_1.default.Instance.getInstance(Manager_1.default).Product.GainBalance(''zepetogunsgold'',
+    100);\r\n        });\r\n        this.mbtn.onClick.AddListener(() => {\r\n           
+    IOC_1.default.Instance.getInstance(Manager_1.default).Product.UseBalance(''zepetogunsgold'',
+    100);\r\n        });\r\n    }\r\n}\r\nexports.default = test;\r\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidGVzdC5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbInRlc3QudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFDQSxpREFBcUQ7QUFDckQsc0NBQStCO0FBQy9CLHNEQUFpRTtBQUVqRSxNQUFxQixJQUFLLFNBQVEscUNBQXFCO0lBS25ELEtBQUs7UUFDRCxJQUFJLENBQUMsSUFBSSxDQUFDLE9BQU8sQ0FBQyxXQUFXLENBQUMsR0FBRyxFQUFFO1lBQy9CLGFBQUcsQ0FBQyxRQUFRLENBQUMsV0FBVyxDQUFlLGlCQUFPLENBQUMsQ0FBQyxPQUFPLENBQUMsV0FBVyxDQUFDLGdCQUFnQixFQUFFLEdBQUcsQ0FBQyxDQUFDO1FBQy9GLENBQUMsQ0FBQyxDQUFBO1FBQ0YsSUFBSSxDQUFDLElBQUksQ0FBQyxPQUFPLENBQUMsV0FBVyxDQUFDLEdBQUcsRUFBRTtZQUMvQixhQUFHLENBQUMsUUFBUSxDQUFDLFdBQVcsQ0FBZSxpQkFBTyxDQUFDLENBQUMsT0FBTyxDQUFDLFVBQVUsQ0FBQyxnQkFBZ0IsRUFBRSxHQUFHLENBQUMsQ0FBQztRQUM5RixDQUFDLENBQUMsQ0FBQTtJQUNOLENBQUM7Q0FFSjtBQWRELHVCQWNDIn0=","assetPath":"Assets/Scripts/test.ts","manifest":{"properties":[{"assembly":"UnityEngine.UI","name":"pbtn","type":"UnityEngine.UI.Button","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]},{"assembly":"UnityEngine.UI","name":"mbtn","type":"UnityEngine.UI.Button","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]}],"name":"test","description":"","hasAnimatorMove":false},"isCompiled":true}'
+  typescriptHash: af6268146fc388212fce64c4a7373d21
+  onlyWriteTrigger: 0

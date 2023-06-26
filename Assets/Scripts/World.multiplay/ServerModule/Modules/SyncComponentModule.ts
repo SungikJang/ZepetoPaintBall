@@ -3,10 +3,12 @@ import { IModule } from "../IModule";
 import {sVector3, sQuaternion, SyncTransform, PlayerAdditionalValue, ZepetoAnimationParam} from "ZEPETO.Multiplay.Schema";
 import RespawnTimer from "../RespawnTimer";
 import AdminGameStartTimer from "../AdminGameStartTimer";
-import GameManager from "../GameTimer";
+import GameManager from "../GameManager";
 //import {DataStorage} from "ZEPETO.Multiplay.DataStorage";
 import {loadInventory} from "ZEPETO.Multiplay.Inventory";
 import {loadCurrency} from "ZEPETO.Multiplay.Currency";
+import { DataStorage } from "ZEPETO.Multiplay.DataStorage";
+import GameVoteTimer from "../GameVoteTimer";
 
 export default class SyncComponentModule extends IModule {
     private sessionIdQueue: string[] = [];
@@ -16,9 +18,13 @@ export default class SyncComponentModule extends IModule {
     private adminPlayer: SandboxPlayer;
     
     private isGameRunning: boolean = false;
-    private nowRunningGame: string = 'None'
     private nowGame: GameManager;
+    private gameVote: GameVoteTimer;
     private adminTimer: AdminGameStartTimer;
+    
+    private playerWeaponInfo: string[] = [];
+    
+    private HittedPlayer: string[] = []
 
     async OnCreate() {
         this.ForBasic();
@@ -41,6 +47,7 @@ export default class SyncComponentModule extends IModule {
 
     async OnLeave(client: SandboxPlayer) {
         if(this.sessionIdQueue.includes(client.sessionId)) {
+            this.nowGame.LeavePlayer(client)
             const leavePlayerIndex = this.sessionIdQueue.indexOf(client.sessionId);
             this.sessionIdQueue.splice(leavePlayerIndex, 1);
             if (leavePlayerIndex == 0) {
@@ -58,25 +65,9 @@ export default class SyncComponentModule extends IModule {
     }
 
     ForCustomize(){
-        this.server.onMessage(MESSAGE.PlayerDateReq, async (client, message) => {
-            // const currency = await loadCurrency(client.userId);
-            // let gold = currency.getBalance("zepetogunsgold")
-            // let dia = currency.getBalance("zepetogunsdia")
-
-            this.AddCredit(client, "zepetogunsgold", 1000);
-            //client.send('PlayerDateRes', resData);
-            // let expPassInfo = (await db.get('expPassInfo')) as boolean;
-            // db.set('goldPassInfo', this.playersGoldPassInfo.get(client.sessionId));
-        });
-        
         this.server.onMessage(MESSAGE.GameStartBtnReq, (client, message) => {
             if(this.isGameRunning){
-                if(this.nowRunningGame.includes('Solo')){
-                    this.nowGame.JoinPlayer(client)
-                }
-                else{
-                    this.nowGame.JoinPlayer(client)
-                }
+                this.nowGame.JoinPlayer(client)
             }
             else{
                 let admin: boolean = false;
@@ -89,8 +80,7 @@ export default class SyncComponentModule extends IModule {
 
         this.server.onMessage(MESSAGE.StartGameReq, (client, message) => {
             this.isGameRunning = true;
-            this.nowRunningGame = message.gameName;
-            this.nowGame = new GameManager(this, client, message.gameName)
+            this.nowGame = new GameManager(this, client, message.gameName, true)
             if(this.adminTimer){
                 this.adminTimer.Destroy();
                 this.adminTimer = null
@@ -98,18 +88,99 @@ export default class SyncComponentModule extends IModule {
             this.nowGame.Start();
         });
 
-        this.server.onMessage(MESSAGE.PlayerDieReq, (client, message) => {
-            const timer = new RespawnTimer(this, client);
-            timer.Start();
-            this.server.broadcast('PlayerDieRes', {player: client.sessionId})
-        });
-
         this.server.onMessage(MESSAGE.LeaveGame, (client, message) => {
+            this.server.broadcast("LeaveGameRes", {player:client.sessionId})
             this.nowGame.LeavePlayer(client);
         });
 
         this.server.onMessage(MESSAGE.SpineAngle, (client, message) => {
             this.server.broadcast("SpineAngleRes", {player: client.sessionId, spineAngle: message.spineAngle})
+        });
+
+        this.server.onMessage(MESSAGE.PlayerHit, (client, message) => {
+            if(this.HittedPlayer.includes(client.sessionId)){
+                this.HittedPlayer.slice(this.HittedPlayer.indexOf(client.sessionId), 1)
+                this.server.broadcast("PlayerHitRes", {player: client.sessionId})
+                let team = this.nowGame.GetTeam(client)
+                const respawn = new RespawnTimer(this, client, team)
+                respawn.Start();
+            }
+            else{
+                this.HittedPlayer.push(client.sessionId);
+            }
+        });
+
+        this.server.onMessage(MESSAGE.MyPlayerHit, (client, message) => {
+            if(this.HittedPlayer.includes(client.sessionId)){
+                this.HittedPlayer.slice(this.HittedPlayer.indexOf(client.sessionId), 1)
+                this.server.broadcast("PlayerHitRes", {player: client.sessionId})
+                let team = this.nowGame.GetTeam(client)
+                const respawn = new RespawnTimer(this, client, team)
+                respawn.Start();
+            }
+            else{
+                this.HittedPlayer.push(client.sessionId);
+            }
+        });
+
+        this.server.onMessage(MESSAGE.DirsReq, (client, message) => {
+            this.server.broadcast("DirsRes", {player: client.sessionId, dirs: message.dirs})
+        });
+
+        this.server.onMessage(MESSAGE.DirReq, (client, message) => {
+            this.server.broadcast("DirRes", {player: client.sessionId, dir: message.dir})
+        });
+
+        this.server.onMessage(MESSAGE.ShootStartReq, (client, message) => {
+            this.server.broadcast("ShootStartRes", {player: client.sessionId})
+        });
+
+        this.server.onMessage(MESSAGE.ShootReq, (client, message) => {
+            this.server.broadcast("ShootRes", {player: client.sessionId})
+        });
+        
+        this.server.onMessage(MESSAGE.StopShootReq, (client, message) => {
+            this.server.broadcast("StopShootRes", {player: client.sessionId})
+        });
+        
+        this.server.onMessage(MESSAGE.EqiupGunReq, (client, message) => {
+            const db: DataStorage = client.loadDataStorage();
+            db.set('lastEquipWeapon', message.name);
+            this.playerWeaponInfo.push(client.sessionId + " " + message.name)
+            this.server.broadcast("EqiupGunRes", {player: client.sessionId, name: message.name})
+        });
+
+        this.server.onMessage(MESSAGE.LastEquipWeaponReq, async (client) => {
+            const db: DataStorage = client.loadDataStorage();
+            let last = (await db.get('lastEquipWeapon')) as string;
+            if (!last) {
+                last = "1"
+            }
+            client.send("LastEquipWeaponRes", {lastEquipWeapon: last})
+        });
+
+        this.server.onMessage(MESSAGE.SiegeReq, (client, message) => {
+            this.server.broadcast("SiegeRes", {player:client.sessionId, team: message.team})
+            this.nowGame.Siege(message.team)
+        });
+        
+        this.server.onMessage(MESSAGE.GetFlagReq, (client, message) => {
+            console.log("2")
+            this.server.broadcast("GetFlagRes", {player:client.sessionId, team: message.team})
+            this.nowGame.GetFlag(message.team)
+        });
+
+        this.server.onMessage(MESSAGE.InGamePlayerReq, (client) => {
+            client.send("InGamePlayerRes", {players: this.nowGame.GetPlayers(), playerWeapon: this.playerWeaponInfo})
+        });
+
+        this.server.onMessage(MESSAGE.FreeFlag, (client) => {
+            this.nowGame.GetFlag("")
+        });
+
+        this.server.onMessage(MESSAGE.GameVote, (client, message) => {
+            this.gameVote.Vote(client.sessionId, message.gameName)
+            this.server.broadcast("Vote", {player: client.sessionId, userId: client.userId, gameName: message.gameName})
         });
     }
     
@@ -232,16 +303,21 @@ export default class SyncComponentModule extends IModule {
     }
     
     ForProduct(){
-        this.server.onMessage("onCredit", (client, message:CurrencyMessage) => {
+        this.server.onMessage(MESSAGE.onCredit, (client, message) => {
 
             console.log(`[onCredit]`);
+            console.log(message.currencyId)
+            console.log(message.quantity)
+            console.log(typeof message.currencyId)
+            console.log(typeof message.quantity)
             const currencyId = message.currencyId;
             const quantity = message.quantity ?? 1;
 
+            //client.send("SyncBalances", {player: client.sessionId});
             this.AddCredit(client, currencyId, quantity);
         });
 
-        this.server.onMessage("onDebit", (client, message:CurrencyMessage) => {
+        this.server.onMessage(MESSAGE.onDebit, (client, message) => {
 
             console.log(`[onDebit]`);
             const currencyId = message.currencyId;
@@ -297,19 +373,30 @@ export default class SyncComponentModule extends IModule {
 
     public GameJoin(client: SandboxPlayer, gameName: string, team?: string){
        if(team){
-           client.send('GameJoinRes', {nowRunningGame: gameName, team: team});
+           this.server.broadcast('GameJoinRes', {player: client.sessionId, nowRunningGame: gameName, team: team});
        }
        else{
-           client.send('GameJoinRes', {nowRunningGame: gameName});
+           this.server.broadcast('GameJoinRes', {player: client.sessionId, nowRunningGame: gameName});
        }
     }
     
-    public EndGame(winningTeam: string){
-        this.server.broadcast('EndGame', {winningTeam: winningTeam});
+    public GameOver(){
+        this.isGameRunning = false;
+        this.nowGame.Destroy();
+    }
+    
+    public EndGame(winningTeam: string, winningTeamPlayers: string[], players: string[]){
+        for(let i = 0; i < winningTeamPlayers.length; i++){
+            this.Reward(this.server.loadPlayer(winningTeamPlayers[i]), "zepetogunsgold", 100)
+            this.Reward(this.server.loadPlayer(winningTeamPlayers[i]), "zepetogunsdia", 10)
+        }
+        this.server.broadcast('EndGame', {winningTeam: winningTeam, players: players});
+        this.gameVote = new GameVoteTimer(this, players)
+        this.gameVote.Start();
     }
 
-    public SendRespawn(client: SandboxPlayer){
-        this.server.broadcast('PlayerRespawn', {player: client.sessionId});
+    public SendRespawn(client: SandboxPlayer, team: string){
+        this.server.broadcast('PlayerRespawn', {player: client.sessionId, team: team});
     }
     
     public UrgeGameStart(client: SandboxPlayer, cnt: number){
@@ -365,7 +452,6 @@ export default class SyncComponentModule extends IModule {
         }
     }
 
-
     async RemoveInventory(client: SandboxPlayer, productId: string) {
 
         try {
@@ -388,32 +474,33 @@ export default class SyncComponentModule extends IModule {
         }
     }
 
-
-
     async AddCredit(client: SandboxPlayer, currencyId: string, quantity: number) {
+        // try {
+        //     const currency = await loadCurrency(client.userId);
+        //     await currency.credit(currencyId, quantity);
+        //
+        //     client.send("SyncBalances");
+        // }
+        // catch (e)
+        // {
+        //     console.log(`${e}`);
+        // }
+        const currency = await loadCurrency(client.userId);
+        await currency.credit(currencyId, quantity);
 
-        try {
-            const currency = await loadCurrency(client.userId);
-            await currency.credit(currencyId, quantity);
-
-            client.send("SyncBalances",{currencyId: currencyId, quantity: quantity});
-        }
-        catch (e)
-        {
-            console.log(`${e}`);
-        }
+        client.send("SyncBalances", {player: client.sessionId});
+        //client.send("SyncBalances");
     }
 
     async OnDebit(client: SandboxPlayer, currencyId: string, quantity: number) {
-
         try {
             const currency = await loadCurrency(client.userId);
             if(await currency.debit(currencyId, quantity) === true) {
-                const currencySync: CurrencyMessage = {
-                    currencyId: currencyId,
-                    quantity: -quantity
-                }
-                client.send("SyncBalances", currencySync);
+                // const currencySync: CurrencyMessage = {
+                //     currencyId: currencyId,
+                //     quantity: -quantity
+                // }
+                client.send("SyncBalances");
             }
             else{
                 //It's usually the case that there's no balance.
@@ -424,6 +511,24 @@ export default class SyncComponentModule extends IModule {
         {
             console.log(`${e}`);
         }
+    }
+    
+    async Reward(client: SandboxPlayer, currencyId: string, quantity: number){
+        const currency = await loadCurrency(client.userId);
+        await currency.credit(currencyId, quantity);
+
+        client.send("Reward", {player: client.sessionId, currencyId: currencyId, quantity: quantity});
+    }
+
+    GameVoteEnd(gameName: string, voters: string[]){
+        this.isGameRunning = true;
+        this.nowGame = new GameManager(this, this.adminPlayer, gameName, false)
+        if(this.adminTimer){
+            this.adminTimer.Destroy();
+            this.adminTimer = null
+        }
+        this.nowGame.Start();
+        this.server.broadcast("VoteEnd", {voters: voters})
     }
 }
 interface syncTween {
@@ -475,11 +580,28 @@ enum MESSAGE {
     LeaveGame = "LeaveGame",
     SpineAngle = "SpineAngle",
     PlayerDateReq = "PlayerDateReq",
+    PlayerHit = "PlayerHit",
+    MyPlayerHit = "MyPlayerHit",
+    DirReq = "DirReq",
+    DirsReq = "DirsReq",
+    StopShootReq = "StopShootReq",
+    ShootStartReq = "ShootStartReq",
+    ShootReq = "ShootReq",
+    EqiupGunReq = "EqiupGunReq",
+    LastEquipWeaponReq = "LastEquipWeaponReq",
+    SiegeReq = "SiegeReq",
+    GetFlagReq = "GetFlagReq",
+    InGamePlayerReq = "InGamePlayerReq",
+    FreeFlag = "FreeFlag",
+    onCredit = "onCredit",
+    onDebit = "onDebit",
+    GameVote = "GameVote",
+    
 }
-interface CurrencyMessage {
-    currencyId: string,
-    quantity?: number,
-}
+// interface CurrencyMessage {
+//     currencyId: string,
+//     quantity?: number,
+// }
 
 interface InventoryMessage {
     productId: string,

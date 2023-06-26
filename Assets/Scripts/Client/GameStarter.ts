@@ -3,7 +3,7 @@ import IOC from './IOC';
 import Manager, { InterManager } from './Manager/Manager';
 import {InterMyPlayerController, MyPlayerController } from './MyPlayer/MyPalyerController';
 import {ProductService, ProductType} from "ZEPETO.Product";
-import {WaitUntil} from "UnityEngine";
+import {GameObject, WaitUntil} from "UnityEngine";
 
 
 export default class GameStarter extends ZepetoScriptBehaviour {
