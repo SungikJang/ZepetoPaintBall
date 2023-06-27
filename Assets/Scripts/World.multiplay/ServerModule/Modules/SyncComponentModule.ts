@@ -67,6 +67,7 @@ export default class SyncComponentModule extends IModule {
 
     ForCustomize(){
         this.server.onMessage(MESSAGE.StartInfoReq, async (client) => {
+            console.log("????")
             const db: DataStorage = client.loadDataStorage();
             let last = (await db.get('lastEquipWeapon')) as string;
             if (!last) {
