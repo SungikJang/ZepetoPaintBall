@@ -42,23 +42,17 @@ export default class ControllerUI extends ZepetoScriptBehaviour implements Inter
 
     private instanceSet: boolean = false;
 
+    private padReady: boolean = false;
+
     Start() {
         this.myPlayerController = IOC.Instance.getInstance<InterMyPlayerController>(MyPlayerController);
         this.manager = IOC.Instance.getInstance<InterManager>(Manager);
         this.StartCoroutine(this.GetInstance());
+        this.StartCoroutine(this.GetPad());
+        this.StartCoroutine(this.GetBtn());
         this.manager.UI.ControllerUI = this;
         this.padObject.SetActive(false);
         this.jumpObject.SetActive(false);
-        this.jumpBtn.onClick.AddListener(()=>{
-            console.log("?????")
-            this.myPlayerController.MyPlayerMovement.Jump();
-        });
-        this.reloadBtn.onClick.AddListener(()=>{
-            this.manager.Game.GunController.StartReload();
-        });
-        this.zoomBtn.onClick.AddListener(()=>{
-            this.manager.Game.GunController.Zoom();
-        });
         this.manager.Game.ControllerUI = this
     }
 
@@ -116,32 +110,31 @@ export default class ControllerUI extends ZepetoScriptBehaviour implements Inter
     }
     
     PadInputController(){
-        if(this.padAnim.GetCurrentAnimatorStateInfo(0).IsName("touchpad_handle_on")){
-            let v: Vector3 = this.pad.transform.position - this.padBackG.transform.position;
-            // if(!this.myPlayerController.MyPlayerMovement.IsMoving){
-            //     this.myPlayerController.MyPlayerMovement.IsMoving = true;
-            //     this.myPlayerController.MyPlayerMovement.SetAnimParam("State", 102);
-            // }
-            this.myPlayerController.MyPlayerMovement.SetAnimParam("State", 102);
-            if(v.magnitude > 12){
-                this.myPlayerController.MyPlayerMovement.SetAnimParam("MoveState", 1);
+        if(this.padReady){
+            if (this.padAnim.GetCurrentAnimatorStateInfo(0).IsName("touchpad_handle_on")) {
+                let v: Vector3 = this.pad.transform.position - this.padBackG.transform.position;
+                // if(!this.myPlayerController.MyPlayerMovement.IsMoving){
+                //     this.myPlayerController.MyPlayerMovement.IsMoving = true;
+                //     this.myPlayerController.MyPlayerMovement.SetAnimParam("State", 102);
+                // }
+                this.myPlayerController.MyPlayerMovement.SetAnimParam("State", 102);
+                if (v.magnitude > 12) {
+                    this.myPlayerController.MyPlayerMovement.SetAnimParam("MoveState", 1);
+                } else {
+                    this.myPlayerController.MyPlayerMovement.SetAnimParam("MoveState", 0);
+                }
+                if (v.magnitude > 27) {
+                    this.myPlayerController.MyPlayerMovement.Move(v.normalized.y, v.normalized.x, 27)
+                } else {
+                    this.myPlayerController.MyPlayerMovement.Move(v.normalized.y, v.normalized.x, v.magnitude)
+                }
+            } else {
+                // if(this.myPlayerController.MyPlayerMovement.IsMoving){
+                //     this.myPlayerController.MyPlayerMovement.IsMoving = false;
+                //     this.myPlayerController.MyPlayerMovement.SetAnimParam("State", 1);
+                // }
+                this.myPlayerController.MyPlayerMovement.SetAnimParam("State", 1);
             }
-            else{
-                this.myPlayerController.MyPlayerMovement.SetAnimParam("MoveState", 0);
-            }
-            if(v.magnitude > 27){
-                this.myPlayerController.MyPlayerMovement.Move(v.normalized.y, v.normalized.x, 27)
-            }
-            else {
-                this.myPlayerController.MyPlayerMovement.Move(v.normalized.y, v.normalized.x, v.magnitude)
-            }
-        }
-        else{
-            // if(this.myPlayerController.MyPlayerMovement.IsMoving){
-            //     this.myPlayerController.MyPlayerMovement.IsMoving = false;
-            //     this.myPlayerController.MyPlayerMovement.SetAnimParam("State", 1);
-            // }
-            this.myPlayerController.MyPlayerMovement.SetAnimParam("State", 1);
         }
     }
     
@@ -160,6 +153,34 @@ export default class ControllerUI extends ZepetoScriptBehaviour implements Inter
             this.manager = IOC.Instance.getInstance<InterManager>(Manager);
             if(this.manager && this.myPlayerController){
                 this.instanceSet = true;
+                return;
+            }
+            yield new WaitForSeconds(0.1);
+        }
+    }
+    
+    * GetPad(){
+        while(!this.padReady){
+            if(this.padAnim && this.padBackG && this.pad){
+                this.padReady = true;
+                return;
+            }
+            yield new WaitForSeconds(0.1);
+        }
+    }
+
+    * GetBtn(){
+        while(true){
+            if(this.reloadBtn && this.reloadObj && this.zoomBtn && this.jumpBtn){
+                this.zoomBtn.onClick.AddListener(()=>{
+                    this.manager.Game.GunController.Zoom();
+                });
+                this.reloadBtn.onClick.AddListener(()=>{
+                    this.manager.Game.GunController.StartReload();
+                });
+                this.jumpBtn.onClick.AddListener(()=>{
+                    this.myPlayerController.MyPlayerMovement.Jump();
+                });
                 return;
             }
             yield new WaitForSeconds(0.1);

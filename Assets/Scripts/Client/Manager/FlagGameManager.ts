@@ -33,19 +33,12 @@ export interface InterFlagGameManager {
 export default class FlagGameManager implements InterFlagGameManager{
     manager: InterManager;
     myPlayerController: InterMyPlayerController;
-    private FlagStartPoint: Transform;
-    private FlagEnv: GameObject;
-    private flagObj: GameObject
     
     private winningTeam: string = "";
 
     Init(){
         this.manager = IOC.Instance.getInstance<InterManager>(Manager);
         this.myPlayerController = IOC.Instance.getInstance<InterMyPlayerController>(MyPlayerController);
-        this.flagObj = GameObject.Find("Colliders").transform.GetChild(0).gameObject
-        this.flagObj.SetActive(false);
-        this.FlagEnv = GameObject.Find("FlagGameZone")
-        this.FlagEnv.SetActive(false);
     }
 
     GameStart(sessionId: string){
@@ -58,23 +51,20 @@ export default class FlagGameManager implements InterFlagGameManager{
         this.manager.UI.ShowDefaultUI('InGameUI');
         this.manager.UI.ControllerUI.SetJump(true);
         this.manager.UI.ControllerUI.SetPad(true);
-        if(!this.FlagEnv) this.FlagEnv = GameObject.Find("FlagGameZone");
-        if(!this.flagObj) this.flagObj = GameObject.Find("Colliders").transform.GetChild(0).gameObject
-        if(!this.FlagEnv.activeSelf){
-            this.FlagEnv.SetActive(true)
+        if(!this.manager.Game.ObjectController.FlagEnv.activeSelf){
+            this.manager.Game.ObjectController.FlagEnv.SetActive(true)
         }
-        if(!this.flagObj.activeSelf){
-            this.flagObj.SetActive(true);
+        if(!this.manager.Game.ObjectController.flagObj.activeSelf){
+            this.manager.Game.ObjectController.flagObj.SetActive(true);
         }
-        if(!this.FlagStartPoint) this.FlagStartPoint = GameObject.Find("FlagStartPoint").transform;
-        let rangeCollider = this.FlagStartPoint.GetChild(0).GetChild(0).GetComponent<BoxCollider>();
+        let rangeCollider = this.manager.Game.ObjectController.FlagStartPoint.GetChild(0).GetChild(0).GetComponent<BoxCollider>();
         let range_X = rangeCollider.bounds.size.x;
         let range_Z = rangeCollider.bounds.size.z;
 
         range_X = Random.Range( (range_X / 2) * -1, range_X / 2);
         range_Z = Random.Range( (range_Z / 2) * -1, range_Z / 2);
         
-        let respawnPosition = Utils.VectorPlusCalc(this.FlagStartPoint.GetChild(0).GetChild(0).position, new Vector3(range_X, 0, range_Z));
+        let respawnPosition = Utils.VectorPlusCalc(this.manager.Game.ObjectController.FlagStartPoint.GetChild(0).GetChild(0).position, new Vector3(range_X, 0, range_Z));
         this.myPlayerController.MyPlayerMovement.Teleport(respawnPosition, Quaternion.Euler(Vector3.zero))
         this.myPlayerController.MyPlayerData.SetTeam('A')
         this.manager.Game.IsGamePlaying = true;
@@ -85,32 +75,30 @@ export default class FlagGameManager implements InterFlagGameManager{
         this.manager.UI.ShowDefaultUI('InGameUI');
         this.manager.UI.ControllerUI.SetJump(true);
         this.manager.UI.ControllerUI.SetPad(true);
-        if(!this.FlagEnv) this.FlagEnv = GameObject.Find("FlagGameZone");
-        if(!this.FlagEnv.activeSelf){
-            this.FlagEnv.SetActive(true)
+        if(!this.manager.Game.ObjectController.FlagEnv.activeSelf){
+            this.manager.Game.ObjectController.FlagEnv.SetActive(true)
         }
-        if(!this.FlagStartPoint) this.FlagStartPoint = GameObject.Find("FlagStartPoint").transform;
         let rangeCollider: BoxCollider;
         let respawnPosition: Vector3;
         if(team === "A") {
-            rangeCollider = this.FlagStartPoint.GetChild(0).GetChild(0).GetComponent<BoxCollider>();
+            rangeCollider = this.manager.Game.ObjectController.FlagStartPoint.GetChild(0).GetChild(0).GetComponent<BoxCollider>();
             let range_X = rangeCollider.bounds.size.x;
             let range_Z = rangeCollider.bounds.size.z;
 
             range_X = Random.Range( (range_X / 2) * -1, range_X / 2);
             range_Z = Random.Range( (range_Z / 2) * -1, range_Z / 2);
 
-            respawnPosition = Utils.VectorPlusCalc(this.FlagStartPoint.GetChild(0).GetChild(0).position, new Vector3(range_X, 0, range_Z));
+            respawnPosition = Utils.VectorPlusCalc(this.manager.Game.ObjectController.FlagStartPoint.GetChild(0).GetChild(0).position, new Vector3(range_X, 0, range_Z));
         }
         else{
-            rangeCollider = this.FlagStartPoint.GetChild(1).GetChild(0).GetComponent<BoxCollider>();
+            rangeCollider = this.manager.Game.ObjectController.FlagStartPoint.GetChild(1).GetChild(0).GetComponent<BoxCollider>();
             let range_X = rangeCollider.bounds.size.x;
             let range_Z = rangeCollider.bounds.size.z;
 
             range_X = Random.Range( (range_X / 2) * -1, range_X / 2);
             range_Z = Random.Range( (range_Z / 2) * -1, range_Z / 2);
 
-            respawnPosition = Utils.VectorPlusCalc(this.FlagStartPoint.GetChild(1).GetChild(0).position, new Vector3(range_X, 0, range_Z));
+            respawnPosition = Utils.VectorPlusCalc(this.manager.Game.ObjectController.FlagStartPoint.GetChild(1).GetChild(0).position, new Vector3(range_X, 0, range_Z));
         }
         this.myPlayerController.MyPlayerMovement.Teleport(respawnPosition, Quaternion.Euler(Vector3.zero))
         this.myPlayerController.MyPlayerData.SetTeam(team)
@@ -120,8 +108,7 @@ export default class FlagGameManager implements InterFlagGameManager{
     LeaveGame(){
         this.myPlayerController.MyPlayerData.SetTeam("")
         this.manager.Game.IsGamePlaying = false;
-        if(!this.manager.Game.HomePoint) this.manager.Game.HomePoint = GameObject.Find("HomePoint").transform;
-        this.myPlayerController.MyPlayerMovement.Teleport(this.manager.Game.HomePoint.position, this.manager.Game.HomePoint.rotation);
+        this.myPlayerController.MyPlayerMovement.Teleport(this.manager.Game.ObjectController.homePoint.position, this.manager.Game.ObjectController.homePoint.rotation);
         this.manager.UI.CloseDefaultUI('InGameUI')
         this.manager.UI.ShowDefaultUI('StartUI')
         this.manager.UI.ControllerUI.SetJump(false);
@@ -132,65 +119,58 @@ export default class FlagGameManager implements InterFlagGameManager{
         this.manager.UI.CloseDefaultUI('InGameUI')
         this.manager.UI.ControllerUI.SetJump(false);
         this.manager.UI.ControllerUI.SetPad(false);
-        if(!this.flagObj) this.flagObj = GameObject.Find("Flag")
-        if(this.flagObj.activeSelf){
-            this.flagObj.SetActive(false)
+        if(this.manager.Game.ObjectController.flagObj.activeSelf){
+            this.manager.Game.ObjectController.flagObj.SetActive(false)
         }
-        if(!this.FlagEnv) this.FlagEnv = GameObject.Find("FlagGameZone");
-        if(this.FlagEnv.activeSelf){
-            this.FlagEnv.SetActive(false)
+        if(this.manager.Game.ObjectController.FlagEnv.activeSelf){
+            this.manager.Game.ObjectController.FlagEnv.SetActive(false)
         }
         if(winningTeam === this.myPlayerController.MyPlayerData.Team){
             //보상
         }
         this.myPlayerController.MyPlayerData.SetTeam("")
         this.manager.Game.IsGamePlaying = false;
-        if(!this.manager.Game.HomePoint) this.manager.Game.HomePoint = GameObject.Find("HomePoint").transform;
-        this.myPlayerController.MyPlayerMovement.Teleport(this.manager.Game.HomePoint.position, this.manager.Game.HomePoint.rotation);
+        this.myPlayerController.MyPlayerMovement.Teleport(this.manager.Game.ObjectController.homePoint.position, this.manager.Game.ObjectController.homePoint.rotation);
     }
 
     Respawn(team: string){
-        if(!this.FlagEnv) this.FlagEnv = GameObject.Find("FlagGameZone");
-        if(!this.FlagEnv.activeSelf){
-            this.FlagEnv.SetActive(true)
+        if(!this.manager.Game.ObjectController.FlagEnv.activeSelf){
+            this.manager.Game.ObjectController.FlagEnv.SetActive(true)
         }
-        if(!this.FlagStartPoint) this.FlagStartPoint = GameObject.Find("FlagStartPoint").transform;
         let rangeCollider: BoxCollider;
         let respawnPosition: Vector3;
         if(team === "A") {
-            rangeCollider = this.FlagStartPoint.GetChild(0).GetChild(0).GetComponent<BoxCollider>();
+            rangeCollider = this.manager.Game.ObjectController.FlagStartPoint.GetChild(0).GetChild(0).GetComponent<BoxCollider>();
             let range_X = rangeCollider.bounds.size.x;
             let range_Z = rangeCollider.bounds.size.z;
 
             range_X = Random.Range( (range_X / 2) * -1, range_X / 2);
             range_Z = Random.Range( (range_Z / 2) * -1, range_Z / 2);
 
-            respawnPosition = Utils.VectorPlusCalc(this.FlagStartPoint.GetChild(0).GetChild(0).position, new Vector3(range_X, 0, range_Z));
+            respawnPosition = Utils.VectorPlusCalc(this.manager.Game.ObjectController.FlagStartPoint.GetChild(0).GetChild(0).position, new Vector3(range_X, 0, range_Z));
         }
         else{
-            rangeCollider = this.FlagStartPoint.GetChild(1).GetChild(0).GetComponent<BoxCollider>();
+            rangeCollider = this.manager.Game.ObjectController.FlagStartPoint.GetChild(1).GetChild(0).GetComponent<BoxCollider>();
             let range_X = rangeCollider.bounds.size.x;
             let range_Z = rangeCollider.bounds.size.z;
 
             range_X = Random.Range( (range_X / 2) * -1, range_X / 2);
             range_Z = Random.Range( (range_Z / 2) * -1, range_Z / 2);
 
-            respawnPosition = Utils.VectorPlusCalc(this.FlagStartPoint.GetChild(1).GetChild(0).position, new Vector3(range_X, 0, range_Z));
+            respawnPosition = Utils.VectorPlusCalc(this.manager.Game.ObjectController.FlagStartPoint.GetChild(1).GetChild(0).position, new Vector3(range_X, 0, range_Z));
         }
         this.myPlayerController.MyPlayerMovement.Teleport(respawnPosition, Quaternion.Euler(Vector3.zero))
     }
     
     GetFlag(team: string, player: string){
-        console.log("4")
         this.winningTeam = team;
-        if(!this.flagObj) this.flagObj = GameObject.Find("Flag")
+        if(!this.manager.Game.ObjectController.flagObj) this.manager.Game.ObjectController.flagObj = this.manager.Game.ObjectController.flagObj;
         if(player === this.myPlayerController.MyPlayerData.MySessionId){
-            console.log("5")
             //돈줘야댐
-            this.myPlayerController.MyPlayerMovement.TakeFlag(this.flagObj);
+            this.myPlayerController.MyPlayerMovement.TakeFlag(this.manager.Game.ObjectController.flagObj);
         }
         else{
-            ZepetoPlayers.instance.GetPlayer(player).character.gameObject.GetComponent<OtherZepetoCharacterController>().TakeFlag(this.flagObj)
+            ZepetoPlayers.instance.GetPlayer(player).character.gameObject.GetComponent<OtherZepetoCharacterController>().TakeFlag(this.manager.Game.ObjectController.flagObj)
         }
     }
 
@@ -199,10 +179,9 @@ export default class FlagGameManager implements InterFlagGameManager{
     }
 
     FreeFlag(){
-        if(!this.flagObj) this.flagObj = GameObject.Find("Flag")
-        let p = this.flagObj.transform.position
-        this.flagObj.transform.position = new Vector3(p.x, p.y - 2, p.z)
-        this.flagObj.transform.SetParent(GameObject.Find("Colliders").transform)
+        let p = this.manager.Game.ObjectController.flagObj.transform.position
+        this.manager.Game.ObjectController.flagObj.transform.position = new Vector3(p.x, p.y - 2, p.z)
+        this.manager.Game.ObjectController.flagObj.transform.SetParent(this.manager.Game.ObjectController.Colliders);
         Connector.Instance.ReqToServer("FreeFlag")
     }
 }

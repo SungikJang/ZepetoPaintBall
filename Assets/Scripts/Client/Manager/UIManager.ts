@@ -322,7 +322,6 @@ export default class UIManager implements InterUIManager {
 
     set NowPopUpWeaponNum(value: string){
         this.nowPopUpWeaponNum = value;
-        console.log(this.nowPopUpWeaponNum)
     }
     
     get ScreenCenter(){

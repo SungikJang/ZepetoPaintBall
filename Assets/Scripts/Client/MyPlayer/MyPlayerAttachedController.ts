@@ -32,7 +32,6 @@ export default class MyPlayerAttachedController extends ZepetoScriptBehaviour {
         this.myPlayerController.MyPlayerMovement.MyCoroutineController = this;
         this.StartCoroutine(this.FindCamera())
         this.StartCoroutine(this.SetDir())
-        Connector.Instance.ReqToServer("StartInfoReq")
     }
 
     OnTriggerEnter(collider: GameObject) {

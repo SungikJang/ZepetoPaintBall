@@ -7,6 +7,7 @@ import Connector from "../Network/Connector";
 import Manager, { InterManager } from "./Manager";
 import ControllerUI from "../UI/ControllerUI/ControllerUI"
 import {ProductRecord} from "ZEPETO.Product";
+import ObjectController from "../Controller/ObjectController";
 
 export interface InterGameManager {
     nowOnGame: string
@@ -47,6 +48,10 @@ export interface InterGameManager {
 
     set ControllerUI(value: ControllerUI)
 
+    get ObjectController()
+
+    set ObjectController(value: ObjectController)
+
     GameReady()
     //
     // get OtherInGamePlayers()
@@ -65,6 +70,8 @@ export default class GameManager implements InterGameManager{
     private gunController: GunController
     
     private controllerUI: ControllerUI
+    
+    private objectController: ObjectController
     
     // private otherPlayers: string[] = [];
     //
@@ -124,9 +131,9 @@ export default class GameManager implements InterGameManager{
             case GAME_NAME.Siege:
                 IOC.Instance.getInstance<InterManager>(Manager).SiegeGame.JoinGame(team);
                 break
-            case GAME_NAME.SoloFlag:
-                IOC.Instance.getInstance<InterManager>(Manager).SoloFlagGame.JoinGame();
-                break
+            // case GAME_NAME.SoloFlag:
+            //     IOC.Instance.getInstance<InterManager>(Manager).SoloFlagGame.JoinGame();
+            //     break
         }
     }
 
@@ -149,9 +156,9 @@ export default class GameManager implements InterGameManager{
             case GAME_NAME.Siege:
                 IOC.Instance.getInstance<InterManager>(Manager).SiegeGame.EndGame(winningTeam);
                 break
-            case GAME_NAME.SoloFlag:
-                IOC.Instance.getInstance<InterManager>(Manager).SoloFlagGame.EndGame(winningTeam);
-                break
+            // case GAME_NAME.SoloFlag:
+            //     IOC.Instance.getInstance<InterManager>(Manager).SoloFlagGame.EndGame(winningTeam);
+            //     break
         }
     }
 
@@ -164,9 +171,9 @@ export default class GameManager implements InterGameManager{
             case GAME_NAME.Siege:
                 IOC.Instance.getInstance<InterManager>(Manager).SiegeGame.LeaveGame();
                 break
-            case GAME_NAME.SoloFlag:
-                IOC.Instance.getInstance<InterManager>(Manager).SoloFlagGame.LeaveGame();
-                break
+            // case GAME_NAME.SoloFlag:
+            //     IOC.Instance.getInstance<InterManager>(Manager).SoloFlagGame.LeaveGame();
+            //     break
         }
     }
 
@@ -178,9 +185,9 @@ export default class GameManager implements InterGameManager{
             case GAME_NAME.Siege:
                 IOC.Instance.getInstance<InterManager>(Manager).SiegeGame.Respawn(team);
                 break
-            case GAME_NAME.SoloFlag:
-                IOC.Instance.getInstance<InterManager>(Manager).SoloFlagGame.Respawn();
-                break
+            // case GAME_NAME.SoloFlag:
+            //     IOC.Instance.getInstance<InterManager>(Manager).SoloFlagGame.Respawn();
+            //     break
         }
     }
 
@@ -204,5 +211,13 @@ export default class GameManager implements InterGameManager{
 
     set ControllerUI(value: ControllerUI){
         this.controllerUI = value
+    }
+
+    get ObjectController(){
+        return this.objectController
+    }
+
+    set ObjectController(value: ObjectController){
+        this.objectController = value
     }
 }

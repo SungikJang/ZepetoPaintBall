@@ -111,7 +111,6 @@ export default class MyPlayerMovement extends ZepetoScriptBehaviour implements I
         this.Rotate();
         this.LookDir();
         if(this.myPlayer){
-            console.log(this.myPlayer.character.characterController.isGrounded)
             if (this.myPlayer.character.characterController.isGrounded) {
                 this.isJumping = false;
             }
@@ -254,7 +253,6 @@ export default class MyPlayerMovement extends ZepetoScriptBehaviour implements I
     }
 
     TakeFlag(flagObj: GameObject){
-        console.log("6")
         this.haveFlag = true;
         flagObj.transform.SetParent(this.myPlayer.character.gameObject.transform)
         flagObj.transform.localPosition = new Vector3(0,1.5,0)

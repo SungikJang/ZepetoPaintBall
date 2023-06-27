@@ -80,7 +80,6 @@ export default class ZepetoPlayersManager extends ZepetoScriptBehaviour {
                     const player = ZepetoPlayers.instance.GetPlayer(sessionId);
                     player.character.gameObject.tag = 'player';
                     player.character.gameObject.name = sessionId;
-                    console.log(sessionId)
                     if (player.isLocalPlayer) {
                         //player.character.characterController.enabled = false;
                         player.character.gameObject.AddComponent<MyPlayerAttachedController>();

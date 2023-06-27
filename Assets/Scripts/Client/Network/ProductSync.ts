@@ -29,22 +29,22 @@ export default class ProductSync extends ZepetoScriptBehaviour {
         const request = ProductService.GetProductsAsync();
         yield new WaitUntil(() => request.keepWaiting == false);
         while(true){
-            if(IOC.Instance.getInstance(Manager)){
+            if(this.manager){
                 if (request.responseData.isSuccess) {
-                    IOC.Instance.getInstance(Manager).Product.ItemsCache = [];
+                    this.manager.Product.ItemsCache = [];
                     request.responseData.products.forEach((pr) => {
                         if (pr.ProductType == ProductType.Item) {
-                            IOC.Instance.getInstance(Manager).Product.ItemsCache.push(pr);
+                            this.manager.Product.ItemsCache.push(pr);
                         }
                         if (pr.ProductType == ProductType.ItemPackage) {
-                            IOC.Instance.getInstance(Manager).Product.ItemsPackageCache.push(pr);
+                            this.manager.Product.ItemsPackageCache.push(pr);
                         }
                         if (pr.ProductType == ProductType.CurrencyPackage) {
-                            IOC.Instance.getInstance(Manager).Product.CurrencyPackageCache.push(pr);
+                            this.manager.Product.CurrencyPackageCache.push(pr);
                         }
                     });
 
-                    if (IOC.Instance.getInstance(Manager).Product.ItemsCache.length == 0) {
+                    if (this.manager.Product.ItemsCache.length == 0) {
                         console.warn("no Item information");
                         return;
                     }

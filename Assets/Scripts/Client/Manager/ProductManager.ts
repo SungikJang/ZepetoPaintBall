@@ -121,12 +121,10 @@ export default class ProductManager implements InterProductManager{
     }
 
     GainBalance(currencyId: string, quantity: number) {
-        console.log("GainBalance")
         Connector.Instance.ReqToServer("onCredit", {currencyId: Currency.Gold, quantity: quantity})
     }
 
     UseBalance(currencyId: string, quantity: number) {
-        console.log("UseBalance")
         Connector.Instance.ReqToServer("onDebit", {currencyId: Currency.Diamond, quantity: quantity})
     }
 

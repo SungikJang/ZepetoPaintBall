@@ -76,9 +76,9 @@ export default class Connector extends NetworkBase implements InterConnector{
                     case GAME_NAME.Siege:
                         this.manager.SiegeGame.RuntheGame()
                         break;
-                    case GAME_NAME.SoloFlag:
-                        this.manager.SoloFlagGame.RuntheGame(data.sessionId)
-                        break;
+                    // case GAME_NAME.SoloFlag:
+                    //     this.manager.SoloFlagGame.RuntheGame(data.sessionId)
+                    //     break;
                 }
             }
         );
@@ -254,6 +254,9 @@ export default class Connector extends NetworkBase implements InterConnector{
         room.AddMessageHandler(
             'StartInfoRes',
             (data: { lastEquipWeapon: string, playerWeapon: string[] }) => {
+                console.log("????")
+                console.log(data.lastEquipWeapon)
+                console.log(data.playerWeapon.length)
                 this.myPlayerController.MyPlayerData.EqiupGun(data.lastEquipWeapon)
                 for(let i = 0; i < data.playerWeapon.length; i++){
                     let s: string[] = data.playerWeapon[i].split(" ");

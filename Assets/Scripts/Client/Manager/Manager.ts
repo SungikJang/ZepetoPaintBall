@@ -31,7 +31,7 @@ export interface InterManager {
 
     get SiegeGame(): InterSiegeGameManager
 
-    get SoloFlagGame(): InterSoloFlagGameManager
+    // get SoloFlagGame(): InterSoloFlagGameManager
 
     get Product(): InterProductManager
 }
@@ -117,9 +117,9 @@ export default class Manager extends ZepetoScriptBehaviour implements InterManag
         return this._siegeGameManager;
     }
 
-    public get SoloFlagGame(): InterSoloFlagGameManager {
-        return this._soloFlagGameManager;
-    }
+    // public get SoloFlagGame(): InterSoloFlagGameManager {
+    //     return this._soloFlagGameManager;
+    // }
     
     public get Product(): InterProductManager{
         return this._productManager;

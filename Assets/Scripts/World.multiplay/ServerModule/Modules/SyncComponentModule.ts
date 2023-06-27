@@ -66,6 +66,19 @@ export default class SyncComponentModule extends IModule {
     }
 
     ForCustomize(){
+        this.server.onMessage(MESSAGE.StartInfoReq, async (client) => {
+            const db: DataStorage = client.loadDataStorage();
+            let last = (await db.get('lastEquipWeapon')) as string;
+            if (!last) {
+                last = "1"
+            }
+            let playerweapon: string[] = []
+            this.playerWeaponInfo.forEach((values, key, obj) => {
+                playerweapon.push(values + " " + key)
+            })
+            client.send("StartInfoRes", {lastEquipWeapon: last, playerWeapon: playerweapon})
+        });
+        
         this.server.onMessage(MESSAGE.GameStartBtnReq, (client, message) => {
             if(this.isGameRunning){
                 this.nowGame.JoinPlayer(client)
@@ -151,26 +164,12 @@ export default class SyncComponentModule extends IModule {
             this.server.broadcast("EqiupGunRes", {player: client.sessionId, name: message.name})
         });
 
-        this.server.onMessage(MESSAGE.StartInfoReq, async (client) => {
-            const db: DataStorage = client.loadDataStorage();
-            let last = (await db.get('lastEquipWeapon')) as string;
-            if (!last) {
-                last = "1"
-            }
-            let playerweapon: string[] = []
-            this.playerWeaponInfo.forEach((values, key, obj) => {
-                playerweapon.push(values + " " + key)
-            })
-            client.send("StartInfoRes", {lastEquipWeapon: last, playerWeapon: playerweapon})
-        });
-
         this.server.onMessage(MESSAGE.SiegeReq, (client, message) => {
             this.server.broadcast("SiegeRes", {player:client.sessionId, team: message.team})
             this.nowGame.Siege(message.team)
         });
         
         this.server.onMessage(MESSAGE.GetFlagReq, (client, message) => {
-            console.log("2")
             this.server.broadcast("GetFlagRes", {player:client.sessionId, team: message.team})
             this.nowGame.GetFlag(message.team)
         });
@@ -305,12 +304,6 @@ export default class SyncComponentModule extends IModule {
     
     ForProduct(){
         this.server.onMessage(MESSAGE.onCredit, (client, message) => {
-
-            console.log(`[onCredit]`);
-            console.log(message.currencyId)
-            console.log(message.quantity)
-            console.log(typeof message.currencyId)
-            console.log(typeof message.quantity)
             const currencyId = message.currencyId;
             const quantity = message.quantity ?? 1;
 
@@ -440,7 +433,6 @@ export default class SyncComponentModule extends IModule {
                     inventoryAction: InventoryAction.Use
                 }
                 client.send("SyncInventories", inventorySync);
-                console.log("success use");
 
             }
             else{
@@ -463,7 +455,6 @@ export default class SyncComponentModule extends IModule {
                     inventoryAction: InventoryAction.Remove
                 }
                 client.send("SyncInventories", inventorySync);
-                console.log("success rm");
             }
             else{
                 console.log("remove error");
