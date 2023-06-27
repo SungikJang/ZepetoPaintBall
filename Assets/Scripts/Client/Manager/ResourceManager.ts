@@ -25,8 +25,13 @@ export default class ResourceManager implements InterResourceManager {
         }
     }
 
-    public LoadData(path: string) {
-        throw new Error('Method not implemented.');
+    public LoadData(path: string): any {
+        const JsonData = Resources.Load<TextAsset>('Data\\' + path);
+        if (!JsonData) {
+            console.log(`해당 경로에 json 파일이 없습니다: ${path}`);
+            return null;
+        }
+        return JSON.parse(JsonData.toString());
     }
 
     public Load(path: string): UnityEngine.Object {
@@ -40,10 +45,10 @@ export default class ResourceManager implements InterResourceManager {
     }
 
     public LoadSprite(path: string): Sprite {
-        let imageSource = Resources.Load<Texture2D>('Images\\' + path);
+        let imageSource = Resources.Load<Texture2D>('Sprites\\' + path);
         if (!imageSource) {
             console.log(`해당 경로에 스프라이트가 없습니다: ${path}`);
-            imageSource = Resources.Load<Texture2D>('Images/Icon/test');
+            imageSource = Resources.Load<Texture2D>('Sprites/Icon/test');
             // return null;
         }
 

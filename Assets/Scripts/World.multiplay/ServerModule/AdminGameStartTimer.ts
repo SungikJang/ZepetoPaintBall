@@ -22,7 +22,6 @@ export default class AdminGameStartTimer implements IAdminGameStartTimer {
     }
 
     Start() {
-        this.scm.IsAdminPlayerAbsence = true;
         this.timer = setInterval(() => {
             this.scm.UrgeGameStart(this.client, this.cnt);
             this.cnt += 1

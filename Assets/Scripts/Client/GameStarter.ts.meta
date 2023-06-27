@@ -21,14 +21,14 @@ ScriptedImporter:
   compiledResult: '{"source":"\"use strict\";\r\nObject.defineProperty(exports, \"__esModule\",
     { value: true });\r\nconst ZEPETO_Script_1 = require(\"ZEPETO.Script\");\r\nconst
     IOC_1 = require(\"./IOC\");\r\nconst Manager_1 = require(\"./Manager/Manager\");\r\nconst
-    MyPalyerController_1 = require(\"./MyPlayer/MyPalyerController\");\r\nclass GameStarter
-    extends ZEPETO_Script_1.ZepetoScriptBehaviour {\r\n    constructor() {\r\n       
-    super(...arguments);\r\n        this.instanceReady = false;\r\n    }\r\n    Awake()
-    {\r\n        IOC_1.default.Instance.createInstance(MyPalyerController_1.MyPlayerController);\r\n       
+    MyPalyerController_1 = require(\"./MyPlayer/MyPalyerController\");\r\nconst UnityEngine_1
+    = require(\"UnityEngine\");\r\nclass GameStarter extends ZEPETO_Script_1.ZepetoScriptBehaviour
+    {\r\n    constructor() {\r\n        super(...arguments);\r\n        this.instanceReady
+    = false;\r\n    }\r\n    Awake() {\r\n        IOC_1.default.Instance.createInstance(MyPalyerController_1.MyPlayerController);\r\n       
     IOC_1.default.Instance.createInstance(Manager_1.default);\r\n        this.instanceReady
     = true;\r\n        IOC_1.default.Instance.getInstance(Manager_1.default).Init();\r\n       
     IOC_1.default.Instance.getInstance(Manager_1.default).UI.ShowDefaultUI(\"StartUI\");\r\n   
     }\r\n    Update() {\r\n        if (this.instanceReady) {\r\n            IOC_1.default.Instance.getInstance(MyPalyerController_1.MyPlayerController).Update();\r\n       
-    }\r\n    }\r\n}\r\nexports.default = GameStarter;\r\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiR2FtZVN0YXJ0ZXIuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJHYW1lU3RhcnRlci50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUFBLGlEQUFxRDtBQUNyRCwrQkFBd0I7QUFDeEIsK0NBQTBEO0FBQzFELHNFQUEyRjtBQUczRixNQUFxQixXQUFZLFNBQVEscUNBQXFCO0lBQTlEOztRQUNZLGtCQUFhLEdBQVksS0FBSyxDQUFDO0lBZ0IzQyxDQUFDO0lBZEcsS0FBSztRQUNELGFBQUcsQ0FBQyxRQUFRLENBQUMsY0FBYyxDQUEwQix1Q0FBa0IsQ0FBQyxDQUFDO1FBQ3pFLGFBQUcsQ0FBQyxRQUFRLENBQUMsY0FBYyxDQUFlLGlCQUFPLENBQUMsQ0FBQztRQUNuRCxJQUFJLENBQUMsYUFBYSxHQUFHLElBQUksQ0FBQztRQUMxQixhQUFHLENBQUMsUUFBUSxDQUFDLFdBQVcsQ0FBQyxpQkFBTyxDQUFDLENBQUMsSUFBSSxFQUFFLENBQUM7UUFDekMsYUFBRyxDQUFDLFFBQVEsQ0FBQyxXQUFXLENBQUMsaUJBQU8sQ0FBQyxDQUFDLEVBQUUsQ0FBQyxhQUFhLENBQUMsU0FBUyxDQUFDLENBQUE7SUFDakUsQ0FBQztJQUVELE1BQU07UUFDRixJQUFHLElBQUksQ0FBQyxhQUFhLEVBQUM7WUFDbEIsYUFBRyxDQUFDLFFBQVEsQ0FBQyxXQUFXLENBQTBCLHVDQUFrQixDQUFDLENBQUMsTUFBTSxFQUFFLENBQUM7U0FDbEY7SUFDTCxDQUFDO0NBRUo7QUFqQkQsOEJBaUJDIn0=","assetPath":"Assets/Scripts/Client/GameStarter.ts","manifest":{"properties":[],"name":"GameStarter","description":"","hasAnimatorMove":false},"isCompiled":true}'
-  typescriptHash: b4048384b9da9d951080c3e11892c95c
+    }\r\n    }\r\n}\r\nexports.default = GameStarter;\r\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiR2FtZVN0YXJ0ZXIuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJHYW1lU3RhcnRlci50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUFBLGlEQUFxRDtBQUNyRCwrQkFBd0I7QUFDeEIsK0NBQTBEO0FBQzFELHNFQUEyRjtBQUUzRiw2Q0FBa0Q7QUFHbEQsTUFBcUIsV0FBWSxTQUFRLHFDQUFxQjtJQUE5RDs7UUFDWSxrQkFBYSxHQUFZLEtBQUssQ0FBQztJQWUzQyxDQUFDO0lBYkcsS0FBSztRQUNELGFBQUcsQ0FBQyxRQUFRLENBQUMsY0FBYyxDQUEwQix1Q0FBa0IsQ0FBQyxDQUFDO1FBQ3pFLGFBQUcsQ0FBQyxRQUFRLENBQUMsY0FBYyxDQUFlLGlCQUFPLENBQUMsQ0FBQztRQUNuRCxJQUFJLENBQUMsYUFBYSxHQUFHLElBQUksQ0FBQztRQUMxQixhQUFHLENBQUMsUUFBUSxDQUFDLFdBQVcsQ0FBQyxpQkFBTyxDQUFDLENBQUMsSUFBSSxFQUFFLENBQUM7UUFDekMsYUFBRyxDQUFDLFFBQVEsQ0FBQyxXQUFXLENBQUMsaUJBQU8sQ0FBQyxDQUFDLEVBQUUsQ0FBQyxhQUFhLENBQUMsU0FBUyxDQUFDLENBQUE7SUFDakUsQ0FBQztJQUVELE1BQU07UUFDRixJQUFHLElBQUksQ0FBQyxhQUFhLEVBQUM7WUFDbEIsYUFBRyxDQUFDLFFBQVEsQ0FBQyxXQUFXLENBQTBCLHVDQUFrQixDQUFDLENBQUMsTUFBTSxFQUFFLENBQUM7U0FDbEY7SUFDTCxDQUFDO0NBQ0o7QUFoQkQsOEJBZ0JDIn0=","assetPath":"Assets/Scripts/Client/GameStarter.ts","manifest":{"properties":[],"name":"GameStarter","description":"","hasAnimatorMove":false},"isCompiled":true}'
+  typescriptHash: a73e1645795f6d8721b793a47271255b
   onlyWriteTrigger: 0

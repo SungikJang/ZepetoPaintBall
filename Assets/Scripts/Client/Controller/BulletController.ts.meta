@@ -1,0 +1,35 @@
+fileFormatVersion: 2
+guid: d0989743330a7cf4090a78f9bd385d17
+importerOverride: ZEPETO.Script.Compiler:ZEPETO.Script:TypescriptAssetImporter
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: -1123457745, guid: 54cf806323ffe4418a4ce4cc63fe6b9d, type: 3}
+  isAssemblyDeclarations: 0
+  assembly: 
+  generateAllTypes: 1
+  types: []
+  generateWrapper: 0
+  overrideWrapperTypes: 0
+  wrapperTypes: []
+  WrapperFilters: []
+  wrapperOutputDirectory: Generated
+  compiledResult: '{"source":"\"use strict\";\r\nObject.defineProperty(exports, \"__esModule\",
+    { value: true });\r\nconst UnityEngine_1 = require(\"UnityEngine\");\r\nconst
+    ZEPETO_Script_1 = require(\"ZEPETO.Script\");\r\nconst ZEPETO_Character_Controller_1
+    = require(\"ZEPETO.Character.Controller\");\r\nconst Connector_1 = require(\"../Network/Connector\");\r\nclass
+    BulletController extends ZEPETO_Script_1.ZepetoScriptBehaviour {\r\n    Start()
+    {\r\n    }\r\n    OnCollisionEnter(collision) {\r\n        if (collision.gameObject.CompareTag(\"player\"))
+    {\r\n            let s = this.gameObject.transform.parent.parent.parent.gameObject.name;\r\n           
+    if (s === ZEPETO_Character_Controller_1.ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.id)
+    {\r\n                Connector_1.default.Instance.ReqToServer(\"PlayerHit\",
+    { player: collision.gameObject.name });\r\n            }\r\n            this.gameObject.SetActive(false);\r\n       
+    }\r\n        else if (collision.gameObject.CompareTag(\"bullet\")) {\r\n       
+    }\r\n        else {\r\n            this.gameObject.SetActive(false);\r\n       
+    }\r\n    }\r\n}\r\nexports.default = BulletController;\r\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiQnVsbGV0Q29udHJvbGxlci5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIkJ1bGxldENvbnRyb2xsZXIudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFBQSw2Q0FBNkQ7QUFDN0QsaURBQXFEO0FBQ3JELDZFQUE0RDtBQUM1RCxvREFBNkM7QUFFN0MsTUFBcUIsZ0JBQWlCLFNBQVEscUNBQXFCO0lBRS9ELEtBQUs7SUFFTCxDQUFDO0lBRUQsZ0JBQWdCLENBQUMsU0FBb0I7UUFDakMsSUFBRyxTQUFTLENBQUMsVUFBVSxDQUFDLFVBQVUsQ0FBQyxRQUFRLENBQUMsRUFBQztZQUN6QyxJQUFJLENBQUMsR0FBRyxJQUFJLENBQUMsVUFBVSxDQUFDLFNBQVMsQ0FBQyxNQUFNLENBQUMsTUFBTSxDQUFDLE1BQU0sQ0FBQyxVQUFVLENBQUMsSUFBSSxDQUFBO1lBQ3RFLElBQUcsQ0FBQyxLQUFLLDJDQUFhLENBQUMsUUFBUSxDQUFDLFdBQVcsQ0FBQyxZQUFZLENBQUMsRUFBRSxFQUFDO2dCQUN4RCxtQkFBUyxDQUFDLFFBQVEsQ0FBQyxXQUFXLENBQUMsV0FBVyxFQUFFLEVBQUMsTUFBTSxFQUFFLFNBQVMsQ0FBQyxVQUFVLENBQUMsSUFBSSxFQUFDLENBQUMsQ0FBQzthQUNwRjtZQUNELElBQUksQ0FBQyxVQUFVLENBQUMsU0FBUyxDQUFDLEtBQUssQ0FBQyxDQUFDO1NBQ3BDO2FBQ0ksSUFBRyxTQUFTLENBQUMsVUFBVSxDQUFDLFVBQVUsQ0FBQyxRQUFRLENBQUMsRUFBQztTQUVqRDthQUNHO1lBQ0EsSUFBSSxDQUFDLFVBQVUsQ0FBQyxTQUFTLENBQUMsS0FBSyxDQUFDLENBQUM7U0FDcEM7SUFDTCxDQUFDO0NBRUo7QUF0QkQsbUNBc0JDIn0=","assetPath":"Assets/Scripts/Client/Controller/BulletController.ts","manifest":{"properties":[],"name":"BulletController","description":"","hasAnimatorMove":false},"isCompiled":true}'
+  typescriptHash: 34787cddb83ca35f0458f6e24bbf12cc
+  onlyWriteTrigger: 0

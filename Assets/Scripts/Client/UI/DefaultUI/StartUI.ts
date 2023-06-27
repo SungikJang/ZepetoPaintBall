@@ -5,8 +5,19 @@ import { ZepetoScriptBehaviour } from 'ZEPETO.Script'
 import IOC from '../../IOC';
 import Manager, { InterManager } from '../../Manager/Manager';
 import Connector from '../../Network/Connector';
+import {TMP_Text} from "TMPro";
 
-export default class StartUI extends ZepetoScriptBehaviour {
+export interface InterStartUI {
+    Start(): void
+
+    SetGold(quantity: number): void
+
+    SetDia(quantity: number): void
+
+    SetZem(quantity: number)
+}
+
+export default class StartUI extends ZepetoScriptBehaviour implements InterStartUI{
     id: string;
     manager: InterManager;
 
@@ -25,6 +36,10 @@ export default class StartUI extends ZepetoScriptBehaviour {
     public passBottom: GameObject;
     public coins: GameObject;
     public coinsBottom: GameObject;
+
+    public goldtext: TMP_Text;
+    public diatext: TMP_Text;
+    public zemtext: TMP_Text;
     
     private nowPage: GameObject;
     private nowPageBottom: GameObject;
@@ -33,7 +48,12 @@ export default class StartUI extends ZepetoScriptBehaviour {
 
     Start() {
         this.manager = IOC.Instance.getInstance<InterManager>(Manager);
+        this.manager.UI.StartUI = this.gameObject.GetComponent<StartUI>();
         this.inventory.SetActive(true);
+        const icontent = this.inventory.transform.GetChild(1).GetChild(0).GetChild(0)
+        for (let i = 0; i < 16; i++){
+            icontent.GetChild(i).GetChild(0).GetChild(0).gameObject.GetComponent<TMP_Text>().text = (i+1).toString();
+        }
         this.nowPage = this.inventory;
         this.nowPageBottom = this.inventoryBottom;
         this.inventoryBtn.onClick.AddListener(() => {
@@ -82,4 +102,15 @@ export default class StartUI extends ZepetoScriptBehaviour {
         });
     }
 
+    public SetGold(quantity: number){
+        this.goldtext.text = quantity.toString()
+    }
+
+    public SetDia(quantity: number){
+        this.diatext.text = quantity.toString()
+    }
+
+    public SetZem(quantity: number){
+        this.zemtext.text = quantity.toString()
+    }
 }

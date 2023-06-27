@@ -4,7 +4,6 @@ import { ZepetoScriptBehaviour } from 'ZEPETO.Script'
 import IOC from '../IOC';
 import { InterMyPlayerData } from './MyPlayerData'
 import { InterMyPlayerMovement } from './MyPlayerMovement'
-//import { InterMyPlayerTriggerController } from './MyPlayerTriggerController';
 
 export interface InterMyPlayerController {
     get MyPlayerData();
@@ -21,12 +20,10 @@ export class MyPlayerController extends ZepetoScriptBehaviour implements InterMy
     constructor(
         _MyPlayerData: InterMyPlayerData,
         _MyPlayerMovement: InterMyPlayerMovement,
-        //_MyPlayerTriggerController: InterMyPlayerTriggerController
     ) {
         super();
         this._mpData = _MyPlayerData;
         this._mpMovement = _MyPlayerMovement;
-        //this._mpTriggerController = _MyPlayerTriggerController
 
         this._mpMovement.Init();
         this._mpData.Init();

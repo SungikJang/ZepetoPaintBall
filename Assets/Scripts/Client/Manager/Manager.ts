@@ -4,8 +4,9 @@ import { InterDataManager } from './DataManager';
 import { InterFlagGameManager } from './FlagGameManager';
 import { InterGameManager } from './GameManger';
 import { InterLanguageManager } from './LanguageManager';
+import { InterProductManager } from './ProductManager';
 import { InterResourceManager } from './ResourceManager';
-import { InterSeigeGameManager } from './SeigeGameManager';
+import { InterSiegeGameManager } from './SiegeGameManager';
 import { InterSoloFlagGameManager } from './SoloFlagGameManager';
 import { InterSoundManager } from './SoundManager';
 import { InterUIManager } from './UIManager';
@@ -28,9 +29,11 @@ export interface InterManager {
 
     get FlagGame(): InterFlagGameManager
 
-    get SeigeGame(): InterSeigeGameManager
+    get SiegeGame(): InterSiegeGameManager
 
-    get SoloFlagGame(): InterSoloFlagGameManager
+    // get SoloFlagGame(): InterSoloFlagGameManager
+
+    get Product(): InterProductManager
 }
 
 export default class Manager extends ZepetoScriptBehaviour implements InterManager {
@@ -41,8 +44,9 @@ export default class Manager extends ZepetoScriptBehaviour implements InterManag
     private _dataManager: InterDataManager
     private _gameManager: InterGameManager
     private _flagGameManager: InterFlagGameManager
-    private _seigeGameManager: InterSeigeGameManager
+    private _siegeGameManager: InterSiegeGameManager
     private _soloFlagGameManager: InterSoloFlagGameManager
+    private _productManager: InterProductManager
 
     constructor(
         _LanguageManager: InterLanguageManager,
@@ -52,8 +56,9 @@ export default class Manager extends ZepetoScriptBehaviour implements InterManag
         _DataManager: InterDataManager,
         _GameManager: InterGameManager,
         _FlagGameManager: InterFlagGameManager,
-        _SeigeGameManager: InterSeigeGameManager,
-        _SoloFlagGameManager: InterSoloFlagGameManager
+        _SiegeGameManager: InterSiegeGameManager,
+        _SoloFlagGameManager: InterSoloFlagGameManager,
+        _ProductManager: InterProductManager,
     ) {
         super();
         this._uiManager = _UIManager;
@@ -63,8 +68,9 @@ export default class Manager extends ZepetoScriptBehaviour implements InterManag
         this._dataManager = _DataManager
         this._gameManager = _GameManager
         this._flagGameManager = _FlagGameManager
-        this._seigeGameManager = _SeigeGameManager
+        this._siegeGameManager = _SiegeGameManager
         this._soloFlagGameManager = _SoloFlagGameManager
+        this._productManager = _ProductManager
     }
     
     Init(){
@@ -73,8 +79,10 @@ export default class Manager extends ZepetoScriptBehaviour implements InterManag
         this._uiManager.Init();
         this._gameManager.Init();
         this._flagGameManager.Init();
-        this._seigeGameManager.Init();
+        this._siegeGameManager.Init();
         this._soloFlagGameManager.Init();
+        this._dataManager.Init();
+        this._productManager.Init();
     }
 
     public get UI(): InterUIManager {
@@ -105,11 +113,15 @@ export default class Manager extends ZepetoScriptBehaviour implements InterManag
         return this._flagGameManager;
     }
 
-    public get SeigeGame(): InterSeigeGameManager {
-        return this._seigeGameManager;
+    public get SiegeGame(): InterSiegeGameManager {
+        return this._siegeGameManager;
     }
 
-    public get SoloFlagGame(): InterSoloFlagGameManager {
-        return this._soloFlagGameManager;
+    // public get SoloFlagGame(): InterSoloFlagGameManager {
+    //     return this._soloFlagGameManager;
+    // }
+    
+    public get Product(): InterProductManager{
+        return this._productManager;
     }
 }

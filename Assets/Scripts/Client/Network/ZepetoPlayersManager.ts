@@ -3,12 +3,15 @@ import {WorldService, ZepetoWorldMultiplay, Content, OfficialContentType, Zepeto
 import {Room} from "ZEPETO.Multiplay";
 import {SpawnInfo, ZepetoPlayer, ZepetoPlayers} from 'ZEPETO.Character.Controller';
 import {State, Player} from "ZEPETO.Multiplay.Schema";
-import {AudioListener, GameObject, Object, Quaternion, Vector3, WaitForSeconds} from "UnityEngine";
+import {AudioListener, GameObject, Object, Quaternion, Vector3, WaitForSeconds,LayerMask} from "UnityEngine";
 import PlayerSync from './PlayerSync';
+import Connector from './Connector';
 import TransformSyncHelper, {PositionExtrapolationType, PositionInterpolationType } from './TransformSyncHelper';
-import MyPlayerTriggerController from '../MyPlayer/MyPlayerTriggerController';
 import IOC from '../IOC';
 import { InterMyPlayerController, MyPlayerController } from '../MyPlayer/MyPalyerController';
+import MyPlayerAttachedController from '../MyPlayer/MyPlayerAttachedController';
+import Manager, { InterManager } from '../Manager/Manager';
+import OtherZepetoCharacterController from '../Controller/OtherZepetoCharacterController';
 
 
 export enum ZepetoPlayerSpawnType {
@@ -75,14 +78,18 @@ export default class ZepetoPlayersManager extends ZepetoScriptBehaviour {
                 }
                 ZepetoPlayers.instance.OnAddedPlayer.AddListener((sessionId: string) => {
                     const player = ZepetoPlayers.instance.GetPlayer(sessionId);
+                    player.character.gameObject.tag = 'player';
+                    player.character.gameObject.name = sessionId;
                     if (player.isLocalPlayer) {
-                        player.character.gameObject.AddComponent<MyPlayerTriggerController>();
-                        IOC.Instance.getInstance<InterMyPlayerController>(MyPlayerController).MyPlayerData.SetMyPlayer(player);
+                        //player.character.characterController.enabled = false;
+                        player.character.gameObject.AddComponent<MyPlayerAttachedController>();
+                        IOC.Instance.getInstance<InterMyPlayerController>(MyPlayerController).MyPlayerData.SetMyPlayer(player, sessionId);
                         IOC.Instance.getInstance<InterMyPlayerController>(MyPlayerController).MyPlayerMovement.SetMyPlayer(player);
                     }
                     else {
-                        // player.character.gameObject.AddComponent<OtherZepetoCharacterController>();
-                        // player.character.gameObject.GetComponent<OtherZepetoCharacterController>().SessionId = sessionId;
+                        //IOC.Instance.getInstance<InterManager>(Manager).Game.OtherPlayers.push(sessionId)
+                        player.character.gameObject.layer = LayerMask.NameToLayer("otherPlayer")
+                        player.character.gameObject.AddComponent<OtherZepetoCharacterController>();
                     }
                     this.AddPlayerSync(sessionId);
                 });
@@ -135,6 +142,14 @@ export default class ZepetoPlayersManager extends ZepetoScriptBehaviour {
 
     private OnLeavePlayer(sessionId: string, player: Player) {
         console.log(`[OnLeavePlayer] players - sessionId : ${sessionId}`);
+        const p = ZepetoPlayers.instance.GetPlayer(sessionId);
+        if(!p.isLocalPlayer){
+            if(p.character.gameObject.GetComponent<OtherZepetoCharacterController>().haveFlag){
+                IOC.Instance.getInstance<InterManager>(Manager).FlagGame.FreeFlag();
+            }
+        }
+        //IOC.Instance.getInstance<InterManager>(Manager).Game.OtherPlayers.splice(IOC.Instance.getInstance<InterManager>(Manager).Game.OtherPlayers.indexOf(sessionId), 1)
+        //IOC.Instance.getInstance<InterManager>(Manager).Game.OtherInGamePlayers.splice(IOC.Instance.getInstance<InterManager>(Manager).Game.OtherInGamePlayers.indexOf(sessionId), 1)
         this._currentPlayers.delete(sessionId);
         ZepetoPlayers.instance.RemovePlayer(sessionId);
     }

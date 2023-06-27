@@ -1,0 +1,100 @@
+{
+    "name": "Weapon",
+    "version": "1.0.0",
+    "1": {
+        "Name": "AR_1",
+        "BuyPrice": 0,
+        "Speed": 10,
+        "Bullets": 20,
+        "Power": 80,
+        "Type": "RIFFLE"
+    },
+    "2": {
+        "Name": "AR_2",
+        "BuyPrice": 2000,
+        "Speed": 15,
+        "Bullets": 25,
+        "Power": 90,
+        "Type": "RIFFLE"
+    },
+    "3": {
+        "Name": "AR_3",
+        "BuyPrice": 3000,
+        "Speed": 25,
+        "Bullets": 30,
+        "Power": 100,
+        "Type": "RIFFLE"
+    },
+    "4": {
+        "Name": "AR_4",
+        "BuyPrice": 5000,
+        "Speed": 40,
+        "Bullets": 40,
+        "Power": 120,
+        "Type": "RIFFLE"
+    },
+    "5": {
+        "Name": "SHOTGUN_1",
+        "BuyPrice": 3000,
+        "Speed": 3,
+        "Bullets": 7,
+        "Power": 60,
+        "Type": "SHOTGUN"
+    },
+    "6": {
+        "Name": "SHOTGUN_2",
+        "BuyPrice": 4000,
+        "Speed": 5,
+        "Bullets": 7,
+        "Power": 70,
+        "Type": "SHOTGUN"
+    },
+    "7": {
+        "Name": "SHOTGUN_3",
+        "BuyPrice": 5000,
+        "Speed": 7,
+        "Bullets": 10,
+        "Power": 80,
+        "Type": "SHOTGUN"
+    },
+    "8": {
+        "Name": "SHOTGUN_4",
+        "BuyPrice": 6000,
+        "Speed": 9,
+        "Bullets": 12,
+        "Power": 100,
+        "Type": "SHOTGUN"
+    },
+    "9": {
+        "Name": "SNIPER_1",
+        "BuyPrice": 3000,
+        "Speed": 1,
+        "Bullets": 5,
+        "Power": 300,
+        "Type": "SNIPER"
+    },
+    "10": {
+        "Name": "SNIPER_2",
+        "BuyPrice": 4000,
+        "Speed": 1,
+        "Bullets": 5,
+        "Power": 350,
+        "Type": "SNIPER"
+    },
+    "11": {
+        "Name": "SNIPER_3",
+        "BuyPrice": 5000,
+        "Speed": 1,
+        "Bullets": 5,
+        "Power": 400,
+        "Type": "SNIPER"
+    },
+    "12": {
+        "Name": "SNIPER_4",
+        "BuyPrice": 6000,
+        "Speed": 1,
+        "Bullets": 7,
+        "Power": 500,
+        "Type": "SNIPER"
+    }
+}

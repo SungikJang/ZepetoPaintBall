@@ -1,7 +1,12 @@
 // import IOC from '../../Common/IOC';
 // import {Manager} from '../Manager';
 
+import IOC from "../IOC";
+import Manager, { InterManager } from "./Manager";
+
 export interface InterDataManager {
+    Init(): void
+    
     Translator(targetLanguage: string): void
 
     GetValueByKeys(keys: string): Object
@@ -19,21 +24,11 @@ class DataManager implements InterDataManager {
     // method
 
     Init() {
-        // let Recipe = IOC.Instance.getInstance(Manager).Resource.LoadData('Recipe');
-        // let Ingredient = IOC.Instance.getInstance(Manager).Resource.LoadData('Ingredient');
-        // let StartItem = IOC.Instance.getInstance(Manager).Resource.LoadData('StartItem');
-        // let Treasure = IOC.Instance.getInstance(Manager).Resource.LoadData('Treasure');
-        // let Price = IOC.Instance.getInstance(Manager).Resource.LoadData('Price');
-        // let Config = IOC.Instance.getInstance(Manager).Resource.LoadData('Config');
-        //
-        // this.dataDictionary = {
-        //     Recipe,
-        //     Ingredient,
-        //     StartItem,
-        //     Treasure,
-        //     Price,
-        //     Config,
-        // };
+        let Weapon = IOC.Instance.getInstance<InterManager>(Manager).Resource.LoadData('Weapon');
+        
+        this.dataDictionary = {
+            Weapon
+        };
     }
 
     public GetValueByKeys(keys: string) {

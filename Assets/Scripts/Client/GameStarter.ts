@@ -2,6 +2,8 @@ import { ZepetoScriptBehaviour } from 'ZEPETO.Script'
 import IOC from './IOC';
 import Manager, { InterManager } from './Manager/Manager';
 import {InterMyPlayerController, MyPlayerController } from './MyPlayer/MyPalyerController';
+import {ProductService, ProductType} from "ZEPETO.Product";
+import {GameObject, WaitUntil} from "UnityEngine";
 
 
 export default class GameStarter extends ZepetoScriptBehaviour {
@@ -20,5 +22,4 @@ export default class GameStarter extends ZepetoScriptBehaviour {
             IOC.Instance.getInstance<InterMyPlayerController>(MyPlayerController).Update();
         }
     }
-
 }

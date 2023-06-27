@@ -19,27 +19,33 @@ ScriptedImporter:
   WrapperFilters: []
   wrapperOutputDirectory: Generated
   compiledResult: '{"source":"\"use strict\";\r\nObject.defineProperty(exports, \"__esModule\",
-    { value: true });\r\nexports.GAME_GRADE = exports.GAME_NAME = exports.PLAYER_STATE
-    = exports.POTION_TYPE = exports.LANGUAGES = void 0;\r\nvar LANGUAGES;\r\n(function
-    (LANGUAGES) {\r\n    LANGUAGES[\"Korean\"] = \"Korean\";\r\n    LANGUAGES[\"English\"]
-    = \"English\";\r\n    LANGUAGES[\"Japanese\"] = \"Japanese\";\r\n    LANGUAGES[\"Indonesian\"]
-    = \"Indonesian\";\r\n    LANGUAGES[\"Thai\"] = \"Thai\";\r\n    LANGUAGES[\"Vietnamese\"]
-    = \"Vietnamese\";\r\n    LANGUAGES[\"Spanish\"] = \"Spanish\";\r\n    LANGUAGES[\"French\"]
-    = \"French\";\r\n    LANGUAGES[\"Portuguese\"] = \"Portuguese\";\r\n})(LANGUAGES
-    = exports.LANGUAGES || (exports.LANGUAGES = {}));\r\nvar POTION_TYPE;\r\n(function
-    (POTION_TYPE) {\r\n    POTION_TYPE[POTION_TYPE[\"PLUS\"] = 0] = \"PLUS\";\r\n   
-    POTION_TYPE[POTION_TYPE[\"MINUS\"] = 1] = \"MINUS\";\r\n})(POTION_TYPE = exports.POTION_TYPE
-    || (exports.POTION_TYPE = {}));\r\nvar PLAYER_STATE;\r\n(function (PLAYER_STATE)
-    {\r\n    PLAYER_STATE[\"Die\"] = \"Die\";\r\n    PLAYER_STATE[\"Live\"] = \"LIVE\";\r\n   
-    PLAYER_STATE[\"Flag\"] = \"Flag\";\r\n})(PLAYER_STATE = exports.PLAYER_STATE
-    || (exports.PLAYER_STATE = {}));\r\nvar GAME_NAME;\r\n(function (GAME_NAME) {\r\n   
-    GAME_NAME[\"None\"] = \"None\";\r\n    GAME_NAME[\"Flag\"] = \"Flag\";\r\n   
-    GAME_NAME[\"Siege\"] = \"Siege\";\r\n    GAME_NAME[\"SoloFlag\"] = \"SoloFlag\";\r\n})(GAME_NAME
-    = exports.GAME_NAME || (exports.GAME_NAME = {}));\r\nvar GAME_GRADE;\r\n(function
-    (GAME_GRADE) {\r\n    GAME_GRADE[GAME_GRADE[\"A\"] = 0] = \"A\";\r\n    GAME_GRADE[GAME_GRADE[\"B\"]
-    = 1] = \"B\";\r\n    GAME_GRADE[GAME_GRADE[\"C\"] = 2] = \"C\";\r\n    GAME_GRADE[GAME_GRADE[\"D\"]
-    = 3] = \"D\";\r\n    GAME_GRADE[GAME_GRADE[\"E\"] = 4] = \"E\";\r\n    GAME_GRADE[GAME_GRADE[\"F\"]
-    = 5] = \"F\";\r\n})(GAME_GRADE = exports.GAME_GRADE || (exports.GAME_GRADE =
-    {}));\r\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiRW51bXMuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJFbnVtcy50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7QUFBQSxJQUFZLFNBVVg7QUFWRCxXQUFZLFNBQVM7SUFDakIsOEJBQWlCLENBQUE7SUFDakIsZ0NBQW1CLENBQUE7SUFDbkIsa0NBQXFCLENBQUE7SUFDckIsc0NBQXlCLENBQUE7SUFDekIsMEJBQWEsQ0FBQTtJQUNiLHNDQUF5QixDQUFBO0lBQ3pCLGdDQUFtQixDQUFBO0lBQ25CLDhCQUFpQixDQUFBO0lBQ2pCLHNDQUF5QixDQUFBO0FBQzdCLENBQUMsRUFWVyxTQUFTLEdBQVQsaUJBQVMsS0FBVCxpQkFBUyxRQVVwQjtBQUVELElBQVksV0FHWDtBQUhELFdBQVksV0FBVztJQUNuQiw2Q0FBSSxDQUFBO0lBQ0osK0NBQUssQ0FBQTtBQUNULENBQUMsRUFIVyxXQUFXLEdBQVgsbUJBQVcsS0FBWCxtQkFBVyxRQUd0QjtBQUVELElBQVksWUFJWDtBQUpELFdBQVksWUFBWTtJQUNwQiwyQkFBVyxDQUFBO0lBQ1gsNkJBQWEsQ0FBQTtJQUNiLDZCQUFhLENBQUE7QUFDakIsQ0FBQyxFQUpXLFlBQVksR0FBWixvQkFBWSxLQUFaLG9CQUFZLFFBSXZCO0FBRUQsSUFBWSxTQUtYO0FBTEQsV0FBWSxTQUFTO0lBQ2pCLDBCQUFhLENBQUE7SUFDYiwwQkFBYSxDQUFBO0lBQ2IsNEJBQWUsQ0FBQTtJQUNmLGtDQUFxQixDQUFBO0FBQ3pCLENBQUMsRUFMVyxTQUFTLEdBQVQsaUJBQVMsS0FBVCxpQkFBUyxRQUtwQjtBQUVELElBQVksVUFPWDtBQVBELFdBQVksVUFBVTtJQUNsQixxQ0FBQyxDQUFBO0lBQ0QscUNBQUMsQ0FBQTtJQUNELHFDQUFDLENBQUE7SUFDRCxxQ0FBQyxDQUFBO0lBQ0QscUNBQUMsQ0FBQTtJQUNELHFDQUFDLENBQUE7QUFDTCxDQUFDLEVBUFcsVUFBVSxHQUFWLGtCQUFVLEtBQVYsa0JBQVUsUUFPckIifQ==","assetPath":"Assets/Scripts/Client/Enums.ts","manifest":{"properties":[],"name":"Enums","description":"","hasAnimatorMove":false},"isCompiled":true}'
-  typescriptHash: bb80b088e34bcbf7ff36763a7adb96e0
+    { value: true });\r\nexports.Currency = exports.GAME_GRADE = exports.GAME_NAME
+    = exports.WEAPON_TYPE = exports.PLAYER_STATE = exports.POTION_TYPE = exports.LANGUAGES
+    = void 0;\r\nvar LANGUAGES;\r\n(function (LANGUAGES) {\r\n    LANGUAGES[\"Korean\"]
+    = \"Korean\";\r\n    LANGUAGES[\"English\"] = \"English\";\r\n    LANGUAGES[\"Japanese\"]
+    = \"Japanese\";\r\n    LANGUAGES[\"Indonesian\"] = \"Indonesian\";\r\n    LANGUAGES[\"Thai\"]
+    = \"Thai\";\r\n    LANGUAGES[\"Vietnamese\"] = \"Vietnamese\";\r\n    LANGUAGES[\"Spanish\"]
+    = \"Spanish\";\r\n    LANGUAGES[\"French\"] = \"French\";\r\n    LANGUAGES[\"Portuguese\"]
+    = \"Portuguese\";\r\n})(LANGUAGES = exports.LANGUAGES || (exports.LANGUAGES =
+    {}));\r\nvar POTION_TYPE;\r\n(function (POTION_TYPE) {\r\n    POTION_TYPE[POTION_TYPE[\"PLUS\"]
+    = 0] = \"PLUS\";\r\n    POTION_TYPE[POTION_TYPE[\"MINUS\"] = 1] = \"MINUS\";\r\n})(POTION_TYPE
+    = exports.POTION_TYPE || (exports.POTION_TYPE = {}));\r\nvar PLAYER_STATE;\r\n(function
+    (PLAYER_STATE) {\r\n    PLAYER_STATE[\"Die\"] = \"Die\";\r\n    PLAYER_STATE[\"Live\"]
+    = \"LIVE\";\r\n    PLAYER_STATE[\"Flag\"] = \"Flag\";\r\n})(PLAYER_STATE = exports.PLAYER_STATE
+    || (exports.PLAYER_STATE = {}));\r\nvar WEAPON_TYPE;\r\n(function (WEAPON_TYPE)
+    {\r\n    WEAPON_TYPE[\"Riffle\"] = \"RIFFLE\";\r\n    WEAPON_TYPE[\"Shotgun\"]
+    = \"SHOTGUN\";\r\n    WEAPON_TYPE[\"Sniper\"] = \"SNIPER\";\r\n})(WEAPON_TYPE
+    = exports.WEAPON_TYPE || (exports.WEAPON_TYPE = {}));\r\nvar GAME_NAME;\r\n(function
+    (GAME_NAME) {\r\n    GAME_NAME[\"None\"] = \"None\";\r\n    GAME_NAME[\"Flag\"]
+    = \"Flag\";\r\n    GAME_NAME[\"Siege\"] = \"Siege\";\r\n    GAME_NAME[\"SoloFlag\"]
+    = \"SoloFlag\";\r\n})(GAME_NAME = exports.GAME_NAME || (exports.GAME_NAME = {}));\r\nvar
+    GAME_GRADE;\r\n(function (GAME_GRADE) {\r\n    GAME_GRADE[GAME_GRADE[\"A\"] =
+    0] = \"A\";\r\n    GAME_GRADE[GAME_GRADE[\"B\"] = 1] = \"B\";\r\n    GAME_GRADE[GAME_GRADE[\"C\"]
+    = 2] = \"C\";\r\n    GAME_GRADE[GAME_GRADE[\"D\"] = 3] = \"D\";\r\n    GAME_GRADE[GAME_GRADE[\"E\"]
+    = 4] = \"E\";\r\n    GAME_GRADE[GAME_GRADE[\"F\"] = 5] = \"F\";\r\n})(GAME_GRADE
+    = exports.GAME_GRADE || (exports.GAME_GRADE = {}));\r\nvar Currency;\r\n(function
+    (Currency) {\r\n    Currency[\"Gold\"] = \"zepetogunsgold\";\r\n    Currency[\"Diamond\"]
+    = \"zepetogunsdia\";\r\n})(Currency = exports.Currency || (exports.Currency =
+    {}));\r\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiRW51bXMuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJFbnVtcy50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7QUFBQSxJQUFZLFNBVVg7QUFWRCxXQUFZLFNBQVM7SUFDakIsOEJBQWlCLENBQUE7SUFDakIsZ0NBQW1CLENBQUE7SUFDbkIsa0NBQXFCLENBQUE7SUFDckIsc0NBQXlCLENBQUE7SUFDekIsMEJBQWEsQ0FBQTtJQUNiLHNDQUF5QixDQUFBO0lBQ3pCLGdDQUFtQixDQUFBO0lBQ25CLDhCQUFpQixDQUFBO0lBQ2pCLHNDQUF5QixDQUFBO0FBQzdCLENBQUMsRUFWVyxTQUFTLEdBQVQsaUJBQVMsS0FBVCxpQkFBUyxRQVVwQjtBQUVELElBQVksV0FHWDtBQUhELFdBQVksV0FBVztJQUNuQiw2Q0FBSSxDQUFBO0lBQ0osK0NBQUssQ0FBQTtBQUNULENBQUMsRUFIVyxXQUFXLEdBQVgsbUJBQVcsS0FBWCxtQkFBVyxRQUd0QjtBQUVELElBQVksWUFJWDtBQUpELFdBQVksWUFBWTtJQUNwQiwyQkFBVyxDQUFBO0lBQ1gsNkJBQWEsQ0FBQTtJQUNiLDZCQUFhLENBQUE7QUFDakIsQ0FBQyxFQUpXLFlBQVksR0FBWixvQkFBWSxLQUFaLG9CQUFZLFFBSXZCO0FBRUQsSUFBWSxXQUlYO0FBSkQsV0FBWSxXQUFXO0lBQ25CLGdDQUFpQixDQUFBO0lBQ2pCLGtDQUFtQixDQUFBO0lBQ25CLGdDQUFpQixDQUFBO0FBQ3JCLENBQUMsRUFKVyxXQUFXLEdBQVgsbUJBQVcsS0FBWCxtQkFBVyxRQUl0QjtBQUVELElBQVksU0FLWDtBQUxELFdBQVksU0FBUztJQUNqQiwwQkFBYSxDQUFBO0lBQ2IsMEJBQWEsQ0FBQTtJQUNiLDRCQUFlLENBQUE7SUFDZixrQ0FBcUIsQ0FBQTtBQUN6QixDQUFDLEVBTFcsU0FBUyxHQUFULGlCQUFTLEtBQVQsaUJBQVMsUUFLcEI7QUFFRCxJQUFZLFVBT1g7QUFQRCxXQUFZLFVBQVU7SUFDbEIscUNBQUMsQ0FBQTtJQUNELHFDQUFDLENBQUE7SUFDRCxxQ0FBQyxDQUFBO0lBQ0QscUNBQUMsQ0FBQTtJQUNELHFDQUFDLENBQUE7SUFDRCxxQ0FBQyxDQUFBO0FBQ0wsQ0FBQyxFQVBXLFVBQVUsR0FBVixrQkFBVSxLQUFWLGtCQUFVLFFBT3JCO0FBRUQsSUFBWSxRQUdYO0FBSEQsV0FBWSxRQUFRO0lBQ2hCLG1DQUF1QixDQUFBO0lBQ3ZCLHFDQUF5QixDQUFBO0FBQzdCLENBQUMsRUFIVyxRQUFRLEdBQVIsZ0JBQVEsS0FBUixnQkFBUSxRQUduQiJ9","assetPath":"Assets/Scripts/Client/Enums.ts","manifest":{"properties":[],"name":"Enums","description":"","hasAnimatorMove":false},"isCompiled":true}'
+  typescriptHash: 06f7e698e0e69b0e7d2d5dbbc45990ce
   onlyWriteTrigger: 0

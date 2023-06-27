@@ -1,0 +1,35 @@
+fileFormatVersion: 2
+guid: 0aec34b0d7fc5a745bfea3390f2b5cc4
+importerOverride: ZEPETO.Script.Compiler:ZEPETO.Script:TypescriptAssetImporter
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: -1123457745, guid: 54cf806323ffe4418a4ce4cc63fe6b9d, type: 3}
+  isAssemblyDeclarations: 0
+  assembly: 
+  generateAllTypes: 1
+  types: []
+  generateWrapper: 0
+  overrideWrapperTypes: 0
+  wrapperTypes: []
+  WrapperFilters: []
+  wrapperOutputDirectory: Generated
+  compiledResult: '{"source":"\"use strict\";\r\nObject.defineProperty(exports, \"__esModule\",
+    { value: true });\r\nconst ZEPETO_Script_1 = require(\"ZEPETO.Script\");\r\nconst
+    ZEPETO_Character_Controller_1 = require(\"ZEPETO.Character.Controller\");\r\nconst
+    UnityEngine_1 = require(\"UnityEngine\");\r\nclass SRCameraController extends
+    ZEPETO_Script_1.ZepetoScriptBehaviour {\r\n    Start() {\r\n        this.StartCoroutine(this.SetPlayerParent());\r\n   
+    }\r\n    Update() {\r\n        if (ZEPETO_Character_Controller_1.ZepetoPlayers.instance.LocalPlayer)
+    {\r\n            this.gameObject.transform.rotation = ZEPETO_Character_Controller_1.ZepetoPlayers.instance.LocalPlayer.zepetoCamera.camera.gameObject.transform.rotation;\r\n       
+    }\r\n    }\r\n    *SetPlayerParent() {\r\n        while (true) {\r\n           
+    if (ZEPETO_Character_Controller_1.ZepetoPlayers.instance.LocalPlayer) {\r\n               
+    this.gameObject.transform.SetParent(ZEPETO_Character_Controller_1.ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.character.gameObject.transform);\r\n               
+    this.gameObject.transform.localPosition = new UnityEngine_1.Vector3(0, 1, 0);\r\n           
+    }\r\n            yield new UnityEngine_1.WaitForSeconds(0.1);\r\n        }\r\n   
+    }\r\n}\r\nexports.default = SRCameraController;\r\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiU1JDYW1lcmFDb250cm9sbGVyLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiU1JDYW1lcmFDb250cm9sbGVyLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7O0FBQUEsaURBQXFEO0FBQ3JELDZFQUEwRDtBQUMxRCw2Q0FBb0Q7QUFFcEQsTUFBcUIsa0JBQW1CLFNBQVEscUNBQXFCO0lBRWpFLEtBQUs7UUFDRCxJQUFJLENBQUMsY0FBYyxDQUFDLElBQUksQ0FBQyxlQUFlLEVBQUUsQ0FBQyxDQUFBO0lBQy9DLENBQUM7SUFFRCxNQUFNO1FBQ0YsSUFBRywyQ0FBYSxDQUFDLFFBQVEsQ0FBQyxXQUFXLEVBQUU7WUFDbkMsSUFBSSxDQUFDLFVBQVUsQ0FBQyxTQUFTLENBQUMsUUFBUSxHQUFHLDJDQUFhLENBQUMsUUFBUSxDQUFDLFdBQVcsQ0FBQyxZQUFZLENBQUMsTUFBTSxDQUFDLFVBQVUsQ0FBQyxTQUFTLENBQUMsUUFBUSxDQUFBO1NBQzVIO0lBQ0wsQ0FBQztJQUVELENBQUUsZUFBZTtRQUNkLE9BQU0sSUFBSSxFQUFDO1lBQ1AsSUFBRywyQ0FBYSxDQUFDLFFBQVEsQ0FBQyxXQUFXLEVBQUM7Z0JBQ2xDLElBQUksQ0FBQyxVQUFVLENBQUMsU0FBUyxDQUFDLFNBQVMsQ0FBQywyQ0FBYSxDQUFDLFFBQVEsQ0FBQyxXQUFXLENBQUMsWUFBWSxDQUFDLFNBQVMsQ0FBQyxVQUFVLENBQUMsU0FBUyxDQUFDLENBQUE7Z0JBQ25ILElBQUksQ0FBQyxVQUFVLENBQUMsU0FBUyxDQUFDLGFBQWEsR0FBRyxJQUFJLHFCQUFPLENBQUMsQ0FBQyxFQUFDLENBQUMsRUFBQyxDQUFDLENBQUMsQ0FBQTthQUMvRDtZQUNELE1BQU0sSUFBSSw0QkFBYyxDQUFDLEdBQUcsQ0FBQyxDQUFDO1NBQ2pDO0lBQ0osQ0FBQztDQUVKO0FBdEJELHFDQXNCQyJ9","assetPath":"Assets/Scripts/Client/Controller/SRCameraController.ts","manifest":{"properties":[],"name":"SRCameraController","description":"","hasAnimatorMove":false},"isCompiled":true}'
+  typescriptHash: 86de94a8f985bc09be3d9a0524cf5dc5
+  onlyWriteTrigger: 0
