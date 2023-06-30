@@ -3,12 +3,12 @@ import NetworkBase from './NetworkBase';
 import {GameObject, LayerMask, Vector3} from "UnityEngine";
 import MultiplayManager from './MultiplayManager';
 import {Action$1} from "System";
-import { InterMyPlayerController, MyPlayerController } from '../MyPlayer/MyPalyerController';
-import IOC from '../IOC';
-import Manager, { InterManager } from '../Manager/Manager';
+
+import Manager from '../Manager/Manager';
 import { GAME_NAME } from '../Enums';
 import {ZepetoPlayers} from "ZEPETO.Character.Controller";
 import OtherZepetoCharacterController from '../Controller/OtherZepetoCharacterController';
+import MyPlayerController from '../MyPlayerController/MyPlayerController';
 
 export interface InterConnector {
     ManualSyncResHandlerFunc(room): void;
@@ -30,18 +30,18 @@ export default class Connector extends NetworkBase implements InterConnector{
     
     private init: boolean = false;
     
-    public myPlayerController: InterMyPlayerController;
-    public manager: InterManager;
+    
+   
 
     public ManualSyncResHandlerFunc(room): void {
         room.AddMessageHandler(
             'GameStartRes',
             (data: { isAdmin: boolean }) => {
                 if(data.isAdmin){
-                    this.manager.UI.ShowPopUpUI('GameSelectPopUpUI')
+                    Manager.UI.ShowPopUpUI('GameSelectPopUpUI')
                 }
                 else{
-                    this.manager.UI.ShowPopUpUI('NotGameRunningUI')
+                    Manager.UI.ShowPopUpUI('NotGameRunningUI')
                 }
             }
         );
@@ -49,11 +49,11 @@ export default class Connector extends NetworkBase implements InterConnector{
         room.AddMessageHandler(
             'GameJoinRes',
             (data: { player: string, nowRunningGame: string, team?: string }) => {
-                if(data.player === this.myPlayerController.MyPlayerData.MySessionId){
+                if(data.player === MyPlayerController.Data.MySessionId){
                     if (data.team) {
-                        this.manager.Game.GameJoin(data.nowRunningGame, data.team)
+                        Manager.Game.GameJoin(data.nowRunningGame, data.team)
                     } else {
-                        this.manager.Game.GameJoin(data.nowRunningGame)
+                        Manager.Game.GameJoin(data.nowRunningGame)
                     }
                 }
             }
@@ -71,13 +71,13 @@ export default class Connector extends NetworkBase implements InterConnector{
             (data: { sessionId: string, gameName: string }) => {
                 switch (data.gameName){
                     case GAME_NAME.Flag:
-                        this.manager.FlagGame.RuntheGame()
+                        Manager.FlagGame.RuntheGame()
                         break;
                     case GAME_NAME.Siege:
-                        this.manager.SiegeGame.RuntheGame()
+                        Manager.SiegeGame.RuntheGame()
                         break;
                     // case GAME_NAME.SoloFlag:
-                    //     this.manager.SoloFlagGame.RuntheGame(data.sessionId)
+                    //     Manager.SoloFlagGame.RuntheGame(data.sessionId)
                     //     break;
                 }
             }
@@ -86,22 +86,22 @@ export default class Connector extends NetworkBase implements InterConnector{
         room.AddMessageHandler(
             'UrgeGameStart',
             (data: { player: string }) => {
-                this.manager.UI.ShowPopUpUI("UrgeGameStartPopUpUI")
+                Manager.UI.ShowPopUpUI("UrgeGameStartPopUpUI")
             }
         );
 
         room.AddMessageHandler(
             'GameTime',
             (data: { time: number }) => {
-                this.manager.Game.GameTime = data.time;
+                Manager.Game.GameTime = data.time;
             }
         );
 
         room.AddMessageHandler(
             'EndGame',
             (data: { winningTeam: string, players: string[] }) => {
-                if(data.players.includes(this.myPlayerController.MyPlayerData.MySessionId)){
-                    this.manager.Game.GameEnd(data.winningTeam);
+                if(data.players.includes(MyPlayerController.Data.MySessionId)){
+                    Manager.Game.GameEnd(data.winningTeam);
                 }
             }
         );
@@ -109,8 +109,8 @@ export default class Connector extends NetworkBase implements InterConnector{
         room.AddMessageHandler(
             'SpineAngleRes',
             (data: { player: string, spineAngle: float }) => {
-                if(data.player === this.myPlayerController.MyPlayerData.MySessionId){
-                    this.myPlayerController.MyPlayerMovement.SetSpineAngle(data.spineAngle);
+                if(data.player === MyPlayerController.Data.MySessionId){
+                    MyPlayerController.Movement.SetSpineAngle(data.spineAngle);
                 }
                 else{
                     ZepetoPlayers.instance.GetPlayer(data.player).character.ZepetoAnimator.SetFloat("SpineAngle", data.spineAngle);
@@ -121,17 +121,17 @@ export default class Connector extends NetworkBase implements InterConnector{
         room.AddMessageHandler(
             'PlayerHitRes',
             (data: { player: string }) => {
-                if(data.player === this.myPlayerController.MyPlayerData.MySessionId){
-                    if(this.myPlayerController.MyPlayerMovement.HavingFlag){
-                        this.myPlayerController.MyPlayerMovement.LostFlag()
+                if(data.player === MyPlayerController.Data.MySessionId){
+                    if(MyPlayerController.Movement.HavingFlag){
+                        MyPlayerController.Movement.LostFlag()
                     }
-                    this.myPlayerController.MyPlayerMovement.GetHit();
+                    MyPlayerController.Movement.GetHit();
                 }
                 else{
                     let c = ZepetoPlayers.instance.GetPlayer(data.player).character;
                     let opc = c.gameObject.GetComponent<OtherZepetoCharacterController>()
                     if(opc.haveFlag){
-                        this.manager.FlagGame.FreeFlag();
+                        Manager.FlagGame.FreeFlag();
                     }
                     ZepetoPlayers.instance.GetPlayer(data.player).character.gameObject.layer = LayerMask.NameToLayer("hitted")
                 }
@@ -141,12 +141,12 @@ export default class Connector extends NetworkBase implements InterConnector{
         room.AddMessageHandler(
             'PlayerRespawn',
             (data: { player: string, team: string }) => {
-                if (data.player === this.myPlayerController.MyPlayerData.MySessionId) {
-                    this.myPlayerController.MyPlayerData.MyPlayer.character.gameObject.layer = LayerMask.NameToLayer("player")
-                    this.manager.UI.InGameUI.readyObj.SetActive(true);
+                if (data.player === MyPlayerController.Data.MySessionId) {
+                    MyPlayerController.Data.MyPlayer.character.gameObject.layer = LayerMask.NameToLayer("player")
+                    Manager.UI.InGameUI.readyObj.SetActive(true);
                 }
                 else{
-                    if(this.manager.Game.IsGamePlaying){
+                    if(Manager.Game.IsGamePlaying){
                         let c = ZepetoPlayers.instance.GetPlayer(data.player).character
                         c.gameObject.layer = LayerMask.NameToLayer("otherPlayer")
                     }
@@ -155,80 +155,11 @@ export default class Connector extends NetworkBase implements InterConnector{
         );
 
         room.AddMessageHandler(
-            'ShootStartRes',
-            (data: { player: string }) => {
-                if (data.player === this.myPlayerController.MyPlayerData.MySessionId) {
-                    this.myPlayerController.MyPlayerMovement.GunController.StartShoot();
-                }
-                else{
-                    ZepetoPlayers.instance.GetPlayer(data.player).character.gameObject.GetComponent<OtherZepetoCharacterController>().StartShoot()
-                }
-            }
-        );
-
-        room.AddMessageHandler(
-            'ShootRes',
-            (data: { player: string }) => {
-                if (data.player === this.myPlayerController.MyPlayerData.MySessionId) {
-                    this.myPlayerController.MyPlayerMovement.GunController.Eject();
-                }
-                else{
-                    ZepetoPlayers.instance.GetPlayer(data.player).character.gameObject.GetComponent<OtherZepetoCharacterController>().Shoot()
-                }
-            }
-        );
-
-        room.AddMessageHandler(
-            'StopShootRes',
-            (data: { player: string }) => {
-                if (data.player === this.myPlayerController.MyPlayerData.MySessionId) {
-                    this.myPlayerController.MyPlayerMovement.GunController.StopShoot()
-                }
-                else{
-                    ZepetoPlayers.instance.GetPlayer(data.player).character.gameObject.GetComponent<OtherZepetoCharacterController>().StopShoot()
-                }
-            }
-        );
-
-        room.AddMessageHandler(
-            'DirRes',
-            (data: { player: string, dir: string }) => {
-                if(this.manager.Game.IsGamePlaying){
-                    let s = data.dir.split("_")
-                    let dir = new Vector3(Number(s[0]), Number(s[1]), Number(s[2]))
-                    if (data.player === this.myPlayerController.MyPlayerData.MySessionId) {
-                        this.myPlayerController.MyPlayerData.ShootDir = dir
-                    } else {
-                        ZepetoPlayers.instance.GetPlayer(data.player).character.gameObject.GetComponent<OtherZepetoCharacterController>().ShootDir = dir
-                    }
-                }
-            }
-        );
-        room.AddMessageHandler(
-            'DirsRes',
-            (data: { player: string, dirs: string }) => {
-                if(this.manager.Game.IsGamePlaying){
-                    let ss = data.dirs.split(" ")
-                    let dirs: Vector3[] = []
-                    for (let i = 0; i < 8; i++) {
-                        let s = ss[i].split("_")
-                        dirs.push(new Vector3(Number(s[0]), Number(s[1]), Number(s[2])))
-                    }
-                    if (data.player === this.myPlayerController.MyPlayerData.MySessionId) {
-                        this.myPlayerController.MyPlayerData.ShotGunDirs = dirs
-                    } else {
-                        ZepetoPlayers.instance.GetPlayer(data.player).character.gameObject.GetComponent<OtherZepetoCharacterController>().ShotGunDirs = dirs
-                    }
-                }
-            }
-        );
-
-        room.AddMessageHandler(
             'EqiupGunRes',
             (data: { player: string, name: string }) => {
-                if (data.player !== this.myPlayerController.MyPlayerData.MySessionId) {
+                if (data.player !== MyPlayerController.Data.MySessionId) {
                     ZepetoPlayers.instance.GetPlayer(data.player).character.gameObject.GetComponent<OtherZepetoCharacterController>().EqiupGun(data.name)
-                    // this.manager.Game.OtherPlayerWeaponInfo.set(data.player, data.name);
+                    // Manager.Game.OtherPlayerWeaponInfo.set(data.player, data.name);
                     // let c = ZepetoPlayers.instance.GetPlayer(data.player).character
                 }
             }
@@ -237,8 +168,8 @@ export default class Connector extends NetworkBase implements InterConnector{
         room.AddMessageHandler(
             'SiegeRes',
             (data: { player: string, team: string }) => {
-                this.manager.SiegeGame.Siege(data.team);
-                if(data.player === this.myPlayerController.MyPlayerData.MySessionId){
+                Manager.SiegeGame.Siege(data.team);
+                if(data.player === MyPlayerController.Data.MySessionId){
                     //돈줘야댐
                 }
             }
@@ -247,17 +178,16 @@ export default class Connector extends NetworkBase implements InterConnector{
         room.AddMessageHandler(
             'GetFlagRes',
             (data: { player: string, team: string }) => {
-                this.manager.FlagGame.GetFlag(data.team, data.player);
+                Manager.FlagGame.GetFlag(data.team, data.player);
             }
         );
 
         room.AddMessageHandler(
             'StartInfoRes',
             (data: { lastEquipWeapon: string, playerWeapon: string[] }) => {
-                console.log("????")
-                console.log(data.lastEquipWeapon)
-                console.log(data.playerWeapon.length)
-                this.myPlayerController.MyPlayerData.EqiupGun(data.lastEquipWeapon)
+                Manager.Product.ProductSyncinstance.StartRefreshBalance();
+                Manager.Product.ProductSyncinstance.StartRefreshInventory();
+                MyPlayerController.Data.EqiupGun(data.lastEquipWeapon)
                 for(let i = 0; i < data.playerWeapon.length; i++){
                     let s: string[] = data.playerWeapon[i].split(" ");
                     ZepetoPlayers.instance.GetPlayer(s[0]).character.gameObject.GetComponent<OtherZepetoCharacterController>().EqiupGun(s[1])
@@ -268,15 +198,15 @@ export default class Connector extends NetworkBase implements InterConnector{
         room.AddMessageHandler(
             'SyncBalances',
             (data: { players: string}) => {
-                this.manager.Product.ProductSyncinstance.StartRefreshBalance()
+                Manager.Product.ProductSyncinstance.StartRefreshBalance()
             }
         );
 
         room.AddMessageHandler(
             'VoteEnd',
             (data: { voters: string[] }) => {
-                if(data.voters.includes(this.myPlayerController.MyPlayerData.MySessionId)){
-                    this.manager.Game.GameReady();
+                if(data.voters.includes(MyPlayerController.Data.MySessionId)){
+                    Manager.Game.GameReady();
                 }
             }
         );
@@ -284,7 +214,29 @@ export default class Connector extends NetworkBase implements InterConnector{
         room.AddMessageHandler(
             'Vote',
             (data: { player: string, userId: string, gameName: string }) => {
-                this.manager.UI.GameVoteUI.CreatUserImage(data.player, data.userId, data.gameName)
+                Manager.UI.GameVoteUI.CreatUserImage(data.player, data.userId, data.gameName)
+            }
+        );
+
+        room.AddMessageHandler(
+            'EjectRes',
+            (data: { player: string, dir: string, dirs: string[] }) => {
+                let dir: Vector3
+                let dirs: Vector3[]
+                let ss: string[];
+                for(let i = 0; i < data.dirs.length; i++){
+                    ss = data.dirs[i].split(" ")
+                    dir = new Vector3(Number(ss[0]), Number(ss[1]), Number(ss[2]))
+                    dirs.push(dir)
+                }
+                let s = data.dir.split(" ")
+                dir = new Vector3(Number(s[0]), Number(s[1]), Number(s[2]))
+                if(data.player === MyPlayerController.Data.MySessionId){
+                    MyPlayerController.Movement.GunController.Fire(dir, dirs)
+                }
+                else{
+                    ZepetoPlayers.instance.GetPlayer(data.player).character.gameObject.GetComponent<OtherZepetoCharacterController>().Fire(dir, dirs)
+                }
             }
         );
     }
@@ -301,8 +253,8 @@ export default class Connector extends NetworkBase implements InterConnector{
                         this._room = room;
                         this.ManualSyncResHandlerFunc(room);
                         this.GetServerTimeDifference();
-                        this.myPlayerController = IOC.Instance.getInstance<InterMyPlayerController>(MyPlayerController);
-                        this.manager = IOC.Instance.getInstance<InterManager>(Manager);
+                        
+                        
                         this.init = true;
                     }
                 }
@@ -325,8 +277,7 @@ export default class Connector extends NetworkBase implements InterConnector{
                             this._room = room;
                             this.ManualSyncResHandlerFunc(room);
                             this.GetServerTimeDifference();
-                            this.myPlayerController = IOC.Instance.getInstance<InterMyPlayerController>(MyPlayerController);
-                            this.manager = IOC.Instance.getInstance<InterManager>(Manager);
+                            
                             this.init = true;
                         }
                     }

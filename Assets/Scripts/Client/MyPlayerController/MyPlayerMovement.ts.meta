@@ -1,0 +1,89 @@
+fileFormatVersion: 2
+guid: 4db7949eadb659b4091fb367fb66e3e8
+importerOverride: ZEPETO.Script.Compiler:ZEPETO.Script:TypescriptAssetImporter
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: -1123457745, guid: 54cf806323ffe4418a4ce4cc63fe6b9d, type: 3}
+  isAssemblyDeclarations: 0
+  assembly: 
+  generateAllTypes: 1
+  types: []
+  generateWrapper: 0
+  overrideWrapperTypes: 0
+  wrapperTypes: []
+  WrapperFilters: []
+  wrapperOutputDirectory: Generated
+  compiledResult: '{"source":"\"use strict\";\r\nObject.defineProperty(exports, \"__esModule\",
+    { value: true });\r\nconst UnityEngine_1 = require(\"UnityEngine\");\r\nconst
+    ZEPETO_Character_Controller_1 = require(\"ZEPETO.Character.Controller\");\r\nconst
+    ZEPETO_Script_1 = require(\"ZEPETO.Script\");\r\nconst GunController_1 = require(\"../Controller/GunController\");\r\nconst
+    Manager_1 = require(\"../Manager/Manager\");\r\nconst Connector_1 = require(\"../Network/Connector\");\r\nconst
+    MyPlayerController_1 = require(\"./MyPlayerController\");\r\nconst MyPlayerAttachedController_1
+    = require(\"./MyPlayerAttachedController\");\r\nclass MyPlayerMovement extends
+    ZEPETO_Script_1.ZepetoScriptBehaviour {\r\n    constructor() {\r\n        super(...arguments);\r\n       
+    this.isInStartUI = true;\r\n        this.myPlayer = null;\r\n        this.myPlayerObject
+    = null;\r\n        this.lastSpineAngle = 0;\r\n        this.isMoving = false;\r\n       
+    this.isJumping = false;\r\n        this.haveFlag = false;\r\n    }\r\n    Init()
+    {\r\n        //this.serviceManager.EnglishGameService.SubscribeState(this);\r\n       
+    //this.StartCoroutine(this.Spin())\r\n    }\r\n    // * Spin(){\r\n    //    
+    while(true){\r\n    //         console.log(\"????\")\r\n    //         ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.character.transform.Rotate(new
+    Vector3(0,1,0))\r\n    //         yield new WaitForSeconds(0.2);\r\n    //    
+    }\r\n    // }\r\n    SetMyPlayer(player) {\r\n        this.myPlayer = player;\r\n       
+    this.myPlayerObject = this.myPlayer.character.gameObject;\r\n        this.myAnimator
+    = player.character.ZepetoAnimator;\r\n    }\r\n    Teleport(pos, rot) {\r\n       
+    this.myPlayer.character.Teleport(pos, rot);\r\n    }\r\n    Rotate() {\r\n       
+    if (!Manager_1.default.Game.IsGamePlaying) {\r\n            if (this.isInStartUI
+    && this.myPlayerObject) {\r\n                this.myPlayerObject.transform.Rotate(UnityEngine_1.Vector3.op_Multiply(UnityEngine_1.Vector3.op_Multiply(UnityEngine_1.Vector3.up,
+    UnityEngine_1.Time.deltaTime), 30));\r\n            }\r\n        }\r\n    }\r\n   
+    LookDir() {\r\n        if (Manager_1.default.Game.IsGamePlaying) {\r\n           
+    let q = this.myPlayer.character.gameObject.transform.rotation.eulerAngles;\r\n           
+    let cq = ZEPETO_Character_Controller_1.ZepetoPlayers.instance.LocalPlayer.zepetoCamera.camera.gameObject.transform.rotation.eulerAngles;\r\n           
+    this.myPlayer.character.gameObject.transform.rotation = UnityEngine_1.Quaternion.Euler(new
+    UnityEngine_1.Vector3(q.x, cq.y, q.z));\r\n            // this.myPlayer.character.MoveContinuously(cq);\r\n           
+    let sa = 0;\r\n            if (cq.x === 0) {\r\n                sa = 0;\r\n           
+    }\r\n            else {\r\n                if (cq.x > 300) {\r\n                   
+    sa = (360 - cq.x) / 36;\r\n                }\r\n                else {\r\n                   
+    sa = cq.x / -45;\r\n                }\r\n            }\r\n            let val
+    = this.lastSpineAngle - sa;\r\n            if (Math.abs(val) > 0.001) {\r\n               
+    Connector_1.default.Instance.ReqToServer(\"SpineAngle\", { spineAngle: sa });\r\n               
+    this.lastSpineAngle = sa;\r\n            }\r\n        }\r\n    }\r\n    get HavingFlag()
+    {\r\n        return this.haveFlag;\r\n    }\r\n    get GunController() {\r\n       
+    return this.gunController;\r\n    }\r\n    set GunController(value) {\r\n       
+    this.gunController = value;\r\n    }\r\n    get MyAnimator() {\r\n        return
+    this.myAnimator;\r\n    }\r\n    get MyPlayerAttachedController() {\r\n       
+    return this.myPlayerAttachedController;\r\n    }\r\n    set MyPlayerAttachedController(value)
+    {\r\n        this.myPlayerAttachedController = value;\r\n    }\r\n    get IsMoving()
+    {\r\n        return this.isMoving;\r\n    }\r\n    set IsMoving(value) {\r\n       
+    this.isMoving = value;\r\n    }\r\n    get IsJumping() {\r\n        return this.isJumping;\r\n   
+    }\r\n    set IsJumping(value) {\r\n        this.isJumping = value;\r\n    }\r\n   
+    SetSpineAngle(spineAngle) {\r\n        this.myAnimator.SetFloat(\"SpineAngle\",
+    spineAngle);\r\n    }\r\n    SetAnimParam(name, num) {\r\n        if (!this.isJumping)
+    {\r\n            // if (this.myPlayer.character.characterController.isGrounded)
+    {\r\n            //     if (this.myAnimator.GetInteger(name) !== num) {\r\n           
+    //         this.myAnimator.SetInteger(name, num)\r\n            //     }\r\n           
+    // }\r\n            if (this.myAnimator.GetInteger(name) !== num) {\r\n               
+    this.myAnimator.SetInteger(name, num);\r\n            }\r\n        }\r\n    }\r\n   
+    Shoot() {\r\n        this.GunController.Shoot();\r\n    }\r\n    Move(x, y, amount)
+    {\r\n        let speed = (amount / 27) / 5;\r\n        this.myAnimator.SetFloat(\"Acceleration\",
+    amount / 27);\r\n        let dir = new UnityEngine_1.Vector3(y, 0, x).normalized;\r\n       
+    let p = this.myPlayer.character.gameObject.transform.position;\r\n        dir
+    = this.myPlayer.character.gameObject.transform.TransformDirection(dir);\r\n       
+    this.myPlayer.character.characterController.enabled = false;\r\n        this.myPlayer.character.gameObject.transform.position
+    = new UnityEngine_1.Vector3(p.x + (dir.x * speed), p.y, p.z + (dir.z * speed));\r\n       
+    this.myPlayer.character.characterController.enabled = true;\r\n    }\r\n    Jump()
+    {\r\n        this.isJumping = true;\r\n    }\r\n    GetHit() {\r\n        this.myPlayer.character.gameObject.layer
+    = UnityEngine_1.LayerMask.NameToLayer(\"hitted\");\r\n        Manager_1.default.UI.InGameUI.InGameWeaponUI.SetActive(true);\r\n   
+    }\r\n    Respawn() {\r\n        if (MyPlayerController_1.default.Data.WaitingWeeapon
+    !== '''') {\r\n            MyPlayerController_1.default.Data.EqiupGun(MyPlayerController_1.default.Data.WaitingWeeapon);\r\n           
+    MyPlayerController_1.default.Data.WaitingWeeapon = \"\";\r\n        }\r\n   
+    }\r\n    TakeFlag(flagObj) {\r\n        this.haveFlag = true;\r\n        flagObj.transform.SetParent(this.myPlayer.character.gameObject.transform);\r\n       
+    flagObj.transform.localPosition = new UnityEngine_1.Vector3(0, 1.5, 0);\r\n   
+    }\r\n    LostFlag() {\r\n        this.haveFlag = false;\r\n        Manager_1.default.FlagGame.FreeFlag();\r\n   
+    }\r\n}\r\nexports.default = MyPlayerMovement;\r\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiTXlQbGF5ZXJNb3ZlbWVudC5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIk15UGxheWVyTW92ZW1lbnQudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFBQSw2Q0FXcUI7QUFDckIsNkVBQXdFO0FBQ3hFLGlEQUFxRDtBQUNyRCwrREFBd0Q7QUFDeEQsZ0RBQTBDO0FBQzFDLG9EQUE2QztBQUM3Qyw2REFBc0Q7QUFDdEQsNkVBQXNFO0FBRXRFLE1BQXFCLGdCQUFpQixTQUFRLHFDQUFxQjtJQUFuRTs7UUFDWSxnQkFBVyxHQUFZLElBQUksQ0FBQztRQUM1QixhQUFRLEdBQWlCLElBQUksQ0FBQztRQUM5QixtQkFBYyxHQUFlLElBQUksQ0FBQztRQUVsQyxtQkFBYyxHQUFVLENBQUMsQ0FBQztRQU0xQixhQUFRLEdBQVksS0FBSyxDQUFDO1FBRTFCLGNBQVMsR0FBWSxLQUFLLENBQUM7UUFFM0IsYUFBUSxHQUFZLEtBQUssQ0FBQztJQWdLdEMsQ0FBQztJQTVKRyxJQUFJO1FBRUEsOERBQThEO1FBQzlELGtDQUFrQztJQUN0QyxDQUFDO0lBRUQsWUFBWTtJQUNaLG1CQUFtQjtJQUNuQiw4QkFBOEI7SUFDOUIseUdBQXlHO0lBQ3pHLHlDQUF5QztJQUN6QyxRQUFRO0lBQ1IsSUFBSTtJQUVKLFdBQVcsQ0FBQyxNQUFvQjtRQUM1QixJQUFJLENBQUMsUUFBUSxHQUFHLE1BQU0sQ0FBQztRQUN2QixJQUFJLENBQUMsY0FBYyxHQUFHLElBQUksQ0FBQyxRQUFRLENBQUMsU0FBUyxDQUFDLFVBQVUsQ0FBQztRQUN6RCxJQUFJLENBQUMsVUFBVSxHQUFHLE1BQU0sQ0FBQyxTQUFTLENBQUMsY0FBYyxDQUFDO0lBQ3RELENBQUM7SUFHRCxRQUFRLENBQUMsR0FBWSxFQUFFLEdBQWU7UUFDbEMsSUFBSSxDQUFDLFFBQVEsQ0FBQyxTQUFTLENBQUMsUUFBUSxDQUFDLEdBQUcsRUFBRSxHQUFHLENBQUMsQ0FBQztJQUMvQyxDQUFDO0lBRU0sTUFBTTtRQUNU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","assetPath":"Assets/Scripts/Client/MyPlayerController/MyPlayerMovement.ts","manifest":{"properties":[],"name":"MyPlayerMovement","description":"","hasAnimatorMove":false},"isCompiled":true}'
+  typescriptHash: fe3ca88e6423e5f500134511538f9ad1
+  onlyWriteTrigger: 0

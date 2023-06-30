@@ -22591,8 +22591,6 @@ MonoBehaviour:
   applyRootMotion: 0
   script:
     keys:
-    - manager
-    - myPlayerController
     - leaveAlertObj
     - secText
     - minText
@@ -22611,8 +22609,6 @@ MonoBehaviour:
     - readyBtn
     - readyObj
     unityValues:
-    - {fileID: 0}
-    - {fileID: 0}
     - {fileID: 51680755773942698}
     - {fileID: 4840062470638595656}
     - {fileID: 4002928444645579120}
@@ -22631,8 +22627,6 @@ MonoBehaviour:
     - {fileID: 6723775318070631900}
     - {fileID: 6723775318070631715}
     values:
-    - 
-    - 
     - 
     - 
     - 
@@ -62638,7 +62632,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 905, y: 596}
+  m_AnchoredPosition: {x: 1085.2, y: 596}
   m_SizeDelta: {x: 72, y: 71.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7890291235662360249
@@ -62758,7 +62752,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1135, y: 606}
+  m_AnchoredPosition: {x: 905, y: 600}
   m_SizeDelta: {x: 72, y: 62}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7890291237258724025

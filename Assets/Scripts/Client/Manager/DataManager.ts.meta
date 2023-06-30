@@ -18,13 +18,12 @@ ScriptedImporter:
   wrapperTypes: []
   WrapperFilters: []
   wrapperOutputDirectory: Generated
-  compiledResult: "{\"source\":\"\\\"use strict\\\";\\r\\n// import IOC from '../../Common/IOC';\\r\\n//
-    import {Manager} from '../Manager';\\r\\nObject.defineProperty(exports, \\\"__esModule\\\",
-    { value: true });\\r\\nconst IOC_1 = require(\\\"../IOC\\\");\\r\\nconst Manager_1
-    = require(\\\"./Manager\\\");\\r\\nclass DataManager {\\r\\n    constructor()
-    {\\r\\n        // property\\r\\n        this.dataDictionary = {};\\r\\n    }\\r\\n   
-    Translator(targetLanguage) {\\r\\n        throw new Error('Method not implemented.');\\r\\n   
-    }\\r\\n    // method\\r\\n    Init() {\\r\\n        let Weapon = IOC_1.default.Instance.getInstance(Manager_1.default).Resource.LoadData('Weapon');\\r\\n       
+  compiledResult: "{\"source\":\"\\\"use strict\\\";\\r\\nObject.defineProperty(exports,
+    \\\"__esModule\\\", { value: true });\\r\\nconst Manager_1 = require(\\\"./Manager\\\");\\r\\nclass
+    DataManager {\\r\\n    constructor() {\\r\\n        // property\\r\\n       
+    this.dataDictionary = {};\\r\\n    }\\r\\n    Translator(targetLanguage) {\\r\\n       
+    throw new Error('Method not implemented.');\\r\\n    }\\r\\n    // method\\r\\n   
+    Init() {\\r\\n        let Weapon = Manager_1.default.Resource.LoadData('Weapon');\\r\\n       
     this.dataDictionary = {\\r\\n            Weapon\\r\\n        };\\r\\n    }\\r\\n   
     GetValueByKeys(keys) {\\r\\n        let value = this.dataDictionary;\\r\\n       
     keys.split('/').forEach((key) => {\\r\\n            if (key in value) {\\r\\n               
@@ -32,6 +31,6 @@ ScriptedImporter:
     console.log('[Data Manager] \uC798\uBABB\uB41C \uD0A4 \uACBD\uB85C \uC785\uB2C8\uB2E4.',
     keys);\\r\\n                return;\\r\\n            }\\r\\n        });\\r\\n       
     return value;\\r\\n    }\\r\\n}\\r\\nexports.default = DataManager;\\r\\n//#
-    sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiRGF0YU1hbmFnZXIuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJEYXRhTWFuYWdlci50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiO0FBQUEsc0NBQXNDO0FBQ3RDLHNDQUFzQzs7QUFFdEMsZ0NBQXlCO0FBQ3pCLHVDQUFrRDtBQVVsRCxNQUFNLFdBQVc7SUFBakI7UUFNSSxXQUFXO1FBQ0gsbUJBQWMsR0FBRyxFQUFFLENBQUM7SUF5QmhDLENBQUM7SUE5QkcsVUFBVSxDQUFDLGNBQXNCO1FBQzdCLE1BQU0sSUFBSSxLQUFLLENBQUMseUJBQXlCLENBQUMsQ0FBQztJQUMvQyxDQUFDO0lBS0QsU0FBUztJQUVULElBQUk7UUFDQSxJQUFJLE1BQU0sR0FBRyxhQUFHLENBQUMsUUFBUSxDQUFDLFdBQVcsQ0FBZSxpQkFBTyxDQUFDLENBQUMsUUFBUSxDQUFDLFFBQVEsQ0FBQyxRQUFRLENBQUMsQ0FBQztRQUV6RixJQUFJLENBQUMsY0FBYyxHQUFHO1lBQ2xCLE1BQU07U0FDVCxDQUFDO0lBQ04sQ0FBQztJQUVNLGNBQWMsQ0FBQyxJQUFZO1FBQzlCLElBQUksS0FBSyxHQUFHLElBQUksQ0FBQyxjQUFjLENBQUM7UUFDaEMsSUFBSSxDQUFDLEtBQUssQ0FBQyxHQUFHLENBQUMsQ0FBQyxPQUFPLENBQUMsQ0FBQyxHQUFHLEVBQUUsRUFBRTtZQUM1QixJQUFJLEdBQUcsSUFBSSxLQUFLLEVBQUU7Z0JBQ2QsS0FBSyxHQUFHLEtBQUssQ0FBQyxHQUFHLENBQUMsQ0FBQzthQUN0QjtpQkFBTTtnQkFDSCxPQUFPLENBQUMsR0FBRyxDQUFDLDhCQUE4QixFQUFFLElBQUksQ0FBQyxDQUFDO2dCQUNsRCxPQUFPO2FBQ1Y7UUFDTCxDQUFDLENBQUMsQ0FBQztRQUVILE9BQU8sS0FBSyxDQUFDO0lBQ2pCLENBQUM7Q0FDSjtBQUVELGtCQUFlLFdBQVcsQ0FBQyJ9\",\"assetPath\":\"Assets/Scripts/Client/Manager/DataManager.ts\",\"manifest\":{\"properties\":[],\"name\":\"DataManager\",\"description\":\"\",\"hasAnimatorMove\":false},\"isCompiled\":true}"
-  typescriptHash: 2bd2a23d923b964721ab9ebc8ca578cc
+    sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiRGF0YU1hbmFnZXIuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJEYXRhTWFuYWdlci50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUFBLHVDQUFnQztBQUVoQyxNQUFxQixXQUFXO0lBQWhDO1FBTUksV0FBVztRQUNILG1CQUFjLEdBQUcsRUFBRSxDQUFDO0lBeUJoQyxDQUFDO0lBOUJHLFVBQVUsQ0FBQyxjQUFzQjtRQUM3QixNQUFNLElBQUksS0FBSyxDQUFDLHlCQUF5QixDQUFDLENBQUM7SUFDL0MsQ0FBQztJQUtELFNBQVM7SUFFVCxJQUFJO1FBQ0EsSUFBSSxNQUFNLEdBQUcsaUJBQU8sQ0FBQyxRQUFRLENBQUMsUUFBUSxDQUFDLFFBQVEsQ0FBQyxDQUFDO1FBRWpELElBQUksQ0FBQyxjQUFjLEdBQUc7WUFDbEIsTUFBTTtTQUNULENBQUM7SUFDTixDQUFDO0lBRU0sY0FBYyxDQUFDLElBQVk7UUFDOUIsSUFBSSxLQUFLLEdBQUcsSUFBSSxDQUFDLGNBQWMsQ0FBQztRQUNoQyxJQUFJLENBQUMsS0FBSyxDQUFDLEdBQUcsQ0FBQyxDQUFDLE9BQU8sQ0FBQyxDQUFDLEdBQUcsRUFBRSxFQUFFO1lBQzVCLElBQUksR0FBRyxJQUFJLEtBQUssRUFBRTtnQkFDZCxLQUFLLEdBQUcsS0FBSyxDQUFDLEdBQUcsQ0FBQyxDQUFDO2FBQ3RCO2lCQUFNO2dCQUNILE9BQU8sQ0FBQyxHQUFHLENBQUMsOEJBQThCLEVBQUUsSUFBSSxDQUFDLENBQUM7Z0JBQ2xELE9BQU87YUFDVjtRQUNMLENBQUMsQ0FBQyxDQUFDO1FBRUgsT0FBTyxLQUFLLENBQUM7SUFDakIsQ0FBQztDQUNKO0FBaENELDhCQWdDQyJ9\",\"assetPath\":\"Assets/Scripts/Client/Manager/DataManager.ts\",\"manifest\":{\"properties\":[],\"name\":\"DataManager\",\"description\":\"\",\"hasAnimatorMove\":false},\"isCompiled\":true}"
+  typescriptHash: 21d91e56b6f1f441521bacc40b0a970f
   onlyWriteTrigger: 0

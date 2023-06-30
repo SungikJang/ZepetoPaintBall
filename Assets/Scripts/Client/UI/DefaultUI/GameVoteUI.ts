@@ -2,7 +2,6 @@ import {Button, Image} from 'UnityEngine.UI';
 import {GameObject, Texture} from 'UnityEngine';
 import { ZepetoScriptBehaviour } from 'ZEPETO.Script'
 import Connector from '../../Network/Connector';
-import IOC from '../../IOC';
 import Manager from '../../Manager/Manager';
 import {TMP_Text} from "TMPro";
 import {ZepetoWorldHelper} from "ZEPETO.World";
@@ -19,8 +18,8 @@ export default class GameVoteUI extends ZepetoScriptBehaviour {
     public zemtext: TMP_Text;
     
     Start() {
-        IOC.Instance.getInstance(Manager).UI.GameVoteUI = this;
-        IOC.Instance.getInstance(Manager).Product.ProductSyncinstance.StartRefreshBalance();
+        Manager.UI.GameVoteUI = this;
+        Manager.Product.ProductSyncinstance.StartRefreshBalance();
         this.FlagBtn.onClick.AddListener(() => {
             if(this.SeletedGame !== "Flag"){
                 Connector.Instance.ReqToServer("GameVote", {gameName: "Flag"})
@@ -74,7 +73,7 @@ export default class GameVoteUI extends ZepetoScriptBehaviour {
         }
         mask.name = "Mask" + player;
         ZepetoWorldHelper.GetProfileTexture(userId, (texture: Texture) => {
-            mask.transform.GetChild(0).gameObject.GetComponent<Image>().sprite = IOC.Instance.getInstance(Manager).UI.GetSprite(texture);
+            mask.transform.GetChild(0).gameObject.GetComponent<Image>().sprite = Manager.UI.GetSprite(texture);
         }, (error) => {
             console.log(error);
         });

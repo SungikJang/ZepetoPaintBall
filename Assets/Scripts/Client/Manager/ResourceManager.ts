@@ -1,21 +1,7 @@
 import {GameObject, Resources, Sprite, Texture2D, Rect, Vector2, TextAsset, Vector3, Quaternion} from 'UnityEngine';
 import * as UnityEngine from 'UnityEngine';
 
-export interface InterResourceManager {
-    Init(): void
-
-    Instantiate(path: string, position?: Vector3, rotation?: Quaternion): GameObject
-
-    LoadJson(path: string): any
-
-    LoadSprite(path: string): Sprite
-
-    Destroy(go: GameObject, t?: number): void
-
-    LoadData(path: string): any
-}
-
-export default class ResourceManager implements InterResourceManager {
+export default class ResourceManager {
     private rootPrefab: GameObject = null;
 
     public Init(): void {

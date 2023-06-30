@@ -1834,57 +1834,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   applyRootMotion: 0
   script:
-    keys:
-    - padObject
-    - jumpObject
-    - jumpBtn
-    - padAnim
-    - manager
-    - padBackG
-    - pad
-    - myPlayerController
-    - reloadBtn
-    - reloadObj
-    - zoomBtn
-    - zoomObj
-    - SRUI
-    - cross
-    - bulletcnt
-    - bullets
-    unityValues:
-    - {fileID: 64529607102942355}
-    - {fileID: 8523051460540605944}
-    - {fileID: 8523051460540605948}
-    - {fileID: 4608068015501894089}
-    - {fileID: 0}
-    - {fileID: 2260462337582426523}
-    - {fileID: 5141199651614888882}
-    - {fileID: 0}
-    - {fileID: 4357047156068661493}
-    - {fileID: 4369799492470606783}
-    - {fileID: 3605013684140289894}
-    - {fileID: 8608088659307591908}
-    - {fileID: 6548055665382858478}
-    - {fileID: 7950856094664211361}
-    - {fileID: 3352898056341206}
-    - {fileID: 108411277043912722}
-    values:
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
+    keys: []
+    unityValues: []
+    values: []
     unityArrayValues: []
     arrayValues: []
     script: {fileID: 4458252877524076426, guid: 1b3963533119268459e80c3f3ac6dcf9, type: 3}

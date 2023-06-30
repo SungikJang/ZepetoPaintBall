@@ -2,63 +2,92 @@ import {Animator, GameObject, Input, Time, Vector3, WaitForSeconds} from 'UnityE
 import { Button,Image } from 'UnityEngine.UI';
 import { ZepetoScriptBehaviour } from 'ZEPETO.Script'
 import { WEAPON_TYPE } from '../../Enums';
-import IOC from '../../IOC';
-import Manager, { InterManager } from '../../Manager/Manager';
-import { InterMyPlayerController, MyPlayerController } from '../../MyPlayer/MyPalyerController';
+import Manager from '../../Manager/Manager';
 import Connector from "../../Network/Connector"
 import {TMP_Text} from "TMPro";
 import {ZepetoPlayers} from "ZEPETO.Character.Controller";
+import MyPlayerController from '../../MyPlayerController/MyPlayerController'
 
-export interface InterControllerUI {
-    Start(): void
-    
-    SetPad(OnOff: boolean): void
-    
-    SetJump(OnOff: boolean): void
-}
+export default class ControllerUI extends ZepetoScriptBehaviour {
+    private pad: GameObject;
+    private padBackG: GameObject;
+    private padAnim: Animator;
+    private padObject: GameObject;
+    private jumpObject: GameObject;
+    private jumpBtn: Button;  
+    private reloadBtn: Button;
+    private reloadObj: GameObject
+    private zoomBtn: Button;
+    private zoomObj: GameObject;
+    private sRUI: GameObject;
+    private cross: GameObject;
 
-export default class ControllerUI extends ZepetoScriptBehaviour implements InterControllerUI {
-    public pad: GameObject;
-    public padBackG: GameObject;
-    public padAnim: Animator;
-    public padObject: GameObject;
-    public jumpObject: GameObject;
-    public jumpBtn: Button;
-    public reloadBtn: Button;
-    public reloadObj: GameObject
-    public zoomBtn: Button;
-    public zoomObj: GameObject;
-    public SRUI: GameObject;
-    public cross: GameObject;
-
-    public bulletcnt: TMP_Text;
-    public bullets: TMP_Text;
+    private bulletcnt: TMP_Text;
+    private bullets: TMP_Text;
     
     private MousePressed: boolean = false;
     private PressedTime: float;
-
-    public manager: InterManager;
-    public myPlayerController: InterMyPlayerController;
-
+    
     private instanceSet: boolean = false;
 
     private padReady: boolean = false;
+    
+    get ZoomObj(){
+        return this.zoomObj
+    }
+
+    get ReloadObj(){
+        return this.reloadObj
+    }
+
+    get Cross(){
+        return this.reloadObj
+    }
+
+    get SRUI(){
+        return this.sRUI
+    }
 
     Start() {
-        this.myPlayerController = IOC.Instance.getInstance<InterMyPlayerController>(MyPlayerController);
-        this.manager = IOC.Instance.getInstance<InterManager>(Manager);
-        this.StartCoroutine(this.GetInstance());
         this.StartCoroutine(this.GetPad());
-        this.StartCoroutine(this.GetBtn());
-        this.manager.UI.ControllerUI = this;
+        this.pad = this.gameObject.transform.GetChild(0).GetChild(2).GetChild(2).gameObject;
+        this.padBackG = this.gameObject.transform.GetChild(0).GetChild(2).GetChild(1).gameObject;
+        this.padAnim = this.pad.GetComponent<Animator>();
+        this.padObject = this.gameObject.transform.GetChild(0).GetChild(2).gameObject;
+        this.jumpObject = this.gameObject.transform.GetChild(0).GetChild(3).gameObject;
+        this.jumpBtn = this.jumpObject.GetComponent<Button>();
+        this.reloadBtn = this.gameObject.transform.GetChild(0).GetChild(4).gameObject.GetComponent<Button>();
+        this.reloadObj = this.gameObject.transform.GetChild(0).GetChild(4).GetChild(3).gameObject;
+        this.zoomBtn = this.gameObject.transform.GetChild(0).GetChild(5).gameObject.GetComponent<Button>();
+        this.zoomObj = this.gameObject.transform.GetChild(0).GetChild(5).gameObject;
+        this.sRUI = this.gameObject.transform.GetChild(0).GetChild(0).gameObject;
+        this.cross = this.gameObject.transform.GetChild(1).gameObject;
+        this.bulletcnt = this.gameObject.transform.GetChild(0).GetChild(4).GetChild(0).GetComponent<TMP_Text>();
+        this.bullets = this.gameObject.transform.GetChild(0).GetChild(4).GetChild(2).GetComponent<TMP_Text>();
+
+        this.zoomBtn.onClick.AddListener(()=>{
+            Manager.Game.GunController.Zoom();
+        });
+        this.reloadBtn.onClick.AddListener(()=>{
+            Manager.Game.GunController.StartReload();
+        });
+        this.jumpBtn.onClick.AddListener(()=>{
+            MyPlayerController.Movement.Jump();
+        });
+
         this.padObject.SetActive(false);
         this.jumpObject.SetActive(false);
-        this.manager.Game.ControllerUI = this
     }
 
     Update(){
         this.MouseInputController();
         this.PadInputController();
+        if(Manager.Game.ControllerUI !== this){
+            Manager.Game.ControllerUI = this
+        }
+        if(Manager.UI.ControllerUI !== this){
+            Manager.UI.ControllerUI = this
+        }
     }
 
     SetPad(OnOff: boolean){
@@ -71,20 +100,15 @@ export default class ControllerUI extends ZepetoScriptBehaviour implements Inter
     
     MouseInputController(){
         if (Input.GetMouseButton(0)) {
-            if(Input.mousePosition.x > this.manager.UI.ScreenCenter.x){
+            if(Input.mousePosition.x > Manager.UI.ScreenCenter.x){
                 if (!this.MousePressed) {
                     // 터치하는 순간
                     this.MousePressed = true;
                     this.PressedTime = Time.time;
-                    if (this.manager.Game.IsGamePlaying) {
-                        this.Fire();
-                        this.myPlayerController.MyPlayerMovement.Shoot();
+                    if (Manager.Game.IsGamePlaying) {
+                        MyPlayerController.Movement.Shoot();
                     }
                 } else {
-                    // 터치하는 중
-                    if (this.manager.Game.IsGamePlaying) {
-                        this.Fire();
-                    }
                 }
             }
         }
@@ -97,12 +121,9 @@ export default class ControllerUI extends ZepetoScriptBehaviour implements Inter
                 }
                 this.MousePressed = false;
                 this.PressedTime = 0;
-                if(this.myPlayerController){
-                    if(this.myPlayerController.MyPlayerMovement.OnFire) {
-                        this.myPlayerController.MyPlayerMovement.OnFire = false;
-                        if (this.myPlayerController.MyPlayerData.MyWeaponType !== WEAPON_TYPE.Sniper) {
-                            Connector.Instance.ReqToServer("StopShootReq")
-                        }
+                if(MyPlayerController){
+                    if (MyPlayerController.Data.MyWeaponType !== WEAPON_TYPE.Sniper) {
+                        MyPlayerController.Movement.GunController.StopShoot()
                     }
                 }
             }
@@ -113,49 +134,28 @@ export default class ControllerUI extends ZepetoScriptBehaviour implements Inter
         if(this.padReady){
             if (this.padAnim.GetCurrentAnimatorStateInfo(0).IsName("touchpad_handle_on")) {
                 let v: Vector3 = this.pad.transform.position - this.padBackG.transform.position;
-                // if(!this.myPlayerController.MyPlayerMovement.IsMoving){
-                //     this.myPlayerController.MyPlayerMovement.IsMoving = true;
-                //     this.myPlayerController.MyPlayerMovement.SetAnimParam("State", 102);
+                // if(!MyPlayerController.Movement.IsMoving){
+                //     MyPlayerController.Movement.IsMoving = true;
+                //     MyPlayerController.Movement.SetAnimParam("State", 102);
                 // }
-                this.myPlayerController.MyPlayerMovement.SetAnimParam("State", 102);
+                MyPlayerController.Movement.SetAnimParam("State", 102);
                 if (v.magnitude > 12) {
-                    this.myPlayerController.MyPlayerMovement.SetAnimParam("MoveState", 1);
+                    MyPlayerController.Movement.SetAnimParam("MoveState", 1);
                 } else {
-                    this.myPlayerController.MyPlayerMovement.SetAnimParam("MoveState", 0);
+                    MyPlayerController.Movement.SetAnimParam("MoveState", 0);
                 }
                 if (v.magnitude > 27) {
-                    this.myPlayerController.MyPlayerMovement.Move(v.normalized.y, v.normalized.x, 27)
+                    MyPlayerController.Movement.Move(v.normalized.y, v.normalized.x, 27)
                 } else {
-                    this.myPlayerController.MyPlayerMovement.Move(v.normalized.y, v.normalized.x, v.magnitude)
+                    MyPlayerController.Movement.Move(v.normalized.y, v.normalized.x, v.magnitude)
                 }
             } else {
-                // if(this.myPlayerController.MyPlayerMovement.IsMoving){
-                //     this.myPlayerController.MyPlayerMovement.IsMoving = false;
-                //     this.myPlayerController.MyPlayerMovement.SetAnimParam("State", 1);
+                // if(MyPlayerController.Movement.IsMoving){
+                //     MyPlayerController.Movement.IsMoving = false;
+                //     MyPlayerController.Movement.SetAnimParam("State", 1);
                 // }
-                this.myPlayerController.MyPlayerMovement.SetAnimParam("State", 1);
+                MyPlayerController.Movement.SetAnimParam("State", 1);
             }
-        }
-    }
-    
-    Fire(){
-        if(this.myPlayerController){
-            if(!this.myPlayerController.MyPlayerMovement.OnFire){
-                //Connector.Instance.ReqToServer("FireReq", {fire: true}) 
-                this.myPlayerController.MyPlayerMovement.OnFire = true;
-            }
-        }
-    }
-
-    * GetInstance(){
-        while(!this.instanceSet){
-            this.myPlayerController = IOC.Instance.getInstance<InterMyPlayerController>(MyPlayerController);
-            this.manager = IOC.Instance.getInstance<InterManager>(Manager);
-            if(this.manager && this.myPlayerController){
-                this.instanceSet = true;
-                return;
-            }
-            yield new WaitForSeconds(0.1);
         }
     }
     
@@ -169,27 +169,9 @@ export default class ControllerUI extends ZepetoScriptBehaviour implements Inter
         }
     }
 
-    * GetBtn(){
-        while(true){
-            if(this.reloadBtn && this.reloadObj && this.zoomBtn && this.jumpBtn){
-                this.zoomBtn.onClick.AddListener(()=>{
-                    this.manager.Game.GunController.Zoom();
-                });
-                this.reloadBtn.onClick.AddListener(()=>{
-                    this.manager.Game.GunController.StartReload();
-                });
-                this.jumpBtn.onClick.AddListener(()=>{
-                    this.myPlayerController.MyPlayerMovement.Jump();
-                });
-                return;
-            }
-            yield new WaitForSeconds(0.1);
-        }
-    }
-
     UpdateBullet(){
-        this.bullets.text = this.manager.Game.GunController.Bullets.toString();
-        let b = this.manager.Game.GunController.Bullets - this.manager.Game.GunController.BulletCnt;
+        this.bullets.text = Manager.Game.GunController.Bullets.toString();
+        let b = Manager.Game.GunController.Bullets - Manager.Game.GunController.BulletCnt;
         this.bulletcnt.text = b.toString();
     }
 }

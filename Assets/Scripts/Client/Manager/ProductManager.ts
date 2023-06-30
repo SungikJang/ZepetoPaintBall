@@ -7,48 +7,7 @@ import ProductSync from '../Network/ProductSync';
 import Connector from '../Network/Connector';
 import { Currency } from '../Enums';
 
-
-export interface InterProductManager {
-    Init()
-    
-    get ItemsCache()
-
-    set ItemsCache(value: ProductRecord[])
-
-    get ItemsPackageCache()
-
-    set ItemsPackageCache(value: ProductRecord[])
-
-    get CurrencyPackageCache()
-
-    set CurrencyPackageCache(value: ProductRecord[])
-
-    get ProductSyncinstance()
-
-    set ProductSyncinstance(value: ProductSync)
-
-    get ProductCache()
-
-    set ProductCache(value: Map<string, ProductRecord>)
-
-    GainBalance(currencyId: string, quantity: number)
-
-    UseBalance(currencyId: string, quantity: number)
-
-    PurchaseItem(ProductId: string)
-
-    PurchaseItemsPackage(PackageId: string)
-    
-    PurchaseCurrencyPackage(PackageId: string)
-
-    RefreshBalance()
-
-    RefreshInventory()
-    
-    SetMultiPlay(value: ZepetoWorldMultiplay)
-}
-
-export default class ProductManager implements InterProductManager{
+export default class ProductManager {
 
     private _itemsCache: ProductRecord[] = [];
     private _itemsPackageCache: ProductRecord[] = []

@@ -1,8 +1,6 @@
 import {BoxCollider, GameObject, Quaternion, Random, Transform, Vector3} from "UnityEngine";
 import { GAME_NAME } from "../Enums";
-import IOC from "../IOC";
-import {InterMyPlayerController, MyPlayerController } from "../MyPlayer/MyPalyerController";
-import Manager, { InterManager } from "./Manager";
+import Manager from "./Manager";
 import Utils from "../Utils/index"
 import Connector from "../Network/Connector";
 
@@ -25,29 +23,27 @@ export interface InterSoloFlagGameManager {
 }
 
 export default class SoloFlagGameManager implements InterSoloFlagGameManager{
-    manager: InterManager;
-    myPlayerController: InterMyPlayerController;
     private SoloFlagStartPoint: Transform;
     
     private SoloFlagEnv: GameObject;
 
     Init(){
-        // this.manager = IOC.Instance.getInstance<InterManager>(Manager);
-        // this.myPlayerController = IOC.Instance.getInstance<InterMyPlayerController>(MyPlayerController);
+        // 
+        // 
         // this.SoloFlagEnv = GameObject.Find("SoloFlagGameZone")
         // this.SoloFlagEnv.SetActive(false);
     }
     //
     // GameStart(sessionId: string){
-    //     this.manager.Game.NowOnGame = GAME_NAME.SoloFlag;
-    //     this.manager.Game.GameStart(sessionId);
+    //     Manager.Game.NowOnGame = GAME_NAME.SoloFlag;
+    //     Manager.Game.GameStart(sessionId);
     // }
     //
     // RuntheGame(sessionId: string){
-    //     this.manager.UI.CloseDefaultUI('StartUI');
-    //     this.manager.UI.ShowDefaultUI('InGameUI');
-    //     this.manager.UI.ControllerUI.SetJump(true);
-    //     this.manager.UI.ControllerUI.SetPad(true);
+    //     Manager.UI.CloseDefaultUI('StartUI');
+    //     Manager.UI.ShowDefaultUI('InGameUI');
+    //     Manager.UI.ControllerUI.SetJump(true);
+    //     Manager.UI.ControllerUI.SetPad(true);
     //     if(!this.SoloFlagEnv) this.SoloFlagEnv = GameObject.Find("SoloFlagGameZone");
     //     if(!this.SoloFlagEnv.activeSelf){
     //         this.SoloFlagEnv.SetActive(true)
@@ -62,16 +58,16 @@ export default class SoloFlagGameManager implements InterSoloFlagGameManager{
     //     range_Z = Random.Range( (range_Z / 2) * -1, range_Z / 2);
     //
     //     let respawnPosition = Utils.VectorPlusCalc(this.SoloFlagStartPoint.GetChild(ind).position, new Vector3(range_X, 0, range_Z));
-    //     this.myPlayerController.MyPlayerMovement.Teleport(respawnPosition, Quaternion.Euler(Vector3.zero))
-    //     this.myPlayerController.MyPlayerData.SetTeam(this.myPlayerController.MyPlayerData.MySessionId)
-    //     this.manager.Game.IsGamePlaying = true;
+    //     MyPlayerController.Movement.Teleport(respawnPosition, Quaternion.Euler(Vector3.zero))
+    //     MyPlayerController.Data.SetTeam(MyPlayerController.Data.MySessionId)
+    //     Manager.Game.IsGamePlaying = true;
     // }
     //
     // JoinGame(){
-    //     this.manager.UI.CloseDefaultUI('StartUI');
-    //     this.manager.UI.ShowDefaultUI('InGameUI');
-    //     this.manager.UI.ControllerUI.SetJump(true);
-    //     this.manager.UI.ControllerUI.SetPad(true);
+    //     Manager.UI.CloseDefaultUI('StartUI');
+    //     Manager.UI.ShowDefaultUI('InGameUI');
+    //     Manager.UI.ControllerUI.SetJump(true);
+    //     Manager.UI.ControllerUI.SetPad(true);
     //     if(!this.SoloFlagEnv) this.SoloFlagEnv = GameObject.Find("SoloFlagGameZone");
     //     if(!this.SoloFlagEnv.activeSelf){
     //         this.SoloFlagEnv.SetActive(true)
@@ -86,37 +82,37 @@ export default class SoloFlagGameManager implements InterSoloFlagGameManager{
     //     range_Z = Random.Range( (range_Z / 2) * -1, range_Z / 2);
     //
     //     let respawnPosition = Utils.VectorPlusCalc(this.SoloFlagStartPoint.GetChild(ind).position, new Vector3(range_X, 0, range_Z));
-    //     this.myPlayerController.MyPlayerMovement.Teleport(respawnPosition, Quaternion.Euler(Vector3.zero))
-    //     this.myPlayerController.MyPlayerData.SetTeam(this.myPlayerController.MyPlayerData.MySessionId);
-    //     this.manager.Game.IsGamePlaying = true;
+    //     MyPlayerController.Movement.Teleport(respawnPosition, Quaternion.Euler(Vector3.zero))
+    //     MyPlayerController.Data.SetTeam(MyPlayerController.Data.MySessionId);
+    //     Manager.Game.IsGamePlaying = true;
     // }
     //
     // LeaveGame(){
-    //     this.myPlayerController.MyPlayerData.SetTeam("")
-    //     this.manager.Game.IsGamePlaying = false;
-    //     if(!this.manager.Game.HomePoint) this.manager.Game.HomePoint = GameObject.Find("HomePoint").transform;
-    //     this.myPlayerController.MyPlayerMovement.Teleport(this.manager.Game.HomePoint.position, this.manager.Game.HomePoint.rotation);
-    //     this.manager.UI.CloseDefaultUI('InGameUI')
-    //     this.manager.UI.ShowDefaultUI('StartUI')
-    //     this.manager.UI.ControllerUI.SetJump(false);
-    //     this.manager.UI.ControllerUI.SetPad(false);
+    //     MyPlayerController.Data.SetTeam("")
+    //     Manager.Game.IsGamePlaying = false;
+    //     if(!Manager.Game.HomePoint) Manager.Game.HomePoint = GameObject.Find("HomePoint").transform;
+    //     MyPlayerController.Movement.Teleport(Manager.Game.HomePoint.position, Manager.Game.HomePoint.rotation);
+    //     Manager.UI.CloseDefaultUI('InGameUI')
+    //     Manager.UI.ShowDefaultUI('StartUI')
+    //     Manager.UI.ControllerUI.SetJump(false);
+    //     Manager.UI.ControllerUI.SetPad(false);
     // }
     //
     // EndGame(winningTeam: string){
-    //     this.manager.UI.CloseDefaultUI('InGameUI')
-    //     this.manager.UI.ControllerUI.SetJump(false);
-    //     this.manager.UI.ControllerUI.SetPad(false);
+    //     Manager.UI.CloseDefaultUI('InGameUI')
+    //     Manager.UI.ControllerUI.SetJump(false);
+    //     Manager.UI.ControllerUI.SetPad(false);
     //     if(!this.SoloFlagEnv) this.SoloFlagEnv = GameObject.Find("SoloFlagGameZone");
     //     if(this.SoloFlagEnv.activeSelf){
     //         this.SoloFlagEnv.SetActive(false)
     //     }
-    //     if(winningTeam === this.myPlayerController.MyPlayerData.Team){
+    //     if(winningTeam === MyPlayerController.Data.Team){
     //         //보상
     //     }
-    //     this.myPlayerController.MyPlayerData.SetTeam("")
-    //     this.manager.Game.IsGamePlaying = false;
-    //     if(!this.manager.Game.HomePoint) this.manager.Game.HomePoint = GameObject.Find("HomePoint").transform;
-    //     this.myPlayerController.MyPlayerMovement.Teleport(this.manager.Game.HomePoint.position, this.manager.Game.HomePoint.rotation);
+    //     MyPlayerController.Data.SetTeam("")
+    //     Manager.Game.IsGamePlaying = false;
+    //     if(!Manager.Game.HomePoint) Manager.Game.HomePoint = GameObject.Find("HomePoint").transform;
+    //     MyPlayerController.Movement.Teleport(Manager.Game.HomePoint.position, Manager.Game.HomePoint.rotation);
     // }
     //
     // Respawn(){
@@ -134,10 +130,10 @@ export default class SoloFlagGameManager implements InterSoloFlagGameManager{
     //     range_Z = Random.Range( (range_Z / 2) * -1, range_Z / 2);
     //
     //     let respawnPosition = Utils.VectorPlusCalc(this.SoloFlagStartPoint.GetChild(ind).position, new Vector3(range_X, 0, range_Z));
-    //     this.myPlayerController.MyPlayerMovement.Teleport(respawnPosition, Quaternion.Euler(Vector3.zero))
+    //     MyPlayerController.Movement.Teleport(respawnPosition, Quaternion.Euler(Vector3.zero))
     // }
     //
     // GetFlag(){
-    //     Connector.Instance.ReqToServer("GetSoloFlag", {player: this.myPlayerController.MyPlayerData.MySessionId})
+    //     Connector.Instance.ReqToServer("GetSoloFlag", {player: MyPlayerController.Data.MySessionId})
     // }
 }

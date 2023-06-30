@@ -1,0 +1,37 @@
+fileFormatVersion: 2
+guid: da0b93b768e394a45a96db5410b5ad7e
+importerOverride: ZEPETO.Script.Compiler:ZEPETO.Script:TypescriptAssetImporter
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: -1123457745, guid: 54cf806323ffe4418a4ce4cc63fe6b9d, type: 3}
+  isAssemblyDeclarations: 0
+  assembly: 
+  generateAllTypes: 1
+  types: []
+  generateWrapper: 0
+  overrideWrapperTypes: 0
+  wrapperTypes: []
+  WrapperFilters: []
+  wrapperOutputDirectory: Generated
+  compiledResult: '{"source":"\"use strict\";\r\nObject.defineProperty(exports, \"__esModule\",
+    { value: true });\r\nconst UnityEngine_1 = require(\"UnityEngine\");\r\nconst
+    ZEPETO_Script_1 = require(\"ZEPETO.Script\");\r\nconst MyPlayerData_1 = require(\"./MyPlayerData\");\r\nconst
+    MyPlayerMovement_1 = require(\"./MyPlayerMovement\");\r\nclass MyPlayerController
+    extends ZEPETO_Script_1.ZepetoScriptBehaviour {\r\n    static get Instance()
+    {\r\n        this.Init();\r\n        return this._instance;\r\n    }\r\n    static
+    get Data() {\r\n        return this._myPlayerData;\r\n    }\r\n    static get
+    Movement() {\r\n        return this._myPlayerMovement;\r\n    }\r\n    static
+    Init() {\r\n        if (ZEPETO_Script_1.ZepetoScriptBehaviour.op_Equality(this._instance,
+    null)) {\r\n            let go = UnityEngine_1.GameObject.Find(''MyPlayerController'');\r\n           
+    this._instance = go.GetComponent($typeof(MyPlayerController));\r\n        }\r\n   
+    }\r\n    Update() {\r\n    }\r\n    Awake() {\r\n        MyPlayerController.Data.Init();\r\n       
+    MyPlayerController.Movement.Init();\r\n    }\r\n}\r\nexports.default = MyPlayerController;\r\nMyPlayerController._instance
+    = null;\r\nMyPlayerController._myPlayerData = new MyPlayerData_1.default();\r\nMyPlayerController._myPlayerMovement
+    = new MyPlayerMovement_1.default();\r\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiTXlQbGF5ZXJDb250cm9sbGVyLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiTXlQbGF5ZXJDb250cm9sbGVyLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7O0FBQUEsNkNBQXVEO0FBRXZELGlEQUFxRDtBQUNyRCxpREFBMEM7QUFDMUMseURBQWtEO0FBRWxELE1BQXFCLGtCQUFtQixTQUFRLHFDQUFxQjtJQUsxRCxNQUFNLEtBQUssUUFBUTtRQUN0QixJQUFJLENBQUMsSUFBSSxFQUFFLENBQUM7UUFDWixPQUFPLElBQUksQ0FBQyxTQUFTLENBQUM7SUFDMUIsQ0FBQztJQUVNLE1BQU0sS0FBSyxJQUFJO1FBQ2xCLE9BQU8sSUFBSSxDQUFDLGFBQWEsQ0FBQztJQUM5QixDQUFDO0lBRU0sTUFBTSxLQUFLLFFBQVE7UUFDdEIsT0FBTyxJQUFJLENBQUMsaUJBQWlCLENBQUM7SUFFbEMsQ0FBQztJQUVELE1BQU0sQ0FBQyxJQUFJO1FBQ1AsSUF4QkMscUNBQXFCLENBc0NrckwsV0FBWSxDQWRodEwsSUFBSSxDQUFDLFNBQVMsRUFBSSxJQUFJLEdBQUU7WUFDeEIsSUFBSSxFQUFFLEdBQUcsd0JBQVUsQ0FBQyxJQUFJLENBQUMsb0JBQW9CLENBQUMsQ0FBQztZQUMvQyxJQUFJLENBQUMsU0FBUyxHQUFHLEVBQUUsQ0FBQyxZQUFZLFNBQUMsa0JBQWtCLEVBQUcsQ0FBQztTQUMxRDtJQUNMLENBQUM7SUFFRCxNQUFNO0lBRU4sQ0FBQztJQUVELEtBQUs7UUFDRCxrQkFBa0IsQ0FBQyxJQUFJLENBQUMsSUFBSSxFQUFFLENBQUM7UUFDL0Isa0JBQWtCLENBQUMsUUFBUSxDQUFDLElBQUksRUFBRSxDQUFDO0lBQ3ZDLENBQUM7O0FBakNMLHFDQWtDQztBQWpDa0IsNEJBQVMsR0FBdUIsSUFBSSxDQUFDO0FBQ3JDLGdDQUFhLEdBQWlCLElBQUksc0JBQVksRUFBRSxDQUFDO0FBQ2pELG9DQUFpQixHQUFxQixJQUFJLDBCQUFnQixFQUFFLENBQUMifQ==","assetPath":"Assets/Scripts/Client/MyPlayerController/MyPlayerController.ts","manifest":{"properties":[],"name":"MyPlayerController","description":"","hasAnimatorMove":false},"isCompiled":true}'
+  typescriptHash: 105a3637c3ea644bd97567e2d81642a6
+  onlyWriteTrigger: 0

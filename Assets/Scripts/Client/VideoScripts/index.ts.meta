@@ -1,0 +1,67 @@
+fileFormatVersion: 2
+guid: 00023d5d9ec8493c8b9d83ed46573626
+importerOverride: ZEPETO.Script.Compiler:ZEPETO.Script:TypescriptAssetImporter
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: -1123457745, guid: 54cf806323ffe4418a4ce4cc63fe6b9d, type: 3}
+  isAssemblyDeclarations: 0
+  assembly: 
+  generateAllTypes: 1
+  types: []
+  generateWrapper: 0
+  overrideWrapperTypes: 0
+  wrapperTypes: []
+  WrapperFilters: []
+  wrapperOutputDirectory: Generated
+  compiledResult: '{"source":"\"use strict\";\r\nObject.defineProperty(exports, \"__esModule\",
+    { value: true });\r\nconst UnityEngine_1 = require(\"UnityEngine\");\r\nconst
+    UnityEngine_UI_1 = require(\"UnityEngine.UI\");\r\nconst ZEPETO_Script_1 = require(\"ZEPETO.Script\");\r\nconst
+    ZEPETO_World_1 = require(\"ZEPETO.World\");\r\nclass WorldVideoRecorderExample
+    extends ZEPETO_Script_1.ZepetoScriptBehaviour {\r\n    Start() {\r\n        try
+    {\r\n            this.startRecordingButton.onClick.AddListener(() => {\r\n               
+    this.recorderCamera.gameObject.SetActive(true);\r\n                this.stopRecordingButton.gameObject.SetActive(true);\r\n               
+    this.startRecordingButton.gameObject.SetActive(false);\r\n                if
+    (false == ZEPETO_World_1.WorldVideoRecorder.StartRecording(this.recorderCamera,
+    ZEPETO_World_1.VideoResolutions.W1280xH720, 15))\r\n                    return;\r\n               
+    this.StartCoroutine(this.CheckRecording());\r\n            });\r\n           
+    this.stopRecordingButton.onClick.AddListener(() => {\r\n                this.stopRecordingButton.gameObject.SetActive(false);\r\n               
+    this.startRecordingButton.gameObject.SetActive(true);\r\n                this.videoResultPanel.gameObject.SetActive(true);\r\n               
+    if (false == ZEPETO_World_1.WorldVideoRecorder.IsRecording()) {\r\n                   
+    return;\r\n                }\r\n                ZEPETO_World_1.WorldVideoRecorder.StopRecording();\r\n               
+    this.recorderCamera.gameObject.SetActive(false);\r\n            });\r\n           
+    this.saveVideoButton.onClick.AddListener(() => {\r\n                if (false
+    == ZEPETO_World_1.WorldVideoRecorder.IsRecording()) {\r\n                   
+    ZEPETO_World_1.WorldVideoRecorder.SaveToCameraRoll((result) => {\r\n                       
+    this.StartCoroutine(this.ShowToastMessage(''Saved!''));\r\n                   
+    });\r\n                }\r\n            });\r\n            this.shareVideoButton.onClick.AddListener(()
+    => {\r\n                if (false == ZEPETO_World_1.WorldVideoRecorder.IsRecording())
+    {\r\n                    ZEPETO_World_1.WorldVideoRecorder.Share((result) =>
+    {\r\n                        //console.log(`${result}`);\r\n                   
+    });\r\n                }\r\n            });\r\n            this.createFeedButton.onClick.AddListener(()
+    => {\r\n                if (false == ZEPETO_World_1.WorldVideoRecorder.IsRecording())
+    {\r\n                    ZEPETO_World_1.WorldVideoRecorder.CreateFeed(''[contents]'',
+    (result) => {\r\n                        this.StartCoroutine(this.ShowToastMessage(''Upload
+    Complete!''));\r\n                    });\r\n                }\r\n           
+    });\r\n            this.videoResultPanelExitButton.onClick.AddListener(() =>
+    {\r\n                this.videoResultPanel.SetActive(false);\r\n               
+    this.recorderCamera.gameObject.SetActive(false);\r\n            });\r\n       
+    }\r\n        catch (e) {\r\n            console.error(e);\r\n        }\r\n   
+    }\r\n    *CheckRecording() {\r\n        try {\r\n            while (ZEPETO_World_1.WorldVideoRecorder.IsRecording())
+    {\r\n                yield null;\r\n            }\r\n        }\r\n        catch
+    (e) {\r\n            console.error(e);\r\n        }\r\n    }\r\n    *ShowToastMessage(text)
+    {\r\n        try {\r\n            yield this.waitForSecond;\r\n            let
+    toastMessage = null;\r\n            if (text == ''Failed'')\r\n               
+    toastMessage = UnityEngine_1.GameObject.Instantiate(this.toastErrorMessage);\r\n           
+    else\r\n                toastMessage = UnityEngine_1.GameObject.Instantiate(this.toastSuccessMessage);\r\n           
+    toastMessage.transform.SetParent(this.videoResultPanel.transform);\r\n           
+    toastMessage.GetComponentInChildren($typeof(UnityEngine_UI_1.Text)).text = text;\r\n           
+    UnityEngine_1.GameObject.Destroy(toastMessage, 2);\r\n        }\r\n        catch
+    (e) {\r\n            console.error(e);\r\n        }\r\n    }\r\n}\r\nexports.default
+    = WorldVideoRecorderExample;\r\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJpbmRleC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUFDLDZDQUFtRTtBQUNwRSxtREFBOEM7QUFDOUMsaURBQXNEO0FBQ3RELCtDQUFvRTtBQUVwRSxNQUFxQix5QkFBMEIsU0FBUSxxQ0FBcUI7SUFzQnhFLEtBQUs7UUFDRCxJQUFJO1lBQ0EsSUFBSSxDQUFDLG9CQUFvQixDQUFDLE9BQU8sQ0FBQyxXQUFXLENBQUMsR0FBRyxFQUFFO2dCQUMvQyxJQUFJLENBQUMsY0FBYyxDQUFDLFVBQVUsQ0FBQyxTQUFTLENBQUMsSUFBSSxDQUFDLENBQUM7Z0JBQy9DLElBQUksQ0FBQyxtQkFBbUIsQ0FBQyxVQUFVLENBQUMsU0FBUyxDQUFDLElBQUksQ0FBQyxDQUFDO2dCQUNwRCxJQUFJLENBQUMsb0JBQW9CLENBQUMsVUFBVSxDQUFDLFNBQVMsQ0FBQyxLQUFLLENBQUMsQ0FBQztnQkFDdEQsSUFBSSxLQUFLLElBQUksaUNBQWtCLENBQUMsY0FBYyxDQUFDLElBQUksQ0FBQyxjQUFjLEVBQUUsK0JBQWdCLENBQUMsVUFBVSxFQUFFLEVBQUUsQ0FBQztvQkFDaEcsT0FBTztnQkFDWCxJQUFJLENBQUMsY0FBYyxDQUFDLElBQUksQ0FBQyxjQUFjLEVBQUUsQ0FBQyxDQUFDO1lBQy9DLENBQUMsQ0FBQyxDQUFDO1lBRUgsSUFBSSxDQUFDLG1CQUFtQixDQUFDLE9BQU8sQ0FBQyxXQUFXLENBQUMsR0FBRyxFQUFFO2dCQUM5QyxJQUFJLENBQUMsbUJBQW1CLENBQUMsVUFBVSxDQUFDLFNBQVMsQ0FBQyxLQUFLLENBQUMsQ0FBQztnQkFDckQsSUFBSSxDQUFDLG9CQUFvQixDQUFDLFVBQVUsQ0FBQyxTQUFTLENBQUMsSUFBSSxDQUFDLENBQUM7Z0JBQ3JELElBQUksQ0FBQyxnQkFBZ0IsQ0FBQyxVQUFVLENBQUMsU0FBUyxDQUFDLElBQUksQ0FBQyxDQUFDO2dCQUVqRCxJQUFJLEtBQUssSUFBSSxpQ0FBa0IsQ0FBQyxXQUFXLEVBQUUsRUFBRTtvQkFDM0MsT0FBTztpQkFDVjtnQkFDRCxpQ0FBa0IsQ0FBQyxhQUFhLEVBQUUsQ0FBQztnQkFDbkMsSUFBSSxDQUFDLGNBQWMsQ0FBQyxVQUFVLENBQUMsU0FBUyxDQUFDLEtBQUssQ0FBQyxDQUFDO1lBQ3BELENBQUMsQ0FBQyxDQUFDO1lBRUgsSUFBSSxDQUFDLGVBQWUsQ0FBQyxPQUFPLENBQUMsV0FBVyxDQUFDLEdBQUcsRUFBRTtnQkFDMUMsSUFBSSxLQUFLLElBQUksaUNBQWtCLENBQUMsV0FBVyxFQUFFLEVBQUU7b0JBQzNDLGlDQUFrQixDQUFDLGdCQUFnQixDQUFDLENBQUMsTUFBTSxFQUFFLEVBQUU7d0JBQzNDLElBQUksQ0FBQyxjQUFjLENBQUMsSUFBSSxDQUFDLGdCQUFnQixDQUFDLFFBQVEsQ0FBQyxDQUFDLENBQUM7b0JBQ3pELENBQUMsQ0FBQyxDQUFDO2lCQUNOO1lBQ0wsQ0FBQyxDQUFDLENBQUM7WUFFSCxJQUFJLENBQUMsZ0JBQWdCLENBQUMsT0FBTyxDQUFDLFdBQVcsQ0FBQyxHQUFHLEVBQUU7Z0JBQzNDLElBQUksS0FBSyxJQUFJLGlDQUFrQixDQUFDLFdBQVcsRUFBRSxFQUFFO29CQUMzQyxpQ0FBa0IsQ0FBQyxLQUFLLENBQUMsQ0FBQyxNQUFNLEVBQUUsRUFBRTt3QkFDaEMsMkJBQTJCO29CQUMvQixDQUFDLENBQUMsQ0FBQztpQkFDTjtZQUNMLENBQUMsQ0FBQyxDQUFDO1lBRUgsSUFBSSxDQUFDLGdCQUFnQixDQUFDLE9BQU8sQ0FBQyxXQUFXLENBQUMsR0FBRyxFQUFFO2dCQUMzQyxJQUFJLEtBQUssSUFBSSxpQ0FBa0IsQ0FBQyxXQUFXLEVBQUUsRUFBRTtvQkFDM0MsaUNBQWtCLENBQUMsVUFBVSxDQUFDLFlBQVksRUFBRSxDQUFDLE1BQU0sRUFBRSxFQUFFO3dCQUNuRCxJQUFJLENBQUMsY0FBYyxDQUFDLElBQUksQ0FBQyxnQkFBZ0IsQ0FBQyxrQkFBa0IsQ0FBQyxDQUFDLENBQUM7b0JBQ25FLENBQUMsQ0FBQyxDQUFDO2lCQUNOO1lBQ0wsQ0FBQyxDQUFDLENBQUM7WUFFSCxJQUFJLENBQUMsMEJBQTBCLENBQUMsT0FBTyxDQUFDLFdBQVcsQ0FBQyxHQUFHLEVBQUU7Z0JBQ3JELElBQUksQ0FBQyxnQkFBZ0IsQ0FBQyxTQUFTLENBQUMsS0FBSyxDQUFDLENBQUM7Z0JBQ3ZDLElBQUksQ0FBQyxjQUFjLENBQUMsVUFBVSxDQUFDLFNBQVMsQ0FBQyxLQUFLLENBQUMsQ0FBQztZQUNwRCxDQUFDLENBQUMsQ0FBQztTQUNOO1FBQ0QsT0FBTyxDQUFDLEVBQUU7WUFDTixPQUFPLENBQUMsS0FBSyxDQUFDLENBQUMsQ0FBQyxDQUFDO1NBQ3BCO0lBQ0wsQ0FBQztJQUVELENBQUMsY0FBYztRQUNYLElBQUk7WUFDQSxPQUFPLGlDQUFrQixDQUFDLFdBQVcsRUFBRSxFQUFFO2dCQUNyQyxNQUFNLElBQUksQ0FBQzthQUNkO1NBQ0o7UUFDRCxPQUFPLENBQUMsRUFBRTtZQUNOLE9BQU8sQ0FBQyxLQUFLLENBQUMsQ0FBQyxDQUFDLENBQUM7U0FDcEI7SUFDTCxDQUFDO0lBQ0QsQ0FBQyxnQkFBZ0IsQ0FBQyxJQUFZO1FBQzFCLElBQUk7WUFDQSxNQUFNLElBQUksQ0FBQyxhQUFhLENBQUM7WUFDekIsSUFBSSxZQUFZLEdBQWUsSUFBSSxDQUFDO1lBQ3BDLElBQUksSUFBSSxJQUFJLFFBQVE7Z0JBQUUsWUFBWSxHQUFHLHdCQUFVLENBQUMsV0FBVyxDQUFhLElBQUksQ0FBQyxpQkFBaUIsQ0FBQyxDQUFDOztnQkFDM0YsWUFBWSxHQUFHLHdCQUFVLENBQUMsV0FBVyxDQUFhLElBQUksQ0FBQyxtQkFBbUIsQ0FBQyxDQUFDO1lBQ2pGLFlBQVksQ0FBQyxTQUFTLENBQUMsU0FBUyxDQUFDLElBQUksQ0FBQyxnQkFBZ0IsQ0FBQyxTQUFTLENBQUMsQ0FBQztZQUVsRSxZQUFZLENBQUMsc0JBQXNCLFNBQUMscUJBQUksR0FBSSxJQUFJLEdBQUcsSUFBSSxDQUFDO1lBQ3hELHdCQUFVLENBQUMsT0FBTyxDQUFDLFlBQVksRUFBRSxDQUFDLENBQUMsQ0FBQztTQUN2QztRQUNELE9BQU8sQ0FBQyxFQUFFO1lBQ04sT0FBTyxDQUFDLEtBQUssQ0FBQyxDQUFDLENBQUMsQ0FBQztTQUNwQjtJQUNMLENBQUM7Q0FDSjtBQXhHRCw0Q0F3R0MifQ==","assetPath":"Assets/Scripts/Client/VideoScripts/index.ts","manifest":{"properties":[{"assembly":"UnityEngine.UI","name":"startRecordingButton","type":"UnityEngine.UI.Button","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]},{"assembly":"UnityEngine.UI","name":"stopRecordingButton","type":"UnityEngine.UI.Button","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]},{"assembly":"UnityEngine.UI","name":"saveVideoButton","type":"UnityEngine.UI.Button","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]},{"assembly":"UnityEngine.UI","name":"shareVideoButton","type":"UnityEngine.UI.Button","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]},{"assembly":"UnityEngine.UI","name":"createFeedButton","type":"UnityEngine.UI.Button","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]},{"assembly":"UnityEngine.CoreModule","name":"videoResultPanel","type":"UnityEngine.GameObject","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]},{"assembly":"UnityEngine.UI","name":"videoResultPanelExitButton","type":"UnityEngine.UI.Button","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]},{"assembly":"UnityEngine.CoreModule","name":"recorderCamera","type":"UnityEngine.Camera","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]},{"assembly":"UnityEngine.CoreModule","name":"toastSuccessMessage","type":"UnityEngine.GameObject","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]},{"assembly":"UnityEngine.CoreModule","name":"toastErrorMessage","type":"UnityEngine.GameObject","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]}],"name":"WorldVideoRecorderExample","description":"","hasAnimatorMove":false},"isCompiled":true}'
+  typescriptHash: 64e4aa9d49d76b399ef6080b67f1e05a
+  onlyWriteTrigger: 0

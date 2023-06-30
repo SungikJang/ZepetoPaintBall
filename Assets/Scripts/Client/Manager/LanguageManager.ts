@@ -1,16 +1,9 @@
 import { LANGUAGES } from "../Enums";
-import IOC from "../IOC";
+
 import Manager from "./Manager";
 import ResourceManager from "./ResourceManager";
 
-export interface InterLanguageManager {
-    Translator(targetLanguage: string): void
-
-    GetValueByKeys(keys: string): string
-    Init(): void;
-}
-
-export default class LanguageManager implements InterLanguageManager {
+export default class LanguageManager  {
     // property
     private currentDictionary;
     private dictionary = {};
@@ -22,14 +15,14 @@ export default class LanguageManager implements InterLanguageManager {
             this.currentDictionary = this.dictionary[targetLanguage];
             // this.currentLanguage = LANGUAGES[targetLanguage];
         } else {
-            let dictionary = IOC.Instance.getInstance(ResourceManager).LoadJson('Language\\' + targetLanguage);
+            let dictionary = Manager.Resource.LoadJson('Language\\' + targetLanguage);
             if (dictionary) {
                 this.dictionary[targetLanguage] = dictionary;
                 this.currentDictionary = this.dictionary[targetLanguage];
                 // this.currentLanguage = LANGUAGES[targetLanguage];
             } else {
                 if (!('English' in this.dictionary)) {
-                    this.dictionary['English'] = IOC.Instance.getInstance(Manager).Resource.LoadJson('Language\\' + 'English');
+                    this.dictionary['English'] = Manager.Resource.LoadJson('Language\\' + 'English');
                 }
                 this.currentDictionary = this.dictionary['English'];
                 // this.currentLanguage = LANGUAGES['English'];

@@ -1,26 +1,22 @@
 import { ZepetoScriptBehaviour } from 'ZEPETO.Script'
 import {ProductService, ProductType, ProductPurchaseButton, PurchaseType} from "ZEPETO.Product";
 import {WaitForSeconds, WaitUntil} from "UnityEngine";
-import IOC from '../IOC';
-import Manager, { InterManager } from '../Manager/Manager';
+import Manager from '../Manager/Manager';
 import {CurrencyService} from "ZEPETO.Currency";
-import { InterMyPlayerController, MyPlayerController } from '../MyPlayer/MyPalyerController';
 import { Currency } from '../Enums';
 import {InventoryRecord, InventoryService} from "ZEPETO.Inventory";
 import {RoomData} from "ZEPETO.Multiplay";
 import Connector from './Connector';
 import Utils from "../Utils/index"
 import {ZepetoWorldMultiplay} from "ZEPETO.World";
+import MyPlayerController from '../MyPlayerController/MyPlayerController';
 
 export default class ProductSync extends ZepetoScriptBehaviour {
-    public myPlayerController: InterMyPlayerController;
-    public manager: InterManager;
+    
     public multiplay: ZepetoWorldMultiplay
 
     Start() {
         this.StartCoroutine(this.LoadAllItems())//ItemsCache Product
-        this.StartCoroutine(this.SetInstance())//ItemsCache Product
-        this.StartCoroutine(this.WaitForStartUI())
         //this.StartRefreshBalance();
     }
 
@@ -29,22 +25,24 @@ export default class ProductSync extends ZepetoScriptBehaviour {
         const request = ProductService.GetProductsAsync();
         yield new WaitUntil(() => request.keepWaiting == false);
         while(true){
-            if(this.manager){
+            if(Manager && Manager.Product){
+                Manager.Product.ProductSyncinstance = this;
+                Manager.Product.SetMultiPlay(this.multiplay)
                 if (request.responseData.isSuccess) {
-                    this.manager.Product.ItemsCache = [];
+                    Manager.Product.ItemsCache = [];
                     request.responseData.products.forEach((pr) => {
                         if (pr.ProductType == ProductType.Item) {
-                            this.manager.Product.ItemsCache.push(pr);
+                            Manager.Product.ItemsCache.push(pr);
                         }
                         if (pr.ProductType == ProductType.ItemPackage) {
-                            this.manager.Product.ItemsPackageCache.push(pr);
+                            Manager.Product.ItemsPackageCache.push(pr);
                         }
                         if (pr.ProductType == ProductType.CurrencyPackage) {
-                            this.manager.Product.CurrencyPackageCache.push(pr);
+                            Manager.Product.CurrencyPackageCache.push(pr);
                         }
                     });
 
-                    if (this.manager.Product.ItemsCache.length == 0) {
+                    if (Manager.Product.ItemsCache.length == 0) {
                         console.warn("no Item information");
                         return;
                     }
@@ -68,14 +66,13 @@ export default class ProductSync extends ZepetoScriptBehaviour {
     }
 
     private *RefreshBalance(){
-        console.log('caaadasdawawwcascasd')
         const request = CurrencyService.GetUserCurrencyBalancesAsync();
         yield new WaitUntil(()=>request.keepWaiting == false);
         if(request.responseData.isSuccess) {
             let g = request.responseData.currencies?.ContainsKey(Currency.Gold) ? request.responseData.currencies?.get_Item(Currency.Gold).toString() :"0";
-            this.myPlayerController.MyPlayerData.MyGold = Number(g)
+            MyPlayerController.Data.MyGold = Number(g)
             let d = request.responseData.currencies?.ContainsKey(Currency.Diamond) ? request.responseData.currencies?.get_Item(Currency.Diamond).toString() :"0";
-            this.myPlayerController.MyPlayerData.MyDia = Number(d)
+            MyPlayerController.Data.MyDia = Number(d)
         }
     }
     
@@ -84,7 +81,7 @@ export default class ProductSync extends ZepetoScriptBehaviour {
         const request = CurrencyService.GetOfficialCurrencyBalanceAsync();
         yield new WaitUntil(()=>request.keepWaiting == false);
         let z = request.responseData.currency.quantity.toString();
-        this.myPlayerController.MyPlayerData.MyZem = Number(z);
+        MyPlayerController.Data.MyZem = Number(z);
     }
     
     public StartRefreshBalance(){
@@ -105,17 +102,14 @@ export default class ProductSync extends ZepetoScriptBehaviour {
 
             items.forEach((ir, index) => {
                 if(ir.productId.includes("gun")){
-                    if(!this.myPlayerController){
-                        this.myPlayerController = IOC.Instance.getInstance<InterMyPlayerController>(MyPlayerController);
-                    }
                     let ind: number = Number(Utils.ExtractNumberStr(ir.productId))
-                    this.myPlayerController.MyPlayerData.MyWeaponInfoArr[ind - 1] = "O"
+                    MyPlayerController.Data.MyWeaponInfoArr[ind - 1] = "O"
                 }
             })
 
             // items.forEach((ir, index) => {
             //     // If there are zero consumable items, delete them from the inventory.
-            //     if (ir.quantity <= 0 && IOC.Instance.getInstance<InterManager>(Manager).Product.ProductCache.get(ir.productId).PurchaseType == PurchaseType.Consumable) {
+            //     if (ir.quantity <= 0 && Manager.Product.ProductCache.get(ir.productId).PurchaseType == PurchaseType.Consumable) {
             //         // remove inventory
             //         const data = new RoomData();
             //         data.Add("productId", ir.productId);
@@ -124,36 +118,6 @@ export default class ProductSync extends ZepetoScriptBehaviour {
             //     }
             //
             // });
-        }
-    }
-    
-    private * WaitForStartUI(){
-        while(true){
-            console.log("1")
-            if(!this.manager){
-                this.manager = IOC.Instance.getInstance<InterManager>(Manager)
-                console.log("2")
-            }
-            if(this.manager.UI.StartUI){
-                console.log("3")
-                this.StartRefreshBalance();
-                this.StartRefreshInventory();
-                return
-            }
-            yield new WaitForSeconds(0.2);
-        }
-    }
-    
-    * SetInstance(){
-        while(true){
-            if(!this.manager && !this.myPlayerController){
-                this.manager = IOC.Instance.getInstance<InterManager>(Manager)
-                this.myPlayerController = IOC.Instance.getInstance<InterMyPlayerController>(MyPlayerController);
-                this.manager.Product.ProductSyncinstance = this.gameObject.GetComponent<ProductSync>();
-                this.manager.Product.SetMultiPlay(this.multiplay)
-                return
-            }
-            yield new WaitForSeconds(0.2);
         }
     }
 }

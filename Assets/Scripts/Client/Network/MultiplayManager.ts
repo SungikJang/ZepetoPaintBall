@@ -5,8 +5,8 @@ import {Room, RoomData} from "ZEPETO.Multiplay";
 import TransformSyncHelper, { UpdateOwner } from './TransformSyncHelper';
 import AnimatorSyncHelper from './AnimatorSyncHelper';
 import DOTWeenSyncHelper from './DOTWeenSyncHelper';
-import IOC from '../IOC';
-import Manager, { InterManager } from '../Manager/Manager';
+
+import Manager from '../Manager/Manager';
 
 export default class MultiplayManager extends ZepetoScriptBehaviour {
     public multiplay: ZepetoWorldMultiplay;
@@ -50,7 +50,7 @@ export default class MultiplayManager extends ZepetoScriptBehaviour {
     private Start() {
         if(!this.multiplay) {
             this.multiplay = this.GetComponent<ZepetoWorldMultiplay>();
-            IOC.Instance.getInstance<InterManager>(Manager).Product.SetMultiPlay(this.multiplay)
+            Manager.Product.SetMultiPlay(this.multiplay)
         }
         if(!this.multiplay) console.warn("Add ZepetoWorldMultiplay First");
         this.multiplay.RoomJoined += (room: Room) => {
@@ -110,7 +110,7 @@ export default class MultiplayManager extends ZepetoScriptBehaviour {
             tf.Id = message.Id;
             if(tf.UpdateOwnerType === UpdateOwner.Master) {
                 tf.ChangeOwner(this._masterSessionId);
-            }
+            }   
             else if(message.ownerSessionId){
                 tf.ChangeOwner(message.ownerSessionId);
             }
@@ -125,7 +125,7 @@ export default class MultiplayManager extends ZepetoScriptBehaviour {
             console.warn("Only objects that contain TransformSyncHelper scripts can be deleted.");
             return;
         }
-        this.SendStatus(objId,GameObjectStatus.Destroyed);
+        this.SendStatus(objId,GameObjectStatus.Destroyed);  
         Object.Destroy(DestroyObject);
     }
 

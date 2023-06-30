@@ -3,13 +3,12 @@ import {Image} from 'UnityEngine.UI';
 import {ZepetoScriptBehaviour} from 'ZEPETO.Script';
 import {Boolean} from 'System';
 import {TMP_Text} from 'TMPro';
-import IOC from '../IOC';
 import Manager from './Manager';
-import ControllerUI, { InterControllerUI } from '../UI/ControllerUI/ControllerUI';
-import {InterStartUI} from '../UI/DefaultUI/StartUI';
+import ControllerUI from '../UI/ControllerUI/ControllerUI';
 import InGameUI from '../UI/DefaultUI/InGameUI';
 import {ZepetoWorldHelper} from "ZEPETO.World";
 import GameVoteUI from '../UI/DefaultUI/GameVoteUI';
+import StartUI from '../UI/DefaultUI/StartUI'
 
 abstract class Data<T> {
     // property
@@ -77,59 +76,7 @@ export class StackGameObject extends Data<GameObject> {
     }
 }
 
-export interface InterUIManager {
-    Init(): void
-
-    SetCanvas(go: GameObject, order: int): void
-
-    ShowPopUpUI(uiName: string): GameObject
-
-    DeletePopUpUI(uiName?: string): void
-
-    ClosePopUpUI(): void
-
-    CloseTargetPopUp(uiName: string): void
-
-    ClearPopUpUI(): void
-
-    ShowDefaultUI(uiName: string)
-
-    CloseDefaultUI(uiName: string)
-    
-    DeleteDefaultUI(uiName: string)
-
-    GetSprite(texture: Texture)
-
-    get InGameUI(): InGameUI
-
-    set InGameUI(value: InGameUI)
-
-    get GameVoteUI()
-    
-    set GameVoteUI(value: GameVoteUI)
-
-    get ControllerUI(): InterControllerUI
-
-    set ControllerUI(value: InterControllerUI)
-
-    get StartUI(): InterStartUI
-
-    set StartUI(value: InterStartUI)
-
-    get NowPopUpWeaponNum()
-    
-    set NowPopUpWeaponNum(value: string)
-
-    get ScreenCenter()
-
-    set ScreenCenter(value: Vector3)
-
-    get SGCenter()
-
-    set SGCenter(value: Vector3[])
-}
-
-export default class UIManager implements InterUIManager {
+export default class UIManager {
     private _rootUIPopUp: GameObject;
     private _rootUIPopUpDontDestroy: GameObject;
     private _popUpStack: StackGameObject;
@@ -141,8 +88,8 @@ export default class UIManager implements InterUIManager {
     public nowPopUpWeaponNum: string = "1";
 
     private inGameUI: InGameUI
-    private controllerUI: InterControllerUI;
-    private startUI: InterStartUI;
+    private controllerUI: ControllerUI;
+    private startUI: StartUI;
     private gameVoteUI: GameVoteUI
     private screenCenter: Vector3
     private sGCenter: Vector3[] = []
@@ -175,7 +122,7 @@ export default class UIManager implements InterUIManager {
     }
 
     private CreatePopUpUI(uiName: string): GameObject {
-        const go: GameObject = IOC.Instance.getInstance(Manager).Resource.Instantiate(`UI\\PopUpUI\\${uiName}`);
+        const go: GameObject = Manager.Resource.Instantiate(`UI\\PopUpUI\\${uiName}`);
         go.transform.SetParent(this._rootUIPopUp.transform, false);
         this._popUpStack.Push(go);
         this.SetCanvas(go, 20 + this._popUpStack.Count);
@@ -204,7 +151,7 @@ export default class UIManager implements InterUIManager {
                 return;
             }
             this._popUpStack.Pop();
-            IOC.Instance.getInstance(Manager).Resource.Destroy(popUpGo);
+            Manager.Resource.Destroy(popUpGo);
             popUpGo = null;
         }
         else{
@@ -213,7 +160,7 @@ export default class UIManager implements InterUIManager {
                 return ;
             }
             this._popUpStack.Delete(uiName)
-            IOC.Instance.getInstance(Manager).Resource.Destroy(goTransform);
+            Manager.Resource.Destroy(goTransform);
             goTransform = null;
         }
     }
@@ -234,19 +181,19 @@ export default class UIManager implements InterUIManager {
             return;
         }
         this._popUpStack.Delete(uiName);
-        IOC.Instance.getInstance(Manager).Resource.Destroy(popUpGo);
+        Manager.Resource.Destroy(popUpGo);
         popUpGo = null;
     }
 
     public ClearPopUpUI() {
         while (this._popUpStack.Count > 0) {
             let go = this._popUpStack.Pop();
-            IOC.Instance.getInstance(Manager).Resource.Destroy(go);
+            Manager.Resource.Destroy(go);
         }
     }
 
     private CreateDefaultUI(uiName: string) {
-        const go: GameObject = IOC.Instance.getInstance(Manager).Resource.Instantiate(`UI\\DefaultUI\\${uiName}`);
+        const go: GameObject = Manager.Resource.Instantiate(`UI\\DefaultUI\\${uiName}`);
         go.transform.SetParent(this._rootUIPopUpDontDestroy.transform, false);
         this.SetCanvas(go, 10);
         return go;
@@ -275,7 +222,7 @@ export default class UIManager implements InterUIManager {
         const goTransform = this._rootUIPopUpDontDestroy.transform.Find(uiName);
         if (goTransform) {
             const go = goTransform.gameObject;
-            IOC.Instance.getInstance(Manager).Resource.Destroy(go);
+            Manager.Resource.Destroy(go);
         }
     }
 
@@ -304,7 +251,7 @@ export default class UIManager implements InterUIManager {
         return this.controllerUI;
     }
 
-    set ControllerUI(value: InterControllerUI){
+    set ControllerUI(value: ControllerUI){
         this.controllerUI = value;
     }
 
@@ -312,7 +259,7 @@ export default class UIManager implements InterUIManager {
         return this.startUI;
     }
 
-    set StartUI(value: InterStartUI){
+    set StartUI(value: StartUI){
         this.startUI = value;
     }
 

@@ -1,127 +1,94 @@
 import { GameObject, Object } from 'UnityEngine';
 import { ZepetoScriptBehaviour } from 'ZEPETO.Script';
-import { InterDataManager } from './DataManager';
-import { InterFlagGameManager } from './FlagGameManager';
-import { InterGameManager } from './GameManger';
-import { InterLanguageManager } from './LanguageManager';
-import { InterProductManager } from './ProductManager';
-import { InterResourceManager } from './ResourceManager';
-import { InterSiegeGameManager } from './SiegeGameManager';
-import { InterSoloFlagGameManager } from './SoloFlagGameManager';
-import { InterSoundManager } from './SoundManager';
-import { InterUIManager } from './UIManager';
+import DataManager from './DataManager';
+import FlagGameManager from './FlagGameManager';
+import GameManager from './GameManger';
+import LanguageManager from './LanguageManager';
+import ProductManager from './ProductManager';
+import ResourceManager from './ResourceManager';
+import SiegeGameManager from './SiegeGameManager';
+import SoundManager from './SoundManager';
+import UIManager from './UIManager';
 
+export default class Manager extends ZepetoScriptBehaviour {
+    private static _instance: Manager = null;
+    private static _language: LanguageManager = new LanguageManager();
+    private static _resource: ResourceManager = new ResourceManager();
+    private static _ui: UIManager = new UIManager();
+    private static _sound: SoundManager = new SoundManager();
+    private static _game: GameManager = new GameManager();
+    private static _data: DataManager = new DataManager();
+    //private static _leaderboard: LeaderboardManager = new LeaderboardManager();
+    private static _flagGame: FlagGameManager = new FlagGameManager();
+    private static _siegeGame: SiegeGameManager = new SiegeGameManager();
+    private static _product: ProductManager = new ProductManager();
 
-export interface InterManager {
-    Init(): void;
-    
-    get Language(): InterLanguageManager
-
-    get Resource(): InterResourceManager
-
-    get UI(): InterUIManager
-
-    get Sound(): InterSoundManager
-
-    get Data(): InterDataManager
-    
-    get Game(): InterGameManager
-
-    get FlagGame(): InterFlagGameManager
-
-    get SiegeGame(): InterSiegeGameManager
-
-    // get SoloFlagGame(): InterSoloFlagGameManager
-
-    get Product(): InterProductManager
-}
-
-export default class Manager extends ZepetoScriptBehaviour implements InterManager {
-    private _resourceManager: InterResourceManager;
-    private _uiManager: InterUIManager;
-    private _soundManager: InterSoundManager;
-    private _languageManager: InterLanguageManager;
-    private _dataManager: InterDataManager
-    private _gameManager: InterGameManager
-    private _flagGameManager: InterFlagGameManager
-    private _siegeGameManager: InterSiegeGameManager
-    private _soloFlagGameManager: InterSoloFlagGameManager
-    private _productManager: InterProductManager
-
-    constructor(
-        _LanguageManager: InterLanguageManager,
-        _ResourceManager: InterResourceManager,
-        _UIManager: InterUIManager,
-        _SoundManager: InterSoundManager,
-        _DataManager: InterDataManager,
-        _GameManager: InterGameManager,
-        _FlagGameManager: InterFlagGameManager,
-        _SiegeGameManager: InterSiegeGameManager,
-        _SoloFlagGameManager: InterSoloFlagGameManager,
-        _ProductManager: InterProductManager,
-    ) {
-        super();
-        this._uiManager = _UIManager;
-        this._resourceManager = _ResourceManager;
-        this._soundManager = _SoundManager;
-        this._languageManager = _LanguageManager;
-        this._dataManager = _DataManager
-        this._gameManager = _GameManager
-        this._flagGameManager = _FlagGameManager
-        this._siegeGameManager = _SiegeGameManager
-        this._soloFlagGameManager = _SoloFlagGameManager
-        this._productManager = _ProductManager
-    }
-    
-    Init(){
-        this._resourceManager.Init();
-        this._languageManager.Init();
-        this._uiManager.Init();
-        this._gameManager.Init();
-        this._flagGameManager.Init();
-        this._siegeGameManager.Init();
-        this._soloFlagGameManager.Init();
-        this._dataManager.Init();
-        this._productManager.Init();
+    public static get Instance(): Manager {
+        this.Init();
+        return this._instance;
     }
 
-    public get UI(): InterUIManager {
-        return this._uiManager;
+    public static get UI(): UIManager {
+        return this._ui;
     }
 
-    public get Resource(): InterResourceManager {
-        return this._resourceManager;
+    public static get Resource(): ResourceManager {
+        return this._resource;
     }
 
-    public get Sound(): InterSoundManager {
-        return this._soundManager;
+    public static get Sound(): SoundManager {
+        return this._sound;
     }
 
-    public get Language(): InterLanguageManager {
-        return this._languageManager;
+    public static get Language(): LanguageManager {
+        return this._language;
     }
 
-    public get Data(): InterDataManager {
-        return this._dataManager;
+    public static get Data(): DataManager {
+        return this._data;
     }
 
-    public get Game(): InterGameManager {
-        return this._gameManager;
+    public static get Game(): GameManager {
+        return this._game;
     }
 
-    public get FlagGame(): InterFlagGameManager {
-        return this._flagGameManager;
+    public static get FlagGame(): FlagGameManager {
+        return this._flagGame;
     }
 
-    public get SiegeGame(): InterSiegeGameManager {
-        return this._siegeGameManager;
+    public static get SiegeGame(): SiegeGameManager {
+        return this._siegeGame;
     }
 
     // public get SoloFlagGame(): InterSoloFlagGameManager {
     //     return this._soloFlagGameManager;
     // }
     
-    public get Product(): InterProductManager{
-        return this._productManager;
+    public static get Product(): ProductManager{
+        return this._product;
+    }
+
+
+    public static Clear(): void { }
+
+    // life cycle
+    public static Init(): void {
+        console.log("manager")
+        if (this._instance == null) {
+            let go = GameObject.Find('Manager');
+            this._instance = go.GetComponent<Manager>();
+        }
+    }
+
+    Awake() {
+        Manager.Data.Init();
+        Manager.Resource.Init();
+        Manager.UI.Init();
+        //Manager.Sound.Init();
+        Manager.Language.Init();
+        Manager.Game.Init();
+        Manager.FlagGame.Init();
+        Manager.SiegeGame.Init();
+        Manager.Product.Init();
     }
 }

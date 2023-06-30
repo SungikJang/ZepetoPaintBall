@@ -3,11 +3,10 @@ import {Button, Image} from 'UnityEngine.UI'
 //import {ProductPurchaseButton} from "ZEPETO.Product";
 import { TMP_Text } from 'TMPro';
 import { GameObject } from 'UnityEngine';
-import Manager, { InterManager } from '../../Manager/Manager';
-import { InterMyPlayerController, MyPlayerController } from '../../MyPlayer/MyPalyerController';
-import IOC from '../../IOC';
+import Manager from '../../Manager/Manager';
 import Utils from "../../Utils/index"
 import {ProductService, ProductType} from "ZEPETO.Product";
+import MyPlayerController from '../../MyPlayerController/MyPlayerController'
 
 export default class WeaponPopupUI extends ZepetoScriptBehaviour {
     public weapomImage: Image;
@@ -25,38 +24,38 @@ export default class WeaponPopupUI extends ZepetoScriptBehaviour {
     
     private isOwned: boolean = false;
     
-    public manager: InterManager;
+   
 
-    public myPlayerController: InterMyPlayerController;
+    
 
     Start() {
         ProductService.OnPurchaseCompleted.AddListener((product, response) => {
             if (product.ProductType == ProductType.Item) {
                 let s = Utils.ExtractNumberStr(product.productId)
-                if(s === this.manager.UI.NowPopUpWeaponNum){
+                if(s === Manager.UI.NowPopUpWeaponNum){
                     this.lockImage.SetActive(false);
                     this.SelectText.SetActive(true);
                 }
             }
         });
-        this.myPlayerController = IOC.Instance.getInstance<InterMyPlayerController>(MyPlayerController);
-        this.manager = IOC.Instance.getInstance<InterManager>(Manager);
+        
+        
         this.selectBtn.onClick.AddListener(()=>{
-            if(this.myPlayerController.MyPlayerData.MyWeaponInfoArr[Number(this.manager.UI.NowPopUpWeaponNum)-1] === "O"){
-                if(this.myPlayerController.MyPlayerData.MyPlayer.character.Context.gameObject.activeSelf){
-                    if (this.myPlayerController.MyPlayerData.NowWeapon.name !== this.manager.UI.NowPopUpWeaponNum) {
-                        this.myPlayerController.MyPlayerData.EqiupGun(this.manager.UI.NowPopUpWeaponNum);
+            if(MyPlayerController.Data.MyWeaponInfoArr[Number(Manager.UI.NowPopUpWeaponNum)-1] === "O"){
+                if(MyPlayerController.Data.MyPlayer.character.Context.gameObject.activeSelf){
+                    if (MyPlayerController.Data.NowWeapon.name !== Manager.UI.NowPopUpWeaponNum) {
+                        MyPlayerController.Data.EqiupGun(Manager.UI.NowPopUpWeaponNum);
                     }
                 }
                 else{
-                    this.myPlayerController.MyPlayerData.WaitingWeeapon = this.manager.UI.NowPopUpWeaponNum
+                    MyPlayerController.Data.WaitingWeeapon = Manager.UI.NowPopUpWeaponNum
                 }
                 //장찻
-                this.manager.UI.DeletePopUpUI();
+                Manager.UI.DeletePopUpUI();
             }
         });
         this.buyBtn.onClick.AddListener(()=>{
-            this.manager.Product.PurchaseItem("gun" + this.manager.UI.NowPopUpWeaponNum)
+            Manager.Product.PurchaseItem("gun" + Manager.UI.NowPopUpWeaponNum)
             // this.lockImage.SetActive(false);
             // this.SelectText.SetActive(true);
             //구매
@@ -64,24 +63,24 @@ export default class WeaponPopupUI extends ZepetoScriptBehaviour {
     }
     
     OnEnable(){
-        this.myPlayerController = IOC.Instance.getInstance<InterMyPlayerController>(MyPlayerController);
-        this.manager = IOC.Instance.getInstance<InterManager>(Manager);
-        const path = 'Weapon/' + this.manager.UI.NowPopUpWeaponNum;
-        this.weaponName.text = this.manager.Data.GetValueByKeys(path + '/Name') as string;
-        this.myPlayerController.MyPlayerData.MyWeaponType = this.weaponName.text;
-        this.weaponType.text = this.manager.Data.GetValueByKeys(path + '/Type') as string;
-        let s = this.manager.Data.GetValueByKeys(path + '/BuyPrice') as number;
+        
+        
+        const path = 'Weapon/' + Manager.UI.NowPopUpWeaponNum;
+        this.weaponName.text = Manager.Data.GetValueByKeys(path + '/Name') as string;
+        MyPlayerController.Data.MyWeaponType = this.weaponName.text;
+        this.weaponType.text = Manager.Data.GetValueByKeys(path + '/Type') as string;
+        let s = Manager.Data.GetValueByKeys(path + '/BuyPrice') as number;
         this.PriceText.text = s.toString();
-        s = this.manager.Data.GetValueByKeys(path + '/Power') as number;
+        s = Manager.Data.GetValueByKeys(path + '/Power') as number;
         this.powerText.text = s.toString();
-        s = this.manager.Data.GetValueByKeys(path + '/Speed') as number;
+        s = Manager.Data.GetValueByKeys(path + '/Speed') as number;
         this.speedText.text = s.toString();
-        s = this.manager.Data.GetValueByKeys(path + '/Bullets') as number;
+        s = Manager.Data.GetValueByKeys(path + '/Bullets') as number;
         this.bulletText.text = s.toString();
-        let item = this.manager.Resource.LoadSprite('Guns\\' + this.manager.UI.NowPopUpWeaponNum);
+        let item = Manager.Resource.LoadSprite('Guns\\' + Manager.UI.NowPopUpWeaponNum);
         this.weapomImage.sprite = item;
-        //this.buyBtnObj.GetComponent<ProductPurchaseButton>().SetProductId("gun" + this.manager.UI.NowPopUpWeaponNum);
-        if(this.myPlayerController.MyPlayerData.MyWeaponInfoArr[Number(this.manager.UI.NowPopUpWeaponNum)-1] === "O"){
+        //this.buyBtnObj.GetComponent<ProductPurchaseButton>().SetProductId("gun" + Manager.UI.NowPopUpWeaponNum);
+        if(MyPlayerController.Data.MyWeaponInfoArr[Number(Manager.UI.NowPopUpWeaponNum)-1] === "O"){
             this.lockImage.SetActive(false);
             this.SelectText.SetActive(true);
         }

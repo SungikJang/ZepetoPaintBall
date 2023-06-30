@@ -20,14 +20,12 @@ ScriptedImporter:
   wrapperOutputDirectory: Generated
   compiledResult: '{"source":"\"use strict\";\r\nObject.defineProperty(exports, \"__esModule\",
     { value: true });\r\nconst UnityEngine_1 = require(\"UnityEngine\");\r\nconst
-    ZEPETO_Script_1 = require(\"ZEPETO.Script\");\r\nconst IOC_1 = require(\"../../IOC\");\r\nconst
-    Manager_1 = require(\"../../Manager/Manager\");\r\nclass AlertUI extends ZEPETO_Script_1.ZepetoScriptBehaviour
-    {\r\n    Start() {\r\n        try {\r\n            this.StartCoroutine(this.DestroyAlertUI());\r\n       
-    }\r\n        catch (e) {\r\n            console.error(e);\r\n        }\r\n   
-    }\r\n    *DestroyAlertUI() {\r\n        yield new UnityEngine_1.WaitForSeconds(2);\r\n       
-    //IOC.Instance.getInstance<InterManager>(Manager).Resource.Destroy(this.gameObject.transform.parent.gameObject);\r\n       
-    IOC_1.default.Instance.getInstance(Manager_1.default).UI.DeletePopUpUI(this.gameObject.name);\r\n       
-    //IOC.Instance.getInstance<InterManager>(Manager).UI.ShowAlertUI();\r\n    }\r\n}\r\nexports.default
-    = AlertUI;\r\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiQWxlcnRVSS5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIkFsZXJ0VUkudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFBQSw2Q0FBMkM7QUFDM0MsaURBQW9EO0FBQ3BELG1DQUE0QjtBQUM1QixtREFBOEQ7QUFHOUQsTUFBcUIsT0FBUSxTQUFRLHFDQUFxQjtJQUN0RCxLQUFLO1FBQ0QsSUFBSTtZQUNBLElBQUksQ0FBQyxjQUFjLENBQUMsSUFBSSxDQUFDLGNBQWMsRUFBRSxDQUFDLENBQUM7U0FDOUM7UUFBQyxPQUFPLENBQUMsRUFBRTtZQUNSLE9BQU8sQ0FBQyxLQUFLLENBQUMsQ0FBQyxDQUFDLENBQUM7U0FDcEI7SUFDTCxDQUFDO0lBRUQsQ0FBQyxjQUFjO1FBQ1gsTUFBTSxJQUFJLDRCQUFjLENBQUMsQ0FBQyxDQUFDLENBQUM7UUFDNUIsZ0hBQWdIO1FBQ2hILGFBQUcsQ0FBQyxRQUFRLENBQUMsV0FBVyxDQUFlLGlCQUFPLENBQUMsQ0FBQyxFQUFFLENBQUMsYUFBYSxDQUFDLElBQUksQ0FBQyxVQUFVLENBQUMsSUFBSSxDQUFDLENBQUM7UUFDdkYsbUVBQW1FO0lBQ3ZFLENBQUM7Q0FDSjtBQWZELDBCQWVDIn0=","assetPath":"Assets/Scripts/Client/UI/AlertUI/AlertUI.ts","manifest":{"properties":[],"name":"AlertUI","description":"","hasAnimatorMove":false},"isCompiled":true}'
-  typescriptHash: 4c751bef556efcd12486c3a35ecca2e7
+    ZEPETO_Script_1 = require(\"ZEPETO.Script\");\r\nconst Manager_1 = require(\"../../Manager/Manager\");\r\nclass
+    AlertUI extends ZEPETO_Script_1.ZepetoScriptBehaviour {\r\n    Start() {\r\n       
+    try {\r\n            this.StartCoroutine(this.DestroyAlertUI());\r\n        }\r\n       
+    catch (e) {\r\n            console.error(e);\r\n        }\r\n    }\r\n    *DestroyAlertUI()
+    {\r\n        yield new UnityEngine_1.WaitForSeconds(2);\r\n        //Manager.Resource.Destroy(this.gameObject.transform.parent.gameObject);\r\n       
+    Manager_1.default.UI.DeletePopUpUI(this.gameObject.name);\r\n        //Manager.UI.ShowAlertUI();\r\n   
+    }\r\n}\r\nexports.default = AlertUI;\r\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiQWxlcnRVSS5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIkFsZXJ0VUkudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFBQSw2Q0FBMkM7QUFDM0MsaURBQW9EO0FBQ3BELG1EQUE0QztBQUc1QyxNQUFxQixPQUFRLFNBQVEscUNBQXFCO0lBQ3RELEtBQUs7UUFDRCxJQUFJO1lBQ0EsSUFBSSxDQUFDLGNBQWMsQ0FBQyxJQUFJLENBQUMsY0FBYyxFQUFFLENBQUMsQ0FBQztTQUM5QztRQUFDLE9BQU8sQ0FBQyxFQUFFO1lBQ1IsT0FBTyxDQUFDLEtBQUssQ0FBQyxDQUFDLENBQUMsQ0FBQztTQUNwQjtJQUNMLENBQUM7SUFFRCxDQUFDLGNBQWM7UUFDWCxNQUFNLElBQUksNEJBQWMsQ0FBQyxDQUFDLENBQUMsQ0FBQztRQUM1Qix3RUFBd0U7UUFDeEUsaUJBQU8sQ0FBQyxFQUFFLENBQUMsYUFBYSxDQUFDLElBQUksQ0FBQyxVQUFVLENBQUMsSUFBSSxDQUFDLENBQUM7UUFDL0MsMkJBQTJCO0lBQy9CLENBQUM7Q0FDSjtBQWZELDBCQWVDIn0=","assetPath":"Assets/Scripts/Client/UI/AlertUI/AlertUI.ts","manifest":{"properties":[],"name":"AlertUI","description":"","hasAnimatorMove":false},"isCompiled":true}'
+  typescriptHash: 9374d93fd47e392e7b428d815684339a
   onlyWriteTrigger: 0

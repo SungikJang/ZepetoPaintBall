@@ -1,14 +1,6 @@
 import {AudioClip, AudioSource, GameObject, Resources} from 'UnityEngine';
 
-export interface InterSoundManager {
-    Play(soundName: string, pitch: number): void
-
-    Stop(soundName: string): void
-
-    Volume(soundName: string): void
-}
-
-export default class SoundManager implements InterSoundManager {
+export default class SoundManager{
     // property
     private _audioSources: Map<string, AudioSource> = new Map<string, AudioSource>();
     public audioClip: AudioClip;

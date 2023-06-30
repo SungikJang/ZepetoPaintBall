@@ -1,7 +1,6 @@
 import { ZepetoScriptBehaviour } from 'ZEPETO.Script'
-import {GameObject, Transform} from "UnityEngine";
-import Manager, { InterManager } from '../Manager/Manager';
-import IOC from '../IOC';
+import {GameObject, Transform, WaitForSeconds} from "UnityEngine";
+import Manager from '../Manager/Manager';
 
 export default class ObjectController extends ZepetoScriptBehaviour {
 
@@ -14,10 +13,9 @@ export default class ObjectController extends ZepetoScriptBehaviour {
     public Colliders: Transform;
 
     Start() {
-        IOC.Instance.getInstance<InterManager>(Manager).Game.ObjectController = this;
+        Manager.Game.ObjectController = this;
         this.flagObj.SetActive(false);
         this.FlagEnv.SetActive(false);
         this.SiegeEnv.SetActive(false);
     }
-
 }

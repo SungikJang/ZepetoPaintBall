@@ -1,67 +1,15 @@
 import {GameObject, Transform, Vector3 } from "UnityEngine";
 import GunController from "../Controller/GunController";
 import { GAME_NAME } from "../Enums";
-import IOC from "../IOC";
-import { InterMyPlayerController, MyPlayerController } from "../MyPlayer/MyPalyerController";
 import Connector from "../Network/Connector";
-import Manager, { InterManager } from "./Manager";
+import Manager from "./Manager";
 import ControllerUI from "../UI/ControllerUI/ControllerUI"
 import {ProductRecord} from "ZEPETO.Product";
 import ObjectController from "../Controller/ObjectController";
+import MyPlayerController from "../MyPlayerController/MyPlayerController";
 
-export interface InterGameManager {
-    nowOnGame: string
-
-    GameJoin(sessionId: string, team?: string): void;
-    
-    GameStart(sessionId: string): void;
-
-    LeaveGame(): void;
-    
-    GameEnd(winningTeam: string): void;
-    
-    Init(): void;
-
-    Respawn(team?: string)
-
-    get IsGamePlaying();
-    
-    set IsGamePlaying(value: boolean);
-    
-    get NowOnGame();
-    
-    set NowOnGame(value: string);
-
-    get GameTime();
-    
-    set GameTime(value: number);
-
-    get HomePoint();
-
-    set HomePoint(value: Transform);
-
-    get GunController()
-
-    set GunController(value: GunController)
-
-    get ControllerUI()
-
-    set ControllerUI(value: ControllerUI)
-
-    get ObjectController()
-
-    set ObjectController(value: ObjectController)
-
-    GameReady()
-    //
-    // get OtherInGamePlayers()
-    //
-    // set OtherInGamePlayers(value: string[])
-}
-
-export default class GameManager implements InterGameManager{
+export default class GameManager{
     nowOnGame: string = ''
-    manager: InterManager;
     isGamePlaying: boolean = false;
     gameTime: number = 0;
     
@@ -78,7 +26,6 @@ export default class GameManager implements InterGameManager{
     // private otherInGamePlayers: string[] = [];
     
     Init(){
-        this.manager = IOC.Instance.getInstance<InterManager>(Manager);
     }
 
     get IsGamePlaying(){
@@ -126,13 +73,13 @@ export default class GameManager implements InterGameManager{
     GameJoin(sessionId: string, team?: string){
         switch(this.nowOnGame){
             case GAME_NAME.Flag:
-                IOC.Instance.getInstance<InterManager>(Manager).FlagGame.JoinGame(team);
+                Manager.FlagGame.JoinGame(team);
                 break
             case GAME_NAME.Siege:
-                IOC.Instance.getInstance<InterManager>(Manager).SiegeGame.JoinGame(team);
+                Manager.SiegeGame.JoinGame(team);
                 break
             // case GAME_NAME.SoloFlag:
-            //     IOC.Instance.getInstance<InterManager>(Manager).SoloFlagGame.JoinGame();
+            //     Manager.SoloFlagGame.JoinGame();
             //     break
         }
     }
@@ -142,37 +89,37 @@ export default class GameManager implements InterGameManager{
     }
 
     GameEnd(winningTeam: string){
-        if(winningTeam === IOC.Instance.getInstance<InterMyPlayerController>(MyPlayerController).MyPlayerData.Team){
-            this.manager.UI.ShowPopUpUI("WinUI")
+        if(winningTeam === MyPlayerController.Data.Team){
+            Manager.UI.ShowPopUpUI("WinUI")
         }
         else{
-            this.manager.UI.ShowPopUpUI("LoseUI")
+            Manager.UI.ShowPopUpUI("LoseUI")
         }
-        this.manager.UI.ShowDefaultUI("GameVoteUI")
+        Manager.UI.ShowDefaultUI("GameVoteUI")
         switch(this.nowOnGame){
             case GAME_NAME.Flag:
-                IOC.Instance.getInstance<InterManager>(Manager).FlagGame.EndGame(winningTeam);
+                Manager.FlagGame.EndGame(winningTeam);
                 break
             case GAME_NAME.Siege:
-                IOC.Instance.getInstance<InterManager>(Manager).SiegeGame.EndGame(winningTeam);
+                Manager.SiegeGame.EndGame(winningTeam);
                 break
             // case GAME_NAME.SoloFlag:
-            //     IOC.Instance.getInstance<InterManager>(Manager).SoloFlagGame.EndGame(winningTeam);
+            //     Manager.SoloFlagGame.EndGame(winningTeam);
             //     break
         }
     }
 
     LeaveGame(){
-        Connector.Instance.ReqToServer("LeaveGame", {player: IOC.Instance.getInstance<InterMyPlayerController>(MyPlayerController).MyPlayerData.MySessionId})
+        Connector.Instance.ReqToServer("LeaveGame", {player: MyPlayerController.Data.MySessionId})
         switch(this.nowOnGame){
             case GAME_NAME.Flag:
-                IOC.Instance.getInstance<InterManager>(Manager).FlagGame.LeaveGame();
+                Manager.FlagGame.LeaveGame();
                 break
             case GAME_NAME.Siege:
-                IOC.Instance.getInstance<InterManager>(Manager).SiegeGame.LeaveGame();
+                Manager.SiegeGame.LeaveGame();
                 break
             // case GAME_NAME.SoloFlag:
-            //     IOC.Instance.getInstance<InterManager>(Manager).SoloFlagGame.LeaveGame();
+            //     Manager.SoloFlagGame.LeaveGame();
             //     break
         }
     }
@@ -180,21 +127,21 @@ export default class GameManager implements InterGameManager{
     Respawn(team?: string){
         switch(this.nowOnGame){
             case GAME_NAME.Flag:
-                IOC.Instance.getInstance<InterManager>(Manager).FlagGame.Respawn(team);
+                Manager.FlagGame.Respawn(team);
                 break
             case GAME_NAME.Siege:
-                IOC.Instance.getInstance<InterManager>(Manager).SiegeGame.Respawn(team);
+                Manager.SiegeGame.Respawn(team);
                 break
             // case GAME_NAME.SoloFlag:
-            //     IOC.Instance.getInstance<InterManager>(Manager).SoloFlagGame.Respawn();
+            //     Manager.SoloFlagGame.Respawn();
             //     break
         }
     }
 
     GameReady(){
-        this.manager.UI.DeleteDefaultUI("GameVoteUI")
-        this.manager.UI.ShowPopUpUI("GameReadyUI")
-        this.manager.UI.ShowDefaultUI("StartUI")
+        Manager.UI.DeleteDefaultUI("GameVoteUI")
+        Manager.UI.ShowPopUpUI("GameReadyUI")
+        Manager.UI.ShowDefaultUI("StartUI")
     }
 
     get GunController(){

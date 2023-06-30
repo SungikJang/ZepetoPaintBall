@@ -2,24 +2,12 @@ import {GameObject, Random} from 'UnityEngine';
 import { Button } from 'UnityEngine.UI';
 import { ZepetoPlayers } from 'ZEPETO.Character.Controller';
 import { ZepetoScriptBehaviour } from 'ZEPETO.Script'
-import IOC from '../../IOC';
-import Manager, { InterManager } from '../../Manager/Manager';
+import Manager from '../../Manager/Manager';
 import Connector from '../../Network/Connector';
 import {TMP_Text} from "TMPro";
 
-export interface InterStartUI {
-    Start(): void
-
-    SetGold(quantity: number): void
-
-    SetDia(quantity: number): void
-
-    SetZem(quantity: number)
-}
-
-export default class StartUI extends ZepetoScriptBehaviour implements InterStartUI{
+export default class StartUI extends ZepetoScriptBehaviour{
     id: string;
-    manager: InterManager;
 
     public inventoryBtn: Button;
     public weaponChestBtn: Button;
@@ -47,8 +35,7 @@ export default class StartUI extends ZepetoScriptBehaviour implements InterStart
     public Items: GameObject;
 
     Start() {
-        this.manager = IOC.Instance.getInstance<InterManager>(Manager);
-        this.manager.UI.StartUI = this.gameObject.GetComponent<StartUI>();
+        Manager.UI.StartUI = this.gameObject.GetComponent<StartUI>();
         this.inventory.SetActive(true);
         const icontent = this.inventory.transform.GetChild(1).GetChild(0).GetChild(0)
         for (let i = 0; i < 16; i++){

@@ -1,0 +1,35 @@
+fileFormatVersion: 2
+guid: 5b149987e47e4c2287481aa4899a7da3
+importerOverride: ZEPETO.Script.Compiler:ZEPETO.Script:TypescriptAssetImporter
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: -1123457745, guid: 54cf806323ffe4418a4ce4cc63fe6b9d, type: 3}
+  isAssemblyDeclarations: 0
+  assembly: 
+  generateAllTypes: 1
+  types: []
+  generateWrapper: 0
+  overrideWrapperTypes: 0
+  wrapperTypes: []
+  WrapperFilters: []
+  wrapperOutputDirectory: Generated
+  compiledResult: '{"source":"\"use strict\";\r\nObject.defineProperty(exports, \"__esModule\",
+    { value: true });\r\nconst UnityEngine_1 = require(\"UnityEngine\");\r\nconst
+    ZEPETO_Script_1 = require(\"ZEPETO.Script\");\r\nconst ZEPETO_Character_Controller_1
+    = require(\"ZEPETO.Character.Controller\");\r\nclass VideoCamera extends ZEPETO_Script_1.ZepetoScriptBehaviour
+    {\r\n    Start() {\r\n        try {\r\n            this.ZepetoCamera = ZEPETO_Character_Controller_1.ZepetoPlayers.instance.LocalPlayer.zepetoCamera.camera;\r\n           
+    this.transform.position = this.ZepetoCamera.gameObject.transform.position;\r\n           
+    this.transform.rotation = this.ZepetoCamera.gameObject.transform.rotation;\r\n       
+    }\r\n        catch (e) {\r\n            console.error(e);\r\n        }\r\n   
+    }\r\n    Update() {\r\n        try {\r\n            this.transform.position =
+    this.ZepetoCamera.gameObject.transform.position;\r\n            this.transform.rotation
+    = this.ZepetoCamera.gameObject.transform.rotation;\r\n        }\r\n        catch
+    (e) {\r\n            console.error(e);\r\n        }\r\n    }\r\n}\r\nexports.default
+    = VideoCamera;\r\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiVmlkZW9DYW1lcmEuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJWaWRlb0NhbWVyYS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUFBLDZDQUFxQztBQUNyQyxpREFBc0Q7QUFDdEQsNkVBQTREO0FBRTVELE1BQXFCLFdBQVksU0FBUSxxQ0FBcUI7SUFHMUQsS0FBSztRQUNELElBQUk7WUFDQSxJQUFJLENBQUMsWUFBWSxHQUFHLDJDQUFhLENBQUMsUUFBUSxDQUFDLFdBQVcsQ0FBQyxZQUFZLENBQUMsTUFBTSxDQUFDO1lBQzNFLElBQUksQ0FBQyxTQUFTLENBQUMsUUFBUSxHQUFHLElBQUksQ0FBQyxZQUFZLENBQUMsVUFBVSxDQUFDLFNBQVMsQ0FBQyxRQUFRLENBQUM7WUFDMUUsSUFBSSxDQUFDLFNBQVMsQ0FBQyxRQUFRLEdBQUcsSUFBSSxDQUFDLFlBQVksQ0FBQyxVQUFVLENBQUMsU0FBUyxDQUFDLFFBQVEsQ0FBQztTQUM3RTtRQUNELE9BQU8sQ0FBQyxFQUFFO1lBQ04sT0FBTyxDQUFDLEtBQUssQ0FBQyxDQUFDLENBQUMsQ0FBQztTQUNwQjtJQUNMLENBQUM7SUFDRCxNQUFNO1FBQ0YsSUFBSTtZQUNBLElBQUksQ0FBQyxTQUFTLENBQUMsUUFBUSxHQUFHLElBQUksQ0FBQyxZQUFZLENBQUMsVUFBVSxDQUFDLFNBQVMsQ0FBQyxRQUFRLENBQUM7WUFDMUUsSUFBSSxDQUFDLFNBQVMsQ0FBQyxRQUFRLEdBQUcsSUFBSSxDQUFDLFlBQVksQ0FBQyxVQUFVLENBQUMsU0FBUyxDQUFDLFFBQVEsQ0FBQztTQUM3RTtRQUNELE9BQU8sQ0FBQyxFQUFFO1lBQ04sT0FBTyxDQUFDLEtBQUssQ0FBQyxDQUFDLENBQUMsQ0FBQztTQUNwQjtJQUNMLENBQUM7Q0FDSjtBQXRCRCw4QkFzQkMifQ==","assetPath":"Assets/Scripts/Client/VideoScripts/VideoCamera.ts","manifest":{"properties":[],"name":"VideoCamera","description":""},"isCompiled":true}'
+  typescriptHash: 3f198f58df150f7f4df6cb3767d5ca4b
+  onlyWriteTrigger: 0

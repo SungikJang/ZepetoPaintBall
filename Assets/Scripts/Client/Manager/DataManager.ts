@@ -1,18 +1,6 @@
-// import IOC from '../../Common/IOC';
-// import {Manager} from '../Manager';
+import Manager from "./Manager";
 
-import IOC from "../IOC";
-import Manager, { InterManager } from "./Manager";
-
-export interface InterDataManager {
-    Init(): void
-    
-    Translator(targetLanguage: string): void
-
-    GetValueByKeys(keys: string): Object
-}
-
-class DataManager implements InterDataManager {
+export default class DataManager{
 
     Translator(targetLanguage: string): void {
         throw new Error('Method not implemented.');
@@ -24,7 +12,7 @@ class DataManager implements InterDataManager {
     // method
 
     Init() {
-        let Weapon = IOC.Instance.getInstance<InterManager>(Manager).Resource.LoadData('Weapon');
+        let Weapon = Manager.Resource.LoadData('Weapon');
         
         this.dataDictionary = {
             Weapon
@@ -45,5 +33,3 @@ class DataManager implements InterDataManager {
         return value;
     }
 }
-
-export default DataManager;

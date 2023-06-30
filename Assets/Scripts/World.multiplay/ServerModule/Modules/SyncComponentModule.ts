@@ -67,7 +67,6 @@ export default class SyncComponentModule extends IModule {
 
     ForCustomize(){
         this.server.onMessage(MESSAGE.StartInfoReq, async (client) => {
-            console.log("????")
             const db: DataStorage = client.loadDataStorage();
             let last = (await db.get('lastEquipWeapon')) as string;
             if (!last) {
@@ -138,26 +137,6 @@ export default class SyncComponentModule extends IModule {
             }
         });
 
-        this.server.onMessage(MESSAGE.DirsReq, (client, message) => {
-            this.server.broadcast("DirsRes", {player: client.sessionId, dirs: message.dirs})
-        });
-
-        this.server.onMessage(MESSAGE.DirReq, (client, message) => {
-            this.server.broadcast("DirRes", {player: client.sessionId, dir: message.dir})
-        });
-
-        this.server.onMessage(MESSAGE.ShootStartReq, (client, message) => {
-            this.server.broadcast("ShootStartRes", {player: client.sessionId})
-        });
-
-        this.server.onMessage(MESSAGE.ShootReq, (client, message) => {
-            this.server.broadcast("ShootRes", {player: client.sessionId})
-        });
-        
-        this.server.onMessage(MESSAGE.StopShootReq, (client, message) => {
-            this.server.broadcast("StopShootRes", {player: client.sessionId})
-        });
-        
         this.server.onMessage(MESSAGE.EqiupGunReq, (client, message) => {
             const db: DataStorage = client.loadDataStorage();
             db.set('lastEquipWeapon', message.name);
@@ -182,6 +161,10 @@ export default class SyncComponentModule extends IModule {
         this.server.onMessage(MESSAGE.GameVote, (client, message) => {
             this.gameVote.Vote(client.sessionId, message.gameName)
             this.server.broadcast("Vote", {player: client.sessionId, userId: client.userId, gameName: message.gameName})
+        });
+        
+        this.server.onMessage(MESSAGE.EjectReq, (client, message) => {
+            this.server.broadcast("EjectRes", {player: client.sessionId, dir: message.dir, dirs: message.dirs})
         });
     }
     
@@ -589,6 +572,7 @@ enum MESSAGE {
     onCredit = "onCredit",
     onDebit = "onDebit",
     GameVote = "GameVote",
+    EjectReq = "EjectReq"
     
 }
 // interface CurrencyMessage {

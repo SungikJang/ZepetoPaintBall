@@ -2,9 +2,7 @@ import { Button } from 'UnityEngine.UI';
 import { ZepetoScriptBehaviour } from 'ZEPETO.Script'
 import {TMP_Text} from 'TMPro';
 import {GameObject, WaitForSeconds} from 'UnityEngine';
-import { InterMyPlayerController, MyPlayerController } from '../../MyPlayer/MyPalyerController';
-import Manager, { InterManager } from '../../Manager/Manager';
-import IOC from '../../IOC';
+import Manager from '../../Manager/Manager';
 import { GAME_NAME } from "../../Enums";
 
 export default class InGameUI extends ZepetoScriptBehaviour {
@@ -27,17 +25,16 @@ export default class InGameUI extends ZepetoScriptBehaviour {
     public leaveAlertObj: GameObject;
     public InGameWeaponUI: GameObject;
 
-    public myPlayerController: InterMyPlayerController;
-    public manager: InterManager;
+    
+   
     
     private instanceSet: boolean = false;
 
     Start() {
-        this.myPlayerController = IOC.Instance.getInstance<InterMyPlayerController>(MyPlayerController);
-        this.manager = IOC.Instance.getInstance<InterManager>(Manager);
-        this.StartCoroutine(this.GetInstance());
+        
+        
         this.homeBtn.onClick.AddListener(()=>{
-            this.manager.Game.LeaveGame();
+            Manager.Game.LeaveGame();
         });
         this.readyBtn.onClick.AddListener(()=>{
             this.readyObj.SetActive(false)
@@ -50,8 +47,8 @@ export default class InGameUI extends ZepetoScriptBehaviour {
     }
     
     OnEnable(){
-        if(!this.manager) this.manager = IOC.Instance.getInstance<InterManager>(Manager);
-        switch(this.manager.Game.NowOnGame){
+        Manager.UI.InGameUI = this;
+        switch(Manager.Game.NowOnGame){
             case GAME_NAME.Flag:
                 this.ScoreObj1.SetActive(true);
                 this.ScoreObj2.SetActive(true);
@@ -78,8 +75,8 @@ export default class InGameUI extends ZepetoScriptBehaviour {
     UpdateTime(){
         let min: number = 0;
         let sec: number = 0;
-        min = Math.floor(this.manager.Game.GameTime / 60)
-        sec = Math.floor(this.manager.Game.GameTime % 60);
+        min = Math.floor(Manager.Game.GameTime / 60)
+        sec = Math.floor(Manager.Game.GameTime % 60);
         if(min < 10){
             this.minText.text = '0' + min.toString()
         }
@@ -91,19 +88,6 @@ export default class InGameUI extends ZepetoScriptBehaviour {
         }
         else{
             this.secText.text = sec.toString()
-        }
-    }
-
-    * GetInstance(){
-        while(!this.instanceSet){
-            this.myPlayerController = IOC.Instance.getInstance<InterMyPlayerController>(MyPlayerController);
-            this.manager = IOC.Instance.getInstance<InterManager>(Manager);
-            if(this.manager && this.myPlayerController){
-                this.instanceSet = true;
-                this.manager.UI.InGameUI = this;
-                return;
-            }
-            yield new WaitForSeconds(0.1);
         }
     }
 }

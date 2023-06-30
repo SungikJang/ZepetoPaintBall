@@ -130,16 +130,13 @@ MonoBehaviour:
   script:
     keys:
     - muzzle
-    - manager
-    - myPlayerController
     - bulletPool
+    - Line
     unityValues:
     - {fileID: 8668739624112462153}
     - {fileID: 0}
     - {fileID: 0}
-    - {fileID: 0}
     values:
-    - 
     - 
     - 
     - 
