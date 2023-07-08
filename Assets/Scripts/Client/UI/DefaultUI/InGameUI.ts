@@ -4,6 +4,8 @@ import {TMP_Text} from 'TMPro';
 import {GameObject, WaitForSeconds} from 'UnityEngine';
 import Manager from '../../Manager/Manager';
 import { GAME_NAME } from "../../Enums";
+import Connector from '../../Network/Connector';
+import MyPlayerController from '../../MyPlayerController/MyPlayerController';
 
 export default class InGameUI extends ZepetoScriptBehaviour {
     
@@ -34,7 +36,7 @@ export default class InGameUI extends ZepetoScriptBehaviour {
         
         
         this.homeBtn.onClick.AddListener(()=>{
-            Manager.Game.LeaveGame();
+            Connector.Instance.ReqToServer("LeaveGameReq", {player: MyPlayerController.Data.MySessionId})
         });
         this.readyBtn.onClick.AddListener(()=>{
             this.readyObj.SetActive(false)

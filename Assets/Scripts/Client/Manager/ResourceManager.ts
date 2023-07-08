@@ -5,6 +5,8 @@ export default class ResourceManager {
     private rootPrefab: GameObject = null;
 
     public Init(): void {
+        console.log("resourcemanager")
+        
         this.rootPrefab = GameObject.Find('RootPrefab');
         if (!this.rootPrefab) {
             console.log('RootPrefab이 씬에 없습니다');

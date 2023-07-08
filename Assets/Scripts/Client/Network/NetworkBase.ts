@@ -2,14 +2,7 @@ import { ZepetoScriptBehaviour } from 'ZEPETO.Script'
 import {Room, RoomData} from "ZEPETO.Multiplay";
 import {WaitForSeconds} from "UnityEngine";
 
-export interface InterNetworkBase {
-    get CurrentServerTimestamp();
-
-    ReqToServer(eventName: string, data?: any);
-    SendToServer(type: string, data?: any);
-}
-
-export default class NetworkBase extends ZepetoScriptBehaviour implements InterNetworkBase{
+export default class NetworkBase extends ZepetoScriptBehaviour {
     protected _room: Room;
     protected _pingTime = 0;
     protected _serverTimeDifferenceSum = 0;

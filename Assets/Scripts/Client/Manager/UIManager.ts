@@ -9,6 +9,7 @@ import InGameUI from '../UI/DefaultUI/InGameUI';
 import {ZepetoWorldHelper} from "ZEPETO.World";
 import GameVoteUI from '../UI/DefaultUI/GameVoteUI';
 import StartUI from '../UI/DefaultUI/StartUI'
+import RespawnUI from '../UI/DefaultUI/RespawnUI';
 
 abstract class Data<T> {
     // property
@@ -90,11 +91,14 @@ export default class UIManager {
     private inGameUI: InGameUI
     private controllerUI: ControllerUI;
     private startUI: StartUI;
+    private respawnUI: RespawnUI;
     private gameVoteUI: GameVoteUI
     private screenCenter: Vector3
     private sGCenter: Vector3[] = []
     
     public Init() {
+        console.log("uimanager")
+        
         this._rootUIPopUp = GameObject.Find('RootUIPopUp');
         if (!this._rootUIPopUp) {
             console.log('RootUIPopUp이 씬에 없습니다');
@@ -261,6 +265,14 @@ export default class UIManager {
 
     set StartUI(value: StartUI){
         this.startUI = value;
+    }
+
+    get RespawnUI(){
+        return this.respawnUI;
+    }
+
+    set RespawnUI(value: RespawnUI){
+        this.respawnUI = value;
     }
 
     get NowPopUpWeaponNum(){

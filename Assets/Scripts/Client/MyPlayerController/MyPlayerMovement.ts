@@ -16,7 +16,6 @@ import GunController from '../Controller/GunController';
 import Manager  from '../Manager/Manager';
 import Connector from '../Network/Connector';
 import MyPlayerController from './MyPlayerController';
-import MyPlayerAttachedController from './MyPlayerAttachedController';
 
 export default class MyPlayerMovement extends ZepetoScriptBehaviour{
     private isInStartUI: boolean = true;
@@ -25,18 +24,12 @@ export default class MyPlayerMovement extends ZepetoScriptBehaviour{
     private myAnimator: Animator;
     private lastSpineAngle: float = 0;
 
-    private myPlayerAttachedController: MyPlayerAttachedController
-    
     private gunController: GunController;
     
     private isMoving: boolean = false;
     
     private isJumping: boolean = false;
-
-    private haveFlag: boolean = false;
     
-
-
     Init() {
         
         //this.serviceManager.EnglishGameService.SubscribeState(this);
@@ -94,10 +87,6 @@ export default class MyPlayerMovement extends ZepetoScriptBehaviour{
         }
     }
 
-    get HavingFlag(){
-        return this.haveFlag
-    }
-
     get GunController(){
         return this.gunController
         
@@ -109,14 +98,6 @@ export default class MyPlayerMovement extends ZepetoScriptBehaviour{
 
     get MyAnimator(){
         return this.myAnimator;
-    }
-
-    get MyPlayerAttachedController(){
-        return this.myPlayerAttachedController
-    }
-
-    set MyPlayerAttachedController(value: MyPlayerAttachedController){
-        this.myPlayerAttachedController = value
     }
 
     get IsMoving(){
@@ -169,28 +150,5 @@ export default class MyPlayerMovement extends ZepetoScriptBehaviour{
 
     Jump(){
         this.isJumping = true;
-    }
-
-    GetHit(){
-        this.myPlayer.character.gameObject.layer = LayerMask.NameToLayer("hitted")
-        Manager.UI.InGameUI.InGameWeaponUI.SetActive(true);
-    }
-
-    Respawn(){
-        if(MyPlayerController.Data.WaitingWeeapon !== ''){
-            MyPlayerController.Data.EqiupGun(MyPlayerController.Data.WaitingWeeapon);
-            MyPlayerController.Data.WaitingWeeapon = "";
-        }
-    }
-
-    TakeFlag(flagObj: GameObject){
-        this.haveFlag = true;
-        flagObj.transform.SetParent(this.myPlayer.character.gameObject.transform)
-        flagObj.transform.localPosition = new Vector3(0,1.5,0)
-    }
-    
-    LostFlag(){
-        this.haveFlag = false;
-        Manager.FlagGame.FreeFlag();
     }
 }

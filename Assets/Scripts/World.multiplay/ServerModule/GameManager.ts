@@ -57,7 +57,7 @@ export default class GameManager implements IGameManager {
         this.timer = setInterval(() => {
             this.scm.SendGameTime(this.cnt);
             this.cnt += 1
-            if(this.cnt > 200){
+            if(this.cnt > 420){
                 this.EndGame();
                 this.Destroy();
             }
@@ -65,6 +65,10 @@ export default class GameManager implements IGameManager {
     }
     
     JoinPlayer(client: SandboxPlayer){
+        if(this.cnt > 404){
+            this.scm.WaitForNextGame(client);
+            return;
+        }
         this.players.push(client.sessionId)
         if(this.gameName === 'SoloFlag'){
             this.soloPlayers.push(client.sessionId)
@@ -91,6 +95,11 @@ export default class GameManager implements IGameManager {
         }
         if(this.teamA.length < 1 && this.teamB.length < 1 && this.soloPlayers.length < 1){
             this.scm.GameOver();
+        }
+        else{
+            if(this.Starter === client){
+                this.scm.ChangeAdmin(this.players[0]);
+            }
         }
     }
     

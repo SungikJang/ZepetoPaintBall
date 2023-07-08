@@ -71659,7 +71659,6 @@ MonoBehaviour:
     - coinsBottom
     - GameStartBtn
     - id
-    - manager
     - goldtext
     - diatext
     - zemtext
@@ -71678,7 +71677,6 @@ MonoBehaviour:
     - {fileID: 8046165647449516744}
     - {fileID: 8046165648582757556}
     - {fileID: 6282750137116856884}
-    - {fileID: 0}
     - {fileID: 0}
     - {fileID: 2335273800607245818}
     - {fileID: 2335273801147616964}
@@ -71699,7 +71697,6 @@ MonoBehaviour:
     - 
     - 
     - '{"type":"System.String, mscorlib","value":""}'
-    - 
     - 
     - 
     - 

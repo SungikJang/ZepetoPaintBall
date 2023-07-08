@@ -11,8 +11,7 @@ export default class BulletController extends ZepetoScriptBehaviour {
 
     OnCollisionEnter(collision: Collision){
         if(collision.gameObject.CompareTag("player")){
-            let s = this.gameObject.transform.parent.parent.parent.gameObject.name
-            if(s === ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.id){
+            if(this.gameObject.transform.parent.parent.parent.gameObject.name === ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.id){
                 Connector.Instance.ReqToServer("PlayerHit", {player: collision.gameObject.name});
             }
             this.gameObject.SetActive(false);

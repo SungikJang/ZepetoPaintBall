@@ -12,6 +12,8 @@ export default class DataManager{
     // method
 
     Init() {
+        console.log("datamanager")
+        
         let Weapon = Manager.Resource.LoadData('Weapon');
         
         this.dataDictionary = {

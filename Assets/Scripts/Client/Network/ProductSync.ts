@@ -24,34 +24,29 @@ export default class ProductSync extends ZepetoScriptBehaviour {
     private* LoadAllItems() {
         const request = ProductService.GetProductsAsync();
         yield new WaitUntil(() => request.keepWaiting == false);
-        while(true){
-            if(Manager && Manager.Product){
-                Manager.Product.ProductSyncinstance = this;
-                Manager.Product.SetMultiPlay(this.multiplay)
-                if (request.responseData.isSuccess) {
-                    Manager.Product.ItemsCache = [];
-                    request.responseData.products.forEach((pr) => {
-                        if (pr.ProductType == ProductType.Item) {
-                            Manager.Product.ItemsCache.push(pr);
-                        }
-                        if (pr.ProductType == ProductType.ItemPackage) {
-                            Manager.Product.ItemsPackageCache.push(pr);
-                        }
-                        if (pr.ProductType == ProductType.CurrencyPackage) {
-                            Manager.Product.CurrencyPackageCache.push(pr);
-                        }
-                    });
-
-                    if (Manager.Product.ItemsCache.length == 0) {
-                        console.warn("no Item information");
-                        return;
-                    }
-                    return;
-                } else { 
-                    console.warn("Product Load Failed");
+        Manager.Product.ProductSyncinstance = this;
+        Manager.Product.SetMultiPlay(this.multiplay)
+        if (request.responseData.isSuccess) {
+            Manager.Product.ItemsCache = [];
+            request.responseData.products.forEach((pr) => {
+                if (pr.ProductType == ProductType.Item) {
+                    Manager.Product.ItemsCache.push(pr);
                 }
+                if (pr.ProductType == ProductType.ItemPackage) {
+                    Manager.Product.ItemsPackageCache.push(pr);
+                }
+                if (pr.ProductType == ProductType.CurrencyPackage) {
+                    Manager.Product.CurrencyPackageCache.push(pr);
+                }
+            });
+
+            if (Manager.Product.ItemsCache.length == 0) {
+                console.warn("no Item information");
+                return;
             }
-            yield new WaitForSeconds(0.2);
+        } 
+        else {
+            console.warn("Product Load Failed");
         }
     }
 

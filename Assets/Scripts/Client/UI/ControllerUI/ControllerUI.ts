@@ -9,18 +9,18 @@ import {ZepetoPlayers} from "ZEPETO.Character.Controller";
 import MyPlayerController from '../../MyPlayerController/MyPlayerController'
 
 export default class ControllerUI extends ZepetoScriptBehaviour {
-    private pad: GameObject;
-    private padBackG: GameObject;
-    private padAnim: Animator;
-    private padObject: GameObject;
-    private jumpObject: GameObject;
-    private jumpBtn: Button;  
-    private reloadBtn: Button;
-    private reloadObj: GameObject
-    private zoomBtn: Button;
-    private zoomObj: GameObject;
-    private sRUI: GameObject;
-    private cross: GameObject;
+    public pad: GameObject;
+    public padBackG: GameObject;
+    public padAnim: Animator;
+    public padObject: GameObject;
+    public jumpObject: GameObject;
+    public jumpBtn: Button;  
+    public reloadBtn: Button;
+    public reloadObj: GameObject
+    public zoomBtn: Button;
+    public zoomObj: GameObject;
+    public sRUI: GameObject;
+    public cross: GameObject;
 
     private bulletcnt: TMP_Text;
     private bullets: TMP_Text;

@@ -1,9 +1,8 @@
 import { ZepetoScriptBehaviour } from 'ZEPETO.Script'
-import { ZepetoPlayers } from 'ZEPETO.Character.Controller';
-import {Button, Image} from 'UnityEngine.UI'
-import { TMP_Text } from 'TMPro';
+import {Button} from 'UnityEngine.UI'
 import Manager from '../../Manager/Manager';
-import MyPlayerController from '../../MyPlayerController/MyPlayerController';
+import { GAME_NAME } from '../../Enums';
+import Connector from '../../Network/Connector';
 
 export default class GameSelectPopupUI extends ZepetoScriptBehaviour {
     public flagBtn: Button;
@@ -18,11 +17,11 @@ export default class GameSelectPopupUI extends ZepetoScriptBehaviour {
         
         
         this.flagBtn.onClick.AddListener(()=>{
-            Manager.FlagGame.GameStart(MyPlayerController.Data.MySessionId);
+            Connector.Instance.ReqToServer("OpenGameReq", {gameName: GAME_NAME.Flag})
             Manager.UI.DeletePopUpUI()
         });
         this.siegeBtn.onClick.AddListener(()=>{
-            Manager.SiegeGame.GameStart(MyPlayerController.Data.MySessionId);
+            Connector.Instance.ReqToServer("OpenGameReq", {gameName: GAME_NAME.Siege})
             Manager.UI.DeletePopUpUI()
         });
         this.soloFlagBtn.onClick.AddListener(()=>{

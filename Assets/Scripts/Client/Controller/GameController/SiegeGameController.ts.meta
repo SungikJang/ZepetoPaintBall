@@ -1,0 +1,76 @@
+fileFormatVersion: 2
+guid: 6f14295da203f964fbb67205fa138819
+importerOverride: ZEPETO.Script.Compiler:ZEPETO.Script:TypescriptAssetImporter
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: -1123457745, guid: 54cf806323ffe4418a4ce4cc63fe6b9d, type: 3}
+  isAssemblyDeclarations: 0
+  assembly: 
+  generateAllTypes: 1
+  types: []
+  generateWrapper: 0
+  overrideWrapperTypes: 0
+  wrapperTypes: []
+  WrapperFilters: []
+  wrapperOutputDirectory: Generated
+  compiledResult: "{\"source\":\"\\\"use strict\\\";\\r\\nObject.defineProperty(exports,
+    \\\"__esModule\\\", { value: true });\\r\\nconst ZEPETO_Script_1 = require(\\\"ZEPETO.Script\\\");\\r\\nconst
+    UnityEngine_1 = require(\\\"UnityEngine\\\");\\r\\nconst Manager_1 = require(\\\"../../Manager/Manager\\\");\\r\\nconst
+    MyPlayerController_1 = require(\\\"../../MyPlayerController/MyPlayerController\\\");\\r\\nconst
+    index_1 = require(\\\"../../Utils/index\\\");\\r\\nclass SiegeGameController
+    extends ZEPETO_Script_1.ZepetoScriptBehaviour {\\r\\n    constructor() {\\r\\n       
+    super(...arguments);\\r\\n        this.winningTeam = \\\"\\\";\\r\\n    }\\r\\n   
+    static get Instance() {\\r\\n        return this._instance;\\r\\n    }\\r\\n   
+    Awake() {\\r\\n        try {\\r\\n            if (!SiegeGameController._instance)
+    {\\r\\n                SiegeGameController._instance = this;\\r\\n           
+    }\\r\\n        }\\r\\n        catch (e) {\\r\\n            console.error(e);\\r\\n       
+    }\\r\\n    }\\r\\n    Start() {\\r\\n        this.siegeEnv.SetActive(false);\\r\\n   
+    }\\r\\n    JoinGame(team) {\\r\\n        Manager_1.default.UI.CloseDefaultUI('StartUI');\\r\\n       
+    Manager_1.default.UI.ShowDefaultUI('InGameUI');\\r\\n        Manager_1.default.UI.ControllerUI.SetJump(true);\\r\\n       
+    Manager_1.default.UI.ControllerUI.SetPad(true);\\r\\n        this.siegeEnv.SetActive(true);\\r\\n       
+    MyPlayerController_1.default.Data.SetTeam(team);\\r\\n        Manager_1.default.Game.IsGamePlaying
+    = true;\\r\\n        this.PlayerSpawn(team);\\r\\n    }\\r\\n    LeaveGame()
+    {\\r\\n        MyPlayerController_1.default.Data.SetTeam(\\\"\\\");\\r\\n       
+    Manager_1.default.Game.IsGamePlaying = false;\\r\\n        MyPlayerController_1.default.Movement.Teleport(this.homePoint.position,
+    this.homePoint.rotation);\\r\\n        Manager_1.default.UI.CloseDefaultUI('InGameUI');\\r\\n       
+    Manager_1.default.UI.ShowDefaultUI('StartUI');\\r\\n        Manager_1.default.UI.CloseDefaultUI(\\\"RespawnUI\\\");\\r\\n       
+    Manager_1.default.UI.ControllerUI.SetJump(false);\\r\\n        Manager_1.default.UI.ControllerUI.SetPad(false);\\r\\n   
+    }\\r\\n    EndGame(winningTeam) {\\r\\n        Manager_1.default.UI.CloseDefaultUI('InGameUI');\\r\\n       
+    Manager_1.default.UI.CloseDefaultUI(\\\"RespawnUI\\\");\\r\\n        Manager_1.default.UI.ControllerUI.SetJump(false);\\r\\n       
+    Manager_1.default.UI.ControllerUI.SetPad(false);\\r\\n        this.siegeEnv.SetActive(false);\\r\\n       
+    MyPlayerController_1.default.Data.SetTeam(\\\"\\\");\\r\\n        Manager_1.default.Game.IsGamePlaying
+    = false;\\r\\n        MyPlayerController_1.default.Movement.Teleport(this.homePoint.position,
+    this.homePoint.rotation);\\r\\n    }\\r\\n    PlayerSpawn(team) {\\r\\n       
+    let rangeCollider;\\r\\n        let respawnPosition;\\r\\n        if (team ===
+    \\\"A\\\") {\\r\\n            rangeCollider = this.startPoint.GetChild(0).GetChild(0).GetComponent($typeof(UnityEngine_1.BoxCollider));\\r\\n           
+    let range_X = rangeCollider.bounds.size.x;\\r\\n            let range_Z = rangeCollider.bounds.size.z;\\r\\n           
+    range_X = UnityEngine_1.Random.Range((range_X / 2) * -1, range_X / 2);\\r\\n           
+    range_Z = UnityEngine_1.Random.Range((range_Z / 2) * -1, range_Z / 2);\\r\\n           
+    respawnPosition = index_1.default.VectorPlusCalc(this.startPoint.GetChild(0).GetChild(0).position,
+    new UnityEngine_1.Vector3(range_X, 0, range_Z));\\r\\n        }\\r\\n       
+    else {\\r\\n            rangeCollider = this.startPoint.GetChild(1).GetChild(0).GetComponent($typeof(UnityEngine_1.BoxCollider));\\r\\n           
+    let range_X = rangeCollider.bounds.size.x;\\r\\n            let range_Z = rangeCollider.bounds.size.z;\\r\\n           
+    range_X = UnityEngine_1.Random.Range((range_X / 2) * -1, range_X / 2);\\r\\n           
+    range_Z = UnityEngine_1.Random.Range((range_Z / 2) * -1, range_Z / 2);\\r\\n           
+    respawnPosition = index_1.default.VectorPlusCalc(this.startPoint.GetChild(1).GetChild(0).position,
+    new UnityEngine_1.Vector3(range_X, 0, range_Z));\\r\\n        }\\r\\n       
+    MyPlayerController_1.default.Movement.Teleport(respawnPosition, UnityEngine_1.Quaternion.Euler(UnityEngine_1.Vector3.zero));\\r\\n   
+    }\\r\\n    GetHit(player) {\\r\\n        player.layer = UnityEngine_1.LayerMask.NameToLayer(\\\"hittedPlayer\\\");\\r\\n   
+    }\\r\\n    Siege(team) {\\r\\n        if (team === \\\"A\\\") {\\r\\n           
+    Manager_1.default.UI.InGameUI.BteamSiege.SetActive(false);\\r\\n            Manager_1.default.UI.InGameUI.AteamSiege.SetActive(true);\\r\\n       
+    }\\r\\n        else {\\r\\n            Manager_1.default.UI.InGameUI.AteamSiege.SetActive(false);\\r\\n           
+    Manager_1.default.UI.InGameUI.BteamSiege.SetActive(true);\\r\\n        }\\r\\n       
+    if (team === MyPlayerController_1.default.Data.Team) {\\r\\n            //\uC6B0\uB9AC\uD300\uC774
+    \uC810\uB839 \uC131\uACF5\uD588\uB2E4 UI\\r\\n            Manager_1.default.UI.ShowPopUpUI(\\\"MyTeamSiege\\\");\\r\\n       
+    }\\r\\n        else {\\r\\n            //\uC801\uC774 \uC810\uB839 \uC131\uACF5\uD588\uB2E4
+    UI\\r\\n            Manager_1.default.UI.ShowPopUpUI(\\\"OpponentSiege\\\");\\r\\n       
+    }\\r\\n        this.winningTeam = team;\\r\\n    }\\r\\n    get WinnigTeam()
+    {\\r\\n        return this.winningTeam;\\r\\n    }\\r\\n}\\r\\nexports.default
+    = SiegeGameController;\\r\\nSiegeGameController._instance = null;\\r\\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiU2llZ2VHYW1lQ29udHJvbGxlci5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIlNpZWdlR2FtZUNvbnRyb2xsZXIudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFBQSxpREFBcUQ7QUFDckQsNkNBQXVHO0FBRXZHLG1EQUE0QztBQUU1QyxvRkFBNkU7QUFDN0UsNkNBQXFDO0FBRXJDLE1BQXFCLG1CQUFvQixTQUFRLHFDQUFxQjtJQUF0RTs7UUFXWSxnQkFBVyxHQUFXLEVBQUUsQ0FBQztJQXdHckMsQ0FBQztJQWhIVSxNQUFNLEtBQUssUUFBUTtRQUN0QixPQUFPLElBQUksQ0FBQyxTQUFTLENBQUM7SUFDMUIsQ0FBQztJQVFELEtBQUs7UUFDRCxJQUFJO1lBQ0EsSUFBSSxDQUFDLG1CQUFtQixDQUFDLFNBQVMsRUFBRTtnQkFDaEMsbUJBQW1CLENBQUMsU0FBUyxHQUFHLElBQUksQ0FBQzthQUN4QztTQUNKO1FBQ0QsT0FBTyxDQUFDLEVBQUU7WUFDTixPQUFPLENBQUMsS0FBSyxDQUFDLENBQUMsQ0FBQyxDQUFDO1NBQ3BCO0lBQ0wsQ0FBQztJQUVELEtBQUs7UUFDRCxJQUFJLENBQUMsUUFBUSxDQUFDLFNBQVMsQ0FBQyxLQUFLLENBQUMsQ0FBQTtJQUNsQyxDQUFDO0lBRUQsUUFBUSxDQUFDLElBQVk7UUFDakIsaUJBQU8sQ0FBQyxFQUFFLENBQUMsY0FBYyxDQUFDLFNBQVMsQ0FBQyxDQUFDO1FBQ3JDLGlCQUFPLENBQUMsRUFBRSxDQUFDLGFBQWEsQ0FBQyxVQUFVLENBQUMsQ0FBQztRQUNyQyxpQkFBTyxDQUFDLEVBQUUsQ0FBQyxZQUFZLENBQUMsT0FBTyxDQUFDLElBQUksQ0FBQyxDQUFDO1FBQ3RDLGlCQUFPLENBQUMsRUFBRSxDQUFDLFlBQVksQ0FBQyxNQUFNLENBQUMsSUFBSSxDQUFDLENBQUM7UUFDckMsSUFBSSxDQUFDLFFBQVEsQ0FBQyxTQUFTLENBQUMsSUFBSSxDQUFDLENBQUM7UUFDOUIsNEJBQWtCLENBQUMsSUFB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\",\"assetPath\":\"Assets/Scripts/Client/Controller/GameController/SiegeGameController.ts\",\"manifest\":{\"properties\":[{\"assembly\":\"UnityEngine.CoreModule\",\"name\":\"siegeEnv\",\"type\":\"UnityEngine.GameObject\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]},{\"assembly\":\"UnityEngine.CoreModule\",\"name\":\"startPoint\",\"type\":\"UnityEngine.Transform\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]},{\"assembly\":\"UnityEngine.CoreModule\",\"name\":\"homePoint\",\"type\":\"UnityEngine.Transform\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]}],\"name\":\"SiegeGameController\",\"description\":\"\",\"hasAnimatorMove\":false},\"isCompiled\":true}"
+  typescriptHash: a181e69ca177218f3e90ad60ffa62770
+  onlyWriteTrigger: 0

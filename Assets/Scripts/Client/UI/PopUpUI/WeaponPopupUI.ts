@@ -63,8 +63,12 @@ export default class WeaponPopupUI extends ZepetoScriptBehaviour {
     }
     
     OnEnable(){
-        
-        
+        if(MyPlayerController.Data.MyWeaponInfoArr[Number(Manager.UI.NowPopUpWeaponNum)-1] === "O") {
+            this.isOwned = true;
+        }
+        else{
+            this.isOwned = false;
+        }
         const path = 'Weapon/' + Manager.UI.NowPopUpWeaponNum;
         this.weaponName.text = Manager.Data.GetValueByKeys(path + '/Name') as string;
         MyPlayerController.Data.MyWeaponType = this.weaponName.text;
@@ -80,9 +84,12 @@ export default class WeaponPopupUI extends ZepetoScriptBehaviour {
         let item = Manager.Resource.LoadSprite('Guns\\' + Manager.UI.NowPopUpWeaponNum);
         this.weapomImage.sprite = item;
         //this.buyBtnObj.GetComponent<ProductPurchaseButton>().SetProductId("gun" + Manager.UI.NowPopUpWeaponNum);
-        if(MyPlayerController.Data.MyWeaponInfoArr[Number(Manager.UI.NowPopUpWeaponNum)-1] === "O"){
+        if(this.isOwned){
             this.lockImage.SetActive(false);
             this.SelectText.SetActive(true);
+        }else{
+            this.lockImage.SetActive(true);
+            this.SelectText.SetActive(false);
         }
     }
 

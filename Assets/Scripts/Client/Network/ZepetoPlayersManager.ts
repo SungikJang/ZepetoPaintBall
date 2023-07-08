@@ -7,7 +7,6 @@ import {AudioListener, GameObject, Object, Quaternion, Vector3, WaitForSeconds,L
 import PlayerSync from './PlayerSync';
 import Connector from './Connector';
 import TransformSyncHelper, {PositionExtrapolationType, PositionInterpolationType } from './TransformSyncHelper';
-import MyPlayerAttachedController from '../MyPlayerController/MyPlayerAttachedController';
 import Manager from '../Manager/Manager';
 import OtherZepetoCharacterController from '../Controller/OtherZepetoCharacterController';
 import MyPlayerController from '../MyPlayerController/MyPlayerController';
@@ -54,10 +53,15 @@ export default class ZepetoPlayersManager extends ZepetoScriptBehaviour {
     }
     private Awake() {
         if (ZepetoPlayersManager.m_instance !== null && ZepetoPlayersManager.m_instance !== this) {
+            console.log("ZepetoPlayersManagerAwake1")
             GameObject.Destroy(this.gameObject);
+            console.log("ZepetoPlayersManagerAwake2")
         } else {
+            console.log("ZepetoPlayersManagerAwake3")
             ZepetoPlayersManager.m_instance = this;
+            console.log("ZepetoPlayersManagerAwake4")
             GameObject.DontDestroyOnLoad(this.gameObject);
+            console.log("ZepetoPlayersManagerAwake5")
         }
     }
 
@@ -70,31 +74,35 @@ export default class ZepetoPlayersManager extends ZepetoScriptBehaviour {
                 break;
             case ZepetoPlayerSpawnType.MultiplayerSpawnOnJoinRoom:
             case ZepetoPlayerSpawnType.MultiplayerSpawnLater:
+                console.log("ZepetoPlayersManagerStart1")
                 this._multiplay = Object.FindObjectOfType<ZepetoWorldMultiplay>();
+                console.log("ZepetoPlayersManagerStart2")
                 this._multiplay.RoomJoined += (room: Room) => {
                     this._room = room;
                     this._room.OnStateChange += this.OnStateChange;
                 }
+                console.log("ZepetoPlayersManagerStart3")
                 ZepetoPlayers.instance.OnAddedPlayer.AddListener((sessionId: string) => {
                     const player = ZepetoPlayers.instance.GetPlayer(sessionId);
                     player.character.gameObject.name = sessionId;
                     if (player.isLocalPlayer) {
                         //player.character.characterController.enabled = false;
-                        player.character.gameObject.AddComponent<MyPlayerAttachedController>();
-                        MyPlayerController.Data.SetMyPlayer(player, sessionId);
-                        MyPlayerController.Movement.SetMyPlayer(player);
+                        player.character.gameObject.AddComponent<MyPlayerController>();
                     }
                     else {
                         //Manager.Game.OtherPlayers.push(sessionId)
-                        player.character.gameObject.layer = LayerMask.NameToLayer("otherPlayer")
+                        player.character.gameObject.layer = LayerMask.NameToLayer("outGamePlayer")
                         player.character.gameObject.AddComponent<OtherZepetoCharacterController>();
+                        player.character.gameObject.GetComponent<OtherZepetoCharacterController>().SessionId = sessionId
                         //수정
                     }
                     this.AddPlayerSync(sessionId);
                 });
+                console.log("ZepetoPlayersManagerStart4")
                 if(this.UseZepetoGestureAPI) {
                     this.ContentRequest();
                 }
+                console.log("ZepetoPlayersManagerStart5")
                 break;
         }
     }
@@ -142,11 +150,7 @@ export default class ZepetoPlayersManager extends ZepetoScriptBehaviour {
     private OnLeavePlayer(sessionId: string, player: Player) {
         console.log(`[OnLeavePlayer] players - sessionId : ${sessionId}`);
         const p = ZepetoPlayers.instance.GetPlayer(sessionId);
-        if(!p.isLocalPlayer){
-            if(p.character.gameObject.GetComponent<OtherZepetoCharacterController>().haveFlag){
-                Manager.FlagGame.FreeFlag();
-            }
-        }
+        Manager.Game.LeaveGame(sessionId)
         //Manager.Game.OtherPlayers.splice(Manager.Game.OtherPlayers.indexOf(sessionId), 1)
         //Manager.Game.OtherInGamePlayers.splice(Manager.Game.OtherInGamePlayers.indexOf(sessionId), 1)
         this._currentPlayers.delete(sessionId);

@@ -31,11 +31,9 @@ export default class StartUI extends ZepetoScriptBehaviour{
     
     private nowPage: GameObject;
     private nowPageBottom: GameObject;
-    
-    public Items: GameObject;
 
     Start() {
-        Manager.UI.StartUI = this.gameObject.GetComponent<StartUI>();
+        Manager.UI.StartUI = this;
         this.inventory.SetActive(true);
         const icontent = this.inventory.transform.GetChild(1).GetChild(0).GetChild(0)
         for (let i = 0; i < 16; i++){

@@ -1,0 +1,39 @@
+fileFormatVersion: 2
+guid: e789e96406f57d74888ea117f6ab1eeb
+importerOverride: ZEPETO.Script.Compiler:ZEPETO.Script:TypescriptAssetImporter
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: -1123457745, guid: 54cf806323ffe4418a4ce4cc63fe6b9d, type: 3}
+  isAssemblyDeclarations: 0
+  assembly: 
+  generateAllTypes: 1
+  types: []
+  generateWrapper: 0
+  overrideWrapperTypes: 0
+  wrapperTypes: []
+  WrapperFilters: []
+  wrapperOutputDirectory: Generated
+  compiledResult: '{"source":"\"use strict\";\r\nObject.defineProperty(exports, \"__esModule\",
+    { value: true });\r\nconst UnityEngine_1 = require(\"UnityEngine\");\r\nconst
+    UnityEngine_UI_1 = require(\"UnityEngine.UI\");\r\nconst ZEPETO_Script_1 = require(\"ZEPETO.Script\");\r\nconst
+    Manager_1 = require(\"../../Manager/Manager\");\r\nconst Connector_1 = require(\"../../Network/Connector\");\r\nconst
+    TMPro_1 = require(\"TMPro\");\r\nconst MyPlayerController_1 = require(\"../../MyPlayerController/MyPlayerController\");\r\nclass
+    RespawnUI extends ZEPETO_Script_1.ZepetoScriptBehaviour {\r\n    Start() {\r\n       
+    Manager_1.default.UI.RespawnUI = this;\r\n        this.inventory.SetActive(true);\r\n       
+    const icontent = this.inventory.transform.GetChild(1).GetChild(0).GetChild(0);\r\n       
+    for (let i = 0; i < 16; i++) {\r\n            icontent.GetChild(i).GetChild(0).GetChild(0).gameObject.GetComponent($typeof(TMPro_1.TMP_Text)).text
+    = (i + 1).toString();\r\n        }\r\n        this.RespawnBtn.onClick.AddListener(()
+    => {\r\n            Connector_1.default.Instance.ReqToServer(''RespawnReq'');\r\n       
+    });\r\n        this.LeaveBtn.onClick.AddListener(() => {\r\n            Connector_1.default.Instance.ReqToServer(\"LeaveGameReq\",
+    { player: MyPlayerController_1.default.Data.MySessionId });\r\n        });\r\n   
+    }\r\n    SetGold(quantity) {\r\n        this.goldtext.text = quantity.toString();\r\n   
+    }\r\n    SetDia(quantity) {\r\n        this.diatext.text = quantity.toString();\r\n   
+    }\r\n    SetZem(quantity) {\r\n        this.zemtext.text = quantity.toString();\r\n   
+    }\r\n}\r\nexports.default = RespawnUI;\r\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiUmVzcGF3blVJLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiUmVzcGF3blVJLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7O0FBQUEsNkNBQStDO0FBQy9DLG1EQUF3QztBQUV4QyxpREFBcUQ7QUFDckQsbURBQTRDO0FBQzVDLHVEQUFnRDtBQUNoRCxpQ0FBK0I7QUFDL0Isb0ZBQTZFO0FBRTdFLE1BQXFCLFNBQVUsU0FBUSxxQ0FBcUI7SUFleEQsS0FBSztRQUNELGlCQUFPLENBQUMsRUFBRSxDQUFDLFNBQVMsR0FBRyxJQUFJLENBQUM7UUFDNUIsSUFBSSxDQUFDLFNBQVMsQ0FBQyxTQUFTLENBQUMsSUFBSSxDQUFDLENBQUM7UUFDL0IsTUFBTSxRQUFRLEdBQUcsSUFBSSxDQUFDLFNBQVMsQ0FBQyxTQUFTLENBQUMsUUFBUSxDQUFDLENBQUMsQ0FBQyxDQUFDLFFBQVEsQ0FBQyxDQUFDLENBQUMsQ0FBQyxRQUFRLENBQUMsQ0FBQyxDQUFDLENBQUE7UUFDN0UsS0FBSyxJQUFJLENBQUMsR0FBRyxDQUFDLEVBQUUsQ0FBQyxHQUFHLEVBQUUsRUFBRSxDQUFDLEVBQUUsRUFBQztZQUN4QixRQUFRLENBQUMsUUFBUSxDQUFDLENBQUMsQ0FBQyxDQUFDLFFBQVEsQ0FBQyxDQUFDLENBQUMsQ0FBQyxRQUFRLENBQUMsQ0FBQyxDQUFDLENBQUMsVUFBVSxDQUFDLFlBQVksU0FBQyxnQkFBUSxHQUFJLElBQUksR0FBRyxDQUFDLENBQUMsR0FBQyxDQUFDLENBQUMsQ0FBQyxRQUFRLEVBQUUsQ0FBQztTQUM1RztRQUVELElBQUksQ0FBQyxVQUFVLENBQUMsT0FBTyxDQUFDLFdBQVcsQ0FBQyxHQUFHLEVBQUU7WUFDckMsbUJBQVMsQ0FBQyxRQUFRLENBQUMsV0FBVyxDQUFDLFlBQVksQ0FBQyxDQUFDO1FBQ2pELENBQUMsQ0FBQyxDQUFDO1FBRUgsSUFBSSxDQUFDLFFBQVEsQ0FBQyxPQUFPLENBQUMsV0FBVyxDQUFDLEdBQUcsRUFBRTtZQUNuQyxtQkFBUyxDQUFDLFFBQVEsQ0FBQyxXQUFXLENBQUMsY0FBYyxFQUFFLEVBQUMsTUFBTSxFQUFFLDRCQUFrQixDQUFDLElBQUksQ0FBQyxXQUFXLEVBQUMsQ0FBQyxDQUFBO1FBQ2pHLENBQUMsQ0FBQyxDQUFDO0lBQ1AsQ0FBQztJQUVNLE9BQU8sQ0FBQyxRQUFnQjtRQUMzQixJQUFJLENBQUMsUUFBUSxDQUFDLElBQUksR0FBRyxRQUFRLENBQUMsUUFBUSxFQUFFLENBQUE7SUFDNUMsQ0FBQztJQUVNLE1BQU0sQ0FBQyxRQUFnQjtRQUMxQixJQUFJLENBQUMsT0FBTyxDQUFDLElBQUksR0FBRyxRQUFRLENBQUMsUUFBUSxFQUFFLENBQUE7SUFDM0MsQ0FBQztJQUVNLE1BQU0sQ0FBQyxRQUFnQjtRQUMxQixJQUFJLENBQUMsT0FBTyxDQUFDLElBQUksR0FBRyxRQUFRLENBQUMsUUFBUSxFQUFFLENBQUE7SUFDM0MsQ0FBQztDQUNKO0FBM0NELDRCQTJDQyJ9","assetPath":"Assets/Scripts/Client/UI/DefaultUI/RespawnUI.ts","manifest":{"properties":[{"assembly":"mscorlib","name":"id","type":"System.String","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]},{"assembly":"UnityEngine.UI","name":"RespawnBtn","type":"UnityEngine.UI.Button","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]},{"assembly":"UnityEngine.UI","name":"LeaveBtn","type":"UnityEngine.UI.Button","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]},{"assembly":"UnityEngine.CoreModule","name":"inventory","type":"UnityEngine.GameObject","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]},{"assembly":"Unity.TextMeshPro","name":"goldtext","type":"TMPro.TMP_Text","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]},{"assembly":"Unity.TextMeshPro","name":"diatext","type":"TMPro.TMP_Text","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]},{"assembly":"Unity.TextMeshPro","name":"zemtext","type":"TMPro.TMP_Text","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]}],"name":"RespawnUI","description":"","hasAnimatorMove":false},"isCompiled":true}'
+  typescriptHash: e97d76e6034f10f717f39ea715e63a8b
+  onlyWriteTrigger: 0

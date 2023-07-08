@@ -19,6 +19,7 @@ export default class ProductManager {
     private _productSync: ProductSync;
 
     Init() {
+        console.log("productmanager")
         ProductService.OnPurchaseCompleted.AddListener((product, response) => {
             console.log(`${response.productId} Purchase Completed`);
             if (product.ProductType == ProductType.Item) {

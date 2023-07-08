@@ -4,81 +4,10 @@ import {WaitForSeconds, AudioListener, Random, GameObject, HumanBodyBones, Vecto
 import { PLAYER_STATE } from '../Enums';
 import Connector from '../Network/Connector';
 import Utils from "../Utils/index"
-import MyPlayerAttachedController from './MyPlayerAttachedController';
 import Manager from '../Manager/Manager';
 import MyPlayerController from './MyPlayerController';
 
-export interface InterMyPlayerData {
-    Init(): void;
-
-    SetMyPlayer(player: ZepetoPlayer, sessionId: string): void;
-
-    Update(): void;
-    
-    SetTeam(team: string): void;
-    
-    SetPlayerState(state: string): void;
-    
-    get MyPlayer();
-
-    get MySessionId();
-    
-    get Team();
-
-    get MyGoldPass()
-    
-    set MyGoldPass(value: boolean)
-
-    get MyDiaPass()
-
-    set MyDiaPass(value: boolean)
-
-    get MyZem()
-    
-    set MyZem(value: number)
-
-    get MyGold()
-
-    set MyGold(value: number)
-
-    get MyDia()
-
-    set MyDia(value: number)
-
-    get MyWeaponType()
-
-    set MyWeaponType(value: string)
-
-    get NowWeapon()
-
-    set NowWeapon(value: GameObject)
-
-    get MyWeaponInfoArr()
-
-    get MyPlayerAttachedController()
-
-    set MyPlayerAttachedController(value: MyPlayerAttachedController)
-
-    get ShootDir()
-
-    set ShootDir(value: Vector3)
-
-    get ShotGunDirs()
-
-    set ShotGunDirs(value: Vector3[])
-
-    get WaitingWeeapon()
-
-    set WaitingWeeapon(value: string)
-
-    get Flag()
-
-    set Flag(value: GameObject)
-
-    EqiupGun(name: string);
-}
-
-export default class MyPlayerData extends ZepetoScriptBehaviour implements InterMyPlayerData {
+export default class MyPlayerData extends ZepetoScriptBehaviour {
     private _myPlayer: ZepetoPlayer = null;
 
     private _mySessionId: string = null;
@@ -104,8 +33,6 @@ export default class MyPlayerData extends ZepetoScriptBehaviour implements Inter
     private myWeaponInfoArr: string[] = ["O", "X", "X", "X", "X", "X", "X", "X", "X", "X", "X", "X"];
     
     private nowWeapon: GameObject;
-    
-    private myPlayerAttachedController: MyPlayerAttachedController
     
     private shootDir: Vector3;
     
@@ -149,6 +76,9 @@ export default class MyPlayerData extends ZepetoScriptBehaviour implements Inter
         if(Manager.UI.GameVoteUI){
             Manager.UI.GameVoteUI.SetZem(value);
         }
+        if(Manager.UI.RespawnUI){
+            Manager.UI.RespawnUI.SetZem(value);
+        }
     }
 
     get MyGold(){
@@ -161,6 +91,9 @@ export default class MyPlayerData extends ZepetoScriptBehaviour implements Inter
         if(Manager.UI.GameVoteUI){
             Manager.UI.GameVoteUI.SetGold(value);
         }
+        if(Manager.UI.RespawnUI){
+            Manager.UI.RespawnUI.SetZem(value);
+        }
     }
 
     get MyDia(){
@@ -172,6 +105,9 @@ export default class MyPlayerData extends ZepetoScriptBehaviour implements Inter
         Manager.UI.StartUI.SetDia(value);
         if(Manager.UI.GameVoteUI){
             Manager.UI.GameVoteUI.SetDia(value);
+        }
+        if(Manager.UI.RespawnUI){
+            Manager.UI.RespawnUI.SetZem(value);
         }
     }
 
@@ -193,14 +129,6 @@ export default class MyPlayerData extends ZepetoScriptBehaviour implements Inter
 
     set NowWeapon(value: GameObject){
         this.nowWeapon = value
-    }
-
-    get MyPlayerAttachedController(){
-        return this.myPlayerAttachedController
-    }
-
-    set MyPlayerAttachedController(value: MyPlayerAttachedController){
-        this.myPlayerAttachedController = value
     }
 
     get ShootDir(){
@@ -240,9 +168,9 @@ export default class MyPlayerData extends ZepetoScriptBehaviour implements Inter
         console.log("????")
     }
     
-    SetMyPlayer(player: ZepetoPlayer, sessionId: string){
+    SetMyPlayer(player: ZepetoPlayer){
         this._myPlayer = player;
-        this._mySessionId = sessionId;
+        this._mySessionId = player.id;
         this._myPlayer.character.gameObject.AddComponent<AudioListener>();
     }
     
@@ -277,6 +205,7 @@ export default class MyPlayerData extends ZepetoScriptBehaviour implements Inter
         this.nowWeapon.transform.localRotation = Quaternion.Euler(Vector3.zero);
         this.nowWeapon.name += "_";
         this.nowWeapon.name += this._mySessionId;
+        this.nowWeapon.layer = this._myPlayer.character.gameObject.layer
         Connector.Instance.ReqToServer("EqiupGunReq", name)
     }
 }   

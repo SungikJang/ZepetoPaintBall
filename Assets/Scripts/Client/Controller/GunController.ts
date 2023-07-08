@@ -25,6 +25,7 @@ export default class GunController extends ZepetoScriptBehaviour {
     private ray: Ray;
     
     private shootCoroutine: Coroutine;
+    private shootCoroutineRunning: boolean = false;
 
     get Bullets(){
         return this.bullets
@@ -68,11 +69,17 @@ export default class GunController extends ZepetoScriptBehaviour {
     }
     
     public StartShoot(){
-        this.shootCoroutine = this.StartCoroutine(this.ShootCoroutine())
+        if(!this.shootCoroutineRunning){
+            this.shootCoroutineRunning = true
+            this.shootCoroutine = this.StartCoroutine(this.ShootCoroutine())
+        }
     }
 
     public StopShoot(){
-        this.StopCoroutine(this.shootCoroutine)
+        if(this.shootCoroutineRunning){
+            this.StopCoroutine(this.shootCoroutine)
+            this.shootCoroutineRunning = false;
+        }
     }
 
     * ShootCoroutine(){

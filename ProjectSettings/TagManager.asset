@@ -18,11 +18,11 @@ TagManager:
   - UI
   - environment
   - bullet
-  - player
+  - myPlayer
   - gun
-  - otherPlayer
-  - hitted
-  - 
+  - inGamePlayer
+  - outGamePlayer
+  - hittedPlayer
   - 
   - 
   - 

@@ -1,26 +1,22 @@
 import { GameObject, Object } from 'UnityEngine';
 import { ZepetoScriptBehaviour } from 'ZEPETO.Script';
 import DataManager from './DataManager';
-import FlagGameManager from './FlagGameManager';
 import GameManager from './GameManger';
-import LanguageManager from './LanguageManager';
 import ProductManager from './ProductManager';
 import ResourceManager from './ResourceManager';
-import SiegeGameManager from './SiegeGameManager';
-import SoundManager from './SoundManager';
+// import SoundManager from './SoundManager';
+// import LanguageManager from './LanguageManager';
 import UIManager from './UIManager';
 
 export default class Manager extends ZepetoScriptBehaviour {
     private static _instance: Manager = null;
-    private static _language: LanguageManager = new LanguageManager();
+    // private static _language: LanguageManager = new LanguageManager();
     private static _resource: ResourceManager = new ResourceManager();
     private static _ui: UIManager = new UIManager();
-    private static _sound: SoundManager = new SoundManager();
+    // private static _sound: SoundManager = new SoundManager();
     private static _game: GameManager = new GameManager();
     private static _data: DataManager = new DataManager();
     //private static _leaderboard: LeaderboardManager = new LeaderboardManager();
-    private static _flagGame: FlagGameManager = new FlagGameManager();
-    private static _siegeGame: SiegeGameManager = new SiegeGameManager();
     private static _product: ProductManager = new ProductManager();
 
     public static get Instance(): Manager {
@@ -36,13 +32,13 @@ export default class Manager extends ZepetoScriptBehaviour {
         return this._resource;
     }
 
-    public static get Sound(): SoundManager {
-        return this._sound;
-    }
-
-    public static get Language(): LanguageManager {
-        return this._language;
-    }
+    // public static get Sound(): SoundManager {
+    //     return this._sound;
+    // }
+    //
+    // public static get Language(): LanguageManager {
+    //     return this._language;
+    // }
 
     public static get Data(): DataManager {
         return this._data;
@@ -50,14 +46,6 @@ export default class Manager extends ZepetoScriptBehaviour {
 
     public static get Game(): GameManager {
         return this._game;
-    }
-
-    public static get FlagGame(): FlagGameManager {
-        return this._flagGame;
-    }
-
-    public static get SiegeGame(): SiegeGameManager {
-        return this._siegeGame;
     }
 
     // public get SoloFlagGame(): InterSoloFlagGameManager {
@@ -81,14 +69,13 @@ export default class Manager extends ZepetoScriptBehaviour {
     }
 
     Awake() {
+        console.log("manager")
         Manager.Data.Init();
         Manager.Resource.Init();
         Manager.UI.Init();
-        //Manager.Sound.Init();
-        Manager.Language.Init();
+        // Manager.Sound.Init();
+        // Manager.Language.Init();
         Manager.Game.Init();
-        Manager.FlagGame.Init();
-        Manager.SiegeGame.Init();
         Manager.Product.Init();
     }
 }

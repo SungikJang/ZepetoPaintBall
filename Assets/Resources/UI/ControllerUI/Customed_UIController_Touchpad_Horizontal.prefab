@@ -654,44 +654,32 @@ MonoBehaviour:
   applyRootMotion: 0
   script:
     keys:
-    - padObject
-    - jumpObject
-    - jumpBtn
-    - manager
-    - reloadBtn
-    - myPlayerController
-    - reloadObj
-    - pad
-    - padBackG
-    - padAnim
-    - bulletcnt
-    - bullets
-    - zoomBtn
-    - zoomObj
-    - SRUI
     - cross
+    - sRUI
+    - zoomObj
+    - zoomBtn
+    - reloadObj
+    - reloadBtn
+    - jumpBtn
+    - jumpObject
+    - padObject
+    - padAnim
+    - padBackG
+    - pad
     unityValues:
-    - {fileID: 5768184393126304127}
-    - {fileID: 2787167781068910612}
-    - {fileID: 2787167781068910608}
-    - {fileID: 0}
-    - {fileID: 2754600508387291771}
-    - {fileID: 0}
-    - {fileID: 2803979642153025841}
-    - {fileID: 1707077190538823262}
-    - {fileID: 5744115873293859959}
-    - {fileID: 8005941098674877477}
-    - {fileID: 1893465322632776792}
-    - {fileID: 2003044824714353308}
-    - {fileID: 740390545029335736}
-    - {fileID: 5708280197309685050}
-    - {fileID: 3580392651366275990}
     - {fileID: 1233470627026029540}
+    - {fileID: 3580392651366275990}
+    - {fileID: 5708280197309685050}
+    - {fileID: 740390545029335736}
+    - {fileID: 2803979642153025841}
+    - {fileID: 2754600508387291771}
+    - {fileID: 2787167781068910608}
+    - {fileID: 2787167781068910612}
+    - {fileID: 5768184393126304127}
+    - {fileID: 8005941098674877477}
+    - {fileID: 5744115873293859959}
+    - {fileID: 1707077190538823262}
     values:
-    - 
-    - 
-    - 
-    - 
     - 
     - 
     - 
