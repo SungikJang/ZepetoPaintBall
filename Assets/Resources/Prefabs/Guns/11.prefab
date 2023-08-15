@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6580451062184093137}
   - component: {fileID: 6234934842405834127}
   - component: {fileID: 1240355412536143416}
-  m_Layer: 9
+  m_Layer: 21
   m_Name: SniperRifle_Bipod_R_mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 6498117853218550625}
   - component: {fileID: 653438287238451096}
   - component: {fileID: 4811381392857658707}
-  m_Layer: 9
+  m_Layer: 21
   m_Name: 11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -134,7 +134,7 @@ Transform:
   - {fileID: 1112918278879028138}
   m_Father: {fileID: 4460346733060710302}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 53.407, y: -23.94, z: 159.32}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6498117853218550625
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -210,7 +210,7 @@ GameObject:
   - component: {fileID: 872982639954780141}
   - component: {fileID: 7895405415955678401}
   - component: {fileID: 4203317789925244083}
-  m_Layer: 9
+  m_Layer: 21
   m_Name: Mag_M_mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -307,7 +307,7 @@ GameObject:
   - component: {fileID: 1105450895813972261}
   - component: {fileID: 5652401245518071386}
   - component: {fileID: 5906855060940253361}
-  m_Layer: 9
+  m_Layer: 21
   m_Name: SniperRifle_Bipod_L_mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -401,7 +401,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4460346733060710302}
   - component: {fileID: 2646408571655348059}
-  m_Layer: 9
+  m_Layer: 21
   m_Name: 11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -439,17 +439,11 @@ MonoBehaviour:
   script:
     keys:
     - muzzle
-    - manager
-    - myPlayerController
     - bulletPool
     unityValues:
     - {fileID: 7881605759504997786}
     - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
     values:
-    - 
-    - 
     - 
     - 
     unityArrayValues: []
@@ -468,7 +462,7 @@ GameObject:
   - component: {fileID: 401497693380474357}
   - component: {fileID: 7590634915909708057}
   - component: {fileID: 4035471592418672047}
-  m_Layer: 9
+  m_Layer: 21
   m_Name: TriggerA_mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -564,7 +558,7 @@ GameObject:
   - component: {fileID: 6564515021738776235}
   - component: {fileID: 4141185272865395317}
   - component: {fileID: 3800078117103792588}
-  m_Layer: 9
+  m_Layer: 21
   m_Name: Scope_mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -658,7 +652,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1112918278879028138}
-  m_Layer: 9
+  m_Layer: 21
   m_Name: muzzle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -673,7 +667,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7881605759504997786}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.553, y: 0.049, z: 0}
+  m_LocalPosition: {x: -0.725, y: 0.049, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2843730133485357399}

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8233366075691480323}
   - component: {fileID: 9143406383230573830}
-  m_Layer: 9
+  m_Layer: 21
   m_Name: 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,17 +48,11 @@ MonoBehaviour:
   script:
     keys:
     - muzzle
-    - manager
-    - myPlayerController
     - bulletPool
     unityValues:
     - {fileID: 6208212702025197719}
     - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
     values:
-    - 
-    - 
     - 
     - 
     unityArrayValues: []
@@ -76,7 +70,7 @@ GameObject:
   - component: {fileID: 3652888931767931260}
   - component: {fileID: 3652888931765031260}
   - component: {fileID: 3652888931766031260}
-  m_Layer: 9
+  m_Layer: 21
   m_Name: 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +91,7 @@ Transform:
   - {fileID: 7302700828468706969}
   m_Father: {fileID: 8233366075691480323}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 43.919, y: -40.572, z: 146.221}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3652888931765031260
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -156,7 +150,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7302700828468706969}
-  m_Layer: 9
+  m_Layer: 21
   m_Name: muzzle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -171,7 +165,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6208212702025197719}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.517, y: 0.069, z: -0.006}
+  m_LocalPosition: {x: -1.003, y: 0.069, z: -0.006}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 3652888931767931260}

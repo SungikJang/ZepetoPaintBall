@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "pretty": "prettier --write \"Assets/Scripts/**/*.ts\" --ignore-path .prettierignore"
   },
   "keywords": [],
   "author": "",
@@ -13,5 +13,8 @@
     "@zepeto/sandbox": "file:Library/Packages/zepeto-sandbox.tgz",
     "typescript": "^4.3.5",
     "zepeto-script-compiler": "file:Library/Packages/zepeto-script-compiler.tgz"
+  },
+  "devDependencies": {
+    "prettier": "^3.0.1"
   }
 }

@@ -19,10 +19,10 @@ ScriptedImporter:
   WrapperFilters: []
   wrapperOutputDirectory: Generated
   compiledResult: '{"source":"\"use strict\";\r\nObject.defineProperty(exports, \"__esModule\",
-    { value: true });\r\nconst UnityEngine_1 = require(\"UnityEngine\");\r\nconst
-    ZEPETO_Script_1 = require(\"ZEPETO.Script\");\r\nconst ZEPETO_Character_Controller_1
-    = require(\"ZEPETO.Character.Controller\");\r\nclass VideoCamera extends ZEPETO_Script_1.ZepetoScriptBehaviour
-    {\r\n    Start() {\r\n        try {\r\n            this.ZepetoCamera = ZEPETO_Character_Controller_1.ZepetoPlayers.instance.LocalPlayer.zepetoCamera.camera;\r\n           
+    { value: true });\r\nconst ZEPETO_Script_1 = require(\"ZEPETO.Script\");\r\nconst
+    ZEPETO_Character_Controller_1 = require(\"ZEPETO.Character.Controller\");\r\nclass
+    VideoCamera extends ZEPETO_Script_1.ZepetoScriptBehaviour {\r\n    Start() {\r\n       
+    try {\r\n            this.ZepetoCamera = ZEPETO_Character_Controller_1.ZepetoPlayers.instance.LocalPlayer.zepetoCamera.camera;\r\n           
     this.transform.position = this.ZepetoCamera.gameObject.transform.position;\r\n           
     this.transform.rotation = this.ZepetoCamera.gameObject.transform.rotation;\r\n       
     }\r\n        catch (e) {\r\n            console.error(e);\r\n        }\r\n   
@@ -30,6 +30,6 @@ ScriptedImporter:
     this.ZepetoCamera.gameObject.transform.position;\r\n            this.transform.rotation
     = this.ZepetoCamera.gameObject.transform.rotation;\r\n        }\r\n        catch
     (e) {\r\n            console.error(e);\r\n        }\r\n    }\r\n}\r\nexports.default
-    = VideoCamera;\r\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiVmlkZW9DYW1lcmEuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJWaWRlb0NhbWVyYS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUFBLDZDQUFxQztBQUNyQyxpREFBc0Q7QUFDdEQsNkVBQTREO0FBRTVELE1BQXFCLFdBQVksU0FBUSxxQ0FBcUI7SUFHMUQsS0FBSztRQUNELElBQUk7WUFDQSxJQUFJLENBQUMsWUFBWSxHQUFHLDJDQUFhLENBQUMsUUFBUSxDQUFDLFdBQVcsQ0FBQyxZQUFZLENBQUMsTUFBTSxDQUFDO1lBQzNFLElBQUksQ0FBQyxTQUFTLENBQUMsUUFBUSxHQUFHLElBQUksQ0FBQyxZQUFZLENBQUMsVUFBVSxDQUFDLFNBQVMsQ0FBQyxRQUFRLENBQUM7WUFDMUUsSUFBSSxDQUFDLFNBQVMsQ0FBQyxRQUFRLEdBQUcsSUFBSSxDQUFDLFlBQVksQ0FBQyxVQUFVLENBQUMsU0FBUyxDQUFDLFFBQVEsQ0FBQztTQUM3RTtRQUNELE9BQU8sQ0FBQyxFQUFFO1lBQ04sT0FBTyxDQUFDLEtBQUssQ0FBQyxDQUFDLENBQUMsQ0FBQztTQUNwQjtJQUNMLENBQUM7SUFDRCxNQUFNO1FBQ0YsSUFBSTtZQUNBLElBQUksQ0FBQyxTQUFTLENBQUMsUUFBUSxHQUFHLElBQUksQ0FBQyxZQUFZLENBQUMsVUFBVSxDQUFDLFNBQVMsQ0FBQyxRQUFRLENBQUM7WUFDMUUsSUFBSSxDQUFDLFNBQVMsQ0FBQyxRQUFRLEdBQUcsSUFBSSxDQUFDLFlBQVksQ0FBQyxVQUFVLENBQUMsU0FBUyxDQUFDLFFBQVEsQ0FBQztTQUM3RTtRQUNELE9BQU8sQ0FBQyxFQUFFO1lBQ04sT0FBTyxDQUFDLEtBQUssQ0FBQyxDQUFDLENBQUMsQ0FBQztTQUNwQjtJQUNMLENBQUM7Q0FDSjtBQXRCRCw4QkFzQkMifQ==","assetPath":"Assets/Scripts/Client/VideoScripts/VideoCamera.ts","manifest":{"properties":[],"name":"VideoCamera","description":""},"isCompiled":true}'
-  typescriptHash: 3f198f58df150f7f4df6cb3767d5ca4b
+    = VideoCamera;\r\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiVmlkZW9DYW1lcmEuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJWaWRlb0NhbWVyYS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUNBLGlEQUFvRDtBQUNwRCw2RUFBMEQ7QUFFMUQsTUFBcUIsV0FBWSxTQUFRLHFDQUFxQjtJQUc1RCxLQUFLO1FBQ0gsSUFBSTtZQUNGLElBQUksQ0FBQyxZQUFZLEdBQUcsMkNBQWEsQ0FBQyxRQUFRLENBQUMsV0FBVyxDQUFDLFlBQVksQ0FBQyxNQUFNLENBQUM7WUFDM0UsSUFBSSxDQUFDLFNBQVMsQ0FBQyxRQUFRLEdBQUcsSUFBSSxDQUFDLFlBQVksQ0FBQyxVQUFVLENBQUMsU0FBUyxDQUFDLFFBQVEsQ0FBQztZQUMxRSxJQUFJLENBQUMsU0FBUyxDQUFDLFFBQVEsR0FBRyxJQUFJLENBQUMsWUFBWSxDQUFDLFVBQVUsQ0FBQyxTQUFTLENBQUMsUUFBUSxDQUFDO1NBQzNFO1FBQUMsT0FBTyxDQUFDLEVBQUU7WUFDVixPQUFPLENBQUMsS0FBSyxDQUFDLENBQUMsQ0FBQyxDQUFDO1NBQ2xCO0lBQ0gsQ0FBQztJQUNELE1BQU07UUFDSixJQUFJO1lBQ0YsSUFBSSxDQUFDLFNBQVMsQ0FBQyxRQUFRLEdBQUcsSUFBSSxDQUFDLFlBQVksQ0FBQyxVQUFVLENBQUMsU0FBUyxDQUFDLFFBQVEsQ0FBQztZQUMxRSxJQUFJLENBQUMsU0FBUyxDQUFDLFFBQVEsR0FBRyxJQUFJLENBQUMsWUFBWSxDQUFDLFVBQVUsQ0FBQyxTQUFTLENBQUMsUUFBUSxDQUFDO1NBQzNFO1FBQUMsT0FBTyxDQUFDLEVBQUU7WUFDVixPQUFPLENBQUMsS0FBSyxDQUFDLENBQUMsQ0FBQyxDQUFDO1NBQ2xCO0lBQ0gsQ0FBQztDQUNGO0FBcEJELDhCQW9CQyJ9","assetPath":"Assets/Scripts/Client/VideoScripts/VideoCamera.ts","manifest":{"properties":[],"name":"VideoCamera","description":"","hasAnimatorMove":false},"isCompiled":true}'
+  typescriptHash: 640b122ac8cf7a10768beab386776d96
   onlyWriteTrigger: 0

@@ -18,18 +18,33 @@ ScriptedImporter:
   wrapperTypes: []
   WrapperFilters: []
   wrapperOutputDirectory: Generated
-  compiledResult: '{"source":"\"use strict\";\r\nObject.defineProperty(exports, \"__esModule\",
-    { value: true });\r\nconst UnityEngine_1 = require(\"UnityEngine\");\r\nconst
-    ZEPETO_Script_1 = require(\"ZEPETO.Script\");\r\nconst ZEPETO_Character_Controller_1
-    = require(\"ZEPETO.Character.Controller\");\r\nconst Connector_1 = require(\"../Network/Connector\");\r\nclass
-    BulletController extends ZEPETO_Script_1.ZepetoScriptBehaviour {\r\n    Start()
-    {\r\n    }\r\n    OnCollisionEnter(collision) {\r\n        if (collision.gameObject.CompareTag(\"player\"))
-    {\r\n            if (this.gameObject.transform.parent.parent.parent.gameObject.name
-    === ZEPETO_Character_Controller_1.ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.id)
-    {\r\n                Connector_1.default.Instance.ReqToServer(\"PlayerHit\",
-    { player: collision.gameObject.name });\r\n            }\r\n            this.gameObject.SetActive(false);\r\n       
-    }\r\n        else if (collision.gameObject.CompareTag(\"bullet\")) {\r\n       
-    }\r\n        else {\r\n            this.gameObject.SetActive(false);\r\n       
-    }\r\n    }\r\n}\r\nexports.default = BulletController;\r\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiQnVsbGV0Q29udHJvbGxlci5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIkJ1bGxldENvbnRyb2xsZXIudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFBQSw2Q0FBNkQ7QUFDN0QsaURBQXFEO0FBQ3JELDZFQUE0RDtBQUM1RCxvREFBNkM7QUFFN0MsTUFBcUIsZ0JBQWlCLFNBQVEscUNBQXFCO0lBRS9ELEtBQUs7SUFFTCxDQUFDO0lBRUQsZ0JBQWdCLENBQUMsU0FBb0I7UUFDakMsSUFBRyxTQUFTLENBQUMsVUFBVSxDQUFDLFVBQVUsQ0FBQyxRQUFRLENBQUMsRUFBQztZQUN6QyxJQUFHLElBQUksQ0FBQyxVQUFVLENBQUMsU0FBUyxDQUFDLE1BQU0sQ0FBQyxNQUFNLENBQUMsTUFBTSxDQUFDLFVBQVUsQ0FBQyxJQUFJLEtBQUssMkNBQWEsQ0FBQyxRQUFRLENBQUMsV0FBVyxDQUFDLFlBQVksQ0FBQyxFQUFFLEVBQUM7Z0JBQ3JILG1CQUFTLENBQUMsUUFBUSxDQUFDLFdBQVcsQ0FBQyxXQUFXLEVBQUUsRUFBQyxNQUFNLEVBQUUsU0FBUyxDQUFDLFVBQVUsQ0FBQyxJQUFJLEVBQUMsQ0FBQyxDQUFDO2FBQ3BGO1lBQ0QsSUFBSSxDQUFDLFVBQVUsQ0FBQyxTQUFTLENBQUMsS0FBSyxDQUFDLENBQUM7U0FDcEM7YUFDSSxJQUFHLFNBQVMsQ0FBQyxVQUFVLENBQUMsVUFBVSxDQUFDLFFBQVEsQ0FBQyxFQUFDO1NBRWpEO2FBQ0c7WUFDQSxJQUFJLENBQUMsVUFBVSxDQUFDLFNBQVMsQ0FBQyxLQUFLLENBQUMsQ0FBQztTQUNwQztJQUNMLENBQUM7Q0FFSjtBQXJCRCxtQ0FxQkMifQ==","assetPath":"Assets/Scripts/Client/Controller/BulletController.ts","manifest":{"properties":[],"name":"BulletController","description":"","hasAnimatorMove":false},"isCompiled":true}'
-  typescriptHash: c7050f2ed48d0e409c3ff93ce3857db0
+  compiledResult: "{\"source\":\"\\\"use strict\\\";\\r\\nObject.defineProperty(exports,
+    \\\"__esModule\\\", { value: true });\\r\\nconst UnityEngine_1 = require(\\\"UnityEngine\\\");\\r\\nconst
+    ZEPETO_Script_1 = require(\\\"ZEPETO.Script\\\");\\r\\nconst Connector_1 = require(\\\"../Network/Connector\\\");\\r\\nconst
+    Manager_1 = require(\\\"../Manager/Manager\\\");\\r\\nconst index_1 = require(\\\"../Utils/index\\\");\\r\\nconst
+    OtherZepetoCharacterController_1 = require(\\\"../Controller/OtherZepetoCharacterController\\\");\\r\\nconst
+    MyPlayerController_1 = require(\\\"../MyPlayerController/MyPlayerController\\\");\\r\\nclass
+    BulletController extends ZEPETO_Script_1.ZepetoScriptBehaviour {\\r\\n    Start()
+    { }\\r\\n    OnCollisionEnter(collision) {\\r\\n        if (collision.gameObject.CompareTag('player'))
+    {\\r\\n            if (this.gameObject.transform.parent.parent.gameObject.name
+    === 'Local') {\\r\\n                let ozc = collision.gameObject.GetComponent($typeof(OtherZepetoCharacterController_1.default));\\r\\n               
+    let b = this.gameObject.name.includes(ozc.Team + 'Bullet');\\r\\n               
+    console.log('\uB0B4\uAC00\uB9DE\uCDA4', this.gameObject.name, ozc.Team);\\r\\n               
+    if (!ozc.InShield && !b) {\\r\\n                    Connector_1.default.Instance.ReqToServer('PlayerHit',
+    { player: collision.gameObject.name });\\r\\n                }\\r\\n           
+    }\\r\\n            this.gameObject.SetActive(false);\\r\\n        }\\r\\n       
+    else if (collision.gameObject.CompareTag('bullet')) {\\r\\n        }\\r\\n       
+    else if (collision.gameObject.CompareTag('wall')) {\\r\\n        }\\r\\n       
+    else {\\r\\n            let ind = index_1.default.RandomInt(1, 5);\\r\\n           
+    let p = collision.GetContact(0);\\r\\n            let rot = UnityEngine_1.Quaternion.LookRotation(new
+    UnityEngine_1.Vector3(-1 * p.normal.x, -1 * p.normal.y, -1 * p.normal.z));\\r\\n           
+    if (this.gameObject.name.includes('ABullet')) {\\r\\n                const s
+    = Manager_1.default.Resource.Instantiate('Prefabs\\\\\\\\SplatA\\\\\\\\Splat
+    Design ' + ind.toString(), this.gameObject.transform.position, rot);\\r\\n               
+    UnityEngine_1.GameObject.Destroy(s, 2);\\r\\n            }\\r\\n            else
+    {\\r\\n                const s = Manager_1.default.Resource.Instantiate('Prefabs\\\\\\\\SplatB\\\\\\\\Splat
+    Design ' + ind.toString(), this.gameObject.transform.position, rot);\\r\\n               
+    UnityEngine_1.GameObject.Destroy(s, 2);\\r\\n            }\\r\\n            this.gameObject.SetActive(false);\\r\\n       
+    }\\r\\n    }\\r\\n}\\r\\nexports.default = BulletController;\\r\\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiQnVsbGV0Q29udHJvbGxlci5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIkJ1bGxldENvbnRyb2xsZXIudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFBQSw2Q0FBdUU7QUFDdkUsaURBQW9EO0FBRXBELG9EQUE2QztBQUM3QyxnREFBeUM7QUFDekMsMENBQW1DO0FBQ25DLGlHQUEwRjtBQUMxRixpRkFBMEU7QUFFMUUsTUFBcUIsZ0JBQWlCLFNBQVEscUNBQXFCO0lBQ2pFLEtBQUssS0FBSSxDQUFDO0lBRVYsZ0JBQWdCLENBQUMsU0FBb0I7UUFDbkMsSUFBSSxTQUFTLENBQUMsVUFBVSxDQUFDLFVBQVUsQ0FBQyxRQUFRLENBQUMsRUFBRTtZQUM3QyxJQUFJLElBQUksQ0FBQyxVQUFVLENBQUMsU0FBUyxDQUFDLE1BQU0sQ0FBQyxNQUFNLENBQUMsVUFBVSxDQUFDLElBQUksS0FBSyxPQUFPLEVBQUU7Z0JBQ3ZFLElBQUksR0FBRyxHQUFHLFNBQVMsQ0FBQyxVQUFVLENBQUMsWUFBWSxTQUFDLHdDQUE4QixFQUFHLENBQUM7Z0JBQzlFLElBQUksQ0FBQyxHQUFZLElBQUksQ0FBQyxVQUFVLENBQUMsSUFBSSxDQUFDLFFBQVEsQ0FBQyxHQUFHLENBQUMsSUFBSSxHQUFHLFFBQVEsQ0FBQyxDQUFDO2dCQUNwRSxPQUFPLENBQUMsR0FBRyxDQUFDLE1BQU0sRUFBRSxJQUFJLENBQUMsVUFBVSxDQUFDLElBQUksRUFBRSxHQUFHLENBQUMsSUFBSSxDQUFDLENBQUM7Z0JBQ3BELElBQUksQ0FBQyxHQUFHLENBQUMsUUFBUSxJQUFJLENBQUMsQ0FBQyxFQUFFO29CQUN2QixtQkFBUyxDQUFDLFFBQVEsQ0FBQyxXQUFXLENBQUMsV0FBVyxFQUFFLEVBQUMsTUFBTSxFQUFFLFNBQVMsQ0FBQyxVQUFVLENBQUMsSUFBSSxFQUFDLENBQUMsQ0FBQztpQkFDbEY7YUFDRjtZQUNELElBQUksQ0FBQyxVQUFVLENBQUMsU0FBUyxDQUFDLEtBQUssQ0FBQyxDQUFDO1NBQ2xDO2FBQU0sSUFBSSxTQUFTLENBQUMsVUFBVSxDQUFDLFVBQVUsQ0FBQyxRQUFRLENBQUMsRUFBRTtTQUNyRDthQUFNLElBQUksU0FBUyxDQUFDLFVBQVUsQ0FBQyxVQUFVLENBQUMsTUFBTSxDQUFDLEVBQUU7U0FDbkQ7YUFBTTtZQUNMLElBQUksR0FBRyxHQUFHLGVBQUssQ0FBQyxTQUFTLENBQUMsQ0FBQyxFQUFFLENBQUMsQ0FBQyxDQUFDO1lBQ2hDLElBQUksQ0FBQyxHQUFHLFNBQVMsQ0FBQyxVQUFVLENBQUMsQ0FBQyxDQUFDLENBQUM7WUFDaEMsSUFBSSxHQUFHLEdBQUcsd0JBQVUsQ0FBQyxZQUFZLENBQy9CLElBQUkscUJBQU8sQ0FBQyxDQUFDLENBQUMsR0FBRyxDQUFDLENBQUMsTUFBTSxDQUFDLENBQUMsRUFBRSxDQUFDLENBQUMsR0FBRyxDQUFDLENBQUMsTUFBTSxDQUFDLENBQUMsRUFBRSxDQUFDLENBQUMsR0FBRyxDQUFDLENBQUMsTUFBTSxDQUFDLENBQUMsQ0FBQyxDQUMvRCxDQUFDO1lBQ0YsSUFBSSxJQUFJLENBQUMsVUFBVSxDQUFDLElBQUksQ0FBQyxRQUFRLENBQUMsU0FBUyxDQUFDLEVBQUU7Z0JBQzVDLE1BQU0sQ0FBQyxHQUFlLGlCQUFPLENBQUMsUUFBUSxDQUFDLFdBQVcsQ0FDaEQsZ0NBQWdDLEdBQUcsR0FBRyxDQUFDLFFBQVEsRUFBRSxFQUNqRCxJQUFJLENBQUMsVUFBVSxDQUFDLFNBQVMsQ0FBQyxRQUFRLEVBQ2xDLEdBQUcsQ0FDSixDQUFDO2dCQUNGLHdCQUFVLENBQUMsT0FBTyxDQUFDLENBQUMsRUFBRSxDQUFDLENBQUMsQ0FBQzthQUMxQjtpQkFBTTtnQkFDTCxNQUFNLENBQUMsR0FBZSxpQkFBTyxDQUFDLFFBQVEsQ0FBQyxXQUFXLENBQ2hELGdDQUFnQyxHQUFHLEdBQUcsQ0FBQyxRQUFRLEVBQUUsRUFDakQsSUFBSSxDQUFDLFVBQVUsQ0FBQyxTQUFTLENBQUMsUUFBUSxFQUNsQyxHQUFHLENBQ0osQ0FBQztnQkFDRix3QkFBVSxDQUFDLE9BQU8sQ0FBQyxDQUFDLEVBQUUsQ0FBQyxDQUFDLENBQUM7YUFDMUI7WUFDRCxJQUFJLENBQUMsVUFBVSxDQUFDLFNBQVMsQ0FBQyxLQUFLLENBQUMsQ0FBQztTQUNsQztJQUNILENBQUM7Q0FDRjtBQXhDRCxtQ0F3Q0MifQ==\",\"assetPath\":\"Assets/Scripts/Client/Controller/BulletController.ts\",\"manifest\":{\"properties\":[],\"name\":\"BulletController\",\"description\":\"\",\"hasAnimatorMove\":false},\"isCompiled\":true}"
+  typescriptHash: 59ae6c36ba561ac9f6ceada3a3548d41
   onlyWriteTrigger: 0

@@ -23,14 +23,14 @@ ScriptedImporter:
     DataManager {\\r\\n    constructor() {\\r\\n        // property\\r\\n       
     this.dataDictionary = {};\\r\\n    }\\r\\n    Translator(targetLanguage) {\\r\\n       
     throw new Error('Method not implemented.');\\r\\n    }\\r\\n    // method\\r\\n   
-    Init() {\\r\\n        console.log(\\\"datamanager\\\");\\r\\n        let Weapon
-    = Manager_1.default.Resource.LoadData('Weapon');\\r\\n        this.dataDictionary
-    = {\\r\\n            Weapon\\r\\n        };\\r\\n    }\\r\\n    GetValueByKeys(keys)
-    {\\r\\n        let value = this.dataDictionary;\\r\\n        keys.split('/').forEach((key)
-    => {\\r\\n            if (key in value) {\\r\\n                value = value[key];\\r\\n           
-    }\\r\\n            else {\\r\\n                console.log('[Data Manager] \uC798\uBABB\uB41C
-    \uD0A4 \uACBD\uB85C \uC785\uB2C8\uB2E4.', keys);\\r\\n                return;\\r\\n           
-    }\\r\\n        });\\r\\n        return value;\\r\\n    }\\r\\n}\\r\\nexports.default
-    = DataManager;\\r\\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiRGF0YU1hbmFnZXIuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJEYXRhTWFuYWdlci50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUFBLHVDQUFnQztBQUVoQyxNQUFxQixXQUFXO0lBQWhDO1FBTUksV0FBVztRQUNILG1CQUFjLEdBQUcsRUFBRSxDQUFDO0lBMkJoQyxDQUFDO0lBaENHLFVBQVUsQ0FBQyxjQUFzQjtRQUM3QixNQUFNLElBQUksS0FBSyxDQUFDLHlCQUF5QixDQUFDLENBQUM7SUFDL0MsQ0FBQztJQUtELFNBQVM7SUFFVCxJQUFJO1FBQ0EsT0FBTyxDQUFDLEdBQUcsQ0FBQyxhQUFhLENBQUMsQ0FBQTtRQUUxQixJQUFJLE1BQU0sR0FBRyxpQkFBTyxDQUFDLFFBQVEsQ0FBQyxRQUFRLENBQUMsUUFBUSxDQUFDLENBQUM7UUFFakQsSUFBSSxDQUFDLGNBQWMsR0FBRztZQUNsQixNQUFNO1NBQ1QsQ0FBQztJQUNOLENBQUM7SUFFTSxjQUFjLENBQUMsSUFBWTtRQUM5QixJQUFJLEtBQUssR0FBRyxJQUFJLENBQUMsY0FBYyxDQUFDO1FBQ2hDLElBQUksQ0FBQyxLQUFLLENBQUMsR0FBRyxDQUFDLENBQUMsT0FBTyxDQUFDLENBQUMsR0FBRyxFQUFFLEVBQUU7WUFDNUIsSUFBSSxHQUFHLElBQUksS0FBSyxFQUFFO2dCQUNkLEtBQUssR0FBRyxLQUFLLENBQUMsR0FBRyxDQUFDLENBQUM7YUFDdEI7aUJBQU07Z0JBQ0gsT0FBTyxDQUFDLEdBQUcsQ0FBQyw4QkFBOEIsRUFBRSxJQUFJLENBQUMsQ0FBQztnQkFDbEQsT0FBTzthQUNWO1FBQ0wsQ0FBQyxDQUFDLENBQUM7UUFFSCxPQUFPLEtBQUssQ0FBQztJQUNqQixDQUFDO0NBQ0o7QUFsQ0QsOEJBa0NDIn0=\",\"assetPath\":\"Assets/Scripts/Client/Manager/DataManager.ts\",\"manifest\":{\"properties\":[],\"name\":\"DataManager\",\"description\":\"\",\"hasAnimatorMove\":false},\"isCompiled\":true}"
-  typescriptHash: 4dc003a64aee8014492b560e3d40bc06
+    Init() {\\r\\n        let Weapon = Manager_1.default.Resource.LoadData('Weapon');\\r\\n       
+    this.dataDictionary = {\\r\\n            Weapon,\\r\\n        };\\r\\n    }\\r\\n   
+    GetValueByKeys(keys) {\\r\\n        let value = this.dataDictionary;\\r\\n       
+    keys.split('/').forEach((key) => {\\r\\n            if (key in value) {\\r\\n               
+    value = value[key];\\r\\n            }\\r\\n            else {\\r\\n               
+    console.log('[Data Manager] \uC798\uBABB\uB41C \uD0A4 \uACBD\uB85C \uC785\uB2C8\uB2E4.',
+    keys);\\r\\n                return;\\r\\n            }\\r\\n        });\\r\\n       
+    return value;\\r\\n    }\\r\\n}\\r\\nexports.default = DataManager;\\r\\n//#
+    sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiRGF0YU1hbmFnZXIuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJEYXRhTWFuYWdlci50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUFBLHVDQUFnQztBQUVoQyxNQUFxQixXQUFXO0lBQWhDO1FBS0UsV0FBVztRQUNILG1CQUFjLEdBQUcsRUFBRSxDQUFDO0lBeUI5QixDQUFDO0lBOUJDLFVBQVUsQ0FBQyxjQUFzQjtRQUMvQixNQUFNLElBQUksS0FBSyxDQUFDLHlCQUF5QixDQUFDLENBQUM7SUFDN0MsQ0FBQztJQUtELFNBQVM7SUFFVCxJQUFJO1FBQ0YsSUFBSSxNQUFNLEdBQUcsaUJBQU8sQ0FBQyxRQUFRLENBQUMsUUFBUSxDQUFDLFFBQVEsQ0FBQyxDQUFDO1FBRWpELElBQUksQ0FBQyxjQUFjLEdBQUc7WUFDcEIsTUFBTTtTQUNQLENBQUM7SUFDSixDQUFDO0lBRU0sY0FBYyxDQUFDLElBQVk7UUFDaEMsSUFBSSxLQUFLLEdBQUcsSUFBSSxDQUFDLGNBQWMsQ0FBQztRQUNoQyxJQUFJLENBQUMsS0FBSyxDQUFDLEdBQUcsQ0FBQyxDQUFDLE9BQU8sQ0FBQyxDQUFDLEdBQUcsRUFBRSxFQUFFO1lBQzlCLElBQUksR0FBRyxJQUFJLEtBQUssRUFBRTtnQkFDaEIsS0FBSyxHQUFHLEtBQUssQ0FBQyxHQUFHLENBQUMsQ0FBQzthQUNwQjtpQkFBTTtnQkFDTCxPQUFPLENBQUMsR0FBRyxDQUFDLDhCQUE4QixFQUFFLElBQUksQ0FBQyxDQUFDO2dCQUNsRCxPQUFPO2FBQ1I7UUFDSCxDQUFDLENBQUMsQ0FBQztRQUVILE9BQU8sS0FBSyxDQUFDO0lBQ2YsQ0FBQztDQUNGO0FBL0JELDhCQStCQyJ9\",\"assetPath\":\"Assets/Scripts/Client/Manager/DataManager.ts\",\"manifest\":{\"properties\":[],\"name\":\"DataManager\",\"description\":\"\",\"hasAnimatorMove\":false},\"isCompiled\":true}"
+  typescriptHash: 6008286e9692a2cf06a9b431c4c4c6e8
   onlyWriteTrigger: 0

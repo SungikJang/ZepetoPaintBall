@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 721237862768577669}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: BBullets
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 5373231162051486747}
   - component: {fileID: 8306311324201744332}
   - component: {fileID: 3027197587331707875}
-  m_Layer: 9
+  m_Layer: 21
   m_Name: Foregrip_mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -143,7 +143,7 @@ GameObject:
   - component: {fileID: 2330914184355856108}
   - component: {fileID: 4744113847971784128}
   - component: {fileID: 1590131646226996658}
-  m_Layer: 9
+  m_Layer: 21
   m_Name: Mag_M_mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -240,7 +240,7 @@ GameObject:
   - component: {fileID: 9154914376314290987}
   - component: {fileID: 381022966193826373}
   - component: {fileID: 6605513995353518474}
-  m_Layer: 9
+  m_Layer: 21
   m_Name: DMR_Silencer_mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -336,7 +336,7 @@ GameObject:
   - component: {fileID: 8532514583130296928}
   - component: {fileID: 2690088947678817945}
   - component: {fileID: 7962666432763860050}
-  m_Layer: 9
+  m_Layer: 21
   m_Name: 10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -437,7 +437,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 241657939659502350}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: ABullets
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -475,7 +475,7 @@ GameObject:
   - component: {fileID: 4649798571105996078}
   - component: {fileID: 8926092963828756414}
   - component: {fileID: 3512030917868632482}
-  m_Layer: 9
+  m_Layer: 21
   m_Name: ACOG_mesh1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -569,7 +569,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3188446158332444872}
-  m_Layer: 9
+  m_Layer: 21
   m_Name: muzzle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -584,7 +584,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6427906370841496474}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.639, y: 0.042, z: 0}
+  m_LocalPosition: {x: -0.931, y: 0.042, z: 0.011}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 806868299271727190}
@@ -599,7 +599,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8494198961414810303}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: BulletPool (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -632,7 +632,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8621559313348263337}
   - component: {fileID: 1283734119875389292}
-  m_Layer: 9
+  m_Layer: 21
   m_Name: 10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -670,16 +670,13 @@ MonoBehaviour:
   script:
     keys:
     - muzzle
-    - manager
     - otherZepetoCharacterController
     - bulletPool
     unityValues:
     - {fileID: 6427906370841496474}
     - {fileID: 0}
-    - {fileID: 0}
     - {fileID: 6598829312706185555}
     values:
-    - 
     - 
     - 
     - 
@@ -699,7 +696,7 @@ GameObject:
   - component: {fileID: 3014613537502893300}
   - component: {fileID: 4977389294300481560}
   - component: {fileID: 1460440632080080046}
-  m_Layer: 9
+  m_Layer: 21
   m_Name: TriggerA_mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -795,7 +792,7 @@ GameObject:
   - component: {fileID: 110067148667883501}
   - component: {fileID: 5516638577831294444}
   - component: {fileID: 2186515799049313820}
-  m_Layer: 9
+  m_Layer: 21
   m_Name: DMRIronSights_mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -891,6 +888,10 @@ PrefabInstance:
       value: BBullet (2)
       objectReference: {fileID: 0}
     - target: {fileID: 1525280144691577037, guid: a7c1712dbac509242be171b48b1e196e, type: 3}
+      propertyPath: m_Layer
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 1525280144691577037, guid: a7c1712dbac509242be171b48b1e196e, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -955,6 +956,10 @@ PrefabInstance:
     - target: {fileID: 1525280144691577037, guid: a7c1712dbac509242be171b48b1e196e, type: 3}
       propertyPath: m_Name
       value: BBullet (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1525280144691577037, guid: a7c1712dbac509242be171b48b1e196e, type: 3}
+      propertyPath: m_Layer
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 1525280144691577037, guid: a7c1712dbac509242be171b48b1e196e, type: 3}
       propertyPath: m_IsActive
@@ -1067,6 +1072,10 @@ PrefabInstance:
       value: ABullet (2)
       objectReference: {fileID: 0}
     - target: {fileID: 4516842952578329951, guid: 2a27262c631f11b4ab7c2eb207197c6d, type: 3}
+      propertyPath: m_Layer
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 4516842952578329951, guid: 2a27262c631f11b4ab7c2eb207197c6d, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -1133,6 +1142,10 @@ PrefabInstance:
       value: ABullet (1)
       objectReference: {fileID: 0}
     - target: {fileID: 4516842952578329951, guid: 2a27262c631f11b4ab7c2eb207197c6d, type: 3}
+      propertyPath: m_Layer
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 4516842952578329951, guid: 2a27262c631f11b4ab7c2eb207197c6d, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -1153,6 +1166,10 @@ PrefabInstance:
     - target: {fileID: 1525280144691577037, guid: a7c1712dbac509242be171b48b1e196e, type: 3}
       propertyPath: m_Name
       value: BBullet (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1525280144691577037, guid: a7c1712dbac509242be171b48b1e196e, type: 3}
+      propertyPath: m_Layer
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 1525280144691577037, guid: a7c1712dbac509242be171b48b1e196e, type: 3}
       propertyPath: m_IsActive
@@ -1219,6 +1236,10 @@ PrefabInstance:
     - target: {fileID: 1525280144691577037, guid: a7c1712dbac509242be171b48b1e196e, type: 3}
       propertyPath: m_Name
       value: BBullet (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1525280144691577037, guid: a7c1712dbac509242be171b48b1e196e, type: 3}
+      propertyPath: m_Layer
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 1525280144691577037, guid: a7c1712dbac509242be171b48b1e196e, type: 3}
       propertyPath: m_IsActive
@@ -1331,6 +1352,10 @@ PrefabInstance:
       value: ABullet
       objectReference: {fileID: 0}
     - target: {fileID: 4516842952578329951, guid: 2a27262c631f11b4ab7c2eb207197c6d, type: 3}
+      propertyPath: m_Layer
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 4516842952578329951, guid: 2a27262c631f11b4ab7c2eb207197c6d, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -1397,6 +1422,10 @@ PrefabInstance:
       value: ABullet (4)
       objectReference: {fileID: 0}
     - target: {fileID: 4516842952578329951, guid: 2a27262c631f11b4ab7c2eb207197c6d, type: 3}
+      propertyPath: m_Layer
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 4516842952578329951, guid: 2a27262c631f11b4ab7c2eb207197c6d, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -1417,6 +1446,10 @@ PrefabInstance:
     - target: {fileID: 1525280144691577037, guid: a7c1712dbac509242be171b48b1e196e, type: 3}
       propertyPath: m_Name
       value: BBullet
+      objectReference: {fileID: 0}
+    - target: {fileID: 1525280144691577037, guid: a7c1712dbac509242be171b48b1e196e, type: 3}
+      propertyPath: m_Layer
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 1525280144691577037, guid: a7c1712dbac509242be171b48b1e196e, type: 3}
       propertyPath: m_IsActive
@@ -1527,6 +1560,10 @@ PrefabInstance:
     - target: {fileID: 4516842952578329951, guid: 2a27262c631f11b4ab7c2eb207197c6d, type: 3}
       propertyPath: m_Name
       value: ABullet (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4516842952578329951, guid: 2a27262c631f11b4ab7c2eb207197c6d, type: 3}
+      propertyPath: m_Layer
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 4516842952578329951, guid: 2a27262c631f11b4ab7c2eb207197c6d, type: 3}
       propertyPath: m_IsActive

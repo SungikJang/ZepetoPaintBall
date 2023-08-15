@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6580451062184093137}
   - component: {fileID: 6234934842405834127}
   - component: {fileID: 1240355412536143416}
-  m_Layer: 9
+  m_Layer: 21
   m_Name: SniperRifle_Bipod_R_mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,7 +105,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2866220353111036488}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: BulletPool (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -140,7 +140,7 @@ GameObject:
   - component: {fileID: 6498117853218550625}
   - component: {fileID: 653438287238451096}
   - component: {fileID: 4811381392857658707}
-  m_Layer: 9
+  m_Layer: 21
   m_Name: 11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -243,7 +243,7 @@ GameObject:
   - component: {fileID: 872982639954780141}
   - component: {fileID: 7895405415955678401}
   - component: {fileID: 4203317789925244083}
-  m_Layer: 9
+  m_Layer: 21
   m_Name: Mag_M_mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -337,7 +337,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5871887248554462201}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: ABullets
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -375,7 +375,7 @@ GameObject:
   - component: {fileID: 1105450895813972261}
   - component: {fileID: 5652401245518071386}
   - component: {fileID: 5906855060940253361}
-  m_Layer: 9
+  m_Layer: 21
   m_Name: SniperRifle_Bipod_L_mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -469,7 +469,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4460346733060710302}
   - component: {fileID: 2936795686877705393}
-  m_Layer: 9
+  m_Layer: 21
   m_Name: 11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -507,16 +507,13 @@ MonoBehaviour:
   script:
     keys:
     - muzzle
-    - manager
     - otherZepetoCharacterController
     - bulletPool
     unityValues:
     - {fileID: 7881605759504997786}
     - {fileID: 0}
-    - {fileID: 0}
     - {fileID: 699298767236182436}
     values:
-    - 
     - 
     - 
     - 
@@ -536,7 +533,7 @@ GameObject:
   - component: {fileID: 401497693380474357}
   - component: {fileID: 7590634915909708057}
   - component: {fileID: 4035471592418672047}
-  m_Layer: 9
+  m_Layer: 21
   m_Name: TriggerA_mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -632,7 +629,7 @@ GameObject:
   - component: {fileID: 6564515021738776235}
   - component: {fileID: 4141185272865395317}
   - component: {fileID: 3800078117103792588}
-  m_Layer: 9
+  m_Layer: 21
   m_Name: Scope_mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -726,7 +723,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6351749798761116786}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: BBullets
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -761,7 +758,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1112918278879028138}
-  m_Layer: 9
+  m_Layer: 21
   m_Name: muzzle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -776,7 +773,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7881605759504997786}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.553, y: 0.049, z: 0}
+  m_LocalPosition: {x: -0.725, y: 0.049, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2843730133485357399}
@@ -792,6 +789,10 @@ PrefabInstance:
     - target: {fileID: 1525280144691577037, guid: a7c1712dbac509242be171b48b1e196e, type: 3}
       propertyPath: m_Name
       value: BBullet
+      objectReference: {fileID: 0}
+    - target: {fileID: 1525280144691577037, guid: a7c1712dbac509242be171b48b1e196e, type: 3}
+      propertyPath: m_Layer
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 1525280144691577037, guid: a7c1712dbac509242be171b48b1e196e, type: 3}
       propertyPath: m_IsActive
@@ -904,6 +905,10 @@ PrefabInstance:
       value: ABullet
       objectReference: {fileID: 0}
     - target: {fileID: 4516842952578329951, guid: 2a27262c631f11b4ab7c2eb207197c6d, type: 3}
+      propertyPath: m_Layer
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 4516842952578329951, guid: 2a27262c631f11b4ab7c2eb207197c6d, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -968,6 +973,10 @@ PrefabInstance:
     - target: {fileID: 4516842952578329951, guid: 2a27262c631f11b4ab7c2eb207197c6d, type: 3}
       propertyPath: m_Name
       value: ABullet (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4516842952578329951, guid: 2a27262c631f11b4ab7c2eb207197c6d, type: 3}
+      propertyPath: m_Layer
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 4516842952578329951, guid: 2a27262c631f11b4ab7c2eb207197c6d, type: 3}
       propertyPath: m_IsActive
@@ -1036,6 +1045,10 @@ PrefabInstance:
       value: ABullet (3)
       objectReference: {fileID: 0}
     - target: {fileID: 4516842952578329951, guid: 2a27262c631f11b4ab7c2eb207197c6d, type: 3}
+      propertyPath: m_Layer
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 4516842952578329951, guid: 2a27262c631f11b4ab7c2eb207197c6d, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -1102,6 +1115,10 @@ PrefabInstance:
       value: ABullet (2)
       objectReference: {fileID: 0}
     - target: {fileID: 4516842952578329951, guid: 2a27262c631f11b4ab7c2eb207197c6d, type: 3}
+      propertyPath: m_Layer
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 4516842952578329951, guid: 2a27262c631f11b4ab7c2eb207197c6d, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -1122,6 +1139,10 @@ PrefabInstance:
     - target: {fileID: 1525280144691577037, guid: a7c1712dbac509242be171b48b1e196e, type: 3}
       propertyPath: m_Name
       value: BBullet (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1525280144691577037, guid: a7c1712dbac509242be171b48b1e196e, type: 3}
+      propertyPath: m_Layer
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 1525280144691577037, guid: a7c1712dbac509242be171b48b1e196e, type: 3}
       propertyPath: m_IsActive
@@ -1234,6 +1255,10 @@ PrefabInstance:
       value: ABullet (1)
       objectReference: {fileID: 0}
     - target: {fileID: 4516842952578329951, guid: 2a27262c631f11b4ab7c2eb207197c6d, type: 3}
+      propertyPath: m_Layer
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 4516842952578329951, guid: 2a27262c631f11b4ab7c2eb207197c6d, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -1254,6 +1279,10 @@ PrefabInstance:
     - target: {fileID: 1525280144691577037, guid: a7c1712dbac509242be171b48b1e196e, type: 3}
       propertyPath: m_Name
       value: BBullet (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1525280144691577037, guid: a7c1712dbac509242be171b48b1e196e, type: 3}
+      propertyPath: m_Layer
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 1525280144691577037, guid: a7c1712dbac509242be171b48b1e196e, type: 3}
       propertyPath: m_IsActive
@@ -1322,6 +1351,10 @@ PrefabInstance:
       value: BBullet (3)
       objectReference: {fileID: 0}
     - target: {fileID: 1525280144691577037, guid: a7c1712dbac509242be171b48b1e196e, type: 3}
+      propertyPath: m_Layer
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 1525280144691577037, guid: a7c1712dbac509242be171b48b1e196e, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -1386,6 +1419,10 @@ PrefabInstance:
     - target: {fileID: 1525280144691577037, guid: a7c1712dbac509242be171b48b1e196e, type: 3}
       propertyPath: m_Name
       value: BBullet (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1525280144691577037, guid: a7c1712dbac509242be171b48b1e196e, type: 3}
+      propertyPath: m_Layer
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 1525280144691577037, guid: a7c1712dbac509242be171b48b1e196e, type: 3}
       propertyPath: m_IsActive

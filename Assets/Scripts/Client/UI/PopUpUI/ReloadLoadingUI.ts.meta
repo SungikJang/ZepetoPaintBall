@@ -1,0 +1,32 @@
+fileFormatVersion: 2
+guid: 4fe113100b31fbb48be2a93f772e39cb
+importerOverride: ZEPETO.Script.Compiler:ZEPETO.Script:TypescriptAssetImporter
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: -1123457745, guid: 54cf806323ffe4418a4ce4cc63fe6b9d, type: 3}
+  isAssemblyDeclarations: 0
+  assembly: 
+  generateAllTypes: 1
+  types: []
+  generateWrapper: 0
+  overrideWrapperTypes: 0
+  wrapperTypes: []
+  WrapperFilters: []
+  wrapperOutputDirectory: Generated
+  compiledResult: '{"source":"\"use strict\";\r\nObject.defineProperty(exports, \"__esModule\",
+    { value: true });\r\nconst ZEPETO_Script_1 = require(\"ZEPETO.Script\");\r\nconst
+    UnityEngine_UI_1 = require(\"UnityEngine.UI\");\r\nconst UnityEngine_1 = require(\"UnityEngine\");\r\nclass
+    ReloadLoadingUI extends ZEPETO_Script_1.ZepetoScriptBehaviour {\r\n    Start()
+    {\r\n        this.loadSlider.fillAmount = 0;\r\n        this.StartCoroutine(this.startFill());\r\n   
+    }\r\n    *startFill() {\r\n        while (true) {\r\n            this.loadSlider.fillAmount
+    += 0.05;\r\n            if (this.loadSlider.fillAmount >= 1) {\r\n               
+    UnityEngine_1.GameObject.Destroy(this.gameObject);\r\n            }\r\n           
+    yield new UnityEngine_1.WaitForSeconds(0.1);\r\n        }\r\n    }\r\n}\r\nexports.default
+    = ReloadLoadingUI;\r\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiUmVsb2FkTG9hZGluZ1VJLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiUmVsb2FkTG9hZGluZ1VJLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7O0FBQUEsaURBQW9EO0FBQ3BELG1EQUFxQztBQUNyQyw2Q0FBdUQ7QUFFdkQsTUFBcUIsZUFBZ0IsU0FBUSxxQ0FBcUI7SUFHaEUsS0FBSztRQUNILElBQUksQ0FBQyxVQUFVLENBQUMsVUFBVSxHQUFHLENBQUMsQ0FBQztRQUMvQixJQUFJLENBQUMsY0FBYyxDQUFDLElBQUksQ0FBQyxTQUFTLEVBQUUsQ0FBQyxDQUFDO0lBQ3hDLENBQUM7SUFFRCxDQUFDLFNBQVM7UUFDUixPQUFPLElBQUksRUFBRTtZQUNYLElBQUksQ0FBQyxVQUFVLENBQUMsVUFBVSxJQUFJLElBQUksQ0FBQztZQUNuQyxJQUFJLElBQUksQ0FBQyxVQUFVLENBQUMsVUFBVSxJQUFJLENBQUMsRUFBRTtnQkFDbkMsd0JBQVUsQ0FBQyxPQUFPLENBQUMsSUFBSSxDQUFDLFVBQVUsQ0FBQyxDQUFDO2FBQ3JDO1lBQ0QsTUFBTSxJQUFJLDRCQUFjLENBQUMsR0FBRyxDQUFDLENBQUM7U0FDL0I7SUFDSCxDQUFDO0NBQ0Y7QUFqQkQsa0NBaUJDIn0=","assetPath":"Assets/Scripts/Client/UI/PopUpUI/ReloadLoadingUI.ts","manifest":{"properties":[{"assembly":"UnityEngine.UI","name":"loadSlider","type":"UnityEngine.UI.Image","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]}],"name":"ReloadLoadingUI","description":"","hasAnimatorMove":false},"isCompiled":true}'
+  typescriptHash: a82a900c3cd70bbf30fc8a3dc432bf6c
+  onlyWriteTrigger: 0

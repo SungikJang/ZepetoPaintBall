@@ -11,7 +11,7 @@
     },
     "2": {
         "Name": "AR_2",
-        "BuyPrice": 2000,
+        "BuyPrice": 5000,
         "Speed": 15,
         "Bullets": 25,
         "Power": 90,
@@ -19,7 +19,7 @@
     },
     "3": {
         "Name": "AR_3",
-        "BuyPrice": 3000,
+        "BuyPrice": 10000,
         "Speed": 25,
         "Bullets": 30,
         "Power": 100,
@@ -27,7 +27,7 @@
     },
     "4": {
         "Name": "AR_4",
-        "BuyPrice": 5000,
+        "BuyPrice": 20000,
         "Speed": 40,
         "Bullets": 40,
         "Power": 120,
@@ -43,7 +43,7 @@
     },
     "6": {
         "Name": "SHOTGUN_2",
-        "BuyPrice": 4000,
+        "BuyPrice": 7000,
         "Speed": 5,
         "Bullets": 7,
         "Power": 70,
@@ -51,7 +51,7 @@
     },
     "7": {
         "Name": "SHOTGUN_3",
-        "BuyPrice": 5000,
+        "BuyPrice": 13000,
         "Speed": 7,
         "Bullets": 10,
         "Power": 80,
@@ -59,7 +59,7 @@
     },
     "8": {
         "Name": "SHOTGUN_4",
-        "BuyPrice": 6000,
+        "BuyPrice": 26000,
         "Speed": 9,
         "Bullets": 12,
         "Power": 100,
@@ -67,7 +67,7 @@
     },
     "9": {
         "Name": "SNIPER_1",
-        "BuyPrice": 3000,
+        "BuyPrice": 5000,
         "Speed": 1,
         "Bullets": 5,
         "Power": 300,
@@ -75,7 +75,7 @@
     },
     "10": {
         "Name": "SNIPER_2",
-        "BuyPrice": 4000,
+        "BuyPrice": 9000,
         "Speed": 1,
         "Bullets": 5,
         "Power": 350,
@@ -83,7 +83,7 @@
     },
     "11": {
         "Name": "SNIPER_3",
-        "BuyPrice": 5000,
+        "BuyPrice": 18000,
         "Speed": 1,
         "Bullets": 5,
         "Power": 400,
@@ -91,7 +91,7 @@
     },
     "12": {
         "Name": "SNIPER_4",
-        "BuyPrice": 6000,
+        "BuyPrice": 30000,
         "Speed": 1,
         "Bullets": 7,
         "Power": 500,

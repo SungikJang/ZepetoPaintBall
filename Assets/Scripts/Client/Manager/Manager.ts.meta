@@ -22,31 +22,30 @@ ScriptedImporter:
     { value: true });\r\nconst UnityEngine_1 = require(\"UnityEngine\");\r\nconst
     ZEPETO_Script_1 = require(\"ZEPETO.Script\");\r\nconst DataManager_1 = require(\"./DataManager\");\r\nconst
     GameManger_1 = require(\"./GameManger\");\r\nconst ProductManager_1 = require(\"./ProductManager\");\r\nconst
-    ResourceManager_1 = require(\"./ResourceManager\");\r\n// import SoundManager
-    from ''./SoundManager'';\r\n// import LanguageManager from ''./LanguageManager'';\r\nconst
-    UIManager_1 = require(\"./UIManager\");\r\nclass Manager extends ZEPETO_Script_1.ZepetoScriptBehaviour
-    {\r\n    static get Instance() {\r\n        this.Init();\r\n        return this._instance;\r\n   
-    }\r\n    static get UI() {\r\n        return this._ui;\r\n    }\r\n    static
-    get Resource() {\r\n        return this._resource;\r\n    }\r\n    // public
-    static get Sound(): SoundManager {\r\n    //     return this._sound;\r\n    //
-    }\r\n    //\r\n    // public static get Language(): LanguageManager {\r\n   
-    //     return this._language;\r\n    // }\r\n    static get Data() {\r\n       
+    ResourceManager_1 = require(\"./ResourceManager\");\r\nconst SoundManager_1 =
+    require(\"./SoundManager\");\r\n// import SoundManager from ''./SoundManager'';\r\n//
+    import LanguageManager from ''./LanguageManager'';\r\nconst UIManager_1 = require(\"./UIManager\");\r\nclass
+    Manager extends ZEPETO_Script_1.ZepetoScriptBehaviour {\r\n    static get Instance()
+    {\r\n        this.Init();\r\n        return this._instance;\r\n    }\r\n    static
+    get UI() {\r\n        return this._ui;\r\n    }\r\n    static get Resource()
+    {\r\n        return this._resource;\r\n    }\r\n    static get Sound() {\r\n       
+    return this._sound;\r\n    }\r\n    // public static get Language(): LanguageManager
+    {\r\n    //     return this._language;\r\n    // }\r\n    static get Data() {\r\n       
     return this._data;\r\n    }\r\n    static get Game() {\r\n        return this._game;\r\n   
     }\r\n    // public get SoloFlagGame(): InterSoloFlagGameManager {\r\n    //    
     return this._soloFlagGameManager;\r\n    // }\r\n    static get Product() {\r\n       
     return this._product;\r\n    }\r\n    static Clear() { }\r\n    // life cycle\r\n   
-    static Init() {\r\n        console.log(\"manager\");\r\n        if (ZEPETO_Script_1.ZepetoScriptBehaviour.op_Equality(this._instance,
+    static Init() {\r\n        if (ZEPETO_Script_1.ZepetoScriptBehaviour.op_Equality(this._instance,
     null)) {\r\n            let go = UnityEngine_1.GameObject.Find(''Manager'');\r\n           
     this._instance = go.GetComponent($typeof(Manager));\r\n        }\r\n    }\r\n   
-    Awake() {\r\n        console.log(\"manager\");\r\n        Manager.Data.Init();\r\n       
-    Manager.Resource.Init();\r\n        Manager.UI.Init();\r\n        // Manager.Sound.Init();\r\n       
-    // Manager.Language.Init();\r\n        Manager.Game.Init();\r\n        Manager.Product.Init();\r\n   
-    }\r\n}\r\nexports.default = Manager;\r\nManager._instance = null;\r\n// private
-    static _language: LanguageManager = new LanguageManager();\r\nManager._resource
-    = new ResourceManager_1.default();\r\nManager._ui = new UIManager_1.default();\r\n//
-    private static _sound: SoundManager = new SoundManager();\r\nManager._game =
-    new GameManger_1.default();\r\nManager._data = new DataManager_1.default();\r\n//private
+    Awake() {\r\n        Manager.Data.Init();\r\n        Manager.Resource.Init();\r\n       
+    Manager.UI.Init();\r\n        Manager.Sound.Init();\r\n        // Manager.Language.Init();\r\n       
+    Manager.Game.Init();\r\n        Manager.Product.Init();\r\n    }\r\n}\r\nexports.default
+    = Manager;\r\nManager._instance = null;\r\n// private static _language: LanguageManager
+    = new LanguageManager();\r\nManager._resource = new ResourceManager_1.default();\r\nManager._ui
+    = new UIManager_1.default();\r\nManager._sound = new SoundManager_1.default();\r\nManager._game
+    = new GameManger_1.default();\r\nManager._data = new DataManager_1.default();\r\n//private
     static _leaderboard: LeaderboardManager = new LeaderboardManager();\r\nManager._product
-    = new ProductManager_1.default();\r\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiTWFuYWdlci5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIk1hbmFnZXIudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFBQSw2Q0FBaUQ7QUFDakQsaURBQXNEO0FBQ3RELCtDQUF3QztBQUN4Qyw2Q0FBdUM7QUFDdkMscURBQThDO0FBQzlDLHVEQUFnRDtBQUNoRCw2Q0FBNkM7QUFDN0MsbURBQW1EO0FBQ25ELDJDQUFvQztBQUVwQyxNQUFxQixPQUFRLFNBQVEscUNBQXFCO0lBVy9DLE1BQU0sS0FBSyxRQUFRO1FBQ3RCLElBQUksQ0FBQyxJQUFJLEVBQUUsQ0FBQztRQUNaLE9BQU8sSUFBSSxDQUFDLFNBQVMsQ0FBQztJQUMxQixDQUFDO0lBRU0sTUFBTSxLQUFLLEVBQUU7UUFDaEIsT0FBTyxJQUFJLENBQUMsR0FBRyxDQUFDO0lBQ3BCLENBQUM7SUFFTSxNQUFNLEtBQUssUUFBUTtRQUN0QixPQUFPLElBQUksQ0FBQyxTQUFTLENBQUM7SUFDMUIsQ0FBQztJQUVELDRDQUE0QztJQUM1QywwQkFBMEI7SUFDMUIsSUFBSTtJQUNKLEVBQUU7SUFDRixrREFBa0Q7SUFDbEQsNkJBQTZCO0lBQzdCLElBQUk7SUFFRyxNQUFNLEtBQUssSUFBSTtRQUNsQixPQUFPLElBQUksQ0FBQyxLQUFLLENBQUM7SUFDdEIsQ0FBQztJQUVNLE1BQU0sS0FBSyxJQUFJO1FBQ2xCLE9BQU8sSUFBSSxDQUFDLEtBQUssQ0FBQztJQUN0QixDQUFDO0lBRUQsd0RBQXdEO0lBQ3hELHdDQUF3QztJQUN4QyxJQUFJO0lBRUcsTUFBTSxLQUFLLE9BQU87UUFDckIsT0FBTyxJQUFJLENBQUMsUUFBUSxDQUFDO0lBQ3pCLENBQUM7SUFHTSxNQUFNLENBQUMsS0FBSyxLQUFXLENBQUM7SUFFL0IsYUFBYTtJQUNOLE1BQU0sQ0FBQyxJQUFJO1FBQ2QsT0FBTyxDQUFDLEdBQUcsQ0FBQyxTQUFTLENBQUMsQ0FBQTtRQUN0QixJQS9EQyxxQ0FBcUIsQ0FnRjQ0SSxXQUFZLENBakIxNkksSUFBSSxDQUFDLFNBQVMsRUFBSSxJQUFJLEdBQUU7WUFDeEIsSUFBSSxFQUFFLEdBQUcsd0JBQVUsQ0FBQyxJQUFJLENBQUMsU0FBUyxDQUFDLENBQUM7WUFDcEMsSUFBSSxDQUFDLFNBQVMsR0FBRyxFQUFFLENBQUMsWUFBWSxTQUFDLE9BQU8sRUFBRyxDQUFDO1NBQy9DO0lBQ0wsQ0FBQztJQUVELEtBQUs7UUFDRCxPQUFPLENBQUMsR0FBRyxDQUFDLFNBQVMsQ0FBQyxDQUFBO1FBQ3RCLE9BQU8sQ0FBQyxJQUFJLENBQUMsSUFBSSxFQUFFLENBQUM7UUFDcEIsT0FBTyxDQUFDLFFBQVEsQ0FBQyxJQUFJLEVBQUUsQ0FBQztRQUN4QixPQUFPLENBQUMsRUFBRSxDQUFDLElBQUksRUFBRSxDQUFDO1FBQ2xCLHdCQUF3QjtRQUN4QiwyQkFBMkI7UUFDM0IsT0FBTyxDQUFDLElBQUksQ0FBQyxJQUFJLEVBQUUsQ0FBQztRQUNwQixPQUFPLENBQUMsT0FBTyxDQUFDLElBQUksRUFBRSxDQUFDO0lBQzNCLENBQUM7O0FBckVMLDBCQXNFQztBQXJFa0IsaUJBQVMsR0FBWSxJQUFJLENBQUM7QUFDekMscUVBQXFFO0FBQ3RELGlCQUFTLEdBQW9CLElBQUkseUJBQWUsRUFBRSxDQUFDO0FBQ25ELFdBQUcsR0FBYyxJQUFJLG1CQUFTLEVBQUUsQ0FBQztBQUNoRCw0REFBNEQ7QUFDN0MsYUFBSyxHQUFnQixJQUFJLG9CQUFXLEVBQUUsQ0FBQztBQUN2QyxhQUFLLEdBQWdCLElBQUkscUJBQVcsRUFBRSxDQUFDO0FBQ3RELDZFQUE2RTtBQUM5RCxnQkFBUSxHQUFtQixJQUFJLHdCQUFjLEVBQUUsQ0FBQyJ9","assetPath":"Assets/Scripts/Client/Manager/Manager.ts","manifest":{"properties":[],"name":"Manager","description":"","hasAnimatorMove":false},"isCompiled":true}'
-  typescriptHash: 71f10230e35cc29085542c685c44da86
+    = new ProductManager_1.default();\r\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiTWFuYWdlci5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIk1hbmFnZXIudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFBQSw2Q0FBK0M7QUFDL0MsaURBQW9EO0FBQ3BELCtDQUF3QztBQUN4Qyw2Q0FBdUM7QUFDdkMscURBQThDO0FBQzlDLHVEQUFnRDtBQUNoRCxpREFBMEM7QUFDMUMsNkNBQTZDO0FBQzdDLG1EQUFtRDtBQUNuRCwyQ0FBb0M7QUFFcEMsTUFBcUIsT0FBUSxTQUFRLHFDQUFxQjtJQVdqRCxNQUFNLEtBQUssUUFBUTtRQUN4QixJQUFJLENBQUMsSUFBSSxFQUFFLENBQUM7UUFDWixPQUFPLElBQUksQ0FBQyxTQUFTLENBQUM7SUFDeEIsQ0FBQztJQUVNLE1BQU0sS0FBSyxFQUFFO1FBQ2xCLE9BQU8sSUFBSSxDQUFDLEdBQUcsQ0FBQztJQUNsQixDQUFDO0lBRU0sTUFBTSxLQUFLLFFBQVE7UUFDeEIsT0FBTyxJQUFJLENBQUMsU0FBUyxDQUFDO0lBQ3hCLENBQUM7SUFFTSxNQUFNLEtBQUssS0FBSztRQUNyQixPQUFPLElBQUksQ0FBQyxNQUFNLENBQUM7SUFDckIsQ0FBQztJQUVELGtEQUFrRDtJQUNsRCw2QkFBNkI7SUFDN0IsSUFBSTtJQUVHLE1BQU0sS0FBSyxJQUFJO1FBQ3BCLE9BQU8sSUFBSSxDQUFDLEtBQUssQ0FBQztJQUNwQixDQUFDO0lBRU0sTUFBTSxLQUFLLElBQUk7UUFDcEIsT0FBTyxJQUFJLENBQUMsS0FBSyxDQUFDO0lBQ3BCLENBQUM7SUFFRCx3REFBd0Q7SUFDeEQsd0NBQXdDO0lBQ3hDLElBQUk7SUFFRyxNQUFNLEtBQUssT0FBTztRQUN2QixPQUFPLElBQUksQ0FBQyxRQUFRLENBQUM7SUFDdkIsQ0FBQztJQUVNLE1BQU0sQ0FBQyxLQUFLLEtBQVUsQ0FBQztJQUU5QixhQUFhO0lBQ04sTUFBTSxDQUFDLElBQUk7UUFDaEIsSUE5REkscUNBQXFCLENBOEVxcUosV0FBWSxDQWhCdHNKLElBQUksQ0FBQyxTQUFTLEVBQUksSUFBSSxHQUFFO1lBQzFCLElBQUksRUFBRSxHQUFHLHdCQUFVLENBQUMsSUFBSSxDQUFDLFNBQVMsQ0FBQyxDQUFDO1lBQ3BDLElBQUksQ0FBQyxTQUFTLEdBQUcsRUFBRSxDQUFDLFlBQVksU0FBQyxPQUFPLEVBQUcsQ0FBQztTQUM3QztJQUNILENBQUM7SUFFRCxLQUFLO1FBQ0gsT0FBTyxDQUFDLElBQUksQ0FBQyxJQUFJLEVBQUUsQ0FBQztRQUNwQixPQUFPLENBQUMsUUFBUSxDQUFDLElBQUksRUFBRSxDQUFDO1FBQ3hCLE9BQU8sQ0FBQyxFQUFFLENBQUMsSUFBSSxFQUFFLENBQUM7UUFDbEIsT0FBTyxDQUFDLEtBQUssQ0FBQyxJQUFJLEVBQUUsQ0FBQztRQUNyQiwyQkFBMkI7UUFDM0IsT0FBTyxDQUFDLElBQUksQ0FBQyxJQUFJLEVBQUUsQ0FBQztRQUNwQixPQUFPLENBQUMsT0FBTyxDQUFDLElBQUksRUFBRSxDQUFDO0lBQ3pCLENBQUM7O0FBbEVILDBCQW1FQztBQWxFZ0IsaUJBQVMsR0FBWSxJQUFJLENBQUM7QUFDekMscUVBQXFFO0FBQ3RELGlCQUFTLEdBQW9CLElBQUkseUJBQWUsRUFBRSxDQUFDO0FBQ25ELFdBQUcsR0FBYyxJQUFJLG1CQUFTLEVBQUUsQ0FBQztBQUNqQyxjQUFNLEdBQWlCLElBQUksc0JBQVksRUFBRSxDQUFDO0FBQzFDLGFBQUssR0FBZ0IsSUFBSSxvQkFBVyxFQUFFLENBQUM7QUFDdkMsYUFBSyxHQUFnQixJQUFJLHFCQUFXLEVBQUUsQ0FBQztBQUN0RCw2RUFBNkU7QUFDOUQsZ0JBQVEsR0FBbUIsSUFBSSx3QkFBYyxFQUFFLENBQUMifQ==","assetPath":"Assets/Scripts/Client/Manager/Manager.ts","manifest":{"properties":[],"name":"Manager","description":"","hasAnimatorMove":false},"isCompiled":true}'
+  typescriptHash: 5569e73d875637f945bf67bb63e5a992
   onlyWriteTrigger: 0

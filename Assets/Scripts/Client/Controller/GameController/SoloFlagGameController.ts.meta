@@ -1,0 +1,85 @@
+fileFormatVersion: 2
+guid: ad709668cbb6a824c96d743bbfb0ac99
+importerOverride: ZEPETO.Script.Compiler:ZEPETO.Script:TypescriptAssetImporter
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: -1123457745, guid: 54cf806323ffe4418a4ce4cc63fe6b9d, type: 3}
+  isAssemblyDeclarations: 0
+  assembly: 
+  generateAllTypes: 1
+  types: []
+  generateWrapper: 0
+  overrideWrapperTypes: 0
+  wrapperTypes: []
+  WrapperFilters: []
+  wrapperOutputDirectory: Generated
+  compiledResult: '{"source":"\"use strict\";\r\nObject.defineProperty(exports, \"__esModule\",
+    { value: true });\r\nconst ZEPETO_Script_1 = require(\"ZEPETO.Script\");\r\nconst
+    UnityEngine_1 = require(\"UnityEngine\");\r\nconst ZEPETO_Character_Controller_1
+    = require(\"ZEPETO.Character.Controller\");\r\nconst Manager_1 = require(\"../../Manager/Manager\");\r\nconst
+    MyPlayerController_1 = require(\"../../MyPlayerController/MyPlayerController\");\r\nconst
+    index_1 = require(\"../../Utils/index\");\r\nconst Connector_1 = require(\"../../Network/Connector\");\r\nconst
+    OtherZepetoCharacterController_1 = require(\"../OtherZepetoCharacterController\");\r\nclass
+    SoloFlagGameController extends ZEPETO_Script_1.ZepetoScriptBehaviour {\r\n   
+    constructor() {\r\n        super(...arguments);\r\n        this.winningTeam =
+    '''';\r\n    }\r\n    static get Instance() {\r\n        return this._instance;\r\n   
+    }\r\n    Awake() {\r\n        try {\r\n            if (!SoloFlagGameController._instance)
+    {\r\n                SoloFlagGameController._instance = this;\r\n           
+    }\r\n        }\r\n        catch (e) {\r\n            console.error(e);\r\n       
+    }\r\n    }\r\n    Start() {\r\n        this.soloFlagEnv.SetActive(false);\r\n   
+    }\r\n    JoinGame() {\r\n        Manager_1.default.UI.CloseDefaultUI(''StartUI'');\r\n       
+    Manager_1.default.UI.ShowDefaultUI(''InGameUI'');\r\n        Manager_1.default.UI.ControllerUI.SetJump(true);\r\n       
+    Manager_1.default.UI.ControllerUI.SetPad(true);\r\n        this.soloFlagEnv.SetActive(true);\r\n       
+    this.flagObj.SetActive(true);\r\n        MyPlayerController_1.default.Data.SetTeam(MyPlayerController_1.default.Data.MySessionId);\r\n       
+    Manager_1.default.Game.IsGamePlaying = true;\r\n        this.PlayerSpawn();\r\n   
+    }\r\n    LeaveGame(sessionId) {\r\n        if (sessionId === MyPlayerController_1.default.Data.MySessionId)
+    {\r\n            index_1.default.ChangeLayer(MyPlayerController_1.default.Data.MyPlayer.character.gameObject,
+    ''myPlayer'');\r\n            index_1.default.ChangeLayer(MyPlayerController_1.default.Data.NowWeapon,
+    ''myPlayer'');\r\n            MyPlayerController_1.default.Data.SetTeam('''');\r\n           
+    Manager_1.default.Game.IsGamePlaying = false;\r\n            MyPlayerController_1.default.Movement.Teleport(this.homePoint.position,
+    this.homePoint.rotation);\r\n            Manager_1.default.UI.CloseDefaultUI(''InGameUI'');\r\n           
+    Manager_1.default.UI.ShowDefaultUI(''StartUI'');\r\n            Manager_1.default.UI.CloseDefaultUI(''RespawnUI'');\r\n           
+    Manager_1.default.UI.ControllerUI.SetJump(false);\r\n            Manager_1.default.UI.ControllerUI.SetPad(false);\r\n       
+    }\r\n        else {\r\n            index_1.default.ChangeLayer(ZEPETO_Character_Controller_1.ZepetoPlayers.instance.GetPlayer(sessionId).character.gameObject,
+    ''outGamePlayer'');\r\n            index_1.default.ChangeLayer(ZEPETO_Character_Controller_1.ZepetoPlayers.instance\r\n               
+    .GetPlayer(sessionId)\r\n                .character.gameObject.GetComponent($typeof(OtherZepetoCharacterController_1.default)).nowWeapon,
+    ''outGamePlayer'');\r\n        }\r\n        if (this.flagObj.transform.parent.gameObject
+    ===\r\n            ZEPETO_Character_Controller_1.ZepetoPlayers.instance.GetPlayer(sessionId).character.gameObject)
+    {\r\n            this.flagObj.transform.SetParent(this.colliders);\r\n       
+    }\r\n    }\r\n    EndGame(winningTeam) {\r\n        Manager_1.default.UI.CloseDefaultUI(''InGameUI'');\r\n       
+    Manager_1.default.UI.CloseDefaultUI(''RespawnUI'');\r\n        Manager_1.default.UI.ControllerUI.SetJump(false);\r\n       
+    Manager_1.default.UI.ControllerUI.SetPad(false);\r\n        this.soloFlagEnv.SetActive(false);\r\n       
+    this.flagObj.SetActive(false);\r\n        MyPlayerController_1.default.Data.SetTeam('''');\r\n       
+    Manager_1.default.Game.IsGamePlaying = false;\r\n        MyPlayerController_1.default.Movement.Teleport(this.homePoint.position,
+    this.homePoint.rotation);\r\n        this.flagObj.transform.SetParent(this.colliders);\r\n       
+    this.flagObj.transform.localPosition = new UnityEngine_1.Vector3(-17.3630009,
+    -4.91300011, -85.072998);\r\n        this.flagObj.transform.localRotation = UnityEngine_1.Quaternion.Euler(UnityEngine_1.Vector3.zero);\r\n   
+    }\r\n    PlayerSpawn() {\r\n        let rangeCollider;\r\n        let respawnPosition;\r\n       
+    let ind = index_1.default.RandomInt(0, this.startPoint.childCount - 1);\r\n       
+    rangeCollider = this.startPoint.GetChild(ind).GetComponent($typeof(UnityEngine_1.BoxCollider));\r\n       
+    let range_X = rangeCollider.bounds.size.x;\r\n        let range_Z = rangeCollider.bounds.size.z;\r\n       
+    range_X = UnityEngine_1.Random.Range((range_X / 2) * -1, range_X / 2);\r\n       
+    range_Z = UnityEngine_1.Random.Range((range_Z / 2) * -1, range_Z / 2);\r\n       
+    respawnPosition = index_1.default.VectorPlusCalc(this.startPoint.GetChild(ind).position,
+    new UnityEngine_1.Vector3(range_X, 0, range_Z));\r\n        MyPlayerController_1.default.Movement.Teleport(respawnPosition,
+    UnityEngine_1.Quaternion.Euler(UnityEngine_1.Vector3.zero));\r\n        MyPlayerController_1.default.Instance.StartShieldEffect();\r\n   
+    }\r\n    PlayerRespawn() {\r\n        Manager_1.default.UI.ShowDefaultUI(''InGameUI'');\r\n       
+    Manager_1.default.UI.CloseDefaultUI(''RespawnUI'');\r\n        Manager_1.default.UI.ControllerUI.SetJump(true);\r\n       
+    Manager_1.default.UI.ControllerUI.SetPad(true);\r\n        this.PlayerSpawn();\r\n   
+    }\r\n    GetHit(player) {\r\n        this.FreeFlag();\r\n        index_1.default.ChangeLayer(player,
+    ''hittedPlayer'');\r\n    }\r\n    GetFlag(team, player) {\r\n        this.winningTeam
+    = team;\r\n        this.flagObj.transform.SetParent(ZEPETO_Character_Controller_1.ZepetoPlayers.instance.GetPlayer(player).character.gameObject.transform);\r\n       
+    this.flagObj.transform.localPosition = new UnityEngine_1.Vector3(0, 1.5, 0);\r\n   
+    }\r\n    FreeFlag() {\r\n        this.flagObj.transform.SetParent(this.colliders);\r\n       
+    const p = this.flagObj.transform.position;\r\n        this.flagObj.transform.position
+    = new UnityEngine_1.Vector3(p.x, p.y - 1, p.z);\r\n        Connector_1.default.Instance.ReqToServer(''FreeFlag'');\r\n   
+    }\r\n    get WinnigTeam() {\r\n        return this.winningTeam;\r\n    }\r\n}\r\nexports.default
+    = SoloFlagGameController;\r\nSoloFlagGameController._instance = null;\r\n//#
+    sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiU29sb0ZsYWdHYW1lQ29udHJvbGxlci5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIlNvbG9GbGFnR2FtZUNvbnRyb2xsZXIudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFBQSxpREFBb0Q7QUFDcEQsNkNBU3FCO0FBQ3JCLDZFQUEwRDtBQUMxRCxtREFBNEM7QUFDNUMsb0ZBQTZFO0FBQzdFLDZDQUFzQztBQUN0Qyx1REFBZ0Q7QUFDaEQsc0ZBQStFO0FBRS9FLE1BQXFCLHNCQUF1QixTQUFRLHFDQUFxQjtJQUF6RTs7UUFhVSxnQkFBVyxHQUFXLEVBQUUsQ0FBQztJQTZIbkMsQ0FBQztJQXZJUSxNQUFNLEtBQUssUUFBUTtRQUN4QixPQUFPLElBQUksQ0FBQyxTQUFTLENBQUM7SUFDeEIsQ0FBQztJQVVELEtBQUs7UUFDSCxJQUFJO1lBQ0YsSUFBSSxDQUFDLHNCQUFzQixDQUFDLFNBQVMsRUFBRTtnQkFDckMsc0JBQXNCLENBQUMsU0FBUyxHQUFHLElBQUksQ0FBQzthQUN6QztTQUNGO1FBQUMsT0FBTyxDQUFDLEVBQUU7WUFDVixPQUFPLENBQUMsS0FBSyxDQUFDLENBQUMsQ0FBQyxDQUFDO1NBQ2xCO0lBQ0gsQ0FBQztJQUVELEtBQUs7UUFDSCxJQUFJLENBQUMsV0FBVyxDQUFDLFNBQVMsQ0FBQyxLQUFLLENBQUMsQ0FBQztJQUNwQyxDQUFDO0lBRUQsUUFBUTtRQUNOLGlCQUFPLENBQUMsRUFBRSxDQUFDLGNBQWMsQ0FBQyxTQUFTLENBQUMsQ0FBQztRQUNyQyxpQkFBTyxDQUFDLEVBQUUsQ0FBQyxhQUFhLENBQUMsVUFBVSxDQUFDLENBQUM7UUFDckMsaUJBQU8sQ0FBQyxFQUFFLENBQUMsWUFBWSxDQUFDLE9BQU8sQ0FBQyxJQUFJLENBQUMsQ0FBQztRQUN0QyxpQkFBTyxDQUFDLEVBQUUsQ0FBQyxZQUFZLENBQUMsTUFBTSxDQUFDLElBQUksQ0FBQyxDQUFDO1FBQ3JDLElBQUksQ0FBQyxXQUFXLENBQUMsU0FBUyxDQUFDLElB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","assetPath":"Assets/Scripts/Client/Controller/GameController/SoloFlagGameController.ts","manifest":{"properties":[{"assembly":"UnityEngine.CoreModule","name":"soloFlagEnv","type":"UnityEngine.GameObject","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]},{"assembly":"UnityEngine.CoreModule","name":"flagObj","type":"UnityEngine.GameObject","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]},{"assembly":"UnityEngine.CoreModule","name":"colliders","type":"UnityEngine.Transform","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]},{"assembly":"UnityEngine.CoreModule","name":"startPoint","type":"UnityEngine.Transform","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]},{"assembly":"UnityEngine.CoreModule","name":"homePoint","type":"UnityEngine.Transform","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]}],"name":"SoloFlagGameController","description":"","hasAnimatorMove":false},"isCompiled":true}'
+  typescriptHash: 06dd37c435d4d5436926127e4b7be6df
+  onlyWriteTrigger: 0

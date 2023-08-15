@@ -15,6 +15,12 @@ MonoBehaviour:
   productTextureInfo:
   - targetId: goldpack1
     targetAssetPath: Assets/Product/Resources/product_Icon_ColorIcon_Coin_l.png
+  - targetId: goldpack2
+    targetAssetPath: 
+  - targetId: goldpack3
+    targetAssetPath: 
+  - targetId: goldpack4
+    targetAssetPath: 
   - targetId: gun1
     targetAssetPath: Assets/Resources/Sprites/Guns/1.png
   - targetId: gun10

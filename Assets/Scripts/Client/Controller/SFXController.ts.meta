@@ -1,0 +1,31 @@
+fileFormatVersion: 2
+guid: 79cc9071950dd5c4180ae83e9b794dbb
+importerOverride: ZEPETO.Script.Compiler:ZEPETO.Script:TypescriptAssetImporter
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: -1123457745, guid: 54cf806323ffe4418a4ce4cc63fe6b9d, type: 3}
+  isAssemblyDeclarations: 0
+  assembly: 
+  generateAllTypes: 1
+  types: []
+  generateWrapper: 0
+  overrideWrapperTypes: 0
+  wrapperTypes: []
+  WrapperFilters: []
+  wrapperOutputDirectory: Generated
+  compiledResult: '{"source":"\"use strict\";\r\nObject.defineProperty(exports, \"__esModule\",
+    { value: true });\r\nconst UnityEngine_1 = require(\"UnityEngine\");\r\nconst
+    ZEPETO_Script_1 = require(\"ZEPETO.Script\");\r\nclass SFXController extends
+    ZEPETO_Script_1.ZepetoScriptBehaviour {\r\n    static get Instance() {\r\n       
+    return this._instance;\r\n    }\r\n    static set Instance(value) {\r\n       
+    SFXController._instance = value;\r\n    }\r\n    Awake() {\r\n        SFXController._instance
+    = this;\r\n    }\r\n    Start() { }\r\n    PlayShootSound() {\r\n        if (this.ShootSound)
+    {\r\n            this.ShootSound.Play();\r\n        }\r\n    }\r\n}\r\nexports.default
+    = SFXController;\r\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiU0ZYQ29udHJvbGxlci5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIlNGWENvbnRyb2xsZXIudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFBQSw2Q0FBd0M7QUFDeEMsaURBQW9EO0FBRXBELE1BQXFCLGFBQWMsU0FBUSxxQ0FBcUI7SUFHdkQsTUFBTSxLQUFLLFFBQVE7UUFDeEIsT0FBTyxJQUFJLENBQUMsU0FBUyxDQUFDO0lBQ3hCLENBQUM7SUFDTSxNQUFNLEtBQUssUUFBUSxDQUFDLEtBQUs7UUFDOUIsYUFBYSxDQUFDLFNBQVMsR0FBRyxLQUFLLENBQUM7SUFDbEMsQ0FBQztJQUlELEtBQUs7UUFDSCxhQUFhLENBQUMsU0FBUyxHQUFHLElBQUksQ0FBQztJQUNqQyxDQUFDO0lBRUQsS0FBSyxLQUFJLENBQUM7SUFFVixjQUFjO1FBQ1osSUFBSSxJQUFJLENBQUMsVUFBVSxFQUFFO1lBQ25CLElBQUksQ0FBQyxVQUFVLENBQUMsSUFBSSxFQUFFLENBQUM7U0FDeEI7SUFDSCxDQUFDO0NBQ0Y7QUF2QkQsZ0NBdUJDIn0=","assetPath":"Assets/Scripts/Client/Controller/SFXController.ts","manifest":{"properties":[{"assembly":"UnityEngine.AudioModule","name":"ShootSound","type":"UnityEngine.AudioSource","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]}],"name":"SFXController","description":"","hasAnimatorMove":false},"isCompiled":true}'
+  typescriptHash: 920a726b58fb73e3011139b174cab4e2
+  onlyWriteTrigger: 0

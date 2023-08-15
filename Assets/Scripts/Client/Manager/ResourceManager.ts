@@ -1,93 +1,109 @@
-import {GameObject, Resources, Sprite, Texture2D, Rect, Vector2, TextAsset, Vector3, Quaternion} from 'UnityEngine';
+import {
+  GameObject,
+  Resources,
+  Sprite,
+  Texture2D,
+  Rect,
+  Vector2,
+  TextAsset,
+  Vector3,
+  Quaternion,
+} from 'UnityEngine';
 import * as UnityEngine from 'UnityEngine';
 
 export default class ResourceManager {
-    private rootPrefab: GameObject = null;
+  private rootPrefab: GameObject = null;
 
-    public Init(): void {
-        console.log("resourcemanager")
-        
-        this.rootPrefab = GameObject.Find('RootPrefab');
-        if (!this.rootPrefab) {
-            console.log('RootPrefab이 씬에 없습니다');
-        }
+  public Init(): void {
+    this.rootPrefab = GameObject.Find('RootPrefab');
+    if (!this.rootPrefab) {
+      console.log('RootPrefab이 씬에 없습니다');
+    }
+  }
+
+  public LoadData(path: string): any {
+    const JsonData = Resources.Load<TextAsset>('Data\\' + path);
+    if (!JsonData) {
+      console.log(`해당 경로에 json 파일이 없습니다: ${path}`);
+      return null;
+    }
+    return JSON.parse(JsonData.toString());
+  }
+
+  public Load(path: string): UnityEngine.Object {
+    const object = Resources.Load(path);
+    if (!object) {
+      console.log(`해당 경로에 오브젝트가 없습니다: ${path}`);
+      return null;
     }
 
-    public LoadData(path: string): any {
-        const JsonData = Resources.Load<TextAsset>('Data\\' + path);
-        if (!JsonData) {
-            console.log(`해당 경로에 json 파일이 없습니다: ${path}`);
-            return null;
-        }
-        return JSON.parse(JsonData.toString());
+    return object;
+  }
+
+  public LoadSprite(path: string): Sprite {
+    let imageSource = Resources.Load<Texture2D>('Sprites\\' + path);
+    if (!imageSource) {
+      console.log(`해당 경로에 스프라이트가 없습니다: ${path}`);
+      imageSource = Resources.Load<Texture2D>('Sprites/Icon/test');
+      // return null;
     }
 
-    public Load(path: string): UnityEngine.Object {
-        const object = Resources.Load(path);
-        if (!object) {
-            console.log(`해당 경로에 오브젝트가 없습니다: ${path}`);
-            return null;
-        }
+    const rect = new Rect(0, 0, imageSource.width, imageSource.height);
+    const sprite = Sprite.Create(imageSource, rect, new Vector2(0, 0));
 
-        return object;
+    return sprite;
+  }
+
+  public LoadJson(path: string): any {
+    const JsonData = Resources.Load<TextAsset>(path);
+    if (!JsonData) {
+      console.log(`해당 경로에 json 파일이 없습니다: ${path}`);
+      return null;
     }
 
-    public LoadSprite(path: string): Sprite {
-        let imageSource = Resources.Load<Texture2D>('Sprites\\' + path);
-        if (!imageSource) {
-            console.log(`해당 경로에 스프라이트가 없습니다: ${path}`);
-            imageSource = Resources.Load<Texture2D>('Sprites/Icon/test');
-            // return null;
-        }
+    return JSON.parse(JsonData.toString());
+  }
 
-        const rect = new Rect(0, 0, imageSource.width, imageSource.height);
-        const sprite = Sprite.Create(imageSource, rect, new Vector2(0, 0));
-
-        return sprite;
+  public Instantiate(
+    path: string,
+    position?: UnityEngine.Vector3,
+    rotation?: UnityEngine.Quaternion,
+  ): GameObject {
+    let go: GameObject = null;
+    let origin_prefab = Resources.Load<GameObject>(path);
+    if (!origin_prefab) {
+      console.log(`해당 경로에 프리팹이 없습니다: ${path}`);
+      return null;
     }
 
-    public LoadJson(path: string): any {
-        const JsonData = Resources.Load<TextAsset>(path);
-        if (!JsonData) {
-            console.log(`해당 경로에 json 파일이 없습니다: ${path}`);
-            return null;
-        }
-
-        return JSON.parse(JsonData.toString());
+    if (position) {
+      if (rotation) {
+        go = UnityEngine.Object.Instantiate(origin_prefab, position, rotation) as GameObject;
+      } else {
+        go = UnityEngine.Object.Instantiate(
+          origin_prefab,
+          position,
+          new UnityEngine.Quaternion(0, 0, 0, 0),
+        ) as GameObject;
+      }
+    } else {
+      go = UnityEngine.Object.Instantiate(origin_prefab) as GameObject;
     }
 
-    public Instantiate(path: string, position?: UnityEngine.Vector3, rotation?: UnityEngine.Quaternion): GameObject {
-        let go: GameObject = null;
-        let origin_prefab = Resources.Load<GameObject>(path);
-        if (!origin_prefab) {
-            console.log(`해당 경로에 프리팹이 없습니다: ${path}`);
-            return null;
-        }
+    go.name = origin_prefab.name;
+    go.transform.SetParent(this.rootPrefab.transform);
 
-        if (position) {
-            if (rotation) {
-                go = UnityEngine.Object.Instantiate(origin_prefab, position, rotation) as GameObject;
-            } else {
-                go = UnityEngine.Object.Instantiate(origin_prefab, position, new UnityEngine.Quaternion(0, 0, 0, 0)) as GameObject;
-            }
-        } else {
-            go = UnityEngine.Object.Instantiate(origin_prefab) as GameObject;
-        }
+    return go;
+  }
 
-        go.name = origin_prefab.name;
-        go.transform.SetParent(this.rootPrefab.transform);
-
-        return go;
+  public Destroy(go: GameObject, t: number = 0): void {
+    try {
+      if (go === null) {
+        return;
+      }
+      UnityEngine.Object.Destroy(go, t);
+    } catch (e) {
+      console.error(e);
     }
-
-    public Destroy(go: GameObject, t: number = 0): void {
-        try {
-            if (go === null) {
-                return;
-            }
-            UnityEngine.Object.Destroy(go, t);
-        } catch (e) {
-            console.error(e);
-        }
-    }
+  }
 }

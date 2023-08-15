@@ -300,7 +300,6 @@ GameObject:
   - component: {fileID: 460124990547857524}
   - component: {fileID: 460124990547857527}
   - component: {fileID: 460124990547857526}
-  - component: {fileID: 2632144296448136632}
   m_Layer: 5
   m_Name: ReloadUI
   m_TagString: Untagged
@@ -388,25 +387,4 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
---- !u!114 &2632144296448136632
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 460124990547857513}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1673316429, guid: 921f0445823004a16a499d629dd566a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  applyRootMotion: 0
-  script:
-    keys: []
-    unityValues: []
-    values: []
-    unityArrayValues: []
-    arrayValues: []
-    script: {fileID: 4458252877524076426, guid: c9bf68cee90553c4d99aa3d4cd43dbd1, type: 3}
-    isExpaned: 0
+    m_Bits: 4087

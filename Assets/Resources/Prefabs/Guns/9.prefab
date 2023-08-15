@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4153469413766156530}
   - component: {fileID: 2922287259189712671}
   - component: {fileID: 7507733451565076200}
-  m_Layer: 9
+  m_Layer: 21
   m_Name: Foregrip_mesh1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 4640677150245252628}
   - component: {fileID: 1394556968884507373}
   - component: {fileID: 6381171206327937062}
-  m_Layer: 9
+  m_Layer: 21
   m_Name: 9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -135,7 +135,7 @@ Transform:
   - {fileID: 1608222378301085493}
   m_Father: {fileID: 2345455535227470742}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 52.538, y: -27.401, z: 154.162}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4640677150245252628
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -211,7 +211,7 @@ GameObject:
   - component: {fileID: 5261226461031120735}
   - component: {fileID: 3694853677606901297}
   - component: {fileID: 7900462129161653758}
-  m_Layer: 9
+  m_Layer: 21
   m_Name: DMR_Silencer_mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -307,7 +307,7 @@ GameObject:
   - component: {fileID: 1609607577715507864}
   - component: {fileID: 8635953419794717108}
   - component: {fileID: 2314326596901020102}
-  m_Layer: 9
+  m_Layer: 21
   m_Name: Mag_M_mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -401,7 +401,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1608222378301085493}
-  m_Layer: 9
+  m_Layer: 21
   m_Name: muzzle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -416,7 +416,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3172584501569460818}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.639, y: 0.04, z: 0}
+  m_LocalPosition: {x: -0.842, y: 0.04, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4412958057591264290}
@@ -434,7 +434,7 @@ GameObject:
   - component: {fileID: 4001557071450059673}
   - component: {fileID: 8827163053463701912}
   - component: {fileID: 2906927330258362984}
-  m_Layer: 9
+  m_Layer: 21
   m_Name: DMRIronSights_mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -530,7 +530,7 @@ GameObject:
   - component: {fileID: 2294976002348034176}
   - component: {fileID: 8294599964574446700}
   - component: {fileID: 2471328914692088026}
-  m_Layer: 9
+  m_Layer: 21
   m_Name: TriggerA_mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -624,7 +624,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2345455535227470742}
   - component: {fileID: 8354035816974327477}
-  m_Layer: 9
+  m_Layer: 21
   m_Name: 9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -662,17 +662,11 @@ MonoBehaviour:
   script:
     keys:
     - muzzle
-    - manager
-    - myPlayerController
     - bulletPool
     unityValues:
     - {fileID: 3172584501569460818}
     - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
     values:
-    - 
-    - 
     - 
     - 
     unityArrayValues: []
@@ -691,7 +685,7 @@ GameObject:
   - component: {fileID: 8541090590380912986}
   - component: {fileID: 5607177024009524170}
   - component: {fileID: 482542713754748374}
-  m_Layer: 9
+  m_Layer: 21
   m_Name: ACOG_mesh1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
